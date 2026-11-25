@@ -1,7 +1,7 @@
 # Shelf: path | last started | finished | hidden | picture | favourite (times in minutes since 2000)
 ms0:/ISO/JRPG/Ys - The Oath in Felghana (Undub).iso | 14140011 | 0 | 0 | -1 | 1
 ms0:/ISO/JRPG/Trails in the Sky.iso | 13891541 | 13891600 | 0 | -1 | 1
-ms0:/ISO/JRPG/Lunar - Silver Star Harmony.iso | 13950610 | 13953425 | 0 | -1 | 0
+ms0:/ISO/JRPG/Lunar - Silver Star Harmony (USA) (En,Ja) (v1.01).iso | 13950610 | 13953425 | 0 | -1 | 0
 ms0:/ISO/JRPG/Persona 3 Portable (Undub).iso | 14141457 | 0 | 0 | -1 | 1
 ms0:/ISO/Strategy/Jeanne d'Arc.cso | 13754722 | 13762030 | 0 | -1 | 0
 ms0:/ISO/Strategy/Valkyria Chronicles 2.iso | 14105423 | 0 | 0 | -1 | 0

@@ -11,9 +11,9 @@ It is one page that runs in your browser. Nothing is installed on the PSP, and n
 
 | | |
 |---|---|
-| Version | 1.1 |
+| Version | 1.2 |
 | Reads | Sidequest 1.0+, Checkpoint 1.0+, Emblem 1.0+, Runtime 1.0, Shelf 1.0+ |
-| Tested on | Chrome, with the sample Memory Stick |
+| Tested on | Chrome, with the sample Memory Stick and one real Memory Stick |
 
 > **Disclosure.** Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my testing with files from my PSP-3000. I’m not a web developer, and nothing has been tested beyond my own setup. Please read the [known issues](docs/known-issues.md) before relying on it.
 

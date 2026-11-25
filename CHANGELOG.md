@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2
+
+Nothing to install: the site updates itself. If you keep a copy for offline use, replace its `index.html`.
+
+- **A game with a long file name no longer appears twice.** Runtime has room for 47 characters of a game's file name in its log, so a longer name arrives cut short. The page took a cut name for a game it did not know and listed it a second time, with no icon and with part of the game's hours. A cut name now finds the game whose file name begins with it. When several games begin the same way, such as the discs of one game, the one with a save, journey entry or achievement nearest that time is taken.
+- The documentation says what has been tested: the sample Memory Stick and one real Memory Stick.
+
 ## 1.1
 
 Nothing to install: the site updates itself. If you keep a copy for offline use, replace its `index.html`.

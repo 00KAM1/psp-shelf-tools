@@ -61,7 +61,7 @@ GAMES = [
      ["Town of Redmont", "Tigray Quarry", "Ilvern Ruins", "Elduke Forest", "Galbalan's Island", "Valestein Castle"]),
     ("ULUS10540", "The Legend of Heroes: Trails in the Sky", "Trails in the Sky.iso", "JRPG", (70, 120, 200),
      ["Rolent", "Bose", "Ruan", "Zeiss", "Grancel", "Grancel Castle"]),
-    ("ULUS10482", "Lunar: Silver Star Harmony", "Lunar - Silver Star Harmony.iso", "JRPG", (120, 80, 190),
+    ("ULUS10482", "Lunar: Silver Star Harmony", "Lunar - Silver Star Harmony (USA) (En,Ja) (v1.01).iso", "JRPG", (120, 80, 190),
      ["Burg", "Saith", "Meribia", "Vane", "Reza", "Grindery"]),
     ("ULUS10512", "Shin Megami Tensei: Persona 3 Portable", "Persona 3 Portable (Undub).iso", "JRPG", (60, 150, 210),
      ["Dorm 4/29", "Tartarus 2F", "Dorm 6/8", "Tartarus Thebel", "Dorm 7/7", "Tartarus Arqa"]),
@@ -427,7 +427,7 @@ for start, end, gid in sessions:
     if gid:
         fn = next(ft for p, t, ft, g, typ, col in lib if g == gid)
         iso = next(p for p, t, f2, g, typ, col in lib if g == gid).rsplit("/", 1)[1]
-        use.append(f"{ga_date(start)} | {p0:3d}%          | start {iso}")
+        use.append(f"{ga_date(start)} | {p0:3d}%          | start {iso[:47]}")   # Runtime has room for 47 characters
     mins = int((end - on0).total_seconds() // 60)
     drain = max(1, round(mins / 60 * rnd.uniform(16, 22)))
     pct = max(5, p0 - drain)

@@ -302,14 +302,7 @@
     });
 
     // ---- Runtime: which game each program start was --------------------------------------------
-    // The use log names an ISO by its file name and an EBOOT by its folder.
-    const names = new Map();
-    for (const g of model.games.values()) {
-      if (!g.path) continue;
-      const b = base(g.path);
-      names.set((/EBOOT\.PBP$/i.test(b) ? folderOf(g.path) : b).toUpperCase(), g);
-      if (/EBOOT\.PBP$/i.test(b)) names.set(("PS1 " + folderOf(g.path)).toUpperCase(), g);
-    }
+    const programs = programNames([...model.games.values()]);
     model.powerOns.sort((a, b) => a.start - b.start);
     // for every line, when the next start or power-on is (one pass from the end)
     const nextAt = new Array(model.uses.length).fill(null);
@@ -321,7 +314,7 @@
     for (let i = 0; i < model.uses.length; i++) {
       const u = model.uses[i];
       if (u.why !== "start" || !u.program || /^(XMB|launcher)$/i.test(u.program)) continue;
-      let g = names.get(u.program.toUpperCase());
+      let g = matchProgram(programs, u.program, u.when);
       if (!g) {
         g = game(null, "use:" + u.program);
         if (!g.title) g.title = tidy(u.program.replace(/^PS1 /, ""));
@@ -351,6 +344,41 @@
     return model;
   }
 
+  // The use log names an ISO by its file name and an EBOOT by its folder ("PS1 " before a
+  // PS1 game's), or by its whole path when the folder name is very long. Runtime has room
+  // for 47 characters, so a longer name arrives cut short: "Some Long Game (USA) [Patch"
+  // for "Some Long Game (USA) [Patched].iso".
+  const NAME_ROOM = 47;
+  function programNames(games) {
+    const list = [];
+    for (const g of games) {
+      if (!g.path) continue;
+      const b = base(g.path);
+      if (/EBOOT\.PBP$/i.test(b)) list.push([folderOf(g.path), g], ["PS1 " + folderOf(g.path), g], [g.path, g], ["PS1 " + g.path, g]);
+      else list.push([b, g]);
+    }
+    return list.map(([name, g]) => [name.toUpperCase(), g]);
+  }
+  // The game a logged name means, or null. A whole name must match exactly. A name that
+  // fills Runtime's room may be the start of a longer one; when several games begin with
+  // it (the discs of one game, say), the one with something dated nearest that moment wins.
+  function matchProgram(programs, program, when) {
+    const p = program.toUpperCase();
+    const exact = programs.find(([name]) => name === p);
+    if (exact) return exact[1];
+    if (program.length < NAME_ROOM) return null;
+    const found = [...new Set(programs.filter(([name]) => name.startsWith(p)).map(([, g]) => g))];
+    if (found.length < 2) return found[0] || null;
+    const gap = (g) => {
+      let best = Infinity;
+      const see = (d) => { if (d && when) best = Math.min(best, Math.abs(d - when)); };
+      g.journey.forEach((x) => see(x.when)); g.earned.forEach((x) => see(x.when)); g.versions.forEach((x) => see(x.when));
+      g.slots.forEach((x) => see(x.when)); see(g.launched);
+      return best;
+    };
+    return found.map((g) => [gap(g), g]).sort((a, b) => a[0] - b[0])[0][1];
+  }
+
   // Shelf's picture cache: the 144x80 icon of a game
   async function icon(stick, key) {
     if (key == null) return null;
@@ -368,7 +396,7 @@
     return rgb565(b, w, h, 8);
   }
 
-  const api = { build, icon, thumb, parseStamp, fromMinutes, parseSpan, datesWithoutYear, spansWithoutYear, rgb565 };
+  const api = { build, icon, thumb, programNames, matchProgram, parseStamp, fromMinutes, parseSpan, datesWithoutYear, spansWithoutYear, rgb565 };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.StickParse = api;
 })(typeof window !== "undefined" ? window : globalThis);

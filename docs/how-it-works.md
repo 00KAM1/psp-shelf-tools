@@ -47,7 +47,9 @@ A zip is read through its central directory. An entry is inflated with the brows
 
 Every file is read inside a guard: one that cannot be read is skipped, noted, and named in the Load window, and the rest still loads.
 
-A game is known by its disc ID. Shelf's library ties the ID to a path, which is how Sidequest's slots (by path) and Runtime's starts (by file name) find their game. A program Runtime saw that Shelf's library does not hold (an older ISO, a PS1 game) becomes a game of its own, named from its file.
+A game is known by its disc ID. Shelf's library ties the ID to a path, which is how Sidequest's slots (by path) and Runtime's starts (by file name) find their game. Runtime has room for 47 characters of a name, so a longer file name arrives cut short. A whole name must match exactly; a name that fills that room is matched to the game whose name begins with it, and when several do, to the one with a dated save, journey entry, unlock or slot nearest the session.
+
+A program Runtime saw that Shelf's library does not hold (an older ISO, a PS1 game) becomes a game of its own, named from its file.
 
 ### Dates without a year
 

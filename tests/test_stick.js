@@ -123,6 +123,21 @@ function makeZip(dir, prefix) {
   const zh = await zs.bytes("SIDEQUEST/ULUS10558/SUSPEND.SQS", 0, 404);
   eq(zh.length, 404, "zip: partial read of a deflated file");
 
+  // names Runtime cut at 47 characters still find their game
+  const lunar = m.games.get("ULUS10482");
+  ok(/\(v1\.01\)\.iso$/.test(lunar.path) && lunar.sessions.length > 3, "a file name longer than Runtime's room: sessions land on the game");
+  ok(![...m.games.values()].some((g) => !g.id && g.type !== "Homebrew"), "and no second, nameless copy of it appears");
+  const fake = (path, when) => ({ path, journey: when ? [{ when }] : [], earned: [], versions: [], slots: [], launched: null });
+  const disc1 = fake("ms0:/ISO/The Legend of Heroes Trails in the Sky SC (USA) (Disc 1).iso", new Date(2026, 5, 1, 20, 0));
+  const disc2 = fake("ms0:/ISO/The Legend of Heroes Trails in the Sky SC (USA) (Disc 2).iso", new Date(2026, 8, 1, 20, 0));
+  const short = fake("ms0:/ISO/Ys Seven.iso"), hbGame = fake("ms0:/PSP/GAME/Ports/LanternHollow/EBOOT.PBP");
+  const names = P.programNames([disc1, disc2, short, hbGame]);
+  const cut = "The Legend of Heroes Trails in the Sky SC (USA) (Disc 1).iso".slice(0, 47);
+  ok(P.matchProgram(names, cut, new Date(2026, 5, 2, 21, 0)) === disc1 && P.matchProgram(names, cut, new Date(2026, 8, 3, 21, 0)) === disc2, "two discs with the same cut name: the one played around then");
+  ok(P.matchProgram(names, "ys seven.iso", null) === short && P.matchProgram(names, "Ys Sev", null) === null, "a short name must match whole");
+  ok(P.matchProgram(names, "LanternHollow", null) === hbGame && P.matchProgram(names, "PS1 LanternHollow", null) === hbGame, "an EBOOT by its folder");
+  ok(P.matchProgram(names, "Some Game That Is Not On The Stick Any More (USA", null) === null, "a cut name of no known game matches nothing");
+
   // one damaged file is skipped and named; the rest still loads
   const broken = T.fromDir(ROOT, T.sampleSizes());
   broken.get("CHECKPOINT/JOURNEY/ULUS10558.TXT").read = async () => { throw new Error("read failed"); };

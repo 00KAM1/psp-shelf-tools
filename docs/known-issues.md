@@ -1,6 +1,6 @@
-# Shelf Tools 1.1: known issues and limits
+# Shelf Tools 1.2: known issues and limits
 
-Tried in Chrome on a computer and at phone size, with the sample Memory Stick. **It has also been tested on one real memory stick.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats.
+Tried in Chrome on a computer and at phone size, with the sample Memory Stick. **It has also been tested on one real Memory Stick.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats.
 
 ## Disclosure
 
@@ -16,6 +16,8 @@ Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my 
 - **Time played is the larger of two counts**, Checkpoint's and Runtime's (see [how it works](how-it-works.md#time-played)). Checkpoint counts PSP games only, so PS1 games and homebrew have hours only with Runtime.
 - **Checkpoint's time in a period** comes from the running total in its journey lines. Play after a game's last journey line counts in the period of that game's last activity.
 - **The busiest day and the calendar** for a game Runtime has not seen put the play between two journey lines on the day of the second.
+- **Long file names.** Runtime logs at most 47 characters of a game's file name. A longer name is matched to the game whose file name begins with it. If two games begin with the same 47 characters, the one with a save, journey entry or achievement nearest that time gets the session, which can be the wrong one.
+- **A game with no icon** is one Shelf's picture cache has no icon for: a game Runtime saw that is no longer on the Memory Stick, a game whose file has no icon of its own, or a Memory Stick without Shelf. It shows its initials.
 - **The safety net** shows the Sidequest slots on the Memory Stick now, whatever period is picked.
 - **The session in progress** is counted up to Runtime's last look at the clock, which it takes every two minutes.
 - **Battery per hour** uses power-ons of 20 minutes or more that ended lower than they started.
