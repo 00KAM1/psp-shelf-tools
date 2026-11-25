@@ -1,0 +1,51 @@
+# Emblem achievements for Tetris, NPUZ00003. Hand-written from RetroAchievements' code notes (set 12798).
+# Not here (notes do not show it): Old Reliable, Leg Day, Jupiter Descending, Metal Gear Tetris, It's a Brand New Record for 1990, Half and Half, Minds Blown, Turn Out That Light!, Square Hail, Purple Heart, Cliffhanger, Way Over, Tetris+, Ludicrous Speed, GO!, Perfectly Balanced as All Things Should Be, Big Spender.
+# Variant clears are read from the best-time table; Marathon levels from the best-level statistic.
+
+game NPUZ00003 Tetris
+
+lang   = u8 088204C4
+audio  = u8 088204C5
+ingame = u8 08824DFC
+clear  = u8 08824E0C      # 4 = a Tetris is being cleared
+lines  = u32 08829EE4     # statistics page totals
+tetris = u32 08829EFC
+casc   = u32 08829F08
+tspins = u32 08829F18
+played = float 08829F2C   # seconds
+games  = u32 08829F38
+mlevel = u32 08829F44     # Marathon best level
+ready  = lang <= 4 and audio <= 1 and ingame <= 1 and games < 1000000 and lines < 10000000
+origin = float 097BC620     # best time, seconds
+tread = float 097BC624     # best time, seconds
+gravity = float 097BC628     # best time, seconds
+laser = float 097BC62C     # best time, seconds
+flood = float 097BC630     # best time, seconds
+split = float 097BC634     # best time, seconds
+scanner = float 097BC638     # best time, seconds
+flash = float 097BC63C     # best time, seconds
+chill = float 097BC640     # best time, seconds
+magnet = float 097BC644     # best time, seconds
+ledges = float 097BC648     # best time, seconds
+radical = float 097BC64C     # best time, seconds
+
+1 | Tetris! | 2 | ingame == 1 and clear == 4
+2 | You Like Jazz? | 3 | mlevel 6..99
+3 | Pressure's On | 10 | mlevel 11..99
+4 | The Classic | 3 | origin 1..100000
+5 | What Goes Around Comes Around | 5 | tread 1..100000
+6 | See You Next Fall | 4 | gravity 1..100000
+7 | Stealth Tetris | 5 | laser 1..100000
+8 | Why Is The World In Love Again? | 5 | flood 1..100000
+9 | Split Personality | 5 | split 1..100000
+10 | Checks Out | 5 | scanner 1..100000
+11 | Lights Out | 5 | flash 1..100000
+12 | Freeze! | 10 | chill 1..100000
+13 | Opposites Attract | 10 | magnet 1..100000
+14 | Up on a Pedestal | 10 | ledges 1..100000
+15 | Master | 25 | radical 1..100000
+27 | Terminator | 10 | tetris 100..10000000
+28 | Millenium | 10 | lines >= 1000
+29 | Waterfall | 5 | casc 50..10000000
+30 | Spin Master | 10 | tspins 25..10000000
+31 | Tenacious | 10 | played 5400..100000000

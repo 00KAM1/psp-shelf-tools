@@ -1,0 +1,44 @@
+# Emblem achievements for Disgaea 2: Dark Hero Days, ULUS10461. Hand-written from RetroAchievements' code notes (set 3597).
+# Not here (notes do not show it): The Truth, Whoops, Not Again!, Finally!, Darkness Falls Upon the Land Once More, Defender of Earth, Dood, Henshin!, Cookin' It Up, Intense, The Ultimate Weapon?, The Grinder, Battered and Bruised, Hakai, Reconsider., Join Me, Dood!, Build-a-Friend, God of the Damned, Beast Wars, Suit Up, In The Name of the Overlord, I Will Punish You!, 1 out of 3, Sniperific, Yoshitsune, Pull My Devil Trigger, Walk in the Shadows, Whats the Hand Sign for I Love You?, Guardian Angel, Galaxy Level Threat, Your Wish Is My Command, Smarty Pants, I'll be Back, One-Two Step, Disgaea Balls, I Can See...I CAN FIGHT!, Firey Emblems, Mmmm, So Tasty!, Tetsuya Nomura Moment, Body Improvement Club, Special Case, Invulnerable to All Threats, Setting a New Record, A Cut Above the Rest, Shooty Shooty Bang Bang, ATATATATATATA!!!, Point Taken, And You Have My Bow, ...and My Axe!, Hocus Pocus, Achievement Unlocked!, Draw, Monsta Claw-do!, Extra Extra Special, Patched Up, Dood, Where's My Bribe?, A Dark Secret Has Been Uncovered, Dark Town, Dark Palace, Dark Vault, Dark River, Dark Cavern, Dark Arena, Dark Depths, Dark City, Dark Lands, Dark Tower, Dark Castle Path, Dark Castle, Dark Square, Dark Film, Dark Dinner, Dark Orphanage.
+# Hand-checked. Episodes, endings and Item Gods.
+
+game ULUS10461 Disgaea 2: Dark Hero Days
+
+level   = u16 08D42490     # first character
+episode = u8 08D40D70      # 0 ep.1, 1 title screen, 2..12 ep.2..12, 0x0D final; Axel mode 0x11..0x14
+ready   = level 1..9999 and episode != 1 and episode <= 0x14
+
+1 | The Overlord's Daughter | 5 | episode 2..0x0D
+2 | Rozalin the Liar | 5 | episode 3..0x0D
+3 | Rise of the Beauty Queen | 5 | episode 4..0x0D
+4 | Axel's Plan | 5 | episode 5..0x0D
+5 | The Promise | 5 | episode 6..0x0D
+6 | The Colisseum | 5 | episode 7..0x0D
+7 | Battle Tournament | 5 | episode 8..0x0D
+8 | Zenon Appears! | 5 | episode 9..0x0D
+9 | Summoned Overlord | 5 | episode 10..0x0D
+10 | The Two Ninjas | 5 | episode 11..0x0D
+11 | Awakening | 5 | episode 12..0x0D
+12 | Castle Raid | 5 | episode 13..0x0D
+16 | Dark Hero Days? | 2 | u8 08D40E3E bit 5 == 1
+17 | Demon Lord by Proxy | 10 | u8 08D40E3F bit 1 == 1
+18 | Tantrum | 10 | u8 08D40E3E bit 6 == 1
+21 | Stinky Tinky | 10 | u8 08D40E3F bit 0 == 1
+22 | The Dark Adonis Returns | 10 | u8 08DC5BB1 bit 1 == 1
+23 | What a Witch | 10 | u8 08DA3058 set
+25 | Cyborg 002 | 10 | u8 08DA3108 set
+26 | Badass Freakin' Bundle of Pages | 10 | u8 08DA30C8 set
+27 | La Pucelle | 10 | u8 08DA30D8 set
+28 | Catch Her in the Next Game | 10 | u8 08DA30E8 set
+30 | Out For Summer | 10 | u8 08DA3148 set
+33 | Great Baals of Fire | 25 | u8 08DC5BB1 bit 7 == 1
+34 | PHENOMENAL COSMIC POWER...itty bitty living space | 25 | u8 08DC5BB2 bit 0 == 1
+39 | Maxed Out | 25 | level == 9999
+40 | The Evil Rangers | 5 | episode 0x12..0x14
+41 | Makai Wars | 5 | episode 0x13..0x14
+42 | Dinner Theater | 5 | episode 0x14..0x14
+43 | The Dark Hero! | 5 | u8 08DA2FE8 set
+83 | Lowballer | 5 | u8 08DC5BB0 bit 0 == 1
+84 | Patricide | 5 | u8 08DC5BB0 bit 1 == 1
+85 | God of the Item | 10 | u8 08DC5BB0 bit 2 == 1
+86 | Double Trouble | 25 | u8 08DC5BB0 bit 3 == 1

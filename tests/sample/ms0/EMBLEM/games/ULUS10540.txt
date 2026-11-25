@@ -1,0 +1,129 @@
+# Emblem achievements for The Legend of Heroes: Trails in the Sky, ULUS10540. Hand-written from RetroAchievements' code notes (set 10479).
+# Not here (notes do not show it): When a Woman Hates a Man, The Imperial Chronicle, Simply Maaahvelous!, The Start of a Rivalry, Treasures from Home, Top of the Class (Prologue), True Brights (Prologue), The Train Station, Missing Airliner, Human Fodder, Oh, Just Passing the Time..., Angler Goddess, Treasures of Bose, Capuas Kablooey'd, Top of the Class (Chapter 1), True Brights (Chapter 1), Krone Pass Attacked!, Aurian Causeway Monster, Everybody Hates Raven, Candelabrum Theft, Escort Job, Decorate the Campus, Research Materials Hunt, Clear Out the Old School Building, On the Ruan, Crimson Tears, Lighthouse Raid, Sweet Babies?, Top of the Class (Chapter 2), True Brights (Chapter 2), Ascertaining the Inner Workings, Black Orbment Moan, I Wonder Where He Learned to Do That, A Sign of Things to Come, Carnelia Showdown, Striking Gold, Lord of the Lake Cavern, Which Side Are You On?, Top of the Class (Chapter 3), True Brights (Chapter 3), Up-and-Comers, Sewer Monster (West), Brace Yourself, The Sneaking Mission, Avid Reader, Sewer Monster (East), Silver Will, Hostage Liberation, Stereotypical Femme Fatale, It's Not That You Don't Want To..., Golden Wings, Treasures of the Capitol, Au Revoir le Reverie, Breaking Stories!, You Shine Like the Sun, True Brights (Final Chapter), Turmoil in the Royal City, The Payoff of Reading, Now We Eat What We Kill, Deep Fried Monster Ingredients, Maker of Lunches, Trails to the Frying Pan, Mobile Bed and Breakfast, Acarologist, Carcinologist, Entomologist, Helminthologist, Ethologist, Zoogeographer, Cryptozoologist, Monster Slayer, Monster Annihilator, Monster Genocider, A True Killer, Pom Droppings, We're Good to Go!, That's That Then, Savor the Victories, Hammer of Argres, Breeze of Ambria, Flames of Roselia, Winds of Nord, Dirge of Gehenna, Meteor Shower, Hurricane Bright, Flickering Fang, Eye of the Black Fang, Out of Control, Olivier the Swift, A Lesson in Falconry, Who by Fire, Fist of Flurries, Smoked by a Kid.
+
+game ULUS10540 The Legend of Heroes: Trails in the Sky
+
+level = u8 08BE86A8       # Estelle
+maxhp = u16 08BE86AA
+mira  = u32 08BEA4D0
+ready = level 1..99 and maxhp 1..9999 and mira < 100000000
+q4 = u8 08BEA50A bit 5     # reported to the guild
+q5 = u8 08BEA52E bit 5     # reported to the guild
+q6 = u8 08BEA582 bit 5     # reported to the guild
+q7 = u8 08BEA516 bit 5     # reported to the guild
+q8 = u8 08BEA546 bit 5     # reported to the guild
+q9 = u8 08BEA55E bit 5     # reported to the guild
+q10 = u8 08BEA53A bit 5     # reported to the guild
+q11 = u8 08BEA552 bit 5     # reported to the guild
+q12 = u8 08BEA522 bit 5     # reported to the guild
+q13 = u8 08BEA56A bit 5     # reported to the guild
+q14 = u8 08BEA58E bit 5     # reported to the guild
+q16 = u8 08BEA62A bit 5     # reported to the guild
+q23 = u8 08BEA5FA bit 5     # reported to the guild
+q24 = u8 08BEA59A bit 5     # reported to the guild
+q25 = u8 08BEA5D6 bit 5     # reported to the guild
+q26 = u8 08BEA5A6 bit 5     # reported to the guild
+q28 = u8 08BEA612 bit 5     # reported to the guild
+q29 = u8 08BEA606 bit 5     # reported to the guild
+q30 = u8 08BEA5CA bit 5     # reported to the guild
+q31 = u8 08BEA5B2 bit 5     # reported to the guild
+q32 = u8 08BEA61E bit 5     # reported to the guild
+q33 = u8 08BEA5BE bit 5     # reported to the guild
+q43 = u8 08BEA5E2 bit 5     # reported to the guild
+q44 = u8 08BEA5EE bit 5     # reported to the guild
+q46 = u8 08BEA64E bit 5     # reported to the guild
+q47 = u8 08BEA6AE bit 5     # reported to the guild
+q48 = u8 08BEA68A bit 5     # reported to the guild
+q50 = u8 08BEA696 bit 5     # reported to the guild
+q52 = u8 08BEA6A2 bit 5     # reported to the guild
+q53 = u8 08BEA666 bit 5     # reported to the guild
+q55 = u8 08BEA65A bit 5     # reported to the guild
+q62 = u8 08BEA6BA bit 5     # reported to the guild
+q71 = u8 08BEA756 bit 5     # reported to the guild
+q73 = u8 08BEA702 bit 5     # reported to the guild
+q74 = u8 08BEA6F6 bit 5     # reported to the guild
+q75 = u8 08BEA70E bit 5     # reported to the guild
+q76 = u8 08BEA762 bit 5     # reported to the guild
+q77 = u8 08BEA6EA bit 5     # reported to the guild
+q78 = u8 08BEA74A bit 5     # reported to the guild
+q79 = u8 08BEA7FE bit 5     # reported to the guild
+q86 = u8 08BEA76E bit 5     # reported to the guild
+q108 = u8 08BEA8FA bit 5     # reported to the guild
+lib = list u8 bit 5 08BEA71A 08BEA726 08BEA732 08BEA73E
+e2 = u8 08BE8490 bit 5
+e19 = u8 08BE84C2 bit 0
+e27 = u8 08BE84C2 bit 3
+e40 = u8 08BE84C2 bit 2
+e63 = u8 08BE84E9 bit 3
+e66 = u8 08BE84D9 bit 4
+e81 = u8 08BE850A bit 0
+e88 = u8 08BE8509 bit 7
+e91 = u8 08BE850A bit 1
+e92 = u8 08BE852D bit 1
+e96 = u8 08BE852D bit 2
+e98 = u8 08BE852D bit 3
+earth = u16 08BEA4E0
+water = u16 08BEA4E4
+fire = u16 08BEA4E8
+wind = u16 08BEA4EC
+time = u16 08BEA4F0
+mirage = u16 08BEA4F4
+space = u16 08BEA4F8
+
+2 | Training: Retrieval | 4 | e2 == 1
+4 | Child Rescue | 5 | q4 == 1
+5 | Find the Shiny Rock | 5 | q5 == 1
+6 | Milch Road Monster | 5 | q6 == 1
+7 | Perzel Farm Monsters | 5 | q7 == 1
+8 | Orbment Replacement | 5 | q8 == 1
+9 | Soldier Training | 5 | q9 == 1
+10 | Mushroom Hunt | 5 | q10 == 1
+11 | Medical Necessities | 5 | q11 == 1
+12 | Malga Mine in Trouble | 5 | q12 == 1
+13 | Lost Kitten | 5 | q13 == 1
+14 | Elize Highway Monster | 5 | q14 == 1
+16 | The Liberl Media | 5 | q16 == 1
+19 | A Father's Love, a New Beginning | 5 | e19 == 1
+23 | East Bose Monster | 5 | q23 == 1
+24 | Letter Carrier | 5 | q24 == 1
+25 | Ingredient Seeker | 5 | q25 == 1
+26 | Ravennue Monster | 5 | q26 == 1
+27 | Representative of the Septian Church | 5 | e27 == 1
+28 | West Bose Monster | 5 | q28 == 1
+29 | Nebel Valley Monster | 5 | q29 == 1
+30 | Bear Claw Survey | 5 | q30 == 1
+31 | Amberl Tower Mystery | 10 | q31 == 1
+32 | New Ansel Path Monster | 5 | q32 == 1
+33 | Escort Request | 5 | q33 == 1
+40 | Disappearance of the Linde | 5 | e40 == 1
+43 | Stolen Ring | 10 | q43 == 1
+44 | Black Notebook | 10 | q44 == 1
+46 | Lighthouse Monsters! | 10 | q46 == 1
+47 | Gull Seaway Monster | 10 | q47 == 1
+48 | Warehouse Key | 5 | q48 == 1
+50 | Find the Prototype! | 5 | q50 == 1
+52 | Make Him Leave! | 5 | q52 == 1
+53 | Secrets of the Old Map | 5 | q53 == 1
+55 | Maintenance Delivery | 5 | q55 == 1
+62 | Gull Seaway Monster 2 | 5 | q62 == 1
+63 | Emissary of the Sabbath | 5 | e63 == 1
+66 | Madrigal of the White Magnolia | 10 | e66 == 1
+70 | Temp Librarian | 10 | all lib
+71 | Tratt Plains Monster | 5 | q71 == 1
+73 | Potent Ingredient | 5 | q73 == 1
+74 | Product Testing | 5 | q74 == 1
+75 | Smoker's Revolt | 5 | q75 == 1
+76 | Ritter Road Monster | 5 | q76 == 1
+77 | Haulage Vehicle Search and Repair | 5 | q77 == 1
+78 | Messenger of Love | 5 | q78 == 1
+79 | Elmo Pump Repair | 5 | q79 == 1
+81 | The Death of a Friend | 5 | e81 == 1
+86 | Ritter Road Monster 2 | 10 | q86 == 1
+88 | The Black Orbment | 10 | e88 == 1
+91 | In the Bowels of the Imperial City | 10 | e91 == 1
+92 | Carnelia | 5 | e92 == 1
+96 | The Last Stand | 10 | e96 == 1
+98 | A Legacy Never to be Forgotten | 10 | e98 == 1
+108 | The Embassy Mission | 10 | q108 == 1
+139 | Taketh Thy Sepith | 5 | earth 1000..60000 and water 1000..60000 and fire 1000..60000 and wind 1000..60000 and time 1000..60000 and mirage 1000..60000 and space 1000..60000
+140 | And Keepeth Thy Sepith | 10 | earth 3000..60000 and water 3000..60000 and fire 3000..60000 and wind 3000..60000 and time 3000..60000 and mirage 3000..60000 and space 3000..60000

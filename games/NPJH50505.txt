@@ -1,0 +1,25 @@
+# Emblem achievements for Fate/Extra CCC, NPJH50505. Hand-written from RetroAchievements' code notes (set 18760).
+# Not here (notes do not show it): Yup, Weird, When I Thought I Could Go Back to the Holy Grail War, Freeing the Controlled Mind, Gatekeeper Program, Come on Doggos, Little dragon, Why Do You Keep Saying Horrible Things to Me?, Sakura Labyrinth 1st Layer, W-hat? Can She Hear What I'm Saying?, I Don't Need Luck, I Know How to Play, I Extracted Her Hidden Preference, This Is It! Great Job., Little Idol, My Heart Is Beating So Fast..., Sakura Labyrinth 2nd Layer, Please Accept This Gift, You Got Me a Tool to Dig a Hole With, Student Uniform, The Strange Guardian, Little Passion, I-it Hurts, It Hurts...! Stop......!, Sakura Labyrinth 3rd Layer, Nightwear for the Maiden in Red, Let's Talk About Jinako, Jinako's Twin Little Sister, Loneliness, You Got Me a Tool to Dig a Hole With, Endurance, I'm Sorry for the Pointless Sex Appeal...!, Subspace, Dog, I TOLD You, Don't Talk To.... Ah, Ahh, Aahhhhh!, Sakura Labyrinth 4th Layer, She's Forever a Maiden, What King of Magic Did You Use...?, No Way... Are You ACTUALLY A Genius!?, Why do I Have to Lose!? This is Impossible, Sto...No, What Are You Trying to do...!?, It's a Red Bikini, Preator, Open Your Eyes and Behold. THIS is Art!, Sakura Labyrinth 5th Layer, Maiden's Depths, I'll Thank You in Place of Alice, Who Can No Longer Say Thanks, So This is an SG Extraction..., Finally, You Want to Break My Pride, Too..., My Pride, The Guardian of Cyberspace, The Omnipresent, Sakura Labyrinth 6th Layer, I Won't Let this Damned Moon Cell Get Rid of Me, Serena's Secret, Staff Room, Nero, Let's Swim, I Am Glad You do Not Think I Look Weird, Money? Come on Girl!, .....That Was Evereything I Owned, My Temperature is Rising... I Might... Disappear..., That Was... A Gap in my Mind... My... SG..., I'm... Fine... It Only... Tingled a Little..., You... Took Another... One of my Secrets..., Mahabarata, Oh... Is This... My... Body?, Still Kicking, Huh?, This is Where We Part, Master., I'm Going to Keep Loving You, Forever and Ever...!, Let's Play Sports, What a Magnificently Terrible Attitude, This is Where We Part, Master., Nameless, This is Where We Part, Master., Tamamo-No-Mae, This is Where We Part, Master., Golden Armor, Paradise Woman - Saber, Paradise Woman - BB, Paradise Woman - Kiara, Paradise Woman - Elizabeth, Paradise Woman - Rin, Paradise Woman - Rani, Paradise Woman - Passionlip, Paradise Woman - Jinako, Paradise Woman - Meltryllis, The Garden Flower, Servant's Cyber Frame.
+# Hand-checked. Secret Garden flags are left out: the notes do not say whether they mean unlocked or completed.
+
+game NPJH50505 Fate/Extra CCC
+
+level = u16 08AF6ADE      # Master level
+ready = level 1..999
+
+10 | How Extremely Pointless | 3 | u8 08B28E84 bit 3 == 1
+13 | I Like My Clothes | 5 | u8 08AF6090 set
+19 | Trill | 5 | u8 08B290AF bit 4 == 1
+36 | Digital Sea | 5 | u8 08AF6058 set
+45 | You Liked It? Okay, That's Good Then | 5 | u8 08AF6010 set
+46 | Wait for Me, My Beloved Students | 5 | u8 08AF6070 set
+53 | Time to Show Us How Slick of a Negotiator You Are | 5 | u8 08B28F57 bit 5 == 1
+60 | There's an 8th Master!? | 10 | u8 08B28F02 bit 4 == 1
+61 | Master the Commisary Clerk | 10 | u8 08B28F02 bit 6 == 1
+62 | You Deserve a Round of Applause | 25 | u8 08B28F03 bit 0 == 1
+69 | Here, Please Take This Medicine | 3 | u8 08AF5F98 set
+95 | Is this Truly Satisfactory? | 5 | level 10..999
+96 | Someone to Travel with | 5 | level 20..999
+97 | Flower Petals | 10 | level 30..999
+98 | The Sakura Labyrinth | 10 | level 40..999
+99 | Dolls | 25 | level 50..999

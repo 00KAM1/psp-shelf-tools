@@ -1,0 +1,13 @@
+# Emblem achievements for The 3rd Birthday, ULUS10567. Hand-written from RetroAchievements' code notes (set 3511).
+# Not here (notes do not show it): Whatever You Do, Don't Flush!, Never Prospering, Nightmare Before Christmas, Twists and Turns of Fate, Scope of the Situation, A Soldier's Destiny, Turbulent Times, The Weight of the World, Rending the Ring of Time, A Christmas Calamity, Non-Refundable Ticket, Manhattan Mayhem, Bonds Bound by Blood, Tower of Torment, Bearing the Burden, Hope for a Better Tomorrow, Damned and Deadly, An Overly Immersive Experience, The Hubris of Humanity, Love Lives On, Trying to Turn the Tide, Heavy Hearted Hero, Making New Memories, A Crazy, Colossal Catastrophe, Terrific Tunes, Terrifying Time, Hell on Earth, Situation at the Station, We Can't C4 Into the Future, Last Ditch Effort, Second Lease on Life, Officially Ready for Active Duty!, What? Great Beats? Oh, Feats!, This Wasn't in the Mission Briefing..., Supporting the Frontlines, Overdive Overtime, Toiling Through a Twisted Time, A Key Part of the Cause, For Folk, Friends and Family, Combining Strengths, Covering Weaknesses, Working Through a Warzone, Hey Aya, Have You Finished Those Errands?, Chaotic Checklist, At Least We Did Our Chores..., Commercialized Celebrations, Firearm Fanatic, Catharsis After Carnage, Room for Improvement, The Mark of a Good Agent, No Girls Allowed, Christmas Chatterbox, Fraternizing with the Fellas, A Sight That Causes Sore Eyes, Banter with the Boys, Post-Apocalyptic Palaver, Forklift Certified, It's An Emergency!, Speech Therapy, Handheld Hotshot, Appropriate Weaponry for an Amnesiac, Up Close and Personal, Unstoppable Force, Genetically Modified Operative, First Class Agent, Efficiency Is Everything, Above and Beyond, Sharp Skills of an Astute Agent, Taking It to the Twisted, A Shining Example in End Times, Long Service Leave.
+# Hand-checked. Feat flags are per episode, the achievements per chapter, so feats are left out.
+
+game ULUS10567 The 3rd Birthday
+
+level = u8 09BCE720
+ready = level 1..99
+
+60 | Yuletide Fireworks | 10 | u8 09C8A3E4 50..250
+62 | Distance Makes the Heart Grow Hostile | 25 | u8 09C8A3E0 50..250
+65 | The Danger Within | 25 | u16 09C8A3AC 100..60000
+66 | A Necessary Precaution | 50 | level == 99

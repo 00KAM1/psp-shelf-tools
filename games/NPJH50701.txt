@@ -1,0 +1,78 @@
+# Emblem achievements for Sword Art Online: Infinity Moment, NPJH50701. Hand-written from RetroAchievements' code notes (set 22488).
+# Not here (notes do not show it): Onii, Lizzard Man's Cave, Treasure Valley, GhastlyGaze, Lonely Fairy, Treasaure Labyrinth, Fat Slime, Fat Slime II, The Crystalize Claw, Flare Dragon, The Horn of Madness, Treasure Cave, Zain Lizardman, Huge Poison Crab, The Tempest of Trihead, Treasure Palace, Secrets, How Long Do These Corridors Go On?, Darkness, Papa!, Asuna, Silica, Leafa, Lisbeth, Shinon, Treasure Maze, The Knight of Darkness, Yui, Strea, Treasure Strong, Greater Bandit, Treasure Grotto, Fear Tree, Survivor, Hurry to Destination!, The Horn of Furious, Treasure Kingdom, The Queen of Ant, Klein, Treasure Devour, General Orc, Oh, It's This!, Difficult Path, Difficult Path II, Difficult Path III, The Maelstrom of Thrihead, Treasure Stream, The King of Skeleton, Treasure Tower, The Radiance Eater, Treasure Stronghold, Necro Dragon, The Rebellious Eyes, A Fonte Dos Desejos, Treasure Tenants, Treasure Turbid, The Murderer Fang, Impregnable, The Ruler of Blade, Treasure Monster, The Absolute Gazer, Treasure Enlighten, Blink Like I Blink, The Chaos Dragon, Treasure Guardian, Crystal Repair, The Lava Creeper, Treasure Magic, Inferno Sword, Heavenly Sword, The Knight of Blazing, Treasure Dark, The Goblin Farm, The Genocide Eyes, Treasure Beast, The Slaughter Fang, Treasure Paladin, Saw The Dragon's Figure, The Emperor of Death, Treasure King, Hell Walls, Hollow Fragment, The Ruler of Deities, Treasure Red, Sword Art Online, You Should Be Feeling Warmer By Now, Hey! Where Are You Looking!, Hehe..., I Won't Look! I Won't Look! At All!, Wow L-Liz!, ... I'm Sorry For Causing You Trouble., Ohh.......!, Your Armor... Is... Melting!, Oh... I Really Feel Good..., Unsurper of Nest Mabethck, Onii-Chan...!, Before the Gods, Whoa! S... Shinon!, Close... Close Your Eyes..., Kirito, O Rei Delas!, Happy Ending, What a Happy Sleeping Face..., Phew... It's Really Special, Phew, Finally We Can Take A Break, Long Time No See, Papa, Mama....
+# Hand-checked: quests and level steps.
+
+game NPJH50701 Sword Art Online: Infinity Moment
+
+level = u8 0901DBD6      # Kirito
+ready = level 1..250
+
+2 | This World Is Not The Real World | 1 | u8 08CBC95F bit 5 == 1
+5 | The Gift for the Girl | 5 | u8 08CBC8FD bit 1 == 1
+6 | Poisonous Needles | 5 | u8 08CBC8FD bit 3 == 1
+7 | Protect the Farm Crop | 5 | u8 08CBC8FC bit 5 == 1
+8 | The Poisonous Spider | 5 | u8 08CBC8FC bit 7 == 1
+9 | Black Swordsman | 5 | level 100..250
+11 | The Terrifying Slime | 5 | u8 08CBC8FD bit 5 == 1
+12 | The Gift of the Forest | 5 | u8 08CBC8FD bit 7 == 1
+13 | The Sweetness Challe | 5 | u8 08CBC8FE bit 1 == 1
+20 | The Flying Dragon | 5 | u8 08CBC8FE bit 3 == 1
+21 | Focusing on a Single Blow | 5 | u8 08CBC8FE bit 7 == 1
+23 | Wood Materials | 5 | u8 08CBC8FE bit 5 == 1
+27 | Unforgivable Song | 5 | u8 08CBC8FF bit 1 == 1
+28 | Arrival of Chef | 5 | u8 08CBC8FF bit 3 == 1
+29 | The Endless Crab Roe | 5 | u8 08CBC8FF bit 5 == 1
+32 | The Lady's Secret | 5 | u8 08CBC900 bit 1 == 1
+33 | Bone Collector | 5 | u8 08CBC900 bit 3 == 1
+37 | The Guilty Scythe | 10 | u8 08CBC977 bit 3 == 1
+44 | The Life Reaping Scythe | 5 | u8 08CBC900 bit 7 == 1
+45 | Kirito | 10 | level 110..250
+47 | Mimicry | 3 | u8 08CBC94F bit 4 == 1
+48 | Block Puzzle | 3 | u8 08CBC94F bit 2 == 1
+49 | Evil Trial | 3 | u8 08CBC94F bit 5 == 1
+50 | The Deadly Desert | 5 | u8 08CBC900 bit 5 == 1
+52 | Goblin Collector's Cry | 5 | u8 08CBC901 bit 3 == 1
+53 | Goblin Collector's Cry II | 5 | u8 08CBC901 bit 5 == 1
+54 | Goblin Collector's Cry III | 5 | u8 08CBC901 bit 7 == 1
+59 | Goblin Collector's Cry IV | 5 | u8 08CBC902 bit 1 == 1
+60 | The Legendary Gem | 5 | u8 08CBC901 bit 1 == 1
+61 | The Legacy of Grand | 10 | u8 08CBC97A bit 1 == 1
+62 | The Walking Mushroom | 5 | u8 08CBC902 bit 5 == 1
+67 | Return My Memory | 5 | u8 08CBC902 bit 3 == 1
+70 | Legendary Black Swordsman | 25 | level 120..250
+71 | Treasure Fight | 5 | u8 08CBC8FF bit 7 == 1
+72 | Ant Extermination | 5 | u8 08CBC903 bit 1 == 1
+73 | The Ant's Nest | 5 | u8 08CBC903 bit 3 == 1
+74 | Hot Spring Area | 5 | u8 08CBC902 bit 7 == 1
+83 | The Bewildering Forest | 5 | u8 08CBC903 bit 5 == 1
+84 | Insomnia | 5 | u8 08CBC903 bit 7 == 1
+85 | Drop of Flower | 5 | u8 08CBC904 bit 1 == 1
+87 | The Treasure Blade | 5 | u8 08CBC904 bit 7 == 1
+88 | The Undead Return | 5 | u8 08CBC904 bit 3 == 1
+90 | Collect in Field | 5 | u8 08CBC904 bit 5 == 1
+92 | The Monster's Fangs | 5 | u8 08CBC905 bit 3 == 1
+94 | The Underground Crystal | 5 | u8 08CBC905 bit 1 == 1
+97 | Expert Player | 25 | level 130..250
+99 | Walking Flower of Pollen Doom | 5 | u8 08CBC905 bit 5 == 1
+100 | Little Wings | 5 | u8 08CBC905 bit 7 == 1
+101 | Glowing Eyes in the Darkness | 5 | u8 08CBC906 bit 1 == 1
+105 | The Tower of Lizards | 5 | u8 08CBC906 bit 3 == 1
+106 | Spell of the Tree Man | 5 | u8 08CBC906 bit 5 == 1
+109 | Professional Player | 25 | level 140..250
+111 | Project Honey | 5 | u8 08CBC906 bit 7 == 1
+112 | The Love Kitchen | 5 | u8 08CBC907 bit 1 == 1
+113 | Love and Ingredients | 5 | u8 08CBC907 bit 3 == 1
+116 | The Fur Collection | 5 | u8 08CBC907 bit 5 == 1
+118 | Make! Wing of Armour | 5 | u8 08CBC907 bit 7 == 1
+121 | Guardian Dragon and the Boy | 5 | u8 08CBC908 bit 1 == 1
+125 | The Top Grade Meat | 5 | u8 08CBC908 bit 3 == 1
+130 | The Ant Army! | 5 | u8 08CBC908 bit 5 == 1
+131 | Jam SOS | 5 | u8 08CBC909 bit 1 == 1
+133 | Perished Lives | 50 | u8 08CBC908 bit 7 == 1
+136 | Horror of the Lizard | 5 | u8 08CBC909 bit 5 == 1
+137 | The Flower of Life | 5 | u8 08CBC909 bit 7 == 1
+140 | Remains of Demon's Dwelling | 5 | u8 08CBC90A bit 1 == 1
+141 | The Suspicious Client | 5 | u8 08CBC90A bit 5 == 1
+142 | Thrill of the Giant Spider | 50 | u8 08CBC90A bit 3 == 1
+145 | The Target Crystal | 5 | u8 08CBC90B bit 3 == 1
+146 | Defeat That Knight! | 5 | u8 08CBC90A bit 7 == 1

@@ -1,0 +1,32 @@
+# Emblem achievements for Fate/Extra, ULUS10576. Hand-written from RetroAchievements' code notes (set 18159).
+# Not here (notes do not show it): The Girl on the Rooftop, Those Archery Club Kids Don't Even Unstring Their Bows!, Invisible Force, Was this a dream?, Ah! My Beloved Kendo Sword!, Alteration of the Soul, The Girl on the Rooftop - Season 2, Tree of Hits, Archer, The Girl on the Rooftop - Season 3, Play With Me, Vorpal Blade, This Is the End, Little Girl!, Caster, I'm Going To Listen To My Heart And Save Rin, I'm Going To Listen To My Heart And Save Rani, Enemy Program, Attack Target, Lancer, Don't Panic Just Yet, Hacking Points, Assassin, Comic Book, Unstable Hack, Berserker, Bestial Rage, What In The Hell Is That?, This Is My Preciousss!, Saber, Holy Grail War, Holy Grail War II, Holy Grail War III, Cube 04, Cube 08, Cube 10, Cube 16, Cube 14, Cube 18, Cube 21, Cube 24, Cube 25, Cube 28, Cube 30, Cube 32, Cube 33, Cube 35, So I Put Extra Love Into It, Enhancement Skill, Enhancement Soul, Soul Body, Veil of Power, Extracting Hidden Powers, I Need More Power, Hacking Powers, Cyberspace, ... Ye Gods! Magnificent, Master., Am I Not A Worthy Devotee?!, Berserker, Lancer, I Want Your Head, Pegasus Fantasy, Nephilim Hunter, All I Could Think About Was Her Leg..., If I Were Her, I'd Do More Than... Heh Heh Heh..., Congratulations!, Nero Claudius, Nameless, Tamamo-No-Mae.
+# Hand-checked.
+
+game ULUS10576 Fate/Extra
+
+level = u8 08A42AA4       # Master level
+week  = u32 08A4223C
+ready = level 1..99 and week <= 8
+
+5 | Reality Marble | 5 | u8 08A4F65D bit 3 == 1
+8 | Let's Hurry to the Arena | 5 | u8 08A4F5DE bit 3 == 1
+9 | Taiga's Lamp | 5 | u8 08A425AC 1..99
+10 | Rider | 10 | u8 08A4F5DA bit 2 == 1
+17 | Malachite | 5 | u8 08A4F77F bit 0 == 1
+18 | Please Use It Carefully | 5 | u8 08A4F77D bit 4 == 1
+28 | Taiga's Rea Service | 5 | u8 08A4F614 bit 1 == 1
+32 | Scarlet Formal Wear | 5 | u8 08A4F7EF bit 6 == 1
+33 | Taiga's Goldfish | 5 | u8 08A4F614 bit 7 == 1
+37 | Obsidian Feather | 5 | u8 08A4F7F1 bit 2 == 1
+67 | Francis Drake | 5 | u8 08A4F6D5 bit 3 == 1
+68 | Robin Hood | 5 | u8 08A4F6D5 bit 4 == 1
+69 | Nursery Rhyme | 5 | u8 08A4F6D5 bit 5 == 1
+70 | Vlad III | 5 | u8 08A4F6D5 bit 6 == 1
+71 | Li Shuwen | 5 | u8 08A4F6D6 bit 0 == 1
+72 | Lu Bu Feng Xian | 5 | u8 08A4F6D6 bit 2 == 1
+73 | Gawain | 5 | u8 08A4F6D6 bit 3 == 1
+74 | Arcueid | 5 | u8 08A4F6D5 bit 7 == 1
+75 | Cu Chulainn | 5 | u8 08A4F6D6 bit 1 == 1
+88 | Hacker | 5 | level 10..99
+89 | Database | 5 | level 20..99
+90 | Data transmission | 10 | level 30..99

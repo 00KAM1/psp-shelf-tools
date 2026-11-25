@@ -1,0 +1,197 @@
+# Emblem achievements for Tenchu: Shadow Assassins, ULUS10419. Hand-written from RetroAchievements' code notes (set 3984).
+# Not here (notes do not show it): True Ninja I - Evil Merchant, True Ninja II - Bandit Ringleader, True Ninja III - Daimyo Tado, True Ninja IV - Goda Castle, True Ninja V - Capture Ayame, True Ninja VI - Find Kiku, True Ninja VII - Village Merchant, True Ninja VIII - Rescue Kiku, True Ninja IX - Guide Kiku, True Ninja X - Sekiya Naotada, Shadow Ninja I - Evil Merchant, Shadow Ninja II - Bandit Ringleader, Shadow Ninja III - Daimyo Tado, Shadow Ninja IV - Goda Castle, Shadow Ninja V - Capture Ayame, Shadow Ninja VI - Find Kiku, Shadow Ninja VII - Village Merchant, Shadow Ninja VIII - Rescue Kiku, Shadow Ninja IX - Guide Kiku, Shadow Ninja X - Sekiya Naotada.
+
+game ULUS10419 Tenchu: Shadow Assassins
+
+diff   = u8 08D92F89
+menus  = u8 08DD8A70      # 0 in a mission or its results, 1 in menus
+m1 = s32 08D93604
+s1 = s32 08D936A4
+m2 = s32 08D93614
+s2 = s32 08D936B4
+m3 = s32 08D93624
+s3 = s32 08D936C4
+m4 = s32 08D93634
+s4 = s32 08D936D4
+m5 = s32 08D93644
+s5 = s32 08D936E4
+m6 = s32 08D93654
+s6 = s32 08D936F4
+m7 = s32 08D93664
+s7 = s32 08D93704
+m8 = s32 08D93674
+s8 = s32 08D93714
+m9 = s32 08D93684
+s9 = s32 08D93724
+m10 = s32 08D93694
+s10 = s32 08D93734
+a1 = s32 08D93744
+a2 = s32 08D93754
+a3 = s32 08D93764
+a4 = s32 08D93774
+a5 = s32 08D93784
+a6 = s32 08D93794
+a7 = s32 08D937A4
+a8 = s32 08D937B4
+a9 = s32 08D937C4
+a10 = s32 08D937D4
+a11 = s32 08D937E4
+a12 = s32 08D937F4
+a13 = s32 08D93804
+a14 = s32 08D93814
+a15 = s32 08D93824
+a16 = s32 08D93834
+a17 = s32 08D93844
+a18 = s32 08D93854
+a19 = s32 08D93864
+a20 = s32 08D93874
+a21 = s32 08D93884
+a22 = s32 08D93894
+a23 = s32 08D938A4
+a24 = s32 08D938B4
+a25 = s32 08D938C4
+a26 = s32 08D938D4
+a27 = s32 08D938E4
+a28 = s32 08D938F4
+a29 = s32 08D93904
+a30 = s32 08D93914
+a31 = s32 08D93924
+a32 = s32 08D93934
+a33 = s32 08D93944
+a34 = s32 08D93954
+a35 = s32 08D93964
+a36 = s32 08D93974
+a37 = s32 08D93984
+a38 = s32 08D93994
+a39 = s32 08D939A4
+a40 = s32 08D939B4
+a41 = s32 08D939C4
+a42 = s32 08D939D4
+a43 = s32 08D939E4
+a44 = s32 08D939F4
+a45 = s32 08D93A04
+a46 = s32 08D93A14
+a47 = s32 08D93A24
+a48 = s32 08D93A34
+a49 = s32 08D93A44
+a50 = s32 08D93A54
+ready = diff <= 3 and menus <= 1 and m1 -2..200 and m10 -2..200 and s1 -2..200 and a50 -2..200
+maps  = list u8 08D93B0B 08D93B0C 08D93B0D 08D93B0E 08D93B0F 08D93B10 08D93B11 08D93B12 08D93B13 08D93B14 08D93B15 08D93B16 08D93B17 08D93B18 08D93B19 08D93B1A 08D93B1B 08D93B1C 08D93B1D 08D93B1E
+masks = list u8 08D93B1F 08D93B20 08D93B21 08D93B22 08D93B23 08D93B24 08D93B25 08D93B26 08D93B27 08D93B28 08D93B29 08D93B2A 08D93B2B 08D93B2C 08D93B2D 08D93B2E 08D93B2F 08D93B30 08D93B31 08D93B32     # notes name the first ten; the other ten follow on
+asg1 = list u8 08D93AC4 08D93AC5 08D93AC6 08D93AC7 08D93AC8 08D93AC9 08D93ACA 08D93ACB 08D93ACC 08D93ACD
+asg2 = list u8 08D93ACE 08D93ACF 08D93AD0 08D93AD1 08D93AD2 08D93AD3 08D93AD4 08D93AD5 08D93AD6 08D93AD7
+asg3 = list u8 08D93AD8 08D93AD9 08D93ADA 08D93ADB 08D93ADC 08D93ADD 08D93ADE 08D93ADF 08D93AE0 08D93AE1
+asg4 = list u8 08D93AE2 08D93AE3 08D93AE4 08D93AE5 08D93AE6 08D93AE7 08D93AE8 08D93AE9 08D93AEA 08D93AEB
+asg5 = list u8 08D93AEC 08D93AED 08D93AEE 08D93AEF 08D93AF0 08D93AF1 08D93AF2 08D93AF3 08D93AF4 08D93AF5
+# kill counters of the mission being played
+k59 = u8 08D96557
+k60 = u8 08D96555
+k61 = u8 08D96559
+k62 = u8 08D9655A
+k63 = u8 08D9655B
+k64 = u8 08D9655C
+k65 = u8 08D96560
+k66 = u8 08D96561
+k67 = u8 08D96562
+k68 = u8 08D96563
+k69 = u8 08D96568
+k70 = u8 08D96569
+k71 = u8 08D9656A
+k72 = u8 08D9656B
+k73 = u8 08D9656C
+k74 = u8 08D9656D
+k75 = u8 08D96572
+k76 = u8 08D96573
+k77 = u8 08D96574
+k78 = u8 08D96575
+k79 = u8 08D96576
+k80 = u8 08D96577
+k81 = u8 08D96578
+k82 = u8 08D96579
+k83 = u8 08D9657A
+k84 = u8 08D9657B
+k85 = u8 08D9657C
+k86 = u8 08D9657D
+k87 = u8 08D9657E
+k88 = u8 08D9657F
+k89 = u8 08D96581
+k90 = u8 08D96582
+k91 = u8 08D96583
+k92 = u8 08D96585
+k93 = u8 08D96584
+k94 = u8 08D9658A
+
+1 | Kill the Evil Merchant | 5 | m1 1..200
+2 | Punish the Bandit Ringleader | 5 | m2 1..200
+3 | Take Daimyo Tado's Life | 5 | m3 1..200
+4 | Hurry to Goda Castle Keep | 5 | m4 1..200
+5 | Cross the Border, Capture Ayame | 5 | m5 1..200
+6 | Find the Princess | 10 | m6 1..200
+7 | Kill the Merchant in the Village | 10 | m7 1..200
+8 | Rescue Princess Kiku | 10 | m8 1..200
+9 | Guide Princess Kiku to Safety | 10 | m9 1..200
+10 | Punish Sekiya Naotada | 10 | m10 1..200
+11 | Story Master I: Missions 1-5 | 10 | m1 170..200 and m2 170..200 and m3 170..200 and m4 170..200 and m5 170..200
+12 | Story Master II: Missions 6-10 | 25 | m6 170..200 and m7 170..200 and m8 170..200 and m9 170..200 and m10 170..200
+13 | Finding My Way | 5 | count maps >= 10
+14 | The Unbreakable Ninjato | 10 | all maps
+15 | Shadow I - Kill the Evil Merchant | 10 | s1 1..200
+16 | Shadow II -  Punish the Bandit Ringleader | 10 | s2 1..200
+17 | Shadow III -  Take Daimyo Tado's Life | 10 | s3 1..200
+18 | Shadow IV - Hurry to Goda Castle Keep | 10 | s4 1..200
+19 | Shadow V - Cross the Border, Capture Ayame | 10 | s5 1..200
+20 | Shadow VI -  Find the Princess | 10 | s6 1..200
+21 | Shadow VII -  Kill the Merchant in the Village | 10 | s7 1..200
+22 | Shadow VIII -  Rescue Princess Kiku | 10 | s8 1..200
+23 | Shadow IX - Guide Princess Kiku to Safety | 25 | s9 1..200
+24 | Shadow X - Punish Sekiya Naotada | 25 | s10 1..200
+25 | Shadow Story Master I: Missions 1-5 | 10 | s1 170..200 and s2 170..200 and s3 170..200 and s4 170..200 and s5 170..200
+26 | Shadow Story Master II: Missions 6-10 | 25 | s6 170..200 and s7 170..200 and s8 170..200 and s9 170..200 and s10 170..200
+27 | Shinobi Shozoku Mask | 5 | count masks >= 10
+28 | Donning the Onikage | 10 | all masks
+29 | Learning the Basics | 5 | all asg1
+30 | Master of the Basics | 10 | a1 170..200 and a2 170..200 and a3 170..200 and a4 170..200 and a5 170..200 and a6 170..200 and a7 170..200 and a8 170..200 and a9 170..200 and a10 170..200
+31 | Hey... You're That Ninja | 5 | all asg2
+32 | Just Like My Japanese Anime | 10 | a11 170..200 and a12 170..200 and a13 170..200 and a14 170..200 and a15 170..200 and a16 170..200 and a17 170..200 and a18 170..200 and a19 170..200 and a20 170..200
+33 | The Shinobi Way | 5 | all asg3
+34 | Mastering the Arts of Ninjutsu | 10 | a21 170..200 and a22 170..200 and a23 170..200 and a24 170..200 and a25 170..200 and a26 170..200 and a27 170..200 and a28 170..200 and a29 170..200 and a30 170..200
+35 | Cold Steel Soaked in Blood | 5 | all asg4
+36 | Becoming One With the Shadows | 10 | a31 170..200 and a32 170..200 and a33 170..200 and a34 170..200 and a35 170..200 and a36 170..200 and a37 170..200 and a38 170..200 and a39 170..200 and a40 170..200
+37 | Grandmaster Ninja | 10 | all asg5
+38 | Kage O Masuta Shita [Mastered the Shadows] | 25 | a41 170..200 and a42 170..200 and a43 170..200 and a44 170..200 and a45 170..200 and a46 170..200 and a47 170..200 and a48 170..200 and a49 170..200 and a50 170..200
+59 | Into the Depths | 5 | menus == 0 and k59 rises and k59 1..99
+60 | Adding Spice to Your Sake | 5 | menus == 0 and k60 rises and k60 1..99
+61 | A Classic Samurai Showdown | 5 | menus == 0 and k61 rises and k61 1..99
+62 | Not the Silent Type | 5 | menus == 0 and k62 rises and k62 1..99
+63 | Fahrenheit 451 | 5 | menus == 0 and k63 rises and k63 1..99
+64 | Zantetsuken | 5 | menus == 0 and k64 rises and k64 1..99
+65 | Covered by Smoke | 5 | menus == 0 and k65 rises and k65 1..99
+66 | Right Behind You | 5 | menus == 0 and k66 rises and k66 1..99
+67 | Always By Your Side... | 5 | menus == 0 and k67 rises and k67 1..99
+68 | ...To Grab Your Samurai Sword | 5 | menus == 0 and k68 rises and k68 1..99
+69 | Let Nature Reclaim You | 5 | menus == 0 and k69 rises and k69 1..99
+70 | Should've Looked Up | 5 | menus == 0 and k70 rises and k70 1..99
+71 | Well, What Do We Have Here? | 5 | menus == 0 and k71 rises and k71 1..99
+72 | Rushing to Your Side | 5 | menus == 0 and k72 rises and k72 1..99
+73 | I've Got Your Back | 5 | menus == 0 and k73 rises and k73 1..99
+74 | I Swear Officer, He Just Fell Like That | 5 | menus == 0 and k74 rises and k74 1..99
+75 | It's a Little Cramped in Here | 5 | menus == 0 and k75 rises and k75 1..99
+76 | Spidey-Sense is Tingling | 5 | menus == 0 and k76 rises and k76 1..99
+77 | Why Can't Tenchu Crawl? | 5 | menus == 0 and k77 rises and k77 1..99
+78 | When One Door Closes, Another Opens | 5 | menus == 0 and k78 rises and k78 1..99
+79 | A Jarring Experience | 5 | menus == 0 and k79 rises and k79 1..99
+80 | It's Quite Dusty Under Here | 5 | menus == 0 and k80 rises and k80 1..99
+81 | Just a Little Closer... | 5 | menus == 0 and k81 rises and k81 1..99
+82 | No, Wait, Come Back! | 5 | menus == 0 and k82 rises and k82 1..99
+83 | A Couple of Bakas | 5 | menus == 0 and k83 rises and k83 1..99
+84 | Three Stooges | 5 | menus == 0 and k84 rises and k84 1..99
+85 | I Am Vengeance... | 5 | menus == 0 and k85 rises and k85 1..99
+86 | I Am the Night... | 5 | menus == 0 and k86 rises and k86 1..99
+87 | Sleeping On the Job | 5 | menus == 0 and k87 rises and k87 1..99
+88 | Spilling the Tea | 5 | menus == 0 and k88 rises and k88 1..99
+89 | Leaving Your Demons Behind | 5 | menus == 0 and k89 rises and k89 1..99
+90 | Demon Rush | 5 | menus == 0 and k90 rises and k90 1..99
+91 | Demon Swipe | 5 | menus == 0 and k91 rises and k91 1..99
+92 | Demon Slash | 5 | menus == 0 and k92 rises and k92 1..99
+93 | Demon Fist | 5 | menus == 0 and k93 rises and k93 1..99
+94 | Oops! Lost My Footing | 5 | menus == 0 and k94 rises and k94 1..99

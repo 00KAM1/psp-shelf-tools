@@ -1,0 +1,74 @@
+# Emblem achievements for Mega Man: Maverick Hunter X, ULUS10068. Hand-written from RetroAchievements' code notes (set 3219).
+# Not here (notes do not show it): Nobody Can Stop Me, I am a MEGA MAN Now, Powered UP, Man VS. Tiny Baby Man, How Do You Like Being Sigma's Puppet?, I Wish Auto Was Here with His Helmet..., A Ride Problem, I'm Afraid to Look Back, Pacifist, I Don't Have Time to Stay Here!, Spark Ninja, Toasty Penguin, Jumper, You Can Touch Me, but You Can't Hurt Me!, Finally! A Fair Fight!, I'm Tired Now, Meditate, Take My Stronger Buster, Ninja Purple, This Is a Boss and a Spider, You Guys Need More Power, Tirano, L E M O N, It's the Day of Sigma! Play Nice!, Sigma Mode - Quick Destruction.
+
+game ULUS10068 Mega Man: Maverick Hunter X
+
+intro  = u8 08A27828      # intro stage finished
+bosses = u8 08A27829      # one bit per Maverick
+lives  = u8 08A2782B
+hearts = u8 08A27834
+ups    = u8 08A27836
+stage  = u8 08A2784C      # 9..12 Sigma Palace 1..4
+state  = u8 08A27850      # 9 = level beaten
+char   = u8 08A27851      # 0 X, 1 Vile
+hard   = u8 08A27852
+cine   = u8 08A327B2      # last film: 0x1F X ending, 0x4C Vile ending
+x      = char == 0
+vile   = char == 1
+ready  = char <= 1 and hard <= 1 and stage <= 13 and lives <= 9 and intro <= 1
+penguin = u8 08A27829 bit 0
+chameleon = u8 08A27829 bit 1
+eagle = u8 08A27829 bit 2
+octopus = u8 08A27829 bit 3
+armadillo = u8 08A27829 bit 4
+kuwanger = u8 08A27829 bit 5
+mammoth = u8 08A27829 bit 6
+mandrill = u8 08A27829 bit 7
+sub0 = u8 08A27835 bit 0
+sub1 = u8 08A27835 bit 1
+sub2 = u8 08A27835 bit 2
+sub3 = u8 08A27835 bit 3
+buster = u8 08A27836 bit 0
+boots = u8 08A27836 bit 1
+body = u8 08A27836 bit 2
+helmet = u8 08A27836 bit 3
+secret = u8 08A27836 bit 4
+zbuster = u8 08A27836 bit 5
+beaten = just state == 9
+allsubs = sub0 == 1 and sub1 == 1 and sub2 == 1 and sub3 == 1
+anysub = sub0 == 1 or sub1 == 1 or sub2 == 1 or sub3 == 1
+
+1 | Change the World | 5 | x and intro == 1
+2 | Homing Torpedo | 5 | x and octopus == 1
+3 | Shotgun Ice | 5 | x and penguin == 1
+4 | Fire Wave | 5 | x and mammoth == 1
+5 | Rolling Shield | 5 | x and armadillo == 1
+6 | Boomerang Cutter | 5 | x and kuwanger == 1
+7 | Storm Tornado | 5 | x and eagle == 1
+8 | Electric Spark | 5 | x and mandrill == 1
+9 | Chameleon Sting | 5 | x and chameleon == 1
+10 | Wait, This Is Different | 10 | stage == 9 and beaten
+11 | Show Me Your True Power | 10 | stage == 10 and beaten
+12 | Dynamic Rex | 10 | stage == 11 and beaten
+13 | The Future Is Now | 25 | x and cine == 0x1F
+14 | X, X... Don't Finish That Sentence, Vile... | 10 | vile and intro == 1
+15 | Hunter x Hunter | 5 | vile and bosses > 0
+17 | Maverick Hunter V | 25 | vile and bosses == 0xFF
+18 | I Am... All of Me | 25 | vile and cine == 0x4C
+19 | I Trust in You, My Dear X | 2 | x and boots == 1
+20 | You Are Humanity's Last Hope | 2 | x and helmet == 1
+21 | I Know That You Can Bring It to a Peaceful Conclusion, X | 3 | x and body == 1
+22 | It's a Very Dangerous Power to Possess | 3 | x and buster == 1
+23 | Now Go, Maverick Hunter X | 10 | x and zbuster == 1
+24 | Stay Healthy | 2 | hearts > 0
+25 | I'm Safe Now | 10 | x and hearts == 0xFF
+26 | If X Can Do It, I Can Do It Too! | 10 | vile and hearts == 0xFF
+27 | Safety First | 3 | anysub
+28 | Powered X | 10 | x and allsubs
+29 | Energy Detector | 10 | vile and allsubs
+30 | You Need to Defeat My X-Buster to Stand a Chance | 10 | x and secret == 1
+33 | Final Mission Accomplished | 25 | x and hard == 1 and cine == 0x1F
+34 | This Is How Strong I Am! | 50 | vile and hard == 1 and cine == 0x4C
+37 | Something does not feel right... | 5 | x and stage == 1 and beaten and boots == 0
+39 | Slow Purple | 5 | vile and bosses == 0 and sub2 == 1
+59 | Zero Mode DX - Director's Cut | 50 | x and cine == 0x1F and hearts == 0 and not anysub and buster == 0 and body == 0 and helmet == 0 and secret == 0

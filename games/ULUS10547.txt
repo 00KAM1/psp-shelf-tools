@@ -1,0 +1,34 @@
+# Emblem achievements for Ys I & II Chronicles, ULUS10547. Hand-written from RetroAchievements' code notes (set 3159).
+# Not here (notes do not show it): A Warning Daring Adventurer!, Talking is its Own Reward, Warning Noted, and Ignored, P(r)im, but not Proper, He'll Probably Sell it for More Anyway, I Wonder Who's the Wife, Some Things Never Change, The Teller of Your Fortune, What Does it Taste Like?, A Key to Part of Solomon Shrine, This Swordsman's Got a Pop-Up Blocker, Holders of Power I, Fantasy Equipment in a Nutshell, Holders of Power II, Masquerading Swordsman I, Adol, the Master of Unlocking, Oh Joy, They Added an Escort Mission, Staining a Maiden's Hands, Someone Call the SSS!, Plunderer First, Freer Second, Maybe the Prison was Safer, Silver Bells Ring, You Listening?, A Plain Treasure Hunting Experience, First Step Towards Talwars, Wanderer from Esteria, She Really Could See the Future, Is That a Fact?, Stop, Adol Time!, Mid-Dungeon Healing, Reah-Lize Your Poet's Potential, A Poet and you Know it, Bring Garlic Next Time, Masquerading Swordsman II, Mining for Riches, Why Can't I Remember Anything More?, The Night has Just Begun, Stuck in a Wall, and You're to Blame, The Meeting of Your New Best Friend, The Origins of Darm Tower, King Graham Wasn't This Lucky, Chase of Shadow, Masquerading Swordsman III, Putting Some Holes in Your Plan, Sticks and Stones Won't Break My Bones, Masquerading Swordsman IV, Girl in the Tower, Luta Man's Family Heirloom, Indiana Adol and the Tower of Darm, Not Reflecting on Your Actions, Masquerading Swordsman V, Preserving Architecture, Music is More Important, Fact!, Your Flight is Booked, Better than a Butter Knife, Longer, but Your Reach is the Same, Trust Your Insticts and Reflex(es), Stealing From an Unknown Thief, Ready for (Almost) Every Battle, An Unofficial Census, Hitlist Record Keeper I, Hitlist Record Keeper II, Pop Goes the Wizard, How's This Boss Harder?, Dracula Fears Him, You Pictimos-t Terrible Opponent, Chase of Shadow Rematch, A Boulder Swordsman, Causing Harm in Darm, What a Horrible Night-mare to have an Adol, Overprepared for the Easiest Boss, The Often Ignored Chests, Imagine Having a Weight Limit, CliffsNotes are More Detailed Than This, Always on Time - Jenocres, Always on Time - Nygtilger, Always on Time - Vagullion, Always on Time - Pictimos, Always on Time - Khonsclard, Always on Time - Yog & Omu, Always on Time - Dark Fact, Always on Time - Novice, Always on Time - Master, I Uh, Got You This, What A Romantic Ominous Temple That Is, Enter... the Leg-Man, Your Path Will Surely Become Clear, Adol the Nerd, Blocking Is for Scrubs, Crab Dipped, Imagine the Overdue Fines, Selfless, I'm Sure It's Safe, Flea Collared, A Fiend's Cache, I Heard What You Said, Make Sure It Covers Your Nose, Keith Smash!, God-Tier Rascal, Little Brother Adol, Hahahaha This Sucks, Man, Ew I Don't Wanna Touch It, Same Password As My Luggage, I Never Roda Fruit I Didn't Like, It's on Sight, Pal, This Rules, Actually, That's My Hideout, I Don't Know You, Stupid Societal Beauty Standards, Hey Guys, I'm Back! ... Guys?, But My Walkthrough Said..., She's Flint- I Mean Fine!, Bug Sprayed, Nice To Finally Meet You, Bats, We're Bats, We're the Bats, Cute but No, Oh Crap Oh Crap Oh Crap, Moisturised and Flourishing, Don't Dare Do It, C'mon Man, You're Weirding Me Out, I'm Very Hungry, It's Okay to Cry, Goddesses Darm It, Darmageless, For Massive Damage, Flea as a Bird, Seriously Though What Was That, Just Call Me "La Chancla", Bats Beaten Badly, Dalles? More Like Dingus, Utter Darmnation, Maximum Adol, The Magic Christin, All We've Got in Stock, Movin' On Up, Uhhh Gimme a Talwar, with a Large Shield, Every Little Thing the Reflex Does, Strong but Stinky, The Legendary Gear, Mahou Shonen Adol, Ready to Hit the Town, Health Insurance, Big Pockets, Friend to All, Foe to All, Observant, Pious, Worshipful, Novitiate, Zealot, Item Hunt: Ruins of Moondoria, Item Hunt: Rasteenie Mine and Toal Sanctuary, Front, Item Hunt: Rasteenie Mine, Back, Item Hunt: Ice Ridge of Noltia, Item Hunt: Moat of Burnedbless, Item Hunt: Solomon Shrine, Item Hunt: Subterranean Canal and Ancient Core, Let's Get This Over With, Naked Adol's Virtuous Mission, I Don't Need Your Pity Pork, I've Done This Before, I've Done This A Few Times Before, I've Done This A Lot, Okay.
+# Hand-checked. Ys I and Ys II each have their own gate.
+
+game ULUS10547 Ys I & II Chronicles
+
+lv1  = u32 08975C38      # Ys I: Adol's level (max 10)
+hp1  = u32 08975C24      # Ys I: Adol's max HP
+hp2  = u32 08A7809C      # Ys II: Adol's max HP (max 256)
+ys1  = lv1 1..10 and hp1 1..300
+ys2  = hp2 1..256
+ready = ys1 or ys2
+
+3 | Look Mom, I'm Adventuring! | 3 | ys1 and lv1 2..10
+12 | DragonForce Your Way Through | 5 | ys1 and u32 08975EDC == 1
+16 | Ring Around the Adol | 5 | ys1 and u32 08975EE0 == 1
+35 | I am a Swordsman, I Speak With the Trees | 5 | ys1 and u32 08975D04 set
+36 | EXP Will Only get You so Far | 10 | ys1 and lv1 == 10
+37 | This Bat Drinks Your Sanity | 10 | ys1 and u32 08975EE4 == 1
+47 | Prey for Your Survival | 10 | ys1 and u32 08975EE8 == 1
+51 | Between a Rock and a Hard Place | 5 | ys1 and u32 08975EEC == 1
+57 | Way Ahead of You Demons | 10 | ys1 and u32 08975EF0 == 1
+60 | The Book War is Over | 10 | ys1 and u32 08975EF4 == 1
+96 | Duck Bucks | 5 | ys2 and u32 08EC8EA8 set
+98 | Giant Enemy Crab | 10 | ys2 and u32 08EC8818 set
+102 | Gila's Monsters | 5 | ys2 and u32 08EC8B88 set
+106 | Flea Flicked | 10 | ys2 and u32 08EC881C set
+115 | Okay What the Hell Was That | 10 | ys2 and u32 08EC8820 set
+117 | Does This Thing Get 5G | 5 | ys2 and u8 08A775D2 set
+127 | The Arch-Arachnid | 10 | ys2 and u32 08EC8824 set
+130 | Bats Below the Belfry | 10 | ys2 and u32 08EC8828 set
+134 | Getting Some Bad Vibes from This Thing | 5 | ys2 and u8 08A775E2 set
+136 | Sword Beats Rock | 10 | ys2 and u32 08EC882C set
+141 | You're Darm Right | 25 | ys2 and u32 08EC8830 set

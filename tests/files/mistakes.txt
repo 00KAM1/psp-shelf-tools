@@ -1,0 +1,15 @@
+# Lines Emblem must skip, and rules over empty memory: for tests/run_tests.sh step 2.
+game TEST00001 Errors and timing
+level = u32 08BB9B30
+hp = float 08BB9B00
+ready = level 1..99
+show level hp
+1 | Plain | 5 | level >= 10
+2 | Unknown name | 5 | lvl >= 3
+3 | Too many points | 300 | level set
+foo bar
+4 | Listed | 10 | none
+when level == 5
+5 | Timed | 5 | level rises 1
+6 | Run | 5 | run from level == 1 to level == 2 unless hp drops grace 0.5s
+7 | Zero fires | 5 | level == 0

@@ -1,0 +1,63 @@
+# Emblem achievements for The Legend of Heroes: Trails in the Sky SC, NPUH10197. Hand-written from RetroAchievements' code notes (set 10481).
+# Not here (notes do not show it): Just So You Know..., Balstar Bracer Brawl, Clash at Saint Croix, La Locle Loot, Fortress Face-Off, An Indestructible Maiden, Ravens Ravaged, Lighthouse Test Run, Raiding Ruan, Schoolhouse Stick Up, Blinded with Science!, Holding Back the Storm, The Shadows, My Servants, Kaldia Tunnel Monster, Tratt Plains Monster, Endless Balms of Zeiss, Eliminate the Peeping Tom, Tratt Plains Monster 2, Come On, Geysers..., Slithering with the Abyss, And Peaceful Because Everything is Dead, Missing Guest, Divine, Yet Divided, Erbe Scenic Route Monster, Grancel Sewer Monster, Hide and Seek Champ, Capital Caper, Grancel Sewer Monster 2, Orgueille Onslaught, For Your Discomfort, The Mad Tea Party, That Wasn't Tea..., Major Pain, Elize Highway Monster, Milch Main Road Monster, Bittersweet, Milch Main Road Monster 2, Esmelas Tower Monster, The Great Rolent Robbery, Mistwald Mystery , Of Sound Mind, No Comas Here, Bigger Catchin', Monster Hunter Pro EX+, Imperial Request, The Missing Lady, Casualty of War, The Great Bose Booty Hunt, Taming the Holy Beast, That Which One Must Protect, That Which None Must Protect, Memories of Distant Days, Plundering Abroad, Black Fang Gang, Pussy Riot, Snail Apache, The Whereabouts of Fight!, A Dazzling Display, Taito for Two, Silver Streak for the Circus Freak, Tower Tower Bills, Fresh Out of Tea, Gordias-Class Tactical Archaism, The Tetracyclic Towers of Fear, Krone Pass Monster, The King of Valleria Lake, The Occupation of Jenis, Toys for Tots, Penguin Stash, Tratt Plains Road Monster Redux, Ritter Road Monster Redux, Hot Spring Restoration, Grancel Sewer Monster Redux, Erbe Scenic Route Monster Redux, Elize Highway Monster Redux, Milch Main Road Monster Redux, Otherworldly Scum!, The Perks of Reading, My Hands Are Chaos, I Keep Up with Stuff, Ya Know, Pick-Up for Capua, Adding Insult to Injury, Unfinished Business, The Perks of Being a Nerd, Treasures in the Sky, Phantom Thief B, Direwolf, Bewitching Bell, Angel of Slaughter, Axis Pilfer, Risking Everything, Here We Stand, Shattered Stigmas, Descend the Angel, Trails in the Sky, Bright in Shining Armor, Bracer Rank G+, Bracer Rank F, Bracer Rank F+, Bracer Rank E, Bracer Rank E+, Bracer Rank D, Bracer Rank D+, Bracer Rank C, Bracer Rank C+, Bracer Rank B, Bracer Rank B+, Bracer Rank A, Commis Chef, Chef de Partie, Pastry Chef, Sous Chef, Head Chef, Executive Chef, Kirin Horn, Ore Wars, Oh Look, More Jewels, Bottomless Bag of Gems, Monster Hunter, Monster Slayer, Monster Annihilator, Monster Genocider, Junior Baiter, Seasoned Baiter, Master Baiter, The Most Glorious Angler, I Like to Keep Track of These Things, You Never Know When You Will Need It, Also, I Like to Know How to Kill Things, Some Say My Monster Guide is Impressive, I'm Inclined to Agree with Them Now, A Bit Overkill, Yeah?, Danger, Danger, Black Fanger!, Share a Drink with Schera, Bullets from the Heart, An Ys-y Victory, The Heavy Blade, Honorary Older Brother Complex, The Immovable, Thousand-Hand Guardian, Eight Leaves One Blade or Bust, Homewrecker, The Reluctant Protector, Illusionary Artist, Lance Rider, Poker Faces On, Comrades!, I Heard You Like Blackjack, Big Winnings, It's a MIRAcle!, Shake the Earth, Pillars of Ice, Mass of Fire, Lightning of Judgment, Messenger from Gehenna, Warped Space, Madness-Inducing Blades, Tactical Orbments, Huh?, Here You Go, Buddies, You Guys, Too, A True Artist, A Maiden Dissolves..., Breaking Shadows, The Raging Plan, The Sad Tea Party, The Pissed Demon's Target, That Which One Must Neglect, O Glorious, I've Come to Ruin Your Plans, Descending Into Chaos, Trails in the Die, They Startled Me the First Time, How Do They Fit in There? , Chest Purger, Good Deeds, Liberlian Savior, They Call Me the Peacebringer, Monster Hunter EX, Monster Slayer EX, Monster Annihilator EX, Monster Genocider EX, That's Cute, Hip Hip Hooray, Dirty Jobs, Could Use a Raise, Or Is It Just a Summer Job?, Either Way, You're Doing Well, Somebody May Notice You One Day, Maybe Not Today..., Maybe Not Tomorrow..., But When They Do..., Always Remember..., You're Still No Cassius.
+# Hand-checked. Chapters, Gambler Jack volumes and 30 guild quests ("reported"). Monster hunts are left out where two share a road name.
+
+game NPUH10197 The Legend of Heroes: Trails in the Sky SC
+
+level = u16 08C5BBCC      # Estelle
+ready = level 1..150
+
+4 | The Girl | 5 | u8 08C5B78A bit 5 == 1
+7 | A Maiden's Resolve | 5 | u8 08C5B77C bit 0 == 1
+9 | The Offer | 5 | u8 08C5B78A bit 6 == 1
+11 | Come, Ingredient Hunters! | 5 | u8 08C61FDA bit 5 == 1
+12 | Sapphirl Tower Photo | 5 | u8 08C61FE6 bit 5 == 1
+13 | Vista Forest Road Monster | 5 | u8 08C622AA bit 5 == 1
+14 | Gull Seaside Way Monster | 5 | u8 08C622C2 bit 5 == 1
+17 | Sunday School Lecturer | 5 | u8 08C61FF2 bit 5 == 1
+18 | Krone Trail Monster | 5 | u8 08C622B6 bit 5 == 1
+19 | Aurian Causeway Monster | 5 | u8 08C622CE bit 5 == 1
+23 | Sneaking Shadows | 5 | u8 08C5B7F4 bit 0 == 1
+25 | Recruiting Great Gamblers | 5 | u8 08C61FFE bit 5 == 1
+26 | Election Office Assault | 5 | u8 08C6200A bit 5 == 1
+27 | Challenge at High Noon | 4 | u8 08C5B78A bit 7 == 1
+28 | The Stolen Sign | 5 | u8 08C6202E bit 5 == 1
+29 | Training Assistance | 5 | u8 08C6203A bit 5 == 1
+30 | New Model Orbal Gun Test | 5 | u8 08C62046 bit 5 == 1
+34 | Parts Search | 5 | u8 08C62052 bit 5 == 1
+37 | Soldat Army Road Monster | 5 | u8 08C622FE bit 5 == 1
+40 | The Raging Land | 5 | u8 08C5B804 bit 4 == 1
+47 | Hell Yeah I Fish, Too | 4 | u8 08C5B841 bit 3 == 1
+49 | The Missing Exhibit | 10 | u8 08C6244E bit 5 == 1
+50 | The Daughter | 4 | u8 08C5B78B bit 0 == 1
+51 | The Invitation | 4 | u8 08C5B78B bit 1 == 1
+55 | Royal Avenue Monster | 5 | u8 08C6230A bit 5 == 1
+59 | The Ring That Flew Away | 5 | u8 08C62076 bit 5 == 1
+62 | The King | 4 | u8 08C5B78B bit 2 == 1
+63 | Search for Lost Cat | 5 | u8 08C6208E bit 5 == 1
+70 | The Mist Demon's Target | 5 | u8 08C5B87B bit 7 == 1
+73 | Fishing Spot Search | 5 | u8 08C62082 bit 5 == 1
+74 | Nostalgic Recipe | 5 | u8 08C6209A bit 5 == 1
+75 | Diaset's Secret | 5 | u8 08C620A6 bit 5 == 1
+79 | The Rarest Flavor | 5 | u8 08C620E2 bit 5 == 1
+80 | Mine Commission | 5 | u8 08C620B2 bit 5 == 1
+81 | The Banquet of Darkness | 4 | u8 08C5B78B bit 3 == 1
+84 | Ravennue Trail Monster | 5 | u8 08C6238E bit 5 == 1
+88 | Lord of the Lake Part II | 10 | u8 08C5B8FA bit 3 == 1
+89 | Merchant Escort | 10 | u8 08C620EE bit 5 == 1
+91 | Mine Extermination | 10 | u8 08C620FA bit 5 == 1
+92 | Haru | 5 | u8 08C5B78B bit 4 == 1
+93 | Nostalgia | 5 | u8 08C5B78B bit 5 == 1
+98 | The Whereabouts of Bonds | 10 | u8 08C5B934 bit 0 == 1
+101 | The Match | 5 | u8 08C5B78B bit 6 == 1
+107 | The Tetracyclic Towers | 10 | u8 08C5B93A bit 0 == 1
+110 | New Ansel Path Monster | 5 | u8 08C623A6 bit 5 == 1
+112 | It's Time to Rush Art! | 5 | u8 08C5B97C bit 1 == 1
+113 | Gull Seaside Way Monster Redux | 5 | u8 08C623CA bit 5 == 1
+115 | Sapphirl Tower Monster Redux | 5 | u8 08C623D6 bit 5 == 1
+116 | The Truth | 4 | u8 08C5B78C bit 0 == 1
+122 | The Sense | 4 | u8 08C5B78C bit 1 == 1
+127 | Rescue the Miners | 10 | u8 08C62412 bit 5 == 1
+128 | The Decisive Moment | 5 | u8 08C5B78B bit 7 == 1
+130 | To Each Their Own Wish | 5 | u8 08C5B78C bit 2 == 1
+132 | Land of Chaos | 10 | u8 08C5B9B4 bit 0 == 1

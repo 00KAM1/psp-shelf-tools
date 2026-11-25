@@ -1,0 +1,96 @@
+# Emblem achievements for Soul Eater: Battle Resonance, ULJS00176. Hand-written from RetroAchievements' code notes (set 21453).
+
+game ULJS00176 Soul Eater: Battle Resonance
+
+pct1 = u8 08B8A058        # tasks % of save file 1, 2, 3
+pct2 = u8 08B8A098
+pct3 = u8 08B8A0D8
+ch1  = u8 08B8A050        # character of file 1, 2, 3 (0 Maka ... 10 Mifune, 0xFF none)
+ch2  = u8 08B8A090
+ch3  = u8 08B8A0D0
+ev1  = u8 08B8A068
+ev2  = u8 08B8A0A8
+ev3  = u8 08B8A0E8
+p1   = u8 08B868B4        # arcade character
+stage = u8 08B86954       # arcade stage; 8 = beaten, credits
+ready = pct1 <= 100 and pct2 <= 100 and pct3 <= 100 and (ch1 <= 10 or ch2 <= 10 or ch3 <= 10)
+started = ev1 set or ev2 set or ev3 set     # some stage opened in a save
+s1f1 = u8 08B8A068 bit 1
+s1f2 = u8 08B8A0A8 bit 1
+s1f3 = u8 08B8A0E8 bit 1
+s2f1 = u8 08B8A068 bit 2
+s2f2 = u8 08B8A0A8 bit 2
+s2f3 = u8 08B8A0E8 bit 2
+s3f1 = u8 08B8A068 bit 3
+s3f2 = u8 08B8A0A8 bit 3
+s3f3 = u8 08B8A0E8 bit 3
+s4f1 = u8 08B8A068 bit 4
+s4f2 = u8 08B8A0A8 bit 4
+s4f3 = u8 08B8A0E8 bit 4
+s5f1 = u8 08B8A068 bit 5
+s5f2 = u8 08B8A0A8 bit 5
+s5f3 = u8 08B8A0E8 bit 5
+s6f1 = u8 08B8A068 bit 6
+s6f2 = u8 08B8A0A8 bit 6
+s6f3 = u8 08B8A0E8 bit 6
+s7f1 = u8 08B8A068 bit 7
+s7f2 = u8 08B8A0A8 bit 7
+s7f3 = u8 08B8A0E8 bit 7
+s8f1 = u8 08B8A069 bit 0
+s8f2 = u8 08B8A0A9 bit 0
+s8f3 = u8 08B8A0E9 bit 0
+s9f1 = u8 08B8A069 bit 1
+s9f2 = u8 08B8A0A9 bit 1
+s9f3 = u8 08B8A0E9 bit 1
+s10f1 = u8 08B8A069 bit 2
+s10f2 = u8 08B8A0A9 bit 2
+s10f3 = u8 08B8A0E9 bit 2
+endf1 = u8 08B8A082 bit 1
+endf2 = u8 08B8A0C2 bit 1
+endf3 = u8 08B8A102 bit 1
+ox = u8 08A3043C bit 5      # character lock bits: on = still locked
+medusa = u8 08A3043D bit 0
+free = u8 08A3043D bit 1
+death = u8 08A3043D bit 3
+excal = u8 08A3043D bit 4
+
+1 | Death City | 1 | s1f1 == 1 or s1f2 == 1 or s1f3 == 1
+2 | Cinder Castle | 2 | s2f1 == 1 or s2f2 == 1 or s2f3 == 1
+3 | Hook Cemetery | 3 | s3f1 == 1 or s3f2 == 1 or s3f3 == 1
+4 | Patchwork Lab | 4 | s4f1 == 1 or s4f2 == 1 or s4f3 == 1
+5 | Needle Village | 5 | s5f1 == 1 or s5f2 == 1 or s5f3 == 1
+6 | Church | 5 | s6f1 == 1 or s6f2 == 1 or s6f3 == 1
+7 | Eternal Cave | 5 | s7f1 == 1 or s7f2 == 1 or s7f3 == 1
+8 | Tower Bridge | 5 | s8f1 == 1 or s8f2 == 1 or s8f3 == 1
+9 | Ghost Ship Nidhogg | 5 | s9f1 == 1 or s9f2 == 1 or s9f3 == 1
+10 | DWMA Underground | 10 | s10f1 == 1 or s10f2 == 1 or s10f3 == 1
+11 | The Awakened Kishin | 25 | endf1 == 1 or endf2 == 1 or endf3 == 1
+12 | Soul Eater | 25 | (pct1 == 100 and ch1 == 0) or (pct2 == 100 and ch2 == 0) or (pct3 == 100 and ch3 == 0)
+13 | Death Scythe | 25 | (pct1 == 100 and ch1 == 1) or (pct2 == 100 and ch2 == 1) or (pct3 == 100 and ch3 == 1)
+14 | Soul Resonance | 25 | (pct1 == 100 and ch1 == 2) or (pct2 == 100 and ch2 == 2) or (pct3 == 100 and ch3 == 2)
+15 | Attack Awareness | 25 | (pct1 == 100 and ch1 == 3) or (pct2 == 100 and ch2 == 3) or (pct3 == 100 and ch3 == 3)
+16 | Holy Shadows | 25 | (pct1 == 100 and ch1 == 4) or (pct2 == 100 and ch2 == 4) or (pct3 == 100 and ch3 == 4)
+17 | Ghost Magic | 25 | (pct1 == 100 and ch1 == 5) or (pct2 == 100 and ch2 == 5) or (pct3 == 100 and ch3 == 5)
+18 | Resistence | 25 | (pct1 == 100 and ch1 == 6) or (pct2 == 100 and ch2 == 6) or (pct3 == 100 and ch3 == 6)
+19 | Thunder | 25 | (pct1 == 100 and ch1 == 7) or (pct2 == 100 and ch2 == 7) or (pct3 == 100 and ch3 == 7)
+20 | Black Dragon | 25 | (pct1 == 100 and ch1 == 8) or (pct2 == 100 and ch2 == 8) or (pct3 == 100 and ch3 == 8)
+21 | Counterattack | 25 | (pct1 == 100 and ch1 == 9) or (pct2 == 100 and ch2 == 9) or (pct3 == 100 and ch3 == 9)
+22 | Eternal Quest | 25 | (pct1 == 100 and ch1 == 10) or (pct2 == 100 and ch2 == 10) or (pct3 == 100 and ch3 == 10)
+23 | Maka And Soul | 5 | just stage == 8 and p1 == 0
+24 | Black Star and Tsubaki | 5 | just stage == 8 and p1 == 1
+25 | Kid, Liz and Patty | 5 | just stage == 8 and p1 == 2
+26 | Crona and Ragnarok | 5 | just stage == 8 and p1 == 3
+27 | Sid and Mira | 5 | just stage == 8 and p1 == 4
+28 | Ox and Harvar | 5 | just stage == 8 and p1 == 5
+29 | Medusa | 5 | just stage == 8 and p1 == 8
+30 | Blair | 5 | just stage == 8 and p1 == 7
+31 | Stein | 5 | just stage == 8 and p1 == 6
+32 | Free | 5 | just stage == 8 and p1 == 9
+33 | Mifune | 5 | just stage == 8 and p1 == 10
+34 | Excalibur | 5 | just stage == 8 and p1 == 12
+35 | Lord Death | 5 | just stage == 8 and p1 == 11
+36 | Prisoner | 5 | started and free == 0
+37 | Bro | 5 | started and ox == 0
+38 | Cat Woman | 5 | started and medusa == 0
+39 | Frango | 5 | started and excal == 0
+40 | Sr Death | 5 | started and death == 0

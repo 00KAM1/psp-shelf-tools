@@ -1,0 +1,62 @@
+# Emblem achievements for Jeanne d'Arc, UCUS98700. Hand-written from RetroAchievements' code notes (set 3509).
+# Not here (notes do not show it): Har, Well Fought!, Ni!, Vying for Light A, Vying for Light B, Necromancer, Burning Rage, Strength Through Unity, On a Mission From God, Killer, Serial Killer, Born Killer, Heaven, Grant Me Power!, The Creator's Armlet, I Am Strong, I Am Invincible, I Am Woman!, Minimalist, Treasure Hunter, Counter Attack!, Come At Me, Bro, The Tank, The Chosen One, Crack Shot, Keep Your Distance!, I Put a Spell on You..., 'Cause I'm the Axeman , Live By the Sword..., Slasher and Lasher, Speed Battler, Sword Master, Lance Master, Knife Master, Axe Master, Bow Master, Staff Master, Whip Master, For Any Occasion, Shieldbearer, Hoarder, Coup De Grace, The Power Within, Magus, Stronger, Better, Faster, Cuisses' Mysterious Power, A Beacon of Knowledge.
+# Stages unlock when they are cleared while Emblem is running; old saves do not catch up.
+
+game UCUS98700 Jeanne d'Arc
+
+map     = u32 08916634
+cleared = u8 08A79474     # 1 while the stage spoils are shown
+gold    = u32 08ABA4EC
+stage   = u8 08ABA4FC
+story   = u8 08ABA4FE     # same as stage in a story battle, 0 in Free Combat
+level   = u8 08ABA774     # Jeanne
+ready   = level 1..99 and stage 1..0x24 and gold < 100000000
+won     = just cleared == 1
+
+1 | A Voice From Heaven | 1 | won and stage == 1 and story == 1
+2 | Holy Armor | 2 | won and stage == 2 and story == 2
+3 | Journey's Start | 3 | won and stage == 3 and story == 3
+4 | The Crimson Warrior | 4 | won and stage == 4 and story == 4
+5 | The Road to Chinon | 5 | won and stage == 5 and story == 5
+7 | The Armlet's Chosen | 5 | won and stage == 6 and story == 6
+8 | The Maiden Battle | 5 | won and stage == 7 and story == 7
+9 | Savior's Proof | 5 | won and stage == 8 and story == 8
+10 | The Bloodied Savior | 5 | won and stage == 9 and story == 9
+11 | Talbot's Scheme | 5 | won and stage == 10 and story == 10
+12 | Breaching the Dark | 5 | won and stage == 11 and story == 11
+13 | For a Free Orleans | 5 | won and stage == 12 and story == 12
+14 | The Battle of Patay | 5 | won and stage == 13 and story == 13
+15 | Brother Richard | 5 | won and stage == 14 and story == 14
+16 | Chalons and the Ruse | 5 | won and stage == 15 and story == 15
+18 | A New Pucelle | 5 | won and stage == 16 and story == 16
+19 | To Crown a King | 10 | won and stage == 17 and story == 17
+20 | Vicissitudes | 10 | won and stage == 18 and story == 18
+21 | Narrow Roads | 10 | won and stage == 0x13 and story == 0x13 and map == 0x2080
+22 | The Magician Girl | 10 | won and stage == 0x13 and story == 0x13 and map == 0x2081
+23 | The Snare | 10 | won and stage == 20 and story == 20
+24 | Fated to War | 10 | won and stage == 21 and story == 21
+25 | Hopes Unattained | 10 | won and stage == 22 and story == 22
+26 | The Black Knight | 10 | won and stage == 23 and story == 23
+27 | Dark Demoniac | 10 | won and stage == 24 and story == 24
+28 | Death Bestirred | 10 | won and stage == 25 and story == 25
+29 | Queen Isabeau | 10 | won and stage == 26 and story == 26
+30 | Barging into Paris | 10 | won and stage == 27 and story == 27
+31 | Shade and Light | 10 | won and stage == 28 and story == 28
+32 | Hunted Down | 10 | won and stage == 0x1D and story == 0x1D and map == 0x20EE
+33 | The Dwarves' Test | 10 | won and stage == 0x1D and story == 0x1D and map == 0x20EF
+36 | Face to Face | 10 | won and stage == 31 and story == 31
+37 | Encumbered Powers | 10 | won and stage == 32 and story == 32
+38 | Release | 10 | won and stage == 33 and story == 33
+39 | The Fifth Hero | 10 | won and stage == 34 and story == 34
+40 | The Dark Throne | 10 | won and stage == 35 and story == 35
+41 | Demise | 25 | won and stage == 36 and story == 36
+46 | The Altois Prairie | 10 | won and story == 0 and (map == 0x22C5 or map == 0x22CF)
+47 | Tower of Alsace | 10 | won and story == 0 and (map == 0x22C9 or map == 0x22D3)
+48 | Raillemont | 10 | won and story == 0 and (map == 0x22CA or map == 0x22D4)
+49 | Langles Tunnel | 10 | won and story == 0 and (map == 0x22C6 or map == 0x22D0)
+50 | Castle Vilneaux | 10 | won and story == 0 and (map == 0x22C8 or map == 0x22D2)
+51 | Voldor Temple | 10 | won and story == 0 and (map == 0x20C1)
+52 |  My Name Is Gladiator | 10 | won and story == 0 and (map == 0x2274)
+53 | Shadows and Dust | 25 | won and story == 0 and (map == 0x227E)
+54 | What We Do in Life Echoes in Eternity | 50 | won and story == 0 and (map == 0x2288)
+55 | The Cemetery | 10 | won and story == 0 and (map == 0x22CB or map == 0x22D5)

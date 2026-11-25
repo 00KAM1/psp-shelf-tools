@@ -1,0 +1,252 @@
+# Emblem achievements for Sunday vs Magazine: Shuuketsu! Choujou Daikessen, ULJM05450. Hand-written from RetroAchievements' code notes (set 31694).
+# Not here (notes do not show it): First Steps to Glory, Rising Challenger, Master of the Pages, Unstoppable, Gears of Initiation, Rebooted, Circuit Breaker, Mecha Mastermind, Echoes of Evil, Shadowbound Striker, Darkness Reclaimed, Demon Slayer, Beyond the Final Page, Overcharged, Trinity Breaker, Chrono Slayer, Pages Burn in Seconds, Fight Between Bosses, Score Overdrive, Time Splitter, Test Your Might, Full Control Over Bricks, No Mercy, Esper Elite, Disciple of Might, Martial Maiden, Half-Demon Hero, Butler Blitz, Kekkaishi Defender, Barrier Breaker, Flame Master, ARMS Awakened, Beast-Spear Wielder, Justice Grows Strong, Burning Transfer Student, Ultimate Superhuman, Dempsey King, Beast of the Ring, Storm Rider Supreme, Pastry-Powered Punch, Dragon Slayer Ignites, Celestial Summoner, Magister of Lightning, Evil Eye Enforcer, Steel-Faced, Martial Mayhem, Scarlet Blade, Roar of the Masked Hero, Tomorrow's Champion, Hell's Redemption, Cyborg 009 Activated, Samurai of Thunder, Champion of Chaos, Secret Quest, Magazine, Master of All Styles.
+# Support lists count the unlockable supports named in the notes.
+
+game ULJM05450 Sunday vs Magazine: Shuuketsu! Choujou Daikessen
+
+ready = u8 08C853B4 2..0x20 and u8 08A711CA <= 2 and u8 08A71A08 <= 5 and u8 08A71A0C <= 5     # screen, CPU level, tickets
+k80_0 = list u8 bit 0 08A71153
+k80_2 = list u8 bit 2 08A71152
+k80_3 = list u8 bit 3 08A71153
+k80_5 = list u8 bit 5 08A71152
+k81_0 = list u8 bit 0 08A7115B
+k81_2 = list u8 bit 2 08A7115A 08A7115B
+k81_4 = list u8 bit 4 08A7115A
+k81_5 = list u8 bit 5 08A7115A
+k82_0 = list u8 bit 0 08A71179
+k82_2 = list u8 bit 2 08A71179
+k82_3 = list u8 bit 3 08A71178
+k82_4 = list u8 bit 4 08A71178
+k83_0 = list u8 bit 0 08A71177
+k83_1 = list u8 bit 1 08A71177
+k83_3 = list u8 bit 3 08A71176
+k84_1 = list u8 bit 1 08A71175
+k84_2 = list u8 bit 2 08A71175
+k84_3 = list u8 bit 3 08A71174
+k84_5 = list u8 bit 5 08A71174
+k85_0 = list u8 bit 0 08A7115D
+k85_1 = list u8 bit 1 08A7115D
+k85_2 = list u8 bit 2 08A7115C
+k85_4 = list u8 bit 4 08A7115C
+k86_1 = list u8 bit 1 08A7115F
+k86_2 = list u8 bit 2 08A7115E 08A7115F
+k86_5 = list u8 bit 5 08A7115E
+k87_0 = list u8 bit 0 08A71155
+k87_1 = list u8 bit 1 08A71154 08A71155
+k87_5 = list u8 bit 5 08A71154
+k88_1 = list u8 bit 1 08A71173
+k88_2 = list u8 bit 2 08A71173
+k88_3 = list u8 bit 3 08A71172
+k89_0 = list u8 bit 0 08A71171
+k89_2 = list u8 bit 2 08A71170 08A71171
+k89_3 = list u8 bit 3 08A71170
+k90_0 = list u8 bit 0 08A71157
+k90_2 = list u8 bit 2 08A71157
+k90_4 = list u8 bit 4 08A71156
+k90_5 = list u8 bit 5 08A71156
+k91_0 = list u8 bit 0 08A71167
+k91_2 = list u8 bit 2 08A71167
+k91_3 = list u8 bit 3 08A71166
+k91_5 = list u8 bit 5 08A71166
+k92_0 = list u8 bit 0 08A7117D
+k92_2 = list u8 bit 2 08A7117C 08A7117D
+k92_5 = list u8 bit 5 08A7117C
+k93_1 = list u8 bit 1 08A7116F
+k93_2 = list u8 bit 2 08A7116E
+k93_3 = list u8 bit 3 08A7116E
+k94_1 = list u8 bit 1 08A7116D
+k94_2 = list u8 bit 2 08A7116C 08A7116D
+k94_4 = list u8 bit 4 08A7116C
+k95_1 = list u8 bit 1 08A71162 08A71163
+k95_2 = list u8 bit 2 08A71162 08A71163
+k96_1 = list u8 bit 1 08A71159
+k96_2 = list u8 bit 2 08A71159
+k96_3 = list u8 bit 3 08A71158
+k96_5 = list u8 bit 5 08A71158
+k97_1 = list u8 bit 1 08A71161
+k97_2 = list u8 bit 2 08A71160 08A71161
+k97_5 = list u8 bit 5 08A71160
+k98_1 = list u8 bit 1 08A71180 08A71181
+k98_2 = list u8 bit 2 08A71181
+k98_3 = list u8 bit 3 08A71180
+k98_4 = list u8 bit 4 08A71181
+k99_0 = list u8 bit 0 08A7117B
+k99_2 = list u8 bit 2 08A7117A 08A7117B
+k99_5 = list u8 bit 5 08A7117A
+k100_1 = list u8 bit 1 08A71165
+k100_2 = list u8 bit 2 08A71165
+k100_4 = list u8 bit 4 08A71164
+k100_5 = list u8 bit 5 08A71164
+k101_1 = list u8 bit 1 08A7118B
+k101_2 = list u8 bit 2 08A7118B
+k101_4 = list u8 bit 4 08A7118A
+k101_5 = list u8 bit 5 08A7118A
+k102_0 = list u8 bit 0 08A71183
+k102_1 = list u8 bit 1 08A71183
+k102_4 = list u8 bit 4 08A71182
+k103_0 = list u8 bit 0 08A71187
+k103_2 = list u8 bit 2 08A71187
+k103_3 = list u8 bit 3 08A71186
+k103_5 = list u8 bit 5 08A71186
+k104_0 = list u8 bit 0 08A7117F
+k104_1 = list u8 bit 1 08A7117F
+k104_4 = list u8 bit 4 08A7117E
+k105_0 = list u8 bit 0 08A7116B
+k105_2 = list u8 bit 2 08A7116A 08A7116B
+k105_5 = list u8 bit 5 08A7116A
+k106_1 = list u8 bit 1 08A71169
+k106_2 = list u8 bit 2 08A71168 08A71169
+k106_4 = list u8 bit 4 08A71168
+k107_1 = list u8 bit 1 08A7118C 08A7118D
+k107_2 = list u8 bit 2 08A7118D
+k107_3 = list u8 bit 3 08A7118C
+k108_1 = list u8 bit 1 08A71189
+k108_2 = list u8 bit 2 08A71188 08A71189
+k108_5 = list u8 bit 5 08A71188
+k109_0 = list u8 bit 0 08A71185
+k109_1 = list u8 bit 1 08A71185
+k109_2 = list u8 bit 2 08A71184
+k109_5 = list u8 bit 5 08A71184
+k109_6 = list u8 bit 6 08A71184
+s56_1 = list u8 bit 1 08A7090C
+s56_2 = list u8 bit 2 08A7090C
+s56_3 = list u8 bit 3 08A7090C
+s57_0 = list u8 bit 0 08A7090D
+s57_1 = list u8 bit 1 08A7090D
+s57_4 = list u8 bit 4 08A7090C
+s57_5 = list u8 bit 5 08A7090C
+s57_6 = list u8 bit 6 08A7090C
+s57_7 = list u8 bit 7 08A7090C
+s58_2 = list u8 bit 2 08A7090D
+s58_3 = list u8 bit 3 08A7090D
+s58_4 = list u8 bit 4 08A7090D
+s58_5 = list u8 bit 5 08A7090D
+s58_6 = list u8 bit 6 08A7090D
+s59_0 = list u8 bit 0 08A7090E
+s59_1 = list u8 bit 1 08A7090E
+s59_7 = list u8 bit 7 08A7090D
+s60_2 = list u8 bit 2 08A7090E
+s60_3 = list u8 bit 3 08A7090E
+s61_4 = list u8 bit 4 08A7090E
+s61_5 = list u8 bit 5 08A7090E
+s62_0 = list u8 bit 0 08A7090F
+s62_1 = list u8 bit 1 08A7090F
+s62_2 = list u8 bit 2 08A7090F
+s62_3 = list u8 bit 3 08A7090F
+s62_6 = list u8 bit 6 08A7090E
+s62_7 = list u8 bit 7 08A7090E
+s63_0 = list u8 bit 0 08A70910
+s63_4 = list u8 bit 4 08A7090F
+s63_5 = list u8 bit 5 08A7090F
+s63_6 = list u8 bit 6 08A7090F
+s63_7 = list u8 bit 7 08A7090F
+s64_1 = list u8 bit 1 08A70910
+s64_2 = list u8 bit 2 08A70910
+s64_3 = list u8 bit 3 08A70910
+s64_4 = list u8 bit 4 08A70910
+s65_5 = list u8 bit 5 08A70910
+s65_6 = list u8 bit 6 08A70910
+s66_0 = list u8 bit 0 08A70911
+s66_1 = list u8 bit 1 08A70911
+s66_7 = list u8 bit 7 08A70910
+s67_2 = list u8 bit 2 08A70911
+s67_3 = list u8 bit 3 08A70911
+s67_4 = list u8 bit 4 08A70911
+s67_5 = list u8 bit 5 08A70911
+s68_0 = list u8 bit 0 08A70912
+s68_1 = list u8 bit 1 08A70912
+s68_2 = list u8 bit 2 08A70912
+s68_3 = list u8 bit 3 08A70912
+s68_6 = list u8 bit 6 08A70911
+s68_7 = list u8 bit 7 08A70911
+s69_0 = list u8 bit 0 08A70913
+s69_4 = list u8 bit 4 08A70912
+s69_5 = list u8 bit 5 08A70912
+s69_6 = list u8 bit 6 08A70912
+s69_7 = list u8 bit 7 08A70912
+s70_1 = list u8 bit 1 08A70913
+s70_2 = list u8 bit 2 08A70913
+s70_3 = list u8 bit 3 08A70913
+s71_0 = list u8 bit 0 08A70914
+s71_1 = list u8 bit 1 08A70914
+s71_2 = list u8 bit 2 08A70914
+s71_3 = list u8 bit 3 08A70914
+s71_4 = list u8 bit 4 08A70913
+s71_5 = list u8 bit 5 08A70913
+s71_6 = list u8 bit 6 08A70913
+s71_7 = list u8 bit 7 08A70913
+s72_4 = list u8 bit 4 08A70914
+s72_5 = list u8 bit 5 08A70914
+s72_6 = list u8 bit 6 08A70914
+s73_0 = list u8 bit 0 08A70915
+s73_1 = list u8 bit 1 08A70915
+s73_7 = list u8 bit 7 08A70914
+s74_2 = list u8 bit 2 08A70915
+s74_3 = list u8 bit 3 08A70915
+s75_4 = list u8 bit 4 08A70915
+s75_5 = list u8 bit 5 08A70915
+s76_0 = list u8 bit 0 08A70916
+s76_1 = list u8 bit 1 08A70916
+s76_2 = list u8 bit 2 08A70916
+s76_6 = list u8 bit 6 08A70915
+s76_7 = list u8 bit 7 08A70915
+s77_3 = list u8 bit 3 08A70916
+s77_4 = list u8 bit 4 08A70916
+s78_5 = list u8 bit 5 08A70916
+s78_6 = list u8 bit 6 08A70916
+s78_7 = list u8 bit 7 08A70916
+
+14 | Are You Ready for the New Challenges? | 5 | u8 08A71A08 == 5 and u8 08A71A0C == 5
+56 | Zettai Karen Children | 5 | all s56_1 and all s56_2 and all s56_3
+57 | Kenichi: The Mightiest Disciple | 5 | all s57_0 and all s57_1 and all s57_4 and all s57_5 and all s57_6 and all s57_7
+58 | Inuyasha | 5 | all s58_2 and all s58_3 and all s58_4 and all s58_5 and all s58_6
+59 | Hayate no Gotoku | 5 | all s59_0 and all s59_1 and all s59_7
+60 | Kekkaishi | 5 | all s60_2 and all s60_3
+61 | Recca no Honoo | 5 | all s61_4 and all s61_5
+62 | Project Arms | 5 | all s62_0 and all s62_1 and all s62_2 and all s62_3 and all s62_6 and all s62_7
+63 | Ushio to Tora | 5 | all s63_0 and all s63_4 and all s63_5 and all s63_6 and all s63_7
+64 | The Law of Ueki | 5 | all s64_1 and all s64_2 and all s64_3 and all s64_4
+65 | Honoo no Tenkousei | 5 | all s65_5 and all s65_6
+66 | Kyukyoku Chojin R | 5 | all s66_0 and all s66_1 and all s66_7
+67 | Sunday | 5 | all s67_2 and all s67_3 and all s67_4 and all s67_5
+68 | Hajime no Ippo | 5 | all s68_0 and all s68_1 and all s68_2 and all s68_3 and all s68_6 and all s68_7
+69 | Air Gear | 5 | all s69_0 and all s69_4 and all s69_5 and all s69_6 and all s69_7
+70 | Fairy Tail | 5 | all s70_1 and all s70_2 and all s70_3
+71 | Mahou Sensei Negima | 5 | all s71_0 and all s71_1 and all s71_2 and all s71_3 and all s71_4 and all s71_5 and all s71_6 and all s71_7
+72 | GetBackers | 5 | all s72_4 and all s72_5 and all s72_6
+73 | Cromartie High School | 5 | all s73_0 and all s73_1 and all s73_7
+74 | Koutarou Makaritooru | 5 | all s74_2 and all s74_3
+75 | Samurai Deeper Kyo | 5 | all s75_4 and all s75_5
+76 | Tiger Mask | 5 | all s76_0 and all s76_1 and all s76_2 and all s76_6 and all s76_7
+77 | Ashita no Joe | 5 | all s77_3 and all s77_4
+78 | Devilman | 5 | all s78_5 and all s78_6 and all s78_7
+80 | Psychic Precision | 10 | all k80_0 and all k80_2 and all k80_3 and all k80_5
+81 | Butler Beyond Limits | 10 | all k81_0 and all k81_2 and all k81_4 and all k81_5
+82 | Supreme Arcane Master | 10 | all k82_0 and all k82_2 and all k82_3 and all k82_4
+83 | Celestial Mastery | 10 | all k83_0 and all k83_1 and all k83_3
+84 | Dragon Soul | 10 | all k84_1 and all k84_2 and all k84_3 and all k84_5
+85 | Kekkai Commander | 10 | all k85_0 and all k85_1 and all k85_2 and all k85_4
+86 | Barrier Mistress | 10 | all k86_1 and all k86_2 and all k86_5
+87 | Disciple Ascended | 10 | all k87_0 and all k87_1 and all k87_5
+88 | Cosmic Croissant | 10 | all k88_1 and all k88_2 and all k88_3
+89 | Air Trick Legend | 10 | all k89_0 and all k89_2 and all k89_3
+90 | Elegant Fury | 10 | all k90_0 and all k90_2 and all k90_4 and all k90_5
+91 | Justice Fully Grown | 10 | all k91_0 and all k91_2 and all k91_3 and all k91_5
+92 | Steel Soul | 10 | all k92_0 and all k92_2 and all k92_5
+93 | Ring Predator | 10 | all k93_1 and all k93_2 and all k93_3
+94 | Unbreakable Boxer | 10 | all k94_1 and all k94_2 and all k94_4
+95 | ARMS Overdrive | 10 | all k95_1 and all k95_2
+96 | Full-Demon Mastery | 10 | all k96_1 and all k96_2 and all k96_3 and all k96_5
+97 | Flame Master Supreme | 10 | all k97_1 and all k97_2 and all k97_5
+98 | True Samurai Awakening | 10 | all k98_1 and all k98_2 and all k98_3 and all k98_4
+99 | Unlimited Jagan | 10 | all k99_0 and all k99_2 and all k99_5
+100 | Spear of Destiny | 10 | all k100_1 and all k100_2 and all k100_4 and all k100_5
+101 | Thunder Blade Master | 10 | all k101_1 and all k101_2 and all k101_4 and all k101_5
+102 | Tiger's Legacy | 10 | all k102_0 and all k102_1 and all k102_4
+103 | Perfect Duality | 10 | all k103_0 and all k103_2 and all k103_3 and all k103_5
+104 | Martial Arts Maniac | 10 | all k104_0 and all k104_1 and all k104_4
+105 | Ultimate Chojin | 10 | all k105_0 and all k105_2 and all k105_5
+106 | Transfer Inferno | 10 | all k106_1 and all k106_2 and all k106_4
+107 | Dominion Unlocked | 10 | all k107_1 and all k107_2 and all k107_3
+108 | Acceleration Complete | 10 | all k108_1 and all k108_2 and all k108_5
+109 | Ashita no Champion | 10 | all k109_0 and all k109_1 and all k109_2 and all k109_5 and all k109_6

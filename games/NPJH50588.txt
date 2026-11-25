@@ -1,0 +1,198 @@
+# Emblem achievements for Digimon World Re:Digitize, NPJH50588. Hand-written from RetroAchievements' code notes (set 3935).
+# Not here (notes do not show it): Jijimon's Favorite Human, Following in His Footsteps, Wish Upon a Starfish, Bulking Up!, Digimon Battle Spirit, Grey Lord's Mansion, Overdell Cemetery, Mecha Rogue X, Misunderstood, Hats Off to You, Master and Pupil, With Great Powers..., Monochrome Shop, That's a Secret!, Liar, Liar, Pants on Fire, Lucky Luis, King of Night Canyon, Conflict of Opinions, Burning Hot Fighting Spirit, How I Met Your Mother, Alternative Medicine, Enchanted Rose, Frozomon, Advanced Training Partner, GAKU-RAN, Power Failure, Chronomon, The Last Gospel, The Digimon Are Our Friends, Tower of Grey, The Thing That Ties Us, Merciless Mode, Main Phase Initiated, Emerging Contender, Glowing Dawn, Alone in the Arena, Knight Without a Tamer, Authority of One, Beatbreak the Clock, Underclock Pressure, Time is of the Essence, Enhanced Core Access, Rally of Two, Interlinked Victory, Master-Level Clearance, Omega Force, Nemesis of the Arena, Advice for the Young at Heart, Charging Business, New Kid on the Block, A Garuda With No Name, No Re:Digitizing for You, Crest of Courage, Crest of Love, Crest of Friendship, Biggest Dreamer, Chiaroscuro, Luck of the Draw, The One Piece is Real, Cardmon, The Grind, Wombo Combo, Glitch in the Matrix, File Explorer, MAGAMI Online Center, Fashionista, Digimon Adventure, Digimon Adventure 02, Digimon Tamers, Digimon Frontier, Digimon X-Evolution, Digimon Data Squad, Digimon Xros, Digimon Tri., Primary Colours, Dust Kingdom, Dramon-Species, Heart of the Cards, Ludomon, Virus Buster, Combat Species, Critical Arm, Burst Mode, Zhuqiaomon, Baihumon, Qinglongmon, Xuanwumon, Marsmon, Fanglongmon, Machinedramon, KingSukamon.
+# Quest achievements use the "recruited" and story flags in the notes.
+
+game NPJH50588 Digimon World Re:Digitize
+
+state = u8 08B76810      # 1..0x20 while playing
+bits  = u32 08B7B260
+trained = u32 08B7B26C
+prosper = u16 08B7B76C
+mon   = u8 08B7C144       # partner Digimon
+ready = state 1..0x20 and prosper <= 100 and mon 1..0x9F and bits < 100000000
+q2 = u8 08B7B386 bit 7
+q4 = u8 08B7C906 bit 2
+q5 = u8 08B7B385 bit 5
+q6 = u8 08B7B38A bit 5
+q7 = u8 08B7B38D bit 1
+q8 = u8 08B7B38B bit 7
+q9 = u8 08B7B38F bit 5
+q11 = u8 08B7B38E bit 3
+q12 = u8 08B7B392 bit 1
+q14 = u8 08B7B395 bit 7
+q15 = u8 08B7B390 bit 7
+q16 = u8 08B7B2BB bit 5
+q17 = u8 08B7B394 bit 5
+q19 = u8 08B7B399 bit 5
+q20 = u8 08B7B39C bit 1
+q21 = u8 08B7B39A bit 7
+q22 = u8 08B7B397 bit 1
+q23 = u8 08B7B398 bit 3
+q24 = u8 08B7B2BB bit 2
+q25 = u8 08B7B39D bit 3
+q27 = u8 08B7C906 bit 0
+q28 = u8 08B7B39F bit 7
+q29 = u8 08B7B2C7 bit 0
+q30 = u8 08B7B3A2 bit 3
+q31 = u8 08B7B3A1 bit 1
+q32 = u8 08B7B3A8 bit 5
+q33 = u8 08B7B3A4 bit 7
+q34 = u8 08B7B2C7 bit 4
+q35 = u8 08B7B3A9 bit 7
+q39 = u8 08B7B3A6 bit 1
+q40 = u8 08B7B3A7 bit 3
+q41 = u8 08B7B3A3 bit 5
+q45 = u8 08B7B2ED bit 0
+q46 = u8 08B7B2ED bit 1
+q49 = u8 08B7B3B5 bit 1
+q51 = u8 08B7B2ED bit 3
+q52 = u8 08B7B412 bit 0
+q69 = u8 08B7B3FF bit 4
+q90 = u8 08B7B3DA bit 5
+q94 = u8 08B7B3D8 bit 1
+q115 = u8 08B7C8FB bit 3
+q136 = u8 08B7C8F7 bit 6
+q3a = u8 08B7B2A2 bit 4
+q3b = u8 08B7B2A3 bit 1
+q62a = u8 08B7B305 bit 7
+q62b = u8 08B7B306 bit 5
+q66a = u8 08B7B311 bit 6
+q66b = u8 08B7B312 bit 1
+q67a = u8 08B7B311 bit 7
+q67b = u8 08B7B312 bit 2
+fish1 = u8 08B7C9CC
+fish2 = u8 08B7C9CD
+fish3 = u8 08B7C9CE bit 0
+big1 = u8 08B7C9E4
+big2 = u8 08B7C9E5
+big3 = u8 08B7C9E6 bit 0
+
+2 | Wake Me Up Inside (the Bus) | 2 | q2 == 1
+3 | A New Hand Touches the Beacon | 10 | q3a == 1 or q3b == 1
+4 | Digimental of Sincerity | 5 | q4 == 1
+5 | Troublesome Disciple | 2 | q5 == 1
+6 | Wildfire Prevention | 5 | q6 == 1
+7 | Play Around and Find Out | 2 | q7 == 1
+8 | Prosperity Rating 15 Flashback | 5 | q8 == 1
+9 | Unbothered, Moisturized... Cold | 2 | q9 == 1
+11 | Giant Meat for the Meat Farm | 2 | q11 == 1
+12 | What Are Those Gloves For? | 2 | q12 == 1
+14 | Dragon Eye Lake | 5 | q14 == 1
+15 | Gomarching Home | 2 | q15 == 1
+16 | Deep Guardian | 10 | q16 == 1
+17 | MegaSeafood | 2 | q17 == 1
+19 | Luck and Pluck | 5 | q19 == 1
+20 | Hot-Blooded Passion | 2 | q20 == 1
+21 | Birdra Transport Service | 5 | q21 == 1
+22 | Goburi Prank | 2 | q22 == 1
+23 | Log Pose | 5 | q23 == 1
+24 | What Are You Doing in My Swamp?! | 10 | q24 == 1
+25 | Making Amends | 2 | q25 == 1
+27 | Great Fishing Rod | 2 | q27 == 1
+28 | Obsessive-Compulsive Cleaner | 5 | q28 == 1
+29 | Stinking Sewer Smell | 10 | q29 == 1
+30 | Cry Wolf | 2 | q30 == 1
+31 | Bike Lover | 2 | q31 == 1
+32 | BomberNanimon | 5 | q32 == 1
+33 | It's Mesmerizing | 2 | q33 == 1
+34 | Friend or Foe? | 10 | q34 == 1
+35 | Put a Spell on You | 2 | q35 == 1
+39 | Nightcall | 2 | q39 == 1
+40 | Green Thumb | 2 | q40 == 1
+41 | Relic Hunter | 5 | q41 == 1
+45 | Garbagemon | 5 | q45 == 1
+46 | Gospel of Vitium | 10 | q46 == 1
+49 | Agumon Hakase | 2 | q49 == 1
+51 | Collecting Garbage is Hard | 10 | q51 == 1
+52 | Like Hell I Will | 5 | q52 == 1
+62 | Fire and Ice at War | 10 | q62a == 1 or q62b == 1
+66 | The Power to Save the Weak | 10 | q66a == 1 or q66b == 1
+67 | Selfish Being | 10 | q67a == 1 or q67b == 1
+69 | Mischief Maker | 5 | q69 == 1
+90 | Training Master | 5 | q90 == 1
+94 | The Devil Is in the Gacha | 2 | q94 == 1
+108 | Village of Beginnings | 5 | prosper >= 10
+109 | Meditation Dome | 10 | prosper >= 50
+110 | Darkmoon City | 25 | prosper == 100
+111 | PrinceMamemon | 10 | bits >= 100000
+115 | Boy Who Hooked the World | 5 | q115 == 1
+116 | Marching Fishes | 10 | fish1 >= 0xFE and fish2 == 0xFF and fish3 == 1
+117 | Master Kamemon Would Be Proud | 50 | big1 >= 0xFE and big2 == 0xFF and big3 == 1
+130 | Green Gym | 2 | trained 20..100000
+131 | Gear Savannah | 5 | trained 100..100000
+132 | Beetle Land | 10 | trained 200..100000
+136 | Legend Arms | 10 | q136 == 1
+147 | Black Gear | 5 | mon == 0x0B
+148 | Candle in the Wind | 5 | mon == 0x0C
+149 | Kid Kaiju | 5 | mon == 0x10
+150 | Brave Heart | 5 | mon == 0x0F or mon == 0x95
+151 | Yes, Master! | 5 | mon == 0x12
+152 | Sing a Song | 5 | mon == 0x13
+153 | Scribblenaut | 5 | mon == 0x15
+154 | When Pigs Fly | 5 | mon == 0x16
+155 | The Whispering Imp | 5 | mon == 0x17
+156 | Lizard in Wolf's Clothing | 5 | mon == 0x1F
+157 | Our Lady's Digimon | 5 | mon == 0x23
+158 | Learn to Fly | 5 | mon == 0x24
+159 | Welcome to the Fish Parade | 5 | mon == 0x98
+160 | Mera Mera Monster | 10 | mon == 0x25
+161 | Seiryu City | 10 | mon == 0x26
+162 | Howling Commando | 10 | mon == 0x27
+163 | Digisoul Charge | 10 | mon == 0x2F
+164 | Sunshower | 10 | mon == 0x30
+165 | Gaogiga Gaogagigo | 10 | mon == 0x31
+166 | Party Time | 5 | mon == 0x32
+167 | King of Beasts | 10 | mon == 0x33
+168 | Deep-Crimson Demon Dragon | 10 | mon == 0x35
+169 | Ice Sanctuary | 10 | mon == 0x36
+170 | Holy Ring | 10 | mon == 0x38
+171 | The Messenger of Darkness | 10 | mon == 0x39
+172 | Metalhead | 10 | mon == 0x42
+173 | Eagleheart | 10 | mon == 0x43
+174 | Poop Paradise | 5 | mon == 0x44
+175 | 1995 Hikarigaoka Incident | 10 | mon == 0x46
+176 | Firewall | 10 | mon == 0x96
+177 | Man the Harpoon Torpedoes! | 10 | mon == 0x99
+178 | Bottle of Water | 10 | mon == 0x9C
+179 | Toy Town | 10 | mon == 0x4A
+180 | It's High Noon | 10 | mon == 0x4B
+181 | Fairytopia | 10 | mon == 0x4C
+182 | Dempsey Roll | 10 | mon == 0x4D
+183 | Crimson Banquet | 10 | mon == 0x51
+184 | Excalibur | 10 | mon == 0x53
+185 | Fear of the Dark | 10 | mon == 0x54
+186 | Survival of the Fittest | 10 | mon == 0x55
+187 | Pendulum Blades | 10 | mon == 0x57
+188 | Moonlight Mirror | 10 | mon == 0x59
+189 | Heaven's Punisher | 10 | mon == 0x5A
+190 | Frostbite | 10 | mon == 0x5B
+191 | Factorial Town | 10 | mon == 0x97
+192 | Epitome of Ruin | 10 | mon == 0x61
+193 | Nuclear Strike | 10 | mon == 0x62
+194 | Hammer of Thor | 10 | mon == 0x9A
+195 | Atlas Beetle | 10 | mon == 0x63
+196 | Code Key of Pride | 10 | mon == 0x48
+197 | Guardian of the Sky | 10 | mon == 0x64
+198 | Dark Network | 10 | mon == 0x65
+199 | Underwater Drive | 10 | mon == 0x66
+200 | Dramon Destroyer | 10 | mon == 0x67
+201 | D-Brigade | 10 | mon == 0x6F
+202 | Codename: BAN-TYO | 10 | mon == 0x70
+203 | Queen of Flowers | 10 | mon == 0x71
+204 | GeoGrey Sword | 10 | mon == 0x75
+205 | Beast Knight | 10 | mon == 0x76
+206 | Matrix Evolution | 10 | mon == 0x79
+207 | Garuru Tomahawk | 10 | mon == 0x7A
+208 | Ultimate Insect | 10 | mon == 0x8A
+209 | Dance of the Heavens | 10 | mon == 0x8B
+210 | Etemon Strikes Back | 10 | mon == 0x8C
+211 | Absolute Zero | 10 | mon == 0x9B
+212 | The Golden Digimentals | 10 | mon == 0x8D
+213 | Goddess of Darkness | 10 | mon == 0x68
+214 | Eggplant Shotguns | 10 | mon == 0x69
+215 | Software Bug | 25 | mon == 0x6E
+216 | Our War Game! | 25 | mon == 0x74
+217 | Superdreadnought-Class Weapon | 25 | mon == 0x83
+218 | Dragon Warrior of Heroes | 25 | mon == 0x84
+219 | X-Evolution | 10 | mon == 0x67
+220 | Dragon Emperor | 10 | mon == 0x88 or mon == 0x9F

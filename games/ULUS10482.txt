@@ -1,0 +1,25 @@
+# Emblem achievements for Lunar: Silver Star Harmony, ULUS10482. Hand-written from RetroAchievements' code notes (set 14201).
+# Not here (notes do not show it): Legend of the Four Heroes, The First Step, Show Him What You've Got, The Magic Guild Apprentice, A Giant Blue Booger, Picked and Flicked, Melee with the Master, Daring Diamond Defender, A Trial Not Done in Vane, No Rest for the Weary, The Priestess of Althena, Master of Draggin' On a Lie, The Future Guildmaster, Vile Deception, World's Most Powerful Mage, Evil Never Rests, In Defense of Vane, The Bandit Leader, And the Password Is..., Myght & Not Magic, Much Cooler Than Squall, Ballad of the Dark Songstress, A Vile New Frontier, Blackout, Grinding the Fortress to a Halt, Are You...Dead?, The Fortune Teller, The Witch, The Corrupted, The New Legendary Heroes, Best Fight He's Had in Ages, Did Someone Call a Plumber?, A Fungus No Longer Among Us, The True Frogmaster, They Should Have Sent a Real Boss, More Like Grand Dud, Smelting Down Some Bronze, Mastery Over the Black Dragon, Without a Shadow of a Doubt, The IMmobile Magic Nasher, True Show of Power, Couldn't See Her Own Future, Sent Into the Abyss, Even Wielding the Power of a God, Scam Us, Ramus, Magic Trick: Making Money Disappear, Tribute to a Hero In Front of a Hero, An Honest Thief, Making New Friends, Citizen of Lann, Bring On the Nekkidity!, Rubber Duck in Hand, Reminising of the Soap, Uniquely Accessorized, Taking Advantage of a Bad Situation, A Thief's Treasure Hunt, All Burg Chests, All White Dragon Cave Chests, All Ghoto Woods Chests, All Old Hag's Forest Chests, All Meribian Sewers Chests, All Cave of Trial Chests, All Nanza Pass Chests, All Islet of Lann Chests, All Crystal Tower Chests, All Meryod Forest Chests, All Damon's Spire Chests, All Iluk Fields Chests, All Red Dragon Cave Chests, All Wind Shrine Chests, All Blue Dragon Temple Chests, All Tamur Pass Chests, All Myght's Tower Chests, All Lost Woods Chests, All Black Dragon Fort Chests, All Forbidden Woods Chests, All Talon Mine Chests, All Ruid Chests, All Grindery Chests, All Azure City Chests, All Goddess Tower Chests, Treasure Worthy of a Dragon.
+# Hand-checked. Items only: the event and chest flags sit behind a pointer.
+
+game ULUS10482 Lunar: Silver Star Harmony
+
+place = u8 08B06E81       # 0 on the title screen
+slot1 = u8 08D00DB4       # 1 once Alex is in the party
+money = u32 08C706BC
+ready = slot1 == 1 and place 1..0xFE and money < 100000000
+bromides = list u8 08CE866C 08CE8670 08CE8674 08CE8678 08CE867C 08CE8680 08CE8684 08CE8688 08CE868C 08CE8690 08CE8694 08CE8698 08CE869C
+
+17 | On the Wings of a Dragon | 5 | u8 08CE8664 1..99
+21 | See Rules One and Two | 5 | u8 08CE86EC 1..99
+22 | These Are Some Bazaar Plans | 5 | u8 08CE86F4 1..99
+23 | Quite a Bugger of a Fluff | 5 | u8 08CE86F8 1..99
+24 | Shield of Wrath | 5 | u8 08CE8568 1..99
+25 | Helmet of Healing | 5 | u8 08CE85D8 1..99
+28 | Armor of Lament | 5 | u8 08CE8500 1..99
+34 | The Dragonmaster's Destiny | 5 | u8 08CE8464 1..99
+63 | Heirloom of Pao | 2 | u8 08CE845C 1..99
+64 | Hurricane Lily | 2 | u8 08CE864C 1..99
+65 | The Recordkeeper Finally Intervenes | 2 | u8 08CE8640 1..99
+66 | Fisherman's Fiendish Find | 2 | u8 08CE8650 1..99
+68 | Art Appreciator Alex | 10 | all bromides

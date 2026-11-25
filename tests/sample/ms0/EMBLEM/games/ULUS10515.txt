@@ -1,0 +1,241 @@
+# Emblem achievements for Valkyria Chronicles 2, ULUS10515. Hand-written from RetroAchievements' code notes (set 14662).
+# Not here (notes do not show it): True Final Battle, Accomplished, Fairplay, Assassins, Overwatch, Slaughter, Lead By Example, Friendly, Charismatic, Soothing, Detectives, Boon, Scout Focus, Shocktrooper Focus, Lancer Focus, Engineer Focus, Armored Tech Focus, Honorable, Grand Spirit, Pride of Gallia, Military Master, Golden Wings, Rabid, Steelfist, The Mounts, Hunters, Warlords, Fawners, Curses, Artists, Hitmen, Tyrants, Roamers, Spikers, Rippers, Vanguard, Comics, Ogrelords, Slicers, Ogre Hunters, Snakes, Tunesmiths, Gashers, Shifters, Fiends, Killers, Ghosts, Dreadlords, Rumblers, Players, Game Hunters, Ruiners, Slayers, Darkslayers, Rear Guard, Lovers, Stockmen, Avengers, Demonlords, Movers, Tigers, Beastlords, Hyenas, Devils, Animals, Beasts, Menaces, Dark, Daggers, Heroes, Rushers, Netherlords, Manhunters, Hermits, Rascals, Shades, Falcons, Ogres, Gorgers, Geniuses, Intimidating.
+# Hand-checked. Rules read the title-earned flags (the game awards a title for exactly these feats) and the story missions' "times completed". RA lists 314; Emblem numbers stop at 255.
+
+game ULUS10515 Valkyria Chronicles 2
+
+ready = u16 08D386CC < 60000 and u8 08D3BAF0 1..250     # total kills sane, first story mission done
+
+1 | Rebel Encounter | 1 | u8 08D3BAF0 1..250
+2 | The Entrance Exam | 1 | u8 08D3BAF8 1..250
+3 | Liberating Arlem | 1 | u8 08D3BB20 1..250
+4 | Laevatein Qualifiers | 2 | u8 08D3BB68 1..250
+5 | VIP Escort | 2 | u8 08D3BB98 1..250
+6 | Darcsen Liberation | 3 | u8 08D3BBD0 1..250
+7 | Laevatein Semifinals | 3 | u8 08D3BC08 1..250
+8 | The Road to the Armory | 4 | u8 08D3BC38 1..250
+9 | Retaking Yuell | 4 | u8 08D3BC40 1..250
+10 | Laevatein Finals | 5 | u8 08D3BC80 1..250
+11 | Defending Lanseal | 5 | u8 08D3BCF0 1..250
+12 | Retaking Roendahl | 5 | u8 08D3BD20 1..250
+13 | Liberating Doerfein | 10 | u8 08D3BD68 1..250
+14 | Blasting the Aqueduct | 10 | u8 08D3BDB0 1..250
+15 | Battle of Anthold Harbor | 10 | u8 08D3BDE8 1..250
+16 | Clash Aboard Deck | 10 | u8 08D3BDF0 1..250
+17 | The Final Battle | 10 | u8 08D3BDF8 1..250
+19 | Country | 25 | u8 08D436FC bit 7 == 1
+20 | Dark Green | 25 | u8 08D436FD bit 1 == 1
+21 | Silver | 25 | u8 08D436FD bit 3 == 1
+22 | Rubble | 25 | u8 08D436FD bit 5 == 1
+23 | Cherry | 25 | u8 08D436FD bit 7 == 1
+24 | Lowland | 25 | u8 08D436FE bit 1 == 1
+25 | Cavernous | 25 | u8 08D436FE bit 3 == 1
+26 | Stone | 25 | u8 08D436FE bit 5 == 1
+27 | Schooled | 25 | u8 08D436FE bit 7 == 1
+28 | Veteran | 25 | u8 08D436FF bit 1 == 1
+29 | Mechanized | 25 | u8 08D436FF bit 3 == 1
+30 | Salty | 25 | u8 08D436FF bit 5 == 1
+31 | Iron | 25 | u8 08D436FF bit 7 == 1
+32 | Worldly | 10 | u8 08D43700 bit 1 == 1
+33 | Unrelated | 10 | u8 08D43717 bit 7 == 1
+34 | Imperial | 10 | u8 08D43718 bit 1 == 1
+35 | Rebel | 10 | u8 08D43718 bit 3 == 1
+36 | Suspicious | 10 | u8 08D43718 bit 5 == 1
+37 | Artistic | 10 | u8 08D43718 bit 7 == 1
+38 | Lone | 10 | u8 08D43719 bit 1 == 1
+39 | Royal | 10 | u8 08D43719 bit 3 == 1
+40 | Sheltered | 10 | u8 08D43719 bit 5 == 1
+41 | Earnest | 10 | u8 08D43719 bit 7 == 1
+42 | Spirited | 10 | u8 08D4371A bit 1 == 1
+43 | Reclusive | 10 | u8 08D4371A bit 3 == 1
+44 | Cheerful | 10 | u8 08D4371A bit 5 == 1
+45 | Lyrical | 10 | u8 08D4371A bit 7 == 1
+46 | Strong-Minded | 10 | u8 08D4371B bit 1 == 1
+47 | Steadfast | 10 | u8 08D4371B bit 3 == 1
+48 | Two-Faced | 10 | u8 08D4371B bit 5 == 1
+49 | Glamorous | 10 | u8 08D4371B bit 7 == 1
+50 | Hunter | 10 | u8 08D4371C bit 1 == 1
+51 | Lucky | 10 | u8 08D4371C bit 3 == 1
+52 | Genius | 10 | u8 08D4371C bit 5 == 1
+53 | Manly | 10 | u8 08D4371C bit 7 == 1
+54 | Mystical | 10 | u8 08D4371D bit 1 == 1
+55 | Tank Hotshots | 10 | u8 08D4374F bit 7 == 1
+56 | Reporters | 10 | u8 08D43750 bit 1 == 1
+57 | Brotherhood | 10 | u8 08D43750 bit 3 == 1
+58 | Sisterhood | 10 | u8 08D43750 bit 5 == 1
+59 | Idols | 10 | u8 08D43750 bit 7 == 1
+60 | Stewards | 10 | u8 08D43751 bit 1 == 1
+61 | Bookworms | 10 | u8 08D43751 bit 3 == 1
+62 | Heartthrobs | 10 | u8 08D43751 bit 5 == 1
+63 | Gamblers | 10 | u8 08D43751 bit 7 == 1
+64 | Man Power | 10 | u8 08D4371D bit 3 == 1
+65 | Woman Power | 10 | u8 08D4371D bit 5 == 1
+66 | Socialites | 50 | u8 08D38720 bit 3 == 1
+67 | Lanseal Stars | 25 | u8 08D43736 bit 7 == 1
+68 | Hopes of Gallia | 25 | u8 08D43737 bit 1 == 1
+69 | Europan Heroes | 50 | u8 08D43737 bit 3 == 1
+70 | Legendary | 50 | u8 08D38720 bit 3 == 1
+71 | Verdant | 3 | u8 08D436FB bit 3 == 1
+72 | Azure | 5 | u8 08D436FB bit 5 == 1
+73 | Crimson | 10 | u8 08D436FB bit 7 == 1
+74 | Pure White | 10 | u8 08D436FC bit 1 == 1
+75 | Jet Black | 25 | u8 08D436FC bit 3 == 1
+76 | Golden | 50 | u8 08D436FC bit 5 == 1
+77 | Daywalker | 2 | u8 08D43702 bit 1 == 1
+78 | Nightstalker | 2 | u8 08D43702 bit 3 == 1
+79 | Miraculous | 3 | u8 08D43703 bit 3 == 1
+80 | Godspeed | 10 | u8 08D43702 bit 7 == 1
+82 | Battlefield | 50 | u8 08D43703 bit 1 == 1
+83 | Clockwork | 2 | u8 08D43704 bit 1 == 1
+84 | Magnificent | 5 | u8 08D43704 bit 3 == 1
+85 | Blood-Stained | 3 | u8 08D43704 bit 5 == 1
+86 | Holy | 3 | u8 08D43704 bit 7 == 1
+87 | Angelic | 5 | u8 08D43705 bit 1 == 1
+90 | Elite | 2 | u8 08D43705 bit 5 == 1
+91 | Sprinters | 1 | u8 08D43737 bit 7 == 1
+92 | Mach | 10 | u8 08D43705 bit 7 == 1
+93 | Supernatural | 5 | u8 08D43708 bit 5 == 1
+94 | Destroyers | 5 | u8 08D43738 bit 3 == 1
+95 | Destroyer Lords | 10 | u8 08D43738 bit 5 == 1
+96 | Destroyer Kings | 25 | u8 08D43738 bit 7 == 1
+97 | Fearsome | 3 | u8 08D43707 bit 1 == 1
+98 | Hel | 5 | u8 08D43707 bit 3 == 1
+99 | Nightmare | 10 | u8 08D43707 bit 5 == 1
+100 | Bloodbath | 25 | u8 08D43707 bit 7 == 1
+101 | Say Goodbye to Your Head | 5 | u8 08D43708 bit 3 == 1
+102 | Killer | 3 | u8 08D43708 bit 7 == 1
+109 | Couriers | 5 | u8 08D43735 bit 1 == 1
+110 | Reinforcers | 5 | u8 08D43735 bit 3 == 1
+111 | Favouritism | 3 | u8 08D43747 bit 3 == 1
+112 | Parade | 5 | u8 08D43734 bit 5 == 1
+113 | March | 10 | u8 08D43734 bit 7 == 1
+114 | Elites | 25 | u8 08D43735 bit 7 == 1
+115 | Bankers | 25 | u8 08D43736 bit 1 == 1
+116 | Well-Informed | 2 | u8 08D4371E bit 1 == 1
+117 | Homegrown | 5 | u8 08D4371E bit 3 == 1
+118 | Local | 5 | u8 08D4371E bit 5 == 1
+119 | Knowledgeable | 2 | u8 08D4371E bit 7 == 1
+120 | Capable | 10 | u8 08D4371D bit 7 == 1
+121 | Underworld | 25 | u8 08D4371F bit 1 == 1
+122 | So Are the Days of Our Lives | 5 | u8 08D4371F bit 3 == 1
+123 | It's All Coming Back to Me Now | 10 | u8 08D4371F bit 5 == 1
+124 | Recon Squad | 3 | u8 08D4372C bit 1 == 1
+125 | Combat Squad | 10 | u8 08D4372C bit 3 == 1
+126 | Special Ops | 25 | u8 08D4372C bit 5 == 1
+127 | Guerilla Squad | 3 | u8 08D4372C bit 7 == 1
+128 | Strike Force | 10 | u8 08D4372D bit 1 == 1
+129 | Assault Squad | 25 | u8 08D4372D bit 3 == 1
+130 | Attack Squad | 3 | u8 08D4372D bit 5 == 1
+131 | Armored Squad | 10 | u8 08D4372D bit 7 == 1
+132 | Artillery Squad | 25 | u8 08D4372E bit 1 == 1
+133 | Guards | 3 | u8 08D4372E bit 3 == 1
+134 | Royal Guards | 10 | u8 08D4372E bit 5 == 1
+135 | Tech Masters | 25 | u8 08D4372E bit 7 == 1
+136 | Defense Squad | 3 | u8 08D4372F bit 1 == 1
+137 | Bandsmen | 10 | u8 08D4372F bit 3 == 1
+138 | Orchestra | 25 | u8 08D4372F bit 5 == 1
+139 | Company | 5 | u8 08D4372A bit 7 == 1
+140 | Battalion | 10 | u8 08D4372B bit 1 == 1
+141 | Regiment | 10 | u8 08D4372B bit 3 == 1
+142 | Division | 25 | u8 08D4372B bit 5 == 1
+143 | Corps | 50 | u8 08D4372B bit 7 == 1
+144 | Scout Squad | 5 | u8 08D4372F bit 7 == 1
+145 | Sniper Squad | 5 | u8 08D43730 bit 1 == 1
+146 | Trooper Squad | 5 | u8 08D43730 bit 3 == 1
+147 | Gunner Squad | 5 | u8 08D43730 bit 5 == 1
+148 | Anti-Tank Squad | 5 | u8 08D43730 bit 7 == 1
+149 | Mortar Squad | 5 | u8 08D43731 bit 1 == 1
+150 | Relief Squad | 5 | u8 08D43731 bit 3 == 1
+151 | Band | 5 | u8 08D43731 bit 5 == 1
+152 | Operatives | 5 | u8 08D43731 bit 7 == 1
+153 | Knights | 5 | u8 08D43732 bit 1 == 1
+154 | All-Stars | 25 | u8 08D43732 bit 3 == 1
+155 | Small Army | 10 | u8 08D43733 bit 1 == 1
+157 | Weapon Hunters | 50 | u8 08D43747 bit 7 == 1
+158 | Weapon Masters | 100 | u8 08D43748 bit 1 == 1
+159 | Rifle Hunters | 10 | u8 08D43748 bit 3 == 1
+160 | Rifle Masters | 25 | u8 08D43748 bit 5 == 1
+161 | Machine Gun Hunters | 10 | u8 08D43748 bit 7 == 1
+162 | Machine Gun Masters | 25 | u8 08D43749 bit 1 == 1
+163 | Lance Hunters | 10 | u8 08D43749 bit 3 == 1
+164 | Lance Masters | 25 | u8 08D43749 bit 5 == 1
+165 | Pistol Hunters | 10 | u8 08D43749 bit 7 == 1
+166 | Pistol Masters | 25 | u8 08D4374A bit 1 == 1
+167 | Wrench Hunters | 10 | u8 08D4374A bit 3 == 1
+168 | Wrench Masters | 25 | u8 08D4374A bit 5 == 1
+169 | Gear Hunters | 10 | u8 08D4374A bit 7 == 1
+170 | Gear Masters | 25 | u8 08D4374B bit 1 == 1
+171 | Tank Hunters | 10 | u8 08D4374B bit 3 == 1
+172 | Tank Masters | 25 | u8 08D4374B bit 5 == 1
+173 | Turret Hunters | 10 | u8 08D4374B bit 7 == 1
+174 | Turret Masters | 25 | u8 08D4374C bit 1 == 1
+175 | Body Hunters | 10 | u8 08D4374C bit 3 == 1
+176 | Body Masters | 25 | u8 08D4374C bit 5 == 1
+177 | Armor Hunters | 10 | u8 08D4374C bit 7 == 1
+178 | Armor Masters | 25 | u8 08D4374D bit 1 == 1
+179 | Shoulder Makers | 10 | u8 08D4374D bit 3 == 1
+180 | Shoulder Masters | 25 | u8 08D4374D bit 5 == 1
+181 | Backpack Hunter | 10 | u8 08D4374D bit 7 == 1
+182 | Backpack Masters | 25 | u8 08D4374E bit 1 == 1
+183 | Marking Hunters | 10 | u8 08D4374E bit 3 == 1
+184 | Marking Masters | 25 | u8 08D4374E bit 5 == 1
+185 | Plan Hunters | 10 | u8 08D4374E bit 7 == 1
+186 | Plan Masters | 25 | u8 08D4374F bit 1 == 1
+187 | Grenade Hunters | 10 | u8 08D4374F bit 3 == 1
+188 | Grenade Masters | 25 | u8 08D4374F bit 5 == 1
+200 | Title Lovers | 10 | u8 08D43753 bit 3 == 1
+201 | Title Hunters | 25 | u8 08D43753 bit 5 == 1
+202 | Title Maniacs | 25 | u8 08D43753 bit 7 == 1
+203 | Title Masters | 50 | u8 08D43754 bit 1 == 1
+204 | Harsh | 3 | u8 08D43709 bit 1 == 1
+205 | Squall | 3 | u8 08D43709 bit 3 == 1
+206 | Calm | 3 | u8 08D43709 bit 5 == 1
+207 | Red-Eyed | 3 | u8 08D43709 bit 7 == 1
+208 | Slow-Kill | 3 | u8 08D4370A bit 1 == 1
+209 | Quick Draw | 3 | u8 08D4370A bit 3 == 1
+210 | Wicked | 3 | u8 08D4370A bit 5 == 1
+211 | Dire | 3 | u8 08D4370A bit 7 == 1
+212 | Infallible | 3 | u8 08D4370B bit 1 == 1
+213 | Bitter | 3 | u8 08D4370B bit 3 == 1
+214 | Tempest | 3 | u8 08D4370B bit 5 == 1
+215 | Meteor | 3 | u8 08D4370B bit 7 == 1
+216 | Proud | 3 | u8 08D4370C bit 1 == 1
+217 | Strong | 3 | u8 08D4370C bit 3 == 1
+218 | Kindly | 3 | u8 08D4370C bit 5 == 1
+219 | Springwind | 3 | u8 08D4370C bit 7 == 1
+220 | Demonblade | 3 | u8 08D4370D bit 1 == 1
+221 | Swift-Kill | 3 | u8 08D4370D bit 3 == 1
+222 | Stout | 3 | u8 08D4370D bit 5 == 1
+223 | Woeful | 3 | u8 08D4370D bit 7 == 1
+224 | Sturdy | 3 | u8 08D4370E bit 1 == 1
+225 | Sneak-Shot | 3 | u8 08D4370E bit 3 == 1
+226 | Red-Haired | 3 | u8 08D4370E bit 5 == 1
+227 | False | 3 | u8 08D4370E bit 7 == 1
+228 | Elated | 3 | u8 08D4370F bit 1 == 1
+229 | Wild | 3 | u8 08D4370F bit 3 == 1
+230 | Thunderous | 3 | u8 08D4370F bit 5 == 1
+231 | Speed-Kill | 3 | u8 08D4370F bit 7 == 1
+232 | Gale Force | 3 | u8 08D43710 bit 1 == 1
+233 | Vague | 3 | u8 08D43710 bit 3 == 1
+234 | Minefield | 3 | u8 08D43710 bit 5 == 1
+235 | Unjust | 3 | u8 08D43710 bit 7 == 1
+236 | Barrage | 3 | u8 08D43711 bit 1 == 1
+237 | Brightstar | 3 | u8 08D43711 bit 3 == 1
+238 | Cold-Blooded | 3 | u8 08D43711 bit 5 == 1
+239 | Unequaled | 3 | u8 08D43711 bit 7 == 1
+240 | Sullen | 3 | u8 08D43712 bit 1 == 1
+241 | Steady | 3 | u8 08D43712 bit 3 == 1
+242 | Flash-Kill | 3 | u8 08D43712 bit 5 == 1
+243 | Cruel | 3 | u8 08D43712 bit 7 == 1
+244 | Shorn | 3 | u8 08D43713 bit 1 == 1
+245 | Serene | 3 | u8 08D43713 bit 3 == 1
+246 | Trick-Shot | 3 | u8 08D43713 bit 5 == 1
+247 | Fall-Wind | 3 | u8 08D43713 bit 7 == 1
+248 | Demonshot | 3 | u8 08D43714 bit 1 == 1
+249 | South-Wind | 3 | u8 08D43714 bit 3 == 1
+250 | Angry | 3 | u8 08D43714 bit 5 == 1
+251 | Cadaverous | 3 | u8 08D43714 bit 7 == 1
+252 | Shockwave | 3 | u8 08D43715 bit 1 == 1
+253 | Windstorm | 3 | u8 08D43715 bit 3 == 1
+254 | Ironslash | 3 | u8 08D43715 bit 5 == 1
+255 | Brave | 3 | u8 08D43715 bit 7 == 1

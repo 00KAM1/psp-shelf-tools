@@ -1,0 +1,62 @@
+# Emblem achievements for Danganronpa: Kibou no Gakuen to Zetsubou no Koukousei, NPJH50515. Hand-written from RetroAchievements' code notes (set 3729).
+# Not here (notes do not show it): Mystery of the School, ...The Stage Went Dark, A Corpse in an Average Teenager's Room, The Murder Weapon, A Sword-Based Sneak Attack!, You've Got a Screw Loose, Basic Luck, A Place for Jocks and Geeks, Secret Motivation, The Legend of a Killer, All Locker Rooms Are Equally Smelly, Voices Inside My Head, Took It to the Grave, You Have to Believe Us, Buttered Victory, Art, Science and Relaxation, Oh, Yes, It's Ladies' Night, Would You Murder for Money?, Two Can Be as Bad as One, The Tip of the Iceberg, The Numbered Hammers, The Meeting Time, Yasuhiro, Gambling Your Chances, Music, Medicine, Mystery, Friend or Foe, Smiling Through Despair, One Goes In, None Come Out, Oddly Familiar, My Fingers Are Clean, Some Light Reading and Brain Damage, The Truth of the Trial, Stay Strong for Your Friends, Gardening, Martial Arts and a Crime Scene, In the Night Garden, Explosive Seeds, Kirigiri's Secrets, The Hand Tattoo, A Red Herring, Never Trust a Detective, Forged Evidence, Second Floor Dormitory, Where Am I?, Hope's Peak Mystery, Put on Ice, The Mastermind, Memories of a Psychopath, Hope versus Despair, Super High School Level Detective, Goodbye, Despair Academy, Hey There, Big Spender!, Collector of Strange Objects, Hoarder of Strange Objects, Living the Despair Again, Rewatching Your Best Pal's Execution, Art of Despair, Despair, the Best Genre.
+# Addresses are RA's; if the translated disc differs nothing unlocks.
+
+game NPJH50515 Danganronpa: Kibou no Gakuen to Zetsubou no Koukousei
+
+ingame  = u8 08C7D3FC
+action  = u8 08C82673     # difficulty: 0 Merciful, 1 Gentle, 2 Malicious
+logic   = u8 08C82674
+chapter = u8 08C826AB     # 0 Prologue ... 7 Epilogue
+event   = u8 08C826AC     # 0x65 and up during the chapter's trial
+ready   = ingame == 1 and chapter <= 7 and action <= 2 and logic <= 2
+gentle  = action >= 1 and logic >= 1
+malicious = action == 2 and logic == 2
+card73 = u8 08C82941
+card74 = u8 08C82942
+card75 = u8 08C82943
+card76 = u8 08C82944
+card77 = u8 08C82945
+card78 = u8 08C82946
+card79 = u8 08C82947
+card80 = u8 08C82948
+card81 = u8 08C82949
+card82 = u8 08C8294A
+card83 = u8 08C8294B
+card84 = u8 08C8294C
+card85 = u8 08C8294D
+card86 = u8 08C8294E
+
+1 | Welcome to Despair Academy | 5 | chapter 1..7
+5 | Court For Dummies | 5 | chapter == 1 and just event 0x65..0xFE
+9 | Kill Free or Live Hard | 10 | just chapter == 2 and gentle
+10 | One Million Death Blows | 10 | just chapter == 2 and malicious
+16 | Combing Through Red Herrings | 5 | chapter == 2 and just event 0x65..0xFE
+20 | Weekly Shounen: Despair Magazine | 10 | just chapter == 3 and gentle
+21 | Cage of Despair | 10 | just chapter == 3 and malicious
+28 | Solving the Double | 5 | chapter == 3 and just event 0x65..0xFE
+32 | Neon Genesis Super Vortex Redux | 10 | just chapter == 4 and gentle
+33 | A Versailles-Style Execution | 10 | just chapter == 4 and malicious
+40 | Solving the Unsolvable | 5 | chapter == 4 and just event 0x65..0xFE
+44 | All All Apologies | 10 | just chapter == 5 and gentle
+45 | A Dozer Master | 10 | just chapter == 5 and malicious
+51 | Not Enough Information | 5 | chapter == 5 and just event 0x65..0xFE
+55 | If You Want Donuts, Prepare for Despair | 10 | just chapter == 6 and gentle
+56 | School Is Now in Session | 10 | just chapter == 6 and malicious
+60 | Time to Unravel the Mystery | 5 | chapter == 6 and just event 0x65..0xFE
+66 | Super High School Level Hope | 25 | just chapter == 7 and gentle
+67 | Super High School Level Despair | 25 | just chapter == 7 and malicious
+73 | Hard Work Trumps Talent Any Day | 10 | card73 4..8
+74 | The Struggle for Greatness | 10 | card74 5..8
+75 | Strength Hiding Weakness | 10 | card75 4..8
+76 | A Guitarist's Final Verse | 10 | card76 3..8
+77 | Inspired by the Hellishly Divine | 10 | card77 5..8
+78 | OOPs, That's a Lot of Debt | 10 | card78 6..8
+79 | A Singer's Crane Song | 10 | card79 2..8
+80 | Analysis Powerful Enough to Need a Nerf | 10 | card80 4..8
+81 | Sugary Sweet | 10 | card81 6..8
+82 | I-Novel Deuteragonist | 10 | card82 8..8
+83 | The Gentle Giant | 10 | card83 5..8
+84 | Living a Fairytale | 10 | card84 6..8
+85 | The Runway Is a War Zone | 10 | card85 3..8
+86 | Weakness Hiding Strength | 10 | card86 4..8

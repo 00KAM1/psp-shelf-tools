@@ -1,0 +1,51 @@
+# Emblem achievements for Shin Megami Tensei: Persona 3 Portable, ULUS10512. Hand-written from RetroAchievements' code notes (set 3164).
+# Not here (notes do not show it): Old Document 08 - It's Time to Leave Everything Behind, The Sacrifice, Kotone Shiomi, Makoto Yuki, The Friggin Boss, Desire Manipulator, Beast of War, Don't Stop the Music, The End is Near, The Answer to Life's Greatest Question, Rushing Through Thebel, Rushing Through Arqa - Part 1, Rushing Through Arqa - Part 2, Rushing Through Yabbashah - Part 1, Rushing Through Yabbashah - Part 2, Rushing Through Tziah - Part 1, Rushing Through Tziah - Part 2, Rushing Through Harabah, Rushing Through Adamah, Solo Adventurer - Venus Eagles, Solo Adventurer - Dancing Hands, Solo Adventurer - Rampage Drive, Solo Adventurer - Crying Tables, Solo Adventurer - Change Relic, Solo Adventurer - Golden Beetles, Solo Adventurer - Intrepid Knight, Solo Adventurer - Furious Gigas, Solo Adventurer - Fanatic Tower, Solo Adventurer - Magical Magus, Solo Adventurer - Natural Dancer, Solo Adventurer - Arcane Turrets, Solo Adventurer - Sleeping Table, Solo Adventurer - Hell Knights, Solo Adventurer - Mythical Gigas, Solo Adventurer - Judgement Swords, Solo Adventurer - Stasis Giants, Solo Adventurer - Phantom King, Solo Adventurer - Royal Dancers, Solo Adventurer - Reckoning Dice, Solo Adventurer - Noble Seekers, Solo Adventurer - Carnal Snakes, Solo Adventurer - World Balance, Solo Adventurer - Fierce Cyclops, Solo Adventurer - Jotun of Grief, Junpei Iori, Kenji Tomochika, Fuuka Yamagishi, Mitsuru Kirijo, Hidetoshi Odagirii, Bunkichi and Mitsuko, Yukari Takeba, Rio Iwasaki, Kazushi Miyamoto, Ken Amada, Chihiro Fushimi, Saori Hasegawa, Maya, Ryoji Mochizuki, Keisuke Hiraga, Koromaru, Yuko Nishiwaki, Maiko Oohashi, Pharos, Andre Laurent Jean "Bebe" Geraux, President Tanaka, Mutatsu, Akihiko Sanada, Mamoru Hayase, Shinjiro Aragaki, Nozomi Suemitsu, Akinari Kamiki, Aigis, Orpheus Telos, Amateur Summoner, Expert Summoner, Master Summoner, Dark Guardian of Luck, A Happy Mysterious Woman, Yip Yip!!, Here Comes Tanakaaaaa, Genius, Charming, Badass, Talented, Bookworm, Geek, Intellectualist, The Great Escape, The Answer Seeker, God of War, I Have a Request for You, Missing Persons, Bond Maniac, Operation Babe Hunt, The Art of War I, The Art of War II, The Art of War III.
+# Hand-checked. The Vision Quest boss bits are on 101-108.
+
+game ULUS10512 Shin Megami Tensei: Persona 3 Portable
+
+level = u8 08E63BF6       # hero
+ready = level 1..99
+
+1 | Old Document 01 - So Much Power Just For A School | 5 | u8 08E682EA bit 0 == 1
+2 | Old Document 02 - The Weird Plans | 5 | u8 08E682EA bit 1 == 1
+3 | Old Document 03 - I Have a Bad Feeling | 5 | u8 08E682EA bit 2 == 1
+4 | Old Document 04 - A Surprise | 5 | u8 08E682EA bit 3 == 1
+5 | Old Document 05 - The Mistake | 5 | u8 08E682EA bit 4 == 1
+6 | Old Document 06 - Emotions | 5 | u8 08E682EA bit 5 == 1
+7 | Old Document 07 - An Evil Plan | 5 | u8 08E682EA bit 6 == 1
+13 | The Royal Couple | 5 | u8 08E682A2 bit 0 == 1
+14 | Hostel | 5 | u8 08E6846F bit 7 == 1
+18 | The Wheel of Fortune | 10 | u8 08E682AD bit 0 == 1
+19 | The Irony of Fate | 10 | u8 08E682AE bit 7 == 1
+20 | Operation Completed....? | 10 | u8 08E682AF bit 2 == 1
+21 | Gothic Lolita | 5 | u8 08E682B2 bit 1 == 1
+22 | The Zealot | 5 | u8 08E682BD bit 7 == 1
+23 | The Last of Strega | 10 | u8 08E682B6 bit 0 == 1
+88 | Snow Queen Whip | 5 | u8 08E6419C 1..99
+89 | Masakado's Katana | 5 | u8 08E640A0 1..99
+90 | Evil Gloves | 5 | u8 08E640DF 1..99
+91 | Pinaka | 5 | u8 08E6411F 1..99
+92 | Quintessence Bow | 5 | u8 08E6413F 1..99
+93 | Vajra | 5 | u8 08E6417D 1..99
+94 | Vel Vel Muruga | 5 | u8 08E641C6 1..99
+95 | Corpse Rod | 5 | u8 08E640FE 1..99
+96 | Metatronius | 5 | u8 08E6415E 1..99
+101 | Dark Priestess | 5 | u8 08E68435 bit 0 == 1
+102 | Dark Royal Couple | 5 | u8 08E68435 bit 1 == 1
+103 | Dark Hierophant | 5 | u8 08E68435 bit 2 == 1
+104 | Dark Lovers | 5 | u8 08E68435 bit 3 == 1
+105 | Dark Chariot & Justice | 5 | u8 08E68435 bit 4 == 1
+106 | Dark Hermit | 5 | u8 08E68435 bit 5 == 1
+107 | Dark Fortune & Strength | 5 | u8 08E68435 bit 6 == 1
+108 | Dark Hanged Man | 5 | u8 08E68435 bit 7 == 1
+109 | Dark Guardian of Power | 5 | u8 08E68434 bit 3 == 1
+110 | Dark Guardian of Magic | 5 | u8 08E68434 bit 4 == 1
+111 | Dark Guardian of Resistance | 5 | u8 08E68434 bit 5 == 1
+112 | Dark Guardian of Speed | 5 | u8 08E68434 bit 6 == 1
+114 | Mysterious Woman | 10 | u8 08E68436 bit 4 == 1
+122 | Nerd | 5 | u8 08E683F4 bit 0 == 1
+126 | Death Sentence | 5 | u8 08E68490 bit 2 == 1
+128 | Don't Fear the Reaper | 25 | u8 08E6463F 1..99
+133 | I am Legend | 10 | u8 08E683FE bit 0 == 1
+135 | The Accidental Spy | 5 | u8 08E682F6 >= 0xFC and u8 08E682F7 bit 0 == 1 and u8 08E682F7 bit 1 == 1 and u8 08E682F7 bit 2 == 1 and u8 08E682F7 bit 3 == 1

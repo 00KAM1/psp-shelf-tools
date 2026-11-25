@@ -1,0 +1,51 @@
+# Emblem achievements for Ys vs. Sora no Kiseki: Alternative Saga, NPJH50276. Hand-written from RetroAchievements' code notes (set 3725).
+# Not here (notes do not show it): The Red-Haired Adventurer, The Bright Young Bracer from Liberl, The Black-Clad Mercenary, The Crown Princess of Liberl, The Apprentice from Zeiss, Trechier Woods (Advanced), Harlech Ruins (Advanced), Eaglet Mountain (Advanced), Alf Lava Cave (Advanced), Castle Strangerock (Advanced), Dragon King Galsis (Advanced), Trechier Woods (Alternative), Harlech Ruins (Alternative), Eaglet Mountain (Alternative), Alf Lava Cave (Alternative), Castle Strangerock (Alternative), Dragon King Galsis (Alternative), Adol the Red, The Wallcrusher, The Princess of Altago, The Dark Mercenary, Eldress of Kylos, The Segram Huntress, Shannoan Rascal, The Brightest, The Black Fang, Dear Klaudia, The Heavy Blade, Tita the Russell, Debaucherous Prince, Angel of Slaughter, The Bladelord, The Felghanan Knight, Lloyd Bannings from the Lloyd Bannings, Dominator, The Flaming Rage, Azure Destruction, Ravager, Dragon Blaze, The Aerial Orb, The Terran Vortex, Black Heart, White Knight, The Barrage, Evil Eyes, Homing Rays, Devastation Blasts, Calamitous Blasts, Lanzenreiter, Final Break, Demon Flames, Crimson Ray, Sword of Cleria, Serisent-Noa, Zeno-Ides, Obiscuta, Ram-Seyma, El-Arbazel, Antecrysta, True Brave Sword, Sphere Soleil, Serenity Blades, Divine Nova, The Masquerader, Meltdown Buster, Dino Fossil, Nemesis Ripper, The True Kernviter, All-Rounder, Elder of Segram, Special Delivery, Eight Leaves One Cute, The Dragon Knight, The Silver Streak, The Priestess of Alma, Thousand-Hand Guardian, Squire of the Gralsritter, That Girl from Lance?, Servant of Darm, The Immovable, The Spoiler and the Orphan, The Holy Knight and Sorcerer, Howdy, Pilgrims, Puckers, The Hunter, Not a Drill, A Lesson in Uselessness, The Fool, The Divine Blade, Descendant of Genos, The Romun Commander, Inspector MacDowell, Twin Goddesses of Ys, Friends in Need, Bottomless Pockets, Sightseeing, Trailer Junkie, My PSP Is Better Than Your PSP, For What?!, PSP Is the New iPod, Ys-y Listening, Trails in the Sky and Other Classics, Needs No Introduction, Because It's Important to Have It All, Zin Wannabe, I Hit Things a Lot, A Lot of Things in a Row..., Flashy Times, Big Strong Action Star, Cruisin for a Bruisin, Big Hurtin', Keep Away from Me, Adios' Most Wanted.
+
+game NPJH50276 Ys vs. Sora no Kiseki: Alternative Saga
+
+mode    = u8 08A76120
+cpu     = u16 090DA290
+support = u32 091AE7B8     # times support was used
+broken  = u32 091AE7C8
+shop    = u32 091AE7D0
+bp      = u32 091AE7DC
+lv35 = u16 094EDAA8
+lv36 = u16 094EDAF0
+lv37 = u16 094EDC10
+lv38 = u16 094EDB80
+lv39 = u16 094EDB38
+lv40 = u16 094EDC58
+lv41 = u16 094EDBC8
+lv42 = u16 094EDFB8
+lv43 = u16 094EDD78
+lv44 = u16 094EDDC0
+lv45 = u16 094EDEE0
+lv46 = u16 094EDE98
+lv47 = u16 094EDF28
+lv48 = u16 094EDE08
+lv49 = u16 094EDE50
+lv50 = u16 094EDF70
+lv51 = u16 094EE000
+ready = mode <= 5 and cpu <= 4 and lv35 1..99 and lv43 1..99 and bp < 100000000
+
+35 | Sol Breaker | 10 | lv35 == 99
+36 | Earthmover | 10 | lv36 == 99
+37 | Wind Legion | 10 | lv37 == 99
+38 | Cross Crusher | 10 | lv38 == 99
+39 | Skywinder | 10 | lv39 == 99
+40 | Geo Cluster | 10 | lv40 == 99
+41 | Segram Catastrophe | 10 | lv41 == 99
+42 | Vengeful Knight | 10 | lv42 == 99
+43 | Wheel of Time | 10 | lv43 == 99
+44 | XIII | 10 | lv44 == 99
+45 | Le Lenheim | 10 | lv45 == 99
+46 | Small Package of Destruciton | 10 | lv46 == 99
+47 | Fancying Tea | 10 | lv47 == 99
+48 | Jenis Pride | 10 | lv48 == 99
+49 | Ravennue Avenue | 10 | lv49 == 99
+50 | Man of a Thousand Nicknames | 10 | lv50 == 99
+51 | Special Support Tonfa | 10 | lv51 == 99
+121 | Give Me Everything | 5 | shop 200..1000000
+123 | Hero of Legend | 25 | bp >= 50000
+124 | Keep This Stuff Away from Me | 5 | broken 500..10000000
+125 | Friends Indeed | 10 | support 100..10000000

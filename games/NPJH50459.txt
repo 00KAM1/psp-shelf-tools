@@ -1,0 +1,70 @@
+# Emblem achievements for 7th Dragon 2020, NPJH50459. Hand-written from RetroAchievements' code notes (set 16452).
+# Not here (notes do not show it): A Good Show for Baby Murakumo, Training Interrupted, Head-banging, Rescue Mission, Worth a Hundred Ordinary Troops, There's Too Much to Explain Right Now, True Hunters, The Secret Arts, Party On!, Shut Up and Take It, A Saikyo Tag Team, As Strong as Steel, Ask Me Whatever, Let Me Know How They Taste, Pen and Paper, You Wanna Be Friends with Me?, Human Lives Can Be Fleeting Things, Illusory Charger.
+# Hand-checked: every quest, boss, rescue reward and "clear of dragons" flag the notes name.
+
+game NPJH50459 7th Dragon 2020
+
+ready = u16 08A9B634 1..99     # first character's level
+
+7 | Subway Salvation | 10 | u8 08A986BE bit 2 == 1
+8 | Railcage Overload | 10 | u8 08A98833 bit 0 == 1
+9 | Moonlit Massacre | 10 | u8 08A98833 bit 1 == 1
+11 | Molten Monstrosity | 10 | u8 08A98833 bit 2 == 1
+12 | Flights of Confusion | 10 | u8 08A98832 bit 7 == 1
+13 | A Segmented Siege | 10 | u8 08A98833 bit 3 == 1
+14 | Frozen Fiend | 10 | u8 08A98833 bit 4 == 1
+15 | It Was All for Nothing | 10 | u8 08A9875A bit 1 == 1
+16 | How Truly Vexing | 25 | u8 08A9875A bit 2 == 1
+17 | Quest: Look for Medicine | 2 | u8 08A986E8 bit 6 == 1
+18 | Quest: Monsters in Shibuya! | 3 | u8 08A986E8 bit 7 == 1
+19 | Quest: Find a Lost Woman | 3 | u8 08A986E9 bit 0 == 1
+20 | Quest: Monsters Underground | 3 | u8 08A986E9 bit 3 == 1
+21 | Quest: Plumbing Emergency | 2 | u8 08A986E9 bit 6 == 1
+22 | Quest: Blanket Shortage | 2 | u8 08A986E9 bit 1 == 1
+23 | Quest: Looters Wanted | 3 | u8 08A986E9 bit 4 == 1
+24 | Quest: Rescue from a Cult | 2 | u8 08A986E9 bit 5 == 1
+25 | Quest: Ikebukuro Search Party | 5 | u8 08A986E9 bit 7 == 1
+26 | Quest: Medicine Running Low | 2 | u8 08A986EA bit 0 == 1
+27 | Quest: Look for a Book | 2 | u8 08A986E9 bit 2 == 1
+28 | Quest: Yikes! Monster Mess | 3 | u8 08A986EA bit 6 == 1
+29 | Quest: Help a Vehicle Search | 4 | u8 08A986EA bit 4 == 1
+30 | Quest: MIA | 2 | u8 08A986EA bit 5 == 1
+31 | Quest: Rescue from a Cult 2 | 2 | u8 08A986EA bit 2 == 1
+32 | Quest: Truth About Vanishing | 5 | u8 08A986EA bit 7 == 1
+33 | Quest: A New Hero Emerges | 3 | u8 08A986EB bit 0 == 1
+34 | Quest: New Pathogen Alert | 3 | u8 08A986EB bit 1 == 1
+35 | Quest: For Delicious Food | 2 | u8 08A986EB bit 3 == 1
+36 | Quest: Monsters in Kokubunji | 3 | u8 08A986EB bit 4 == 1
+37 | Quest: WRO Recruiting Day | 2 | u8 08A986EB bit 5 == 1
+38 | Quest: Teacher for a Day | 2 | u8 08A986EB bit 6 == 1
+39 | Quest: Paper Chase | 2 | u8 08A986EB bit 7 == 1
+40 | Quest: Special Delivery | 2 | u8 08A986EC bit 0 == 1
+41 | Quest: Stop Occult Violence | 5 | u8 08A986EC bit 1 == 1
+42 | Quest: Seeking Lab Materials | 3 | u8 08A986EC bit 2 == 1
+43 | Quest: Unofficial Business | 2 | u8 08A986EB bit 2 == 1
+44 | Quest: Fairytale Lost | 2 | u8 08A986EC bit 3 == 1
+45 | Quest: A Message from SKY | 2 | u8 08A986EC bit 4 == 1
+46 | Quest: A Favor for Unit 13 | 3 | u8 08A986EC bit 5 == 1
+47 | Quest: Assistance Required | 3 | u8 08A986EC bit 6 == 1
+48 | Quest: Medicine for a Pal | 4 | u8 08A986EC bit 7 == 1
+49 | Quest: Rescuer Rescue | 4 | u8 08A986ED bit 0 == 1
+50 | Cultivation Set 1 | 5 | u8 08A98841 bit 5 == 1
+51 | Cultivation Set 2 | 5 | u8 08A98841 bit 6 == 1
+52 | Guardian Set | 5 | u8 08A98841 bit 7 == 1
+53 | Colorful Set | 10 | u8 08A98842 bit 0 == 1
+54 | Final Showdown Set | 10 | u8 08A98842 bit 1 == 1
+55 | Diva Mode | 2 | u8 08A98861 bit 6 == 1
+66 | Shibuya Flowersea Cleansed | 10 | u8 08A98830 bit 5 == 1
+67 | Tokyo Underground Cleansed | 10 | u8 08A98831 bit 4 == 1
+68 | Ikebukuro Railcage Cleansed | 10 | u8 08A98831 bit 0 == 1
+69 | Yotsura Evernight Cleansed | 10 | u8 08A98831 bit 2 == 1
+70 | Kokubunji Searsand Cleansed | 10 | u8 08A98831 bit 3 == 1
+71 | Daiba Icepack #13 Cleansed | 10 | u8 08A98831 bit 5 == 1
+72 | Tokyo Tower Cleansed | 10 | u8 08A98831 bit 6 == 1
+74 | Illusory Empress | 10 | u8 08A9875C bit 4 == 1
+75 | Illusory Gold | 10 | u8 08A9875D bit 2 == 1
+76 | Illusory Dream | 10 | u8 08A9875E bit 0 == 1
+77 | Illusory Insectoi | 10 | u8 08A9875E bit 6 == 1
+78 | Illusory Azure | 10 | u8 08A9875F bit 4 == 1
+79 | Illusory Bellow | 10 | u8 08A98760 bit 2 == 1
+80 | The Dragoner | 25 | u8 08A98761 bit 0 == 1

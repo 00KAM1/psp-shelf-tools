@@ -1,0 +1,32 @@
+# Emblem achievements for Hexyz Force, ULUS10506. Hand-written from RetroAchievements' code notes (set 2883).
+# Not here (notes do not show it): Hexyz Force, Cecilia's New Daily Routine, Good Cheer, The Maiden of the Holy Staff, You Really ARE Hexyz!, The Quest for the Monoliths, Isn't It a Duel?, Invitation to the Deep, He Said Woof!, Stone Beast in the Cavern, Now Do You Understand?, Big Brother..., Guardian of the Divine Book, Great to Have Another Chef Around!, In the Land of Eternal Darkness, Dreadful Hares, Intruders Detected, Even Monsters Wanna Be Kings, Let the Force of Destruction Embrace You, The Ruins of the Floating City, Maiden's Exchange, Defeat... ME?, Let's Play for a While, All Right! We're on a Roll!, Rosenbaum in Turmoil, Miraculous Treasure, The Maiden & the Peddler, Treasure of the Elves, Palfina's Treasury, Daylight Highway Robbery, Midnight Highway Robbery, Treasure Consumed by Darkness, Lakeside Looting, Treasure Buried in the Sand, Treasure Eaten By the Worm, Abyssal Treasure, Mining for Gems, Treasure of the Ice Caves, Treasure From the Ashes, Treasure Amidst Ancient Tomes, Treasure in the Sky, Treasure in the Sky (Part 2), Raiding the Castle Vault, Imperial Theft, Imperial Theft 2, Stocking up for Judgment Day, Judgment Day Prevention Strategy, Treasure Borne of Chaos, Challenging Chaos Itself, Infuse the Force, Treasure at the End, Treasure of the Vessel, A Gift From the Black Precipice, Hungry Boy, The Taking Tree, You're Pretty Good, Friend of the Elves, The Tragedy of the Holy Sword, DAMAGE CRITICAL, Interwoven Destiny, What's a Sunflower?, Shell Beast in the Cavern, Guardian of the 6th Floor, Guardians of the 8th Floor, Not Bad, Not Bad..., Seeking the Heavenly Light, Force Golem, An Unsuccessful Experiment, Crumbling Ideals, Honest Mistake!, Long Time No See, A Bitter Parting, Hmph. That's It?, The Twelfth Seal, Bahn's Last Stand, Friend of the Soldiers, Swordsman's Exchange, The Battle at the Citadel, The Knight & The Peddler, Road to Creation: Emperor Axel, Road to Creation: Velvet, Road to Creation: Virtus, Road to Creation: Phantasma Omega, Road to Creation: Faust, Exquisite!, Fragment Trader, Book of Darkness, Champion of the Abyss, Grandmaster of the Abyss, Harvest Day, Hexyz Force: Cecilia & Levant, Cycle of Judgment, The Truth of Berge, Force Dealer, Normal Worm, Ultra Worm, Secrets of the Library, Reknowned Hero, Legendary Hero, Veteran Force Scholar, Master Force Scholar, Keen-eyed Adventurer, Component Hunter, Force Collector, Force Fanatic, Able Combatant, Furious Fighter, Ultimate Champion, Sword Greedy, Ragnafact Blacksmith, Creation Crusader, True Warrior, Raging Demon, Technique Master, Victim of a Harsh World, Traveler of Berge, Hyper Ultra Thanks!, I love Bigabu Beaze!, Defensive Forcefacts, Crafty Hexyz, Prepared for Creation, Cooking with the Dogs, Media Savant, Monster Hunter, Leftover Loot, The Final Phantasma, True Conclusion.
+# Hand-checked. Quests, endings and three titles. Quests whose one flag serves both tales are left out.
+
+game ULUS10506 Hexyz Force
+
+ready = u16 08B482E8 < 0x400     # map ID is sane
+
+4 | The Monster That Lived | 4 | u8 08B483CA bit 1 == 1
+7 | No Worries | 5 | u8 08B483C8 bit 6 == 1
+15 | Fruit of the Sacred Tree | 5 | u8 08B483CB bit 5 == 1
+21 | Chalk One Up For the Good Guys! | 5 | u8 08B483AE bit 3 == 1
+58 | Wandering Grandma | 2 | u8 08B483D5 bit 6 == 1
+59 | Honorary Librarian | 5 | u8 08B483C9 bit 6 == 1
+60 | The Perils of Penelope Prickles | 5 | u8 08B483D1 bit 6 == 1
+61 | Desert Roadblock | 5 | u8 08B483CA bit 5 == 1
+63 | Drake in the Sand | 5 | u8 08B483D6 bit 1 == 1
+65 | Oh, My Fragile Heart... | 10 | u8 08B483D0 bit 2 == 1
+66 | Gossiping Grandmas | 5 | u8 08B483CC bit 5 == 1
+67 | Shadows in the Library | 5 | u8 08B483CB bit 6 == 1
+68 | Tragic Relations | 4 | u8 08B483D5 bit 2 == 1
+72 | Unwelcome Guest | 5 | u8 08B483CE bit 1 == 1
+81 | Underground Intrusion | 10 | u8 08B483CC bit 6 == 1
+88 | Revenge of the Mantis | 5 | u8 08B483CA bit 2 == 1
+109 | Those Who Carry On: Cecilia Armaclite | 10 | u8 08B484B4 bit 1 == 1
+110 | Twilight of the Gods: Cecilia Armaclite | 10 | u8 08B484B4 bit 3 == 1
+111 | Those Who Carry On: Levant von Schweitzer | 10 | u8 08B484B4 bit 4 == 1
+112 | Twilight of the Gods: Levant von Schweitzer | 10 | u8 08B484B4 bit 6 == 1
+124 | Treasure Hunter | 4 | u8 08B484BC bit 5 == 1
+136 | White Flag | 5 | u8 08B484BE bit 3 == 1
+138 | Force Eater Beater | 10 | u8 08B484BE bit 4 == 1
+139 | In Your Face, Me! | 10 | u8 08B484BE bit 5 == 1

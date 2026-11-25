@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shelf Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* VOICE  Shelf's own: plain words, numbers first, a little pride in the year's play.
+   IDEA   Shelf on a big screen: the launcher's slate panels, amber selection and key bar.
+   PICTURE Recap opens on your top games standing on a shelf, sized by hours; the set
+          maker is its own picture, the file and its checks side by side.
+   COLOUR Shelf's palette (src/gfx.h): slate #0e1116 ground, #1b2029 cards, amber #ffb000
+          selection, gold, green, blue, pink for the plugins. Dark in both themes, like the PSP.
+   TYPE   DotGothic16 for titles, numbers and labels (pixel lettering with Japanese), Inter for
+          reading, JetBrains Mono for rules. LAYOUT  bar, tabs, then bands of cards; one column on a phone. */
+:root{color-scheme:dark;--bg:#0e1116;--card:#1b2029;--card2:#222834;--panel:#181c24;--bar:#161a22;--line:#303846;--frame:#343c4a;--sel:#323a4a;
+--ink:#eaecf0;--grey:#97a1b0;--dim:#5e6878;--amber:#ffb000;--gold:#deb846;--green:#5ac46e;--blue:#6e96eb;--pink:#e678be;--red:#e05454;--track:#282e3a;
+--pix:"DotGothic16","Inter",system-ui,sans-serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);overflow-x:clip;-webkit-text-size-adjust:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--blue)}
+.pix{font-family:var(--pix);letter-spacing:.02em}
+/* top bar: SHELF, the tabs, the stick */
+.top{position:sticky;top:0;z-index:20;background:var(--bar);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:6px 18px;padding:8px max(4vw,14px);flex-wrap:wrap}
+.brand{font-family:var(--pix);color:var(--amber);font-size:20px;letter-spacing:.08em;white-space:nowrap}
+.tabs{display:flex;gap:4px}
+.tab{background:none;border:0;padding:8px 10px;min-height:44px;font-family:var(--pix);font-size:18px;color:var(--grey);cursor:pointer;border-bottom:2px solid transparent}
+.tab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--amber)}
+.tab:focus-visible,.btn:focus-visible,.chip:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.stickbtn{margin-left:auto;display:flex;align-items:center;gap:10px}
+.stickname{font-size:14px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:34vw}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 16px;border-radius:6px;border:1px solid var(--frame);background:var(--card);cursor:pointer;font-family:var(--pix);font-size:16px;white-space:nowrap}
+.btn:hover{background:var(--sel)}
+.btn.main{background:var(--amber);color:#14161a;border-color:var(--amber)}
+.btn.main:hover{background:#ffc233}
+.btn.small{min-height:36px;padding:4px 12px;font-size:15px}
+.btn[disabled]{opacity:.45;cursor:default}
+.band{padding:clamp(20px,3.5vw,48px) max(4vw,14px)}
+.wrap{max-width:1240px;margin:0 auto}
+.view[hidden]{display:none}
+h1,h2,h3{font-family:var(--pix);font-weight:400;margin:0;line-height:1.1;text-wrap:balance}
+h1{font-size:clamp(30px,5vw,50px)}
+h2{font-size:24px;margin-bottom:14px}
+h3{font-size:18px;margin-bottom:8px;color:var(--grey)}
+p{margin:0 0 10px}
+.muted{color:var(--grey)}
+.small{font-size:14px}
+.note{font-size:13px;color:var(--grey)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(12,minmax(0,1fr))}
+.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
+@media(max-width:980px){.s4,.s5,.s7{grid-column:span 6}.s8{grid-column:span 12}}
+@media(max-width:680px){.grid>*{grid-column:span 12!important}}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.chip{flex:none;min-height:40px;padding:6px 14px;border-radius:20px;border:1px solid var(--frame);background:var(--card);cursor:pointer;font-family:var(--pix);font-size:16px;color:var(--grey)}
+.chip[aria-pressed=true]{background:var(--amber);border-color:var(--amber);color:#14161a}
+select.chip{appearance:none;padding-right:28px;background-image:linear-gradient(45deg,transparent 50%,var(--grey) 50%),linear-gradient(-45deg,transparent 50%,var(--grey) 50%);background-position:right 14px top 17px,right 9px top 17px;background-size:5px 5px;background-repeat:no-repeat}
+/* ---- Recap ---- */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;align-items:end}
+@media(max-width:820px){.hero{grid-template-columns:minmax(0,1fr)}.hero .shelf{min-height:0;padding-top:8px}}
+.big{font-family:var(--pix);font-size:clamp(56px,10vw,112px);line-height:.95;color:var(--amber)}
+.big small{font-size:.32em;color:var(--ink);margin-left:.25em}
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:18px}
+.stat b{display:block;font-family:var(--pix);font-weight:400;font-size:30px;line-height:1.1}
+.stat span{font-size:14px;color:var(--grey)}
+.shelf{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:clamp(6px,1.4vw,14px);padding:0 10px 18px;min-height:230px}
+.shelf::after{content:"";position:absolute;left:0;right:0;bottom:0;height:18px;background:linear-gradient(#3a4252,#252b37);border-radius:3px;box-shadow:0 10px 24px #0008}
+.book{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto}
+.book img,.book .ph{display:block;width:100%;aspect-ratio:144/80;border-radius:4px;border:2px solid var(--frame);box-shadow:0 6px 14px #0009;object-fit:cover;image-rendering:pixelated;background:var(--card2)}
+.book.first img,.book.first .ph{border-color:var(--amber)}
+.book .rank{font-family:var(--pix);font-size:14px;color:var(--grey);white-space:nowrap}
+.book .rank b{color:var(--ink);font-weight:400}
+.ph{display:flex!important;align-items:center;justify-content:center;font-family:var(--pix);color:#fff;font-size:22px}
+.rows{display:flex;flex-direction:column;gap:12px}
+.grow{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:12px;align-items:center}
+.grow img,.grow .ph{width:72px;aspect-ratio:144/80;border-radius:3px;object-fit:cover;image-rendering:pixelated;background:var(--card2);font-size:14px}
+.gname{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.meter{height:8px;background:var(--track);border-radius:4px;overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--amber);border-radius:4px}
+.meter.gold i{background:var(--gold)}.meter.green i{background:var(--green)}.meter.blue i{background:var(--blue)}.meter.red i{background:var(--red)}
+.num{font-family:var(--pix);white-space:nowrap;text-align:right}
+.tag{display:inline-block;font-family:var(--pix);font-size:13px;padding:1px 8px;border-radius:10px;border:1px solid currentColor;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.tag.green{color:var(--green)}.tag.gold{color:var(--gold)}.tag.blue{color:var(--blue)}.tag.pink{color:var(--pink)}
+.hours{display:grid;grid-template-columns:repeat(24,minmax(0,1fr));gap:3px;align-items:end;height:130px}
+.hours i{display:block;background:var(--blue);border-radius:2px 2px 0 0;min-height:2px}
+.hours i.peak{background:var(--amber)}
+.axis{display:grid;grid-template-columns:repeat(4,1fr);font-size:12px;color:var(--dim);margin-top:4px}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:16px}
+.week div{text-align:center;font-size:12px;color:var(--grey)}
+.week i{display:block;height:54px;background:var(--track);border-radius:3px;position:relative;margin-bottom:4px;overflow:hidden}
+.week i b{position:absolute;left:0;right:0;bottom:0;background:var(--blue)}
+.cal{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,1fr);gap:3px;overflow-x:auto;padding-bottom:6px}
+.cal i{width:13px;height:13px;border-radius:2px;background:var(--track)}
+.cal i.l1{background:#5a4a1e}.cal i.l2{background:#8a6a10}.cal i.l3{background:#c08a00}.cal i.l4{background:var(--amber)}
+.cal i.out{background:transparent}
+.calm{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.calm i{aspect-ratio:1;border-radius:4px;background:var(--track);font-style:normal;font-size:12px;color:var(--grey);padding:3px 5px}
+.calm i.l1{background:#5a4a1e;color:#eee}.calm i.l2{background:#8a6a10;color:#fff}.calm i.l3{background:#c08a00;color:#111}.calm i.l4{background:var(--amber);color:#111}.calm i.out{background:transparent}
+.calm b{font-weight:400;font-size:12px;color:var(--dim);text-align:center}
+.legend{display:flex;gap:4px;align-items:center;font-size:12px;color:var(--grey);margin-top:8px}
+.legend i{width:12px;height:12px;border-radius:2px;display:inline-block}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:9px 0;border-top:1px solid var(--line)}
+.list li:first-child{border-top:0}
+.list .sub{grid-column:1/-1;font-size:14px;color:var(--grey);margin-top:-4px}
+.when{font-size:14px;color:var(--grey);white-space:nowrap}
+.path{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;margin-top:6px}
+.path span{background:var(--card2);border:1px solid var(--line);padding:2px 8px;border-radius:4px}
+.path em{color:var(--dim);font-style:normal}
+.recs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.rec b{display:block;font-family:var(--pix);font-weight:400;font-size:26px;line-height:1.15}
+.rec span{font-size:14px;color:var(--grey)}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.thumb img{width:100%;aspect-ratio:240/136;border-radius:4px;border:1px solid var(--frame);display:block;object-fit:cover}
+.thumb div{font-size:13px;color:var(--grey);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.thumb .badge{position:relative}
+.thumb .badge span{position:absolute;left:6px;bottom:6px;font-family:var(--pix);font-size:12px;background:#000c;color:var(--amber);padding:1px 6px;border-radius:3px}
+.empty{color:var(--grey);font-size:15px;padding:6px 0}
+.sharebox{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:680px){.sharebox{grid-template-columns:minmax(0,1fr)}}
+.sharebox img{width:100%;border-radius:8px;border:1px solid var(--frame)}
+.sample{font-size:13px;color:var(--grey);margin-top:12px}
+/* ---- loader ---- */
+dialog{background:var(--panel);color:var(--ink);border:1px solid var(--frame);border-radius:10px;padding:0;width:min(640px,94vw);max-height:90vh}
+dialog::backdrop{background:#000a}
+.dlg{padding:22px;overflow:auto;max-height:90vh}
+.drop{border:2px dashed var(--frame);border-radius:8px;padding:22px;text-align:center;margin:14px 0;color:var(--grey)}
+.drop.over{border-color:var(--amber);color:var(--ink)}
+.found{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:10px 0 0;padding:0;list-style:none}
+.found li{font-family:var(--pix);font-size:15px;padding:6px 10px;border-radius:6px;background:var(--card);border:1px solid var(--line);color:var(--dim)}
+.found li.yes{color:var(--green);border-color:#2f5a3a}
+.found li.yes::before{content:"● "}.found li::before{content:"○ "}
+.hide{display:none!important}
+ol.steps{padding-left:20px;margin:6px 0 0}
+ol.steps li{margin-bottom:6px}
+.err{color:var(--red)}
+/* ---- Workshop ---- */
+.mk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:16px;align-items:start}
+@media(max-width:980px){.mk{grid-template-columns:minmax(0,1fr)}}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.fields{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:520px){.fields{grid-template-columns:minmax(0,1fr)}}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--grey)}
+.inp{background:var(--bg);color:var(--ink);border:1px solid var(--frame);border-radius:5px;padding:8px 10px;min-height:44px;font-size:16px;width:100%}
+.inp:focus{outline:2px solid var(--amber);outline-offset:0;border-color:var(--amber)}
+.inp.mono{font-family:var(--mono);font-size:15px}
+.subtabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:12px;overflow-x:auto}
+.subtabs .tab{font-size:16px;min-height:40px}
+.sect{font-family:var(--pix);color:var(--gold);font-size:15px;margin:16px 0 6px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sect code{font-family:var(--mono);font-size:13px;color:var(--grey);background:var(--panel);padding:2px 6px;border-radius:4px}
+.arow{display:grid;grid-template-columns:58px minmax(0,1fr) 64px 36px;gap:6px;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);margin-bottom:6px}
+.arow .rule{grid-column:1/-1}
+.arow.bad{border-color:var(--red)}
+.arow.none{opacity:.7}
+.arow .msg{grid-column:1/-1;font-size:13px;color:var(--red)}
+.arow .inp{min-height:38px;padding:5px 8px;font-size:15px}
+.x{background:none;border:1px solid var(--line);border-radius:5px;color:var(--grey);cursor:pointer;min-height:38px}
+.x:hover{color:var(--red);border-color:var(--red)}
+.drow{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr) 36px;gap:6px;margin-bottom:6px;align-items:start}
+.drow.bad .inp{border-color:var(--red)}
+.drow .msg{grid-column:1/-1;font-size:13px;color:var(--red);margin-top:-2px}
+.editor{display:grid;grid-template-columns:auto minmax(0,1fr);border:1px solid var(--frame);border-radius:6px;background:var(--bg);overflow:hidden;height:min(68vh,720px)}
+.gutter{font-family:var(--mono);font-size:14px;line-height:21px;color:var(--dim);text-align:right;padding:10px 8px;background:var(--panel);overflow:hidden;user-select:none;white-space:pre}
+.gutter .e{color:var(--red)}
+.editor textarea{border:0;background:transparent;resize:none;font-family:var(--mono);font-size:14px;line-height:21px;padding:10px;white-space:pre;overflow:auto;outline:none;tab-size:4}
+.checks{position:sticky;top:76px}
+@media(max-width:980px){.checks{position:static}}
+.verdict{font-family:var(--pix);font-size:20px;margin-bottom:10px}
+.verdict.ok{color:var(--green)}.verdict.bad{color:var(--red)}.verdict.warn{color:var(--gold)}
+.elist{list-style:none;margin:0 0 12px;padding:0;max-height:260px;overflow:auto}
+.elist li{padding:6px 8px;border-radius:5px;cursor:pointer;font-size:14px}
+.elist li:hover{background:var(--sel)}
+.elist b{font-family:var(--mono);font-weight:500;color:var(--red);margin-right:6px}
+.elist code{display:block;font-family:var(--mono);font-size:12px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lim{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font-size:14px;margin-bottom:8px}
+.lim .meter{grid-column:1/-1;margin-top:0}
+.kv{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;font-size:15px}
+.kv b{font-family:var(--pix);font-weight:400;text-align:right}
+details{border-top:1px solid var(--line);padding-top:10px;margin-top:12px}
+summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
+.pick{list-style:none;margin:8px 0 0;padding:0;max-height:50vh;overflow:auto}
+.pick li button{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:10px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:10px 6px;cursor:pointer;min-height:44px}
+.pick li button:hover{background:var(--sel)}
+.pick code{font-family:var(--mono);font-size:13px;color:var(--grey)}
+.ref{font-size:14px}
+.ref code{font-family:var(--mono);font-size:13px;color:var(--amber)}
+.ref dt{margin-top:8px}
+.ref dd{margin:2px 0 0 0;color:var(--grey)}
+.notes{max-height:320px;overflow:auto;margin-top:8px}
+.notes table{width:100%;border-collapse:collapse;font-size:13px}
+.notes td{border-top:1px solid var(--line);padding:6px 4px;vertical-align:top}
+.notes td:first-child{font-family:var(--mono);white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--card2);border:1px solid var(--amber);color:var(--ink);padding:10px 18px;border-radius:8px;font-family:var(--pix);z-index:50;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+.foot{border-top:1px solid var(--line);background:var(--bar);color:var(--grey);font-size:13px;padding:14px max(4vw,14px)}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+@media(prefers-reduced-motion:no-preference){.book{animation:rise .5s ease-out both}.book:nth-child(2){animation-delay:.06s}.book:nth-child(3){animation-delay:.12s}.book:nth-child(4){animation-delay:.18s}.book:nth-child(5){animation-delay:.24s}@keyframes rise{from{transform:translateY(24px);opacity:0}}}
+@media(max-width:600px){.stickname{display:none}.brand{font-size:17px}.tab{font-size:16px;padding:8px 6px}.recs{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.stat b{font-size:24px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">SHELF TOOLS</div>
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-recap" aria-selected="true" data-view="recap">Recap</button>
+    <button class="tab" role="tab" id="tab-workshop" aria-selected="false" data-view="workshop">Emblem Workshop</button>
+  </nav>
+  <div class="stickbtn">
+    <span class="stickname" id="stickname">Sample stick</span>
+    <button class="btn main small" id="openStick">Load your Memory Stick</button>
+  </div>
+</header>
+
+<main>
+<!-- ================= RECAP ================= -->
+<section class="view" id="view-recap" aria-labelledby="tab-recap">
+  <div class="band" style="padding-bottom:8px">
+    <div class="wrap">
+      <div class="chips" id="periods" role="group" aria-label="Period"></div>
+    </div>
+  </div>
+  <div id="recapBody"></div>
+</section>
+
+<!-- ================= EMBLEM WORKSHOP ================= -->
+<section class="view" id="view-workshop" aria-labelledby="tab-workshop" hidden>
+  <div class="band">
+    <div class="wrap">
+      <div class="toolbar">
+        <h1 style="font-size:clamp(26px,4vw,36px);margin-right:auto">Emblem Workshop</h1>
+        <button class="btn small" id="mkNew">New</button>
+        <button class="btn small" id="mkOpen">Open</button>
+        <button class="btn small" id="mkCopy">Copy</button>
+        <button class="btn main small" id="mkSave">Download .txt</button>
+      </div>
+      <div class="mk">
+        <div>
+          <div class="fields">
+            <label class="f">Game ID<input class="inp mono" id="mkId" maxlength="15" autocomplete="off" spellcheck="false" placeholder="ULUS10558"></label>
+            <label class="f">Title shown in the viewer<input class="inp" id="mkTitle" autocomplete="off" placeholder="Ys: The Oath in Felghana"></label>
+          </div>
+          <div class="subtabs" role="tablist">
+            <button class="tab" role="tab" data-sub="ach" aria-selected="true">Achievements</button>
+            <button class="tab" role="tab" data-sub="names" aria-selected="false">Names and ready</button>
+            <button class="tab" role="tab" data-sub="text" aria-selected="false">Text</button>
+          </div>
+          <p class="small" id="mkStatus" style="margin:-4px 0 12px"></p>
+          <div id="sub-ach"></div>
+          <div id="sub-names" hidden></div>
+          <div id="sub-text" hidden>
+            <div class="editor"><div class="gutter" id="gutter">1</div><textarea id="mkText" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="The game file"></textarea></div>
+            <p class="note" style="margin-top:8px">This is the file exactly as it goes to <code>ms0:/EMBLEM/games/</code>. The other two tabs edit the same lines.</p>
+          </div>
+        </div>
+        <aside class="checks card" id="checks"><div id="checksDyn" aria-live="polite"></div><div id="checksHelp"></div></aside>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Everything is read in your browser. Nothing on your Memory Stick is uploaded or changed.</span>
+    <span>For <a href="https://github.com/00KAM1/psp-shelf-launcher">Shelf</a> and <a href="https://github.com/00KAM1/psp-ark-plugins">psp-ark-plugins</a> · Shelf Tools <span id="ver"></span></span>
+  </div>
+</footer>
+
+<!-- load your stick -->
+<dialog id="loader" aria-labelledby="ldTitle">
+  <div class="dlg">
+    <h2 id="ldTitle">Load your Memory Stick</h2>
+    <p class="muted small">Shelf Tools reads what Sidequest, Checkpoint, Emblem, Runtime and Shelf keep in their folders. Files are read here in your browser and stay on your computer or phone.</p>
+    <ol class="steps small">
+      <li>On the PSP, open Shelf's PS-button menu and choose <b>USB connection</b> (or use the XMB's USB mode).</li>
+      <li>Pick the Memory Stick's drive below. Only the five plugin folders are read; ISOs and saves are skipped.</li>
+    </ol>
+    <div class="drop" id="drop">Drop the Memory Stick, its plugin folders, or a zip of them here</div>
+    <div class="toolbar" style="justify-content:center">
+      <label class="btn main">Pick a folder<input type="file" id="pickDir" webkitdirectory directory multiple class="hide"></label>
+      <label class="btn">Pick a zip<input type="file" id="pickZip" accept=".zip,application/zip" class="hide"></label>
+      <button class="btn" id="useSample">Use the sample</button>
+    </div>
+    <p class="note">If the browser will not open the drive itself, select the five plugin folders in your file manager and drag them onto this box together.</p>
+    <p class="note">On a phone, a folder cannot always be picked: zip <code>SIDEQUEST</code>, <code>CHECKPOINT</code>, <code>EMBLEM</code>, <code>RUNTIME</code> and <code>SHELF</code> on a computer and pick the zip. Save-state files are large; leaving <code>SIDEQUEST</code> out only drops the slot pictures.</p>
+    <ul class="found" id="found"></ul>
+    <p class="small" id="ldMsg" style="margin-top:10px"></p>
+    <div class="toolbar" style="justify-content:flex-end;margin:6px 0 0"><button class="btn" id="ldClose">Close</button></div>
+  </div>
+</dialog>
+
+<!-- open a game file -->
+<dialog id="opener" aria-labelledby="opTitle">
+  <div class="dlg">
+    <h2 id="opTitle">Open a game file</h2>
+    <div class="toolbar">
+      <label class="btn">A .txt file<input type="file" id="pickTxt" accept=".txt,text/plain" class="hide"></label>
+      <input class="inp" id="opSearch" placeholder="Search by title or ID" style="flex:1 1 200px">
+    </div>
+    <h3 id="opStickH">On your Memory Stick</h3>
+    <ul class="pick" id="opStick"></ul>
+    <h3 style="margin-top:14px">In Emblem's release</h3>
+    <ul class="pick" id="opRelease"></ul>
+    <div class="toolbar" style="justify-content:flex-end;margin:12px 0 0"><button class="btn" id="opClose">Close</button></div>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+<!--SCRIPTS-->
+</body>
+</html>

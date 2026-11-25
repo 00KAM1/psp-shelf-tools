@@ -1,0 +1,7 @@
+__pycache__/
+node_modules/
+tests/out/
+# your own Memory Stick, if you copy it here to try things
+tests/mystick/
+# the picture stick and page: hold artwork taken from your own games
+tests/docrun/

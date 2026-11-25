@@ -1,0 +1,228 @@
+# Emblem achievements for Ys: The Oath in Felghana (USA), ULUS-10558.
+# Titles and points: RetroAchievements' list for the game (set 3132).
+# Addresses: RetroAchievements' public code notes (RA address + 0x08000000).
+# Not here (no address in the notes): The Black-Hearted White Knight, The Fire Eater,
+# Lord of the Blazing Prison, Savior of Swine, Never Smelled the Roses, Sightseeing in Felghana.
+
+game ULUS10558 Ys: The Oath in Felghana
+
+# ---- values ----
+mode     = u16 08BC4CCC       # 0 main game, 1 Time Attack, 2 Museum
+level    = u32 08BB9B30
+gold     = u32 08BB9B2C
+elixir   = s32 08BB9E38       # Katol Elixirs carried; -1 when none
+maxhp    = float 08BB9AFC
+hp       = float 08BB9B00
+diff     = u32 08BB9EF4       # 0 Normal, 1 Hard, 2 Nightmare (Inferno: + infernof)
+easy     = u32 08BB9EF0       # set on Very Easy and Easy
+lowered  = u32 08BBA468       # difficulty lowered after retries
+infernof = u32 08BB9FDC
+combo    = s32 08BBA5DC
+ta_state = u16 08BC4CCE       # Time Attack: 0x28 menu, 0x29 fight, 0x2a after
+fight    = u16 08BC4CD8       # 0 Boss Rush, 1 Dularn ... 15 Galbalan
+ta_sel   = u8 08BC4E36        # difficulty picked: 0 Very Easy ... 4 Nightmare
+lost     = u8 089FC932        # 1: lost the fight
+ta_hp    = float 089F8D48
+
+# ---- when Emblem looks: main game or Time Attack, with sane values ----
+main     = mode == 0 and level 1..99 and maxhp 1..9999 and diff 0..2 and gold 0..9999999 and elixir -1..99
+ta       = mode == 1 and ta_state 0x28..0x2a and fight 0..32
+ready    = main or ta
+
+# Bosses, the bestiary and the combos count on any difficulty. Hard, Nightmare and
+# Inferno achievements need that difficulty, picked at the start and never lowered.
+strict    = easy off and lowered off
+normal    = 1 == 1
+hard      = strict and diff >= 1
+nightmare = strict and diff == 2 and infernof off
+inferno   = strict and diff == 2 and infernof set
+
+# ---- story, bosses and items ----
+dularn1    = u32 08BBA020    # Fight Dularn
+ellefale   = u32 08BBA028    # Win Ellefale fight
+istersiva  = u32 08BBA060
+succubi    = u32 08BBA068    # After Succubi fight
+gildias    = u32 08BBA07C
+faleon     = u32 08BBA098
+schultiger = u32 08BBA09C
+zirduros   = u32 08BBA0B0
+chester2   = u32 08BBA0BC
+dularn2    = u32 08BBA0C8
+garland    = u32 08BBA0CC
+galbalan   = u32 08BBA0E4
+anya       = u32 08BBA1B4    # Show Anya the 3 Raval Ore from well
+antonio    = s32 08BBA168    # 4: 10000 gold and the Jade Ring from Antonio
+cynthia    = u32 08BBA1A4    # Show Cynthia the Jade Ring
+fiona      = u32 08BBA458    # Talk to Fiona (get amulet)
+nightfire  = u32 08BB9D84
+stoneshoes = u32 08BB9D8C
+spiritcape = u32 08BB9D90
+bravesword = u32 08BB9D50
+tablet     = u32 08BB9DFC    # Mission Tablet
+moonstar   = u32 08BB9E0C
+sunset     = u32 08BB9E10
+darkness   = u32 08BB9E14
+light      = u32 08BB9E18
+talisman   = u32 08BB9E40
+augite     = u32 08BB9E44
+lochus     = u32 08BBA11C    # Raval Ore given: 7
+well       = u32 08BBA120    # 3
+edgar      = u32 08BBA140    # 20
+joel       = u32 08BBA45C    # 12
+harold     = u32 08BBA460    # 100
+elena_back = u32 08BBA0F4 bit 0
+show level diff easy lowered dularn1 ellefale mode gold elixir
+
+# ---- lists ----
+chests1 = list u32 08BBA1C8 08BBA1CC 08BBA1D4 08BBA1D8 08BBA1DC 08BBA1E0 08BBA1E4 08BBA1E8 08BBA1EC 08BBA1F0 08BBA338
+chests2 = list u32 08BBA1F4 08BBA1F8 08BBA1FC 08BBA200 08BBA204 08BBA208 08BBA20C 08BBA210 08BBA218 08BBA21C 08BBA228 08BBA22C 08BBA230 08BBA234
+chests3 = list u32 08BBA238 08BBA23C 08BBA240 08BBA244 08BBA248 08BBA24C 08BBA250 08BBA254 08BBA258 08BBA25C 08BBA260
+chests4 = list u32 08BBA264 08BBA268 08BBA270 08BBA274 08BBA278 08BBA27C 08BBA280 08BBA284 08BBA288 08BBA28C 08BBA290
+chests5 = list u32 08BBA294 08BBA298 08BBA29C 08BBA2A0 08BBA2A4 08BBA2A8 08BBA370 08BBA3B8 08BBA3BC
+urns    = list u32 08BBA2C0 08BBA2C4 08BBA2C8 08BBA2CC 08BBA2D0 08BBA2D4 08BBA2D8 08BBA2DC 08BBA2E0 08BBA2E4 08BBA2E8 08BBA2EC 08BBA2F0 08BBA2F4 08BBA2F8 08BBA2FC 08BBA300 08BBA304 08BBA308 08BBA30C 08BBA310 08BBA314 08BBA318 08BBA31C 08BBA320 08BBA324 08BBA328 08BBA32C 08BBA330 08BBA334 08BBA33C 08BBA340 08BBA344 08BBA348 08BBA34C 08BBA350 08BBA354 08BBA358 08BBA35C 08BBA360 08BBA364 08BBA368 08BBA36C 08BBA374 08BBA378 08BBA37C 08BBA380 08BBA384 08BBA388 08BBA38C 08BBA390 08BBA398 08BBA39C 08BBA3A0 08BBA3A8 08BBA3AC 08BBA3B0 08BBA3B4 08BBA3C0
+chars   = list u8 bit 0 08BB9B8E 08BB9B8F 08BB9B91 08BB9B93 08BB9B98 08BB9B99 08BB9B9A 08BB9B9B 08BB9B9C 08BB9B9D 08BB9B9E 08BB9B9F 08BB9BA0 08BB9BA1 08BB9BA2 08BB9BA3 08BB9BA4 08BB9BA5 08BB9BA6 08BB9BA7 08BB9BA8 08BB9BA9 08BB9BAA 08BB9BAB 08BB9BAC 08BB9BB6 08BB9BB7 08BB9BB8 08BB9BB9 08BB9BBA 08BB9BBB 08BB9BBC
+beasts  = list u8 bit 0 08BB9B3F 08BB9B40 08BB9B41 08BB9B42 08BB9B43 08BB9B44 08BB9B46 08BB9B47 08BB9B48 08BB9B49 08BB9B4A 08BB9B4B 08BB9B4C 08BB9B4D 08BB9B4E 08BB9B4F 08BB9B50 08BB9B51 08BB9B52 08BB9B53 08BB9B54 08BB9B55 08BB9B56 08BB9B57 08BB9B58 08BB9B59 08BB9B5A 08BB9B5B 08BB9B5C 08BB9B5D 08BB9B5E 08BB9B5F 08BB9B60 08BB9B61 08BB9B62 08BB9B63 08BB9B64 08BB9B65 08BB9B66 08BB9B67 08BB9B68 08BB9B69 08BB9B6A 08BB9B6B 08BB9B6C 08BB9B6D 08BB9B6E 08BB9B6F 08BB9B70 08BB9B71 08BB9B72 08BB9B73 08BB9B74 08BB9B75 08BB9B77 08BB9B79 08BB9B7A 08BB9B7B 08BB9B7C 08BB9B7D 08BB9B7E 08BB9B7F 08BB9B82 08BB9B83 08BB9B86 08BB9B87 08BB9B88 08BB9B89 08BB9B8A 08BB9B92 08BB9BDE 08BB9BDF 08BB9BE0 08BB9BE1 08BB9BE2 08BB9BE3 08BB9BE4 08BB9BE5 08BB9BE7
+
+# ---- main game: number | title | points | rule ----
+when main
+1 | The Creeping Shadow | 5 | normal and dularn1 set
+2 | The Azure Queen of Death | 5 | normal and ellefale set
+3 | For a Job Well Done | 5 | fiona set
+7 | Of Truth and Light | 5 | nightfire set
+8 | The Perks of Child Endangerment | 5 | normal and augite set
+9 | The Crystalline Entity | 10 | normal and istersiva set
+10 | Proficient Plunderer | 5 | anya set
+11 | Forever Alone | 5 | normal and elena_back set
+12 | The Three Flying Succubi | 10 | normal and succubi set
+14 | Antonio the Fence | 5 | antonio >= 4
+15 | Oblivious or Insensitive? | 5 | cynthia set
+16 | Well Aren't You Just Nice As Can Be | 5 | talisman set
+17 | Spiritual Advantage | 10 | just gildias set and normal and spiritcape set
+18 | Featherfoot | 10 | normal and gildias set and stoneshoes off
+19 | Guardian of the Icy Depths | 10 | normal and gildias set
+20 | The Ever-Whirling Assassin | 10 | normal and faleon set
+21 | The Savage Mongrel | 10 | normal and schultiger set
+22 | The Clockwork Cannon | 10 | normal and zirduros set
+23 | The Vengeful White Knight | 10 | normal and chester2 set
+24 | The Tragic Loyalist | 10 | normal and dularn2 set
+25 | The Dark Bishop | 10 | normal and garland set
+26 | Sinister Marauder from Afar | 25 | normal and galbalan set
+27 | A Harder Sinister Marauder from Afar | 25 | hard and galbalan set
+28 | Nightmarish Knick Knacks I | 10 | nightmare and moonstar set
+29 | Nightmarish Knick Knacks II | 10 | nightmare and sunset set
+30 | Nightmarish Knick Knacks III | 25 | nightmare and darkness set
+31 | Nightmarish Knick Knacks IV | 25 | nightmare and light set
+32 | Genos Who? | 50 | nightmare and galbalan set
+33 | Descent Into the Inferno I | 25 | inferno and moonstar set
+34 | Descent Into the Inferno II | 25 | inferno and sunset set
+35 | Descent Into the Inferno III | 25 | inferno and darkness set
+36 | Descent Into the Inferno IV | 25 | inferno and light set
+37 | Bearer of the Biggest Sword | 50 | inferno and galbalan set
+39 | Treasure Hunter I | 5 | all chests1
+40 | Treasure Hunter II | 5 | all chests2
+41 | Treasure Hunter III | 10 | all chests3
+42 | Treasure Hunter IV | 10 | all chests4
+43 | Treasure Hunter V | 10 | all chests5
+44 | Ys: Link to the Past I | 5 | count urns >= 10
+45 | Ys: Link to the Past II | 5 | count urns >= 25
+46 | Ys: Link to the Past III | 10 | all urns
+47 | Getting to Know You | 3 | count chars >= 16
+48 | Social Butterfly | 5 | all chars
+49 | Beast Surveyor | 5 | normal and count beasts >= 16
+50 | Beast Aficionado | 5 | normal and count beasts >= 32
+51 | Beast Master | 10 | normal and count beasts >= 64
+52 | Serial Logger | 25 | normal and all beasts
+53 | Button Masher | 2 | normal and combo >= 75 and moonstar off
+54 | Well-Trained Swordsman | 3 | normal and combo >= 125 and moonstar set and sunset off
+55 | Impressive Oppressor | 5 | normal and combo >= 250 and sunset set and darkness off
+56 | Serious Slashing | 10 | normal and combo >= 500 and bravesword set
+57 | Adol the Shipwrecker | 5 | level >= 10
+58 | Adol the Red | 10 | level >= 30
+59 | The Crimson King | 25 | level >= 60
+60 | NG Upgrades I | 3 | s32 08BB9AB4 >= 2 and s32 08BB9ACC >= 2 and s32 08BB9AE4 >= 2
+61 | NG Upgrades II | 4 | s32 08BB9AB8 >= 2 and s32 08BB9AD0 >= 2 and s32 08BB9AE8 >= 2
+62 | NG Upgrades III | 5 | s32 08BB9ABC >= 2 and s32 08BB9AD4 >= 2 and s32 08BB9AEC >= 2
+63 | NG Upgrades IV | 5 | s32 08BB9AC0 >= 2 and s32 08BB9AD8 >= 2 and s32 08BB9AF0 >= 2
+64 | NG Upgrades V | 5 | s32 08BB9AC4 >= 2 and s32 08BB9ADC >= 2 and s32 08BB9AF4 >= 2
+65 | NG Upgrades VI | 10 | s32 08BB9AC8 >= 2 and s32 08BB9AE0 >= 2 and s32 08BB9AF8 >= 2
+66 | NG+ Upgrades I | 10 | s32 08BB9AB4 >= 8 and s32 08BB9ACC >= 8 and s32 08BB9AE4 >= 8
+67 | NG+ Upgrades II | 10 | s32 08BB9AB8 >= 8 and s32 08BB9AD0 >= 8 and s32 08BB9AE8 >= 8
+68 | NG+ Upgrades III | 10 | s32 08BB9ABC >= 8 and s32 08BB9AD4 >= 8 and s32 08BB9AEC >= 8
+69 | NG+ Upgrades IV | 10 | s32 08BB9AC0 >= 8 and s32 08BB9AD8 >= 8 and s32 08BB9AF0 >= 8
+70 | NG+ Upgrades V | 10 | s32 08BB9AC4 >= 8 and s32 08BB9ADC >= 8 and s32 08BB9AF4 >= 8
+71 | NG+ Upgrades VI | 25 | s32 08BB9AC8 >= 8 and s32 08BB9AE0 >= 8 and s32 08BB9AF8 >= 8
+72 | Redmont Riches | 10 | (harold set or (lochus set and well set and edgar set and joel set)) and tablet off
+73 | Smart Water | 10 | gold drops 999999 within 3s and elixir rises within 3s
+
+# ---- Time Attack ----
+when ta
+fighting = ta_state == 0x29
+won      = ta_state == 0x2a and was ta_state == 0x29
+hurt     = fighting and (ta_hp drops or hp drops or lost == 1)
+fell     = fighting and lost == 1
+rec1_hi  = list u32 08BBA82C 08BBA8EC 08BBA9AC 08BBAA6C
+rec1_all = list u32 08BBA6AC 08BBA76C 08BBA82C 08BBA8EC 08BBA9AC 08BBAA6C
+rec2_hi  = list u32 08BBA838 08BBA8F8 08BBA9B8 08BBAA78
+rec2_all = list u32 08BBA6B8 08BBA778 08BBA838 08BBA8F8 08BBA9B8 08BBAA78
+rec3_hi  = list u32 08BBA844 08BBA904 08BBA9C4 08BBAA84
+rec3_all = list u32 08BBA6C4 08BBA784 08BBA844 08BBA904 08BBA9C4 08BBAA84
+rec5_hi  = list u32 08BBA85C 08BBA91C 08BBA9DC 08BBAA9C
+rec5_all = list u32 08BBA6DC 08BBA79C 08BBA85C 08BBA91C 08BBA9DC 08BBAA9C
+rec6_hi  = list u32 08BBA868 08BBA928 08BBA9E8 08BBAAA8
+rec6_all = list u32 08BBA6E8 08BBA7A8 08BBA868 08BBA928 08BBA9E8 08BBAAA8
+rec7_hi  = list u32 08BBA874 08BBA934 08BBA9F4 08BBAAB4
+rec7_all = list u32 08BBA6F4 08BBA7B4 08BBA874 08BBA934 08BBA9F4 08BBAAB4
+rec9_hi  = list u32 08BBA88C 08BBA94C 08BBAA0C 08BBAACC
+rec9_all = list u32 08BBA70C 08BBA7CC 08BBA88C 08BBA94C 08BBAA0C 08BBAACC
+rec10_hi  = list u32 08BBA898 08BBA958 08BBAA18 08BBAAD8
+rec10_all = list u32 08BBA718 08BBA7D8 08BBA898 08BBA958 08BBAA18 08BBAAD8
+rec11_hi  = list u32 08BBA8A4 08BBA964 08BBAA24 08BBAAE4
+rec11_all = list u32 08BBA724 08BBA7E4 08BBA8A4 08BBA964 08BBAA24 08BBAAE4
+rec12_hi  = list u32 08BBA8B0 08BBA970 08BBAA30 08BBAAF0
+rec12_all = list u32 08BBA730 08BBA7F0 08BBA8B0 08BBA970 08BBAA30 08BBAAF0
+rec13_hi  = list u32 08BBA8BC 08BBA97C 08BBAA3C 08BBAAFC
+rec13_all = list u32 08BBA73C 08BBA7FC 08BBA8BC 08BBA97C 08BBAA3C 08BBAAFC
+rec14_hi  = list u32 08BBA8C8 08BBA988 08BBAA48 08BBAB08
+rec14_all = list u32 08BBA748 08BBA808 08BBA8C8 08BBA988 08BBAA48 08BBAB08
+rec15_hi  = list u32 08BBA8D4 08BBA994 08BBAA54 08BBAB14
+rec15_all = list u32 08BBA754 08BBA814 08BBA8D4 08BBA994 08BBAA54 08BBAB14
+rush0    = u16 08BBAB48 bit 6
+rushrec0 = u32 08BBA6A0
+rush1    = u16 08BBAB48 bit 7
+rushrec1 = u32 08BBA760
+rush2    = u16 08BBAB48 bit 8
+rushrec2 = u32 08BBA820
+rush3    = u16 08BBAB48 bit 9
+rushrec3 = u32 08BBA8E0
+rush4    = u16 08BBAB48 bit 10
+rushrec4 = u32 08BBA9A0
+rush5    = u16 08BBAB48 bit 11
+rushrec5 = u32 08BBAA60
+berhardt = u32 08BBAB20
+pikkard  = u32 08BBAB2C
+rush_go  = fighting and was ta_state == 0x28 and fight == 0
+to_menu  = ta_state == 0x28 and not was ta_state == 0x28
+
+# Boss Rush: from leaving the menu until its 'beaten' bit or its record moves
+74 | Easier Than a Shipwreck | 5 | run from rush_go to moved rush0 or (rushrec0 set and moved rushrec0) unless fell cancel to_menu
+75 | You've Got Red On You | 5 | run from rush_go to moved rush1 or (rushrec1 set and moved rushrec1) unless fell cancel to_menu
+76 | Warrior Rouge | 10 | run from rush_go to moved rush2 or (rushrec2 set and moved rushrec2) unless fell cancel to_menu
+77 | Adol the Terror | 25 | run from rush_go to moved rush3 or (rushrec3 set and moved rushrec3) unless fell cancel to_menu
+78 | Red-Haired Swordsman of Death | 50 | run from rush_go to moved rush4 or (rushrec4 set and moved rushrec4) cancel to_menu
+79 | Ginger of the Year | 100 | run from rush_go to moved rush5 or (rushrec5 set and moved rushrec5) cancel to_menu
+80 | The Legend Himself | 25 | run from fighting to won and berhardt set and moved berhardt unless fell
+81 | The Deadliest Cuteness | 25 | run from fighting to won and pikkard set and moved pikkard unless fell
+# One fight on Normal or harder without damage: the record that moved says the difficulty, else the pick
+82 | Pushover | 5 | run from fighting and fight == 1 to won and (moved rec1_hi or (not moved rec1_all and ta_sel >= 2)) unless hurt grace 0.5s
+83 | Lady McChuckingsaws | 5 | run from fighting and fight == 2 to won and (moved rec2_hi or (not moved rec2_all and ta_sel >= 2)) unless hurt grace 0.5s
+84 | Best the Chester | 5 | run from fighting and fight == 3 to won and (moved rec3_hi or (not moved rec3_all and ta_sel >= 2)) unless hurt grace 0.5s
+85 | [TA - Gyalva] | 10 | run from fighting and fight == 5 to won and (moved rec5_hi or (not moved rec5_all and ta_sel >= 2)) unless hurt grace 0.5s
+86 | [TA - Istersiva] | 10 | run from fighting and fight == 6 to won and (moved rec6_hi or (not moved rec6_all and ta_sel >= 2)) unless hurt grace 0.5s
+87 | [TA - Ligaty] | 10 | run from fighting and fight == 7 to won and (moved rec7_hi or (not moved rec7_all and ta_sel >= 2)) unless hurt grace 0.5s
+88 | [TA - Death Faleon] | 10 | run from fighting and fight == 9 to won and (moved rec9_hi or (not moved rec9_all and ta_sel >= 2)) unless hurt grace 0.5s
+89 | [TA - Z.Z. Schultiger] | 10 | run from fighting and fight == 10 to won and (moved rec10_hi or (not moved rec10_all and ta_sel >= 2)) unless hurt grace 0.5s
+90 | [TA - Zirduros] | 10 | run from fighting and fight == 11 to won and (moved rec11_hi or (not moved rec11_all and ta_sel >= 2)) unless hurt grace 0.5s
+91 | [TA - Chester2] | 25 | run from fighting and fight == 12 to won and (moved rec12_hi or (not moved rec12_all and ta_sel >= 2)) unless hurt grace 0.5s
+92 | [TA - Dularn2] | 10 | run from fighting and fight == 13 to won and (moved rec13_hi or (not moved rec13_all and ta_sel >= 2)) unless hurt grace 0.5s
+93 | [TA - Garland] | 10 | run from fighting and fight == 14 to won and (moved rec14_hi or (not moved rec14_all and ta_sel >= 2)) unless hurt grace 0.5s
+94 | [TA - Galbalan] | 25 | run from fighting and fight == 15 to won and (moved rec15_hi or (not moved rec15_all and ta_sel >= 2)) unless hurt grace 0.5s

@@ -1,0 +1,75 @@
+# Emblem achievements for Corpse Party, NPUH10117. Hand-written from RetroAchievements' code notes (set 3541).
+
+game NPUH10117 Corpse Party
+
+screen = u32 08CF360C      # 1 in game, 10 true end, 11 wrong end
+title  = u32 08CF3610      # all Fs on the title screen
+ch1    = u8 08CF0904       # chapter 1 unlocked (always, once a save exists)
+ready  = (screen == 1 or screen == 10 or screen == 11) and title != 0xFFFFFFFF and ch1 set
+c1e1 = u8 08CF0914
+c1e2 = u8 08CF0915
+c1e3 = u8 08CF0916
+c2e1 = u8 08CF0923
+c2e2 = u8 08CF0924
+c2e3 = u8 08CF0925
+c2e4 = u8 08CF0926
+c2e5 = u8 08CF0927
+c3e1 = u8 08CF0932
+c3e2 = u8 08CF0933
+c3e3 = u8 08CF0934
+c3e4 = u8 08CF0935
+c3e5 = u8 08CF0936
+c4e1 = u8 08CF0941
+c4e2 = u8 08CF0942
+c4e3 = u8 08CF0943
+c4e4 = u8 08CF0944
+c4e5 = u8 08CF0945
+c4e6 = u8 08CF0946
+c5e1 = u8 08CF0950
+c5e2 = u8 08CF0951
+c5e3 = u8 08CF0952
+c5e4 = u8 08CF0953
+c5e5 = u8 08CF0954
+c5e6 = u8 08CF0955
+c5e7 = u8 08CF0956
+c5e8 = u8 08CF0957
+tags1 = list u8 08CF08AC 08CF08AD 08CF08AE 08CF08AF 08CF08B2 08CF08B3
+tags2 = list u8 08CF0888 08CF0889 08CF088A 08CF088B 08CF089D 08CF08A6
+tags3 = list u8 08CF0885 08CF088C 08CF0897 08CF0898 08CF089E 08CF089F 08CF08AA 08CF08B0 08CF08B6 08CF08B8 08CF08B9 08CF08BA 08CF08BB 08CF08BD 08CF08C1 08CF08C7
+tags4 = list u8 08CF088F 08CF0895 08CF0896 08CF089A 08CF089B 08CF089C 08CF08A0 08CF08A3 08CF08B5 08CF08B7 08CF08BC 08CF08BF 08CF08C0 08CF08C8 08CF08CA 08CF08CB
+tags5 = list u8 08CF0886 08CF0887 08CF088D 08CF088E 08CF0890 08CF0891 08CF0892 08CF0893 08CF0894 08CF08A1 08CF08A2 08CF08A4 08CF08A7 08CF08A8 08CF08A9 08CF08AB 08CF08B1 08CF08B4 08CF08BE 08CF08C2 08CF08C3 08CF08C4 08CF08C5 08CF08C6 08CF08C9 08CF08CC 08CF08CD 08CF08CE 08CF08CF 08CF08D0 08CF08D1 08CF08D2 08CF08D3 08CF08D4 08CF08D5 08CF08D6 08CF08D7 08CF08D8 08CF08D9 08CF08DA
+exends = list u8 08CF095F 08CF096E 08CF097D 08CF098C 08CF099B 08CF09AA 08CF09B9 08CF09C8 08CF09D7 08CF09E6
+
+1 | The Dark Space | 5 | c1e1 set
+2 | Throat | 2 | c1e2 set
+3 | Hair | 1 | c1e3 set
+4 | Heavy Impact | 5 | c2e1 set
+5 | Stare | 1 | c2e2 set
+6 | Wire | 3 | c2e3 set
+7 | Smile | 2 | c2e4 set
+8 | Meat | 4 | c2e5 set
+9 | Strange Annex | 10 | c3e1 set
+10 | Hole | 2 | c3e2 set
+11 | Eye | 1 | c3e3 set
+12 | Room | 5 | c3e4 set
+13 | Goo | 2 | c3e5 set
+14 | Slaughter of Sorrow | 10 | c4e1 set
+15 | Face | 1 | c4e2 set
+16 | Scissors | 4 | c4e3 set
+17 | Drain | 2 | c4e4 set
+18 | Pool | 2 | c4e5 set
+19 | Great Teacher Yui | 5 | c4e6 set
+20 | Requiem for a Dream | 25 | c5e1 set
+21 | Big Brother... | 10 | c5e2 set
+22 | Flame | 5 | c5e3 set
+23 | Fate | 5 | c5e4 set
+24 | Naomi? | 5 | c5e5 set
+25 | Backstab | 5 | c5e6 set
+26 | A New Sachiko | 5 | c5e7 set
+27 | Loop | 5 | c5e8 set
+28 | Corpse Meetup | 5 | all tags1
+29 | Corpse Reunion | 5 | all tags2
+30 | Corpse Meeting | 10 | all tags3
+31 | Corpse Gathering | 10 | all tags4
+32 | Corpse Party | 25 | all tags5
+33 | Bound Together For Eternity | 10 | all exends

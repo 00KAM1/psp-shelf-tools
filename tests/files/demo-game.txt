@@ -1,0 +1,39 @@
+# A made-up game file for the pictures in docs/images (tools/render_docs.py). Not a real game:
+# the addresses mean nothing. It shows the format; see docs/emblem-adding-games.md.
+
+game DEMO00101 Lantern Hollow
+
+level   = u32 08B00000
+gold    = u32 08B00004
+potions = s32 08B00008       # -1 when none are carried
+mode    = u16 08B0000C       # 0 story, 1 arena
+maxhp   = float 08B00010
+arena   = u16 08B00014       # 1 waiting, 2 fighting, 3 won
+hp      = float 08B00018
+
+story = mode == 0 and level 1..99 and maxhp 1..9999 and gold 0..9999999
+duel  = mode == 1 and arena 1..3
+ready = story or duel
+show level gold potions mode
+
+lanterns = list u8 bit 0 08B00100 08B00101 08B00102 08B00103 08B00104 08B00105 08B00106 08B00107
+boss1    = u32 08B00020
+boss2    = u32 08B00024
+boss3    = u32 08B00028
+ferry    = u32 08B0002C
+cloak    = u32 08B00030
+
+when story
+1 | First Light | 5 | count lanterns >= 1
+2 | The Miller's Ghost | 5 | boss1 set
+3 | Ferry Pass | 5 | ferry set
+4 | Keeper of the Marsh | 10 | boss2 set
+5 | Halfway Lit | 10 | count lanterns >= 4
+6 | Moth Cloak | 5 | cloak set
+7 | Seasoned Wanderer | 10 | level >= 20
+8 | Big Spender | 10 | gold drops 5000 within 3s and potions rises within 3s
+9 | Every Lantern in the Hollow | 25 | all lanterns
+10 | The Hollow King | 25 | boss3 set
+11 | Veteran of the Hollow | 25 | level >= 50
+when duel
+12 | Untouched | 50 | run from arena == 2 to arena == 3 unless hp drops grace 0.5s

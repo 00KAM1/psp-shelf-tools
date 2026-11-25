@@ -1,0 +1,35 @@
+# Emblem achievements for Wild Arms XF, ULUS10339. Hand-written from RetroAchievements' code notes (set 3944).
+# Not here (notes do not show it): Port Atraige, Poliasha, Hanigar, Richala Rose, Lefas Corner, Crestabelde, Santanica, Mercenary, Search Mission, The Princess Royal of the Kingdom of Elesius, I have Class, Chests - Windhalt Gatehouse, Chests - Creedmore Prison - Yard, Chests - Fallen Fowl Swamp, Chests - Guardian Shrine, Chests - Fort Molasar, Chests - Rainy Pass, Chests - Starlit Path, Chests - Dead Plateau, Chests - Deserters' Camp, Chests - Richala Rose, Chests - Wayward Path, Chests - Frightful Abyss, Chests - Rasalom Keep, Chests - Elensia, Chests - Streets of Elensia, Chests - River in Elensia, Chests - Twilight Valley, Chests - Circle Valley, Chests - Sundome Abbey Ruins, Chests - Sundome Abbey Dungeon, Chests - Sundome Abbey Exterior, Chests - Lonely Waterside, Chests - Crestabelde, Chests - The Frozen Lands, Chests - Guardian Temple Interior, Chests - Desert Ocean, Chests - Boot Hill, Chests - Port Atraige, Chests - Elensia, Chests - Schnell Ruins, Pathfinder, Challenge - Windhalt Gatehouse, Challenge - Guardian Shrine, Challenge - Hanigar [Zone 4], Challenge - Elensia, Challenge - Streets of Elensia, Challenge - Twilight Valley - Collateral Damage, Challenge - The Frozen Lands Part I - Ma Belle, Challenge - Secret Base Part I - Hook, Line, Sinker, Challenge - Secret Base 8 Part II - The Doctrine of Eternal, Challenge - Rasalom Keep, Challenge - Schnell Ruins 1, Challenge - Schnell Ruins 2, Challenge - Foothills of No Return, Challenge - Silver Peaks, This... is a Brain Sucker..., Chelle, Promise Hill, Path to Shrine, West Wind Guidepost, Rhino River, White Devil Plains, Desert Ocean, Heart of Fire.
+# Hand-checked. Act groups unlock when the title card of the next stage has been shown.
+
+game ULUS10339 Wild Arms XF
+
+ready = u8 09E3E5B0 == 1     # in game
+
+1 | Seed of the Dandelion | 5 | u8 09E3E684 bit 4 == 1
+2 | Act 1 [Stages 1 - 4] | 10 | u8 09E3E691 bit 5 == 1
+3 | Act 1 [Stages 5 - 8] | 10 | u8 09E3E692 bit 1 == 1
+4 | Act 1 [Stages 9 - 12] | 10 | u8 09E3E692 bit 5 == 1
+5 | Path of the Founding Knights | 10 | u8 09E3E693 bit 1 == 1
+6 | Act 2 [Stages 1 - 4] | 10 | u8 09E3E693 bit 5 == 1
+7 | Act 2 [Stages 5 - 8] | 10 | u8 09E3E694 bit 1 == 1
+8 | Act 2 [Stages 9 - 12] | 10 | u8 09E3E694 bit 5 == 1
+9 | A Tale of Two Princesses | 10 | u8 09E3E695 bit 1 == 1
+10 | Act 3 [Stages 1 - 4] | 10 | u8 09E3E695 bit 5 == 1
+11 | Act 3 [Stages 5 - 8] | 10 | u8 09E3E696 bit 1 == 1
+12 | Act 3 [Stages 9 - 12] | 10 | u8 09E3E696 bit 5 == 1
+13 | Echoes of Days Past | 10 | u8 09E3E696 bit 6 == 1
+14 | Act 4 [Stages 1 - 4] | 10 | u8 09E3E697 bit 2 == 1
+15 | Act 4 [Stages 5 - 8] | 10 | u8 09E3E697 bit 6 == 1
+16 | Searching for the Future | 10 | u8 09E3E698 bit 1 == 1
+17 | Better days to come! | 25 | u8 09E3E65F bit 4 == 1
+39 | Chests - Quarry of Desire | 2 | u8 09E3E574 bit 2 == 1
+42 | Chests - The Flatwoods | 2 | u8 09E3E57A bit 0 == 1
+56 | Chests - Path of the Unjust | 2 | u8 09E3E578 bit 6 == 1
+58 | Chests - The Quiet Sands | 2 | u8 09E3E579 bit 4 == 1
+64 | Item Scope | 3 | u8 09E3E57D bit 2 == 1
+79 | Asgard | 10 | u8 09E3E64C bit 4 == 1
+81 | Rupert | 10 | u8 09E3E654 bit 0 == 1
+83 | Disaster Maiden Katrina | 10 | u8 09E3E65F bit 6 == 1
+91 | King of Monsters - Ragu O Ragla | 25 | u8 09E3E6DF bit 2 == 1
+92 | Sheriff Star | 10 | u8 09E3E72D bit 5 == 1

@@ -1,0 +1,270 @@
+# Emblem achievements for Valkyrie Profile: Lenneth, ULUS10107. Hand-written from RetroAchievements' code notes (set 14169).
+# Not here (notes do not show it): Do You Think We Might Be Reborn?, Be Careful..., Purify Completion I, Purify Completion II, Purify Completion III, A Girl Needing Info About Armor? Interesting…, Magnificent Performance I, That Hair Color!?, Purify Completion IV, Spoils - Nethov Swamp, Purify Completion V, Purify Completion VI, Magnificent Performance II, Purify Completion VII, Purify Completion VIII, Purify Completion IX, Magnificent Performance III, Purify Completion X, Thanks, I Can Rest in Peace Now, Broken Wings I, Purify Completion XI, Broken Wings II, Purify Completion XII, Purify Completion XIII, Purify Completion XIV, Magnificent Performance IV, Purify Completion XV, Lord Brahms, An Umbrella Is Useless Here, Purify Completion XVI, Purify Completion XVII, Memories of the Past, Magnificent Performance V, Purify Completion XVIII, Lucian's Little Sister!?, Purify Completion XIX, Magnificent Performance VI, You Fool, the Dragon Orb Is Mine!, Purify Completion XX, Purify Completion XXI, Asgard Must Be in Grave Danger…, Purify Completion XXII, Purify Completion XXIII, Magnificent Performance VII, What!? How Did This Happen?, Purify Completion XXIV, Purify Completion XXV, Purify Completion XXVI, Secondary Ego, Hrist, Lord Odin..., Purify Completion XXVII, Why Do You Hate Me So?, Broken Wings III, Purify Completion XXVIII, You Fools..., It's Time To Execute Plan B, My Lord, Cave of Oblivion, Purify Completion XXIX, Purify Completion XXX, Let's Team Up Again, Lenneth, Purify Completion XXXI, Giant Lord, Plague of Hamsters, Dark Valkyrie, Loki Shade, Nibelung Valesti, First Love, Artolian Force, Flenceburg Graduates, Monferaigne Army, Yamato Style, Mercenaries, For Justice and Love, Aesir, Vampire and Vanir, Villainy, The Art of Creation, Boosting the Experience, Loot, Pillage, No Rod Zone, Elementalist, Resonant Voice.
+# Boss wins are counted whatever the difficulty or weapon.
+
+game ULUS10107 Valkyrie Profile: Lenneth
+
+loc     = u8 08E9DF84     # 1 field, 2 world map, 3 menu, 5 fight, 6 Sacred Phase
+level   = u8 09A7FB00     # Lenneth
+chapter = u8 09A85928
+ready   = loc 1..6 and level 1..99 and chapter <= 8
+# character bytes: 1 recruited, 2 in party, 3 transferred
+amr0 = list u8 bit 0 09A85F7C
+amr1 = list u8 bit 1 09A85F7C 09A85FA5
+amr2 = list u8 bit 2 09A85F7B 09A85F7C 09A85FA5
+amr3 = list u8 bit 3 09A85F7B 09A85F7C
+amr4 = list u8 bit 4 09A85F7B 09A85F7C 09A85FA4 09A85F68
+amr5 = list u8 bit 5 09A85F7B 09A85F7C 09A85F68
+amr6 = list u8 bit 6 09A85F7B
+amr7 = list u8 bit 7 09A85F7B
+fow0 = list u8 bit 0 09A85F7E
+fow1 = list u8 bit 1 09A85F7E 09A85F69
+fow2 = list u8 bit 2 09A85F7E 09A85F69
+fow3 = list u8 bit 3 09A85F7E
+fow4 = list u8 bit 4 09A85F7E
+fow5 = list u8 bit 5 09A85F7E
+fow7 = list u8 bit 7 09A85F7D
+sc0 = list u8 bit 0 09A85F7D 09A85F69
+sc1 = list u8 bit 1 09A85F7D
+sc2 = list u8 bit 2 09A85F7D
+sc3 = list u8 bit 3 09A85F7D
+sc4 = list u8 bit 4 09A85F7D
+sc5 = list u8 bit 5 09A85F7D
+sc6 = list u8 bit 6 09A85F7C 09A85F7D 09A85F68
+sc7 = list u8 bit 7 09A85F7C 09A85F68
+dragc0 = list u8 bit 0 09A85F84 09A85F85
+dragc1 = list u8 bit 1 09A85F83 09A85F84
+dragc2 = list u8 bit 2 09A85F83 09A85F84
+dragc3 = list u8 bit 3 09A85F83 09A85F84 09A85F69
+dragc4 = list u8 bit 4 09A85F83 09A85F84 09A85F69
+dragc5 = list u8 bit 5 09A85F83 09A85F84
+dragc6 = list u8 bit 6 09A85F83 09A85F84
+dragc7 = list u8 bit 7 09A85F83 09A85F84
+sa3 = list u8 bit 3 09A85F80
+sa4 = list u8 bit 4 09A85F80
+sa5 = list u8 bit 5 09A85F80 09A85F69
+sa6 = list u8 bit 6 09A85F80 09A85F69
+sa7 = list u8 bit 7 09A85F80 09A85F69
+oc0 = list u8 bit 0 09A85F82
+oc1 = list u8 bit 1 09A85F82
+oc2 = list u8 bit 2 09A85F82 09A85F6A
+oc3 = list u8 bit 3 09A85F82 09A85F6A
+oc4 = list u8 bit 4 09A85F82
+oc5 = list u8 bit 5 09A85F82
+oc6 = list u8 bit 6 09A85F81
+oc7 = list u8 bit 7 09A85F81
+gchq0 = list u8 bit 0 09A85F81 09A85FA5
+gchq1 = list u8 bit 1 09A85F81 09A85F6B
+gchq2 = list u8 bit 2 09A85F81
+gchq3 = list u8 bit 3 09A85F81
+gchq4 = list u8 bit 4 09A85F81
+gchq5 = list u8 bit 5 09A85F81 09A85FA4
+gchq6 = list u8 bit 6 09A85FA4
+gchq7 = list u8 bit 7 09A85FA4 09A85F6A
+cm0 = list u8 bit 0 09A85F8A
+cm5 = list u8 bit 5 09A85F6A
+cm6 = list u8 bit 6 09A85F89 09A85F6A
+cm7 = list u8 bit 7 09A85F89
+cot0 = list u8 bit 0 09A85F83
+cot2 = list u8 bit 2 09A85F6B
+cot3 = list u8 bit 3 09A85F6B
+cot6 = list u8 bit 6 09A85F82
+cot7 = list u8 bit 7 09A85F82
+dtx0 = list u8 bit 0 09A85F0A 09A85F0B
+dtx1 = list u8 bit 1 09A85F0A 09A85F0B
+dtx2 = list u8 bit 2 09A85F09 09A85F0A 09A85F0B
+dtx3 = list u8 bit 3 09A85F09 09A85F0A 09A85F0B
+dtx4 = list u8 bit 4 09A85F09 09A85F0A 09A85F0B 09A85F6B
+dtx5 = list u8 bit 5 09A85F09 09A85F0A 09A85F0B 09A85F6B
+dtx6 = list u8 bit 6 09A85F09 09A85F0A 09A85F6B
+dtx7 = list u8 bit 7 09A85F09 09A85F0A
+bdt0 = list u8 bit 0 09A85F89 09A85F6C
+bdt1 = list u8 bit 1 09A85F89
+bdt2 = list u8 bit 2 09A85F88 09A85F89
+bdt3 = list u8 bit 3 09A85F88 09A85F89
+bdt4 = list u8 bit 4 09A85F88 09A85F89
+bdt5 = list u8 bit 5 09A85F88 09A85F89
+bdt6 = list u8 bit 6 09A85F88
+bdt7 = list u8 bit 7 09A85F88 09A85F6B
+tlv0 = list u8 bit 0 09A85F8B 09A85F8C
+tlv1 = list u8 bit 1 09A85F8A 09A85F8B 09A85F8C
+tlv2 = list u8 bit 2 09A85F8A 09A85F8B 09A85F8C
+tlv3 = list u8 bit 3 09A85F8A 09A85F8B
+tlv4 = list u8 bit 4 09A85F8A 09A85F8B
+tlv5 = list u8 bit 5 09A85F8A 09A85F8B
+tlv6 = list u8 bit 6 09A85F8A 09A85F8B
+tlv7 = list u8 bit 7 09A85F8A 09A85F8B
+bc0 = list u8 bit 0 09A85F9D 09A85F9E
+bc1 = list u8 bit 1 09A85F9D 09A85F9E
+bc2 = list u8 bit 2 09A85F9D 09A85F9E
+bc3 = list u8 bit 3 09A85F9D 09A85F9E
+bc4 = list u8 bit 4 09A85F9C 09A85F9D
+bc5 = list u8 bit 5 09A85F9C 09A85F9D
+bc6 = list u8 bit 6 09A85F9C 09A85F9D
+bc7 = list u8 bit 7 09A85F9C 09A85F9D
+cof0 = list u8 bit 0 09A85F90
+cof1 = list u8 bit 1 09A85F90
+cof2 = list u8 bit 2 09A85F90
+cof3 = list u8 bit 3 09A85F8F 09A85F90
+cof4 = list u8 bit 4 09A85F8F 09A85F6C
+cof5 = list u8 bit 5 09A85F8F 09A85F6C
+cof6 = list u8 bit 6 09A85F8F 09A85F6C
+cof7 = list u8 bit 7 09A85F8F
+ar0 = list u8 bit 0 09A85F86 09A85F87 09A85F88
+ar1 = list u8 bit 1 09A85F85 09A85F86 09A85F87 09A85F88 09A85F6C
+ar2 = list u8 bit 2 09A85F85 09A85F86 09A85F87 09A85F6C
+ar3 = list u8 bit 3 09A85F85 09A85F86 09A85F87 09A85F6C
+ar4 = list u8 bit 4 09A85F85 09A85F86 09A85F87
+ar5 = list u8 bit 5 09A85F85 09A85F86 09A85F87
+ar6 = list u8 bit 6 09A85F85 09A85F86 09A85F87
+ar7 = list u8 bit 7 09A85F85 09A85F86 09A85F87
+ss0 = list u8 bit 0 09A85F8D
+ss1 = list u8 bit 1 09A85F8D 09A85F6D
+ss2 = list u8 bit 2 09A85F8D 09A85F6D
+ss3 = list u8 bit 3 09A85F8C 09A85F8D 09A85F6D
+ss4 = list u8 bit 4 09A85F8C 09A85F8D
+ss5 = list u8 bit 5 09A85F8C
+ss6 = list u8 bit 6 09A85F8C
+ss7 = list u8 bit 7 09A85F8C
+dipc0 = list u8 bit 0 09A85F8E 09A85F8F 09A85F6D
+dipc1 = list u8 bit 1 09A85F8E 09A85F8F
+dipc2 = list u8 bit 2 09A85F8E 09A85F8F
+dipc3 = list u8 bit 3 09A85F8E
+dipc4 = list u8 bit 4 09A85F8E
+dipc5 = list u8 bit 5 09A85F8D 09A85F8E
+dipc6 = list u8 bit 6 09A85F8D 09A85F8E
+dipc7 = list u8 bit 7 09A85F8D 09A85F8E 09A85F6C
+fos0 = list u8 bit 0 09A85F05 09A85F06
+fos1 = list u8 bit 1 09A85F05 09A85F06
+fos2 = list u8 bit 2 09A85F05 09A85F06
+fos3 = list u8 bit 3 09A85F05 09A85F06
+fos4 = list u8 bit 4 09A85F04 09A85F05 09A85F06 09A85F6D
+fos5 = list u8 bit 5 09A85F04 09A85F05 09A85F6D
+fos6 = list u8 bit 6 09A85F04 09A85F05 09A85F6D
+fos7 = list u8 bit 7 09A85F04 09A85F05
+toa0 = list u8 bit 0 09A85F9A 09A85F9B 09A85F9C 09A85F6E
+toa1 = list u8 bit 1 09A85F9A 09A85F9B 09A85F9C 09A85F6E
+toa2 = list u8 bit 2 09A85F9A 09A85F9B 09A85F9C 09A85F6E
+toa3 = list u8 bit 3 09A85F9A 09A85F9B 09A85F9C 09A85F6E
+toa4 = list u8 bit 4 09A85F9A 09A85F9B
+toa5 = list u8 bit 5 09A85F99 09A85F9A 09A85F9B
+toa6 = list u8 bit 6 09A85F99 09A85F9A 09A85F9B
+toa7 = list u8 bit 7 09A85F99 09A85F9A 09A85F9B 09A85F6D
+al1 = list u8 bit 1 09A85F92
+al2 = list u8 bit 2 09A85F92 09A85F6F
+al3 = list u8 bit 3 09A85F92 09A85F6F
+al4 = list u8 bit 4 09A85F92 09A85F6F
+al5 = list u8 bit 5 09A85F92
+al6 = list u8 bit 6 09A85F92
+cc0 = list u8 bit 0 09A85F91 09A85F92 09A85F6F
+cc1 = list u8 bit 1 09A85F91 09A85F6F
+cc2 = list u8 bit 2 09A85F91
+cc3 = list u8 bit 3 09A85F91
+cc4 = list u8 bit 4 09A85F90 09A85F91
+cc5 = list u8 bit 5 09A85F90 09A85F91
+cc6 = list u8 bit 6 09A85F90 09A85F91
+cc7 = list u8 bit 7 09A85F90 09A85F91 09A85F6E
+potd0 = list u8 bit 0 09A85F97 09A85F98 09A85F99
+potd1 = list u8 bit 1 09A85F97 09A85F98 09A85F99
+potd2 = list u8 bit 2 09A85F97 09A85F98 09A85F99
+potd3 = list u8 bit 3 09A85F97 09A85F98 09A85F99
+potd4 = list u8 bit 4 09A85F97 09A85F98 09A85F99 09A85F6E
+potd5 = list u8 bit 5 09A85F97 09A85F98 09A85F6E
+potd6 = list u8 bit 6 09A85F97 09A85F98 09A85F6E
+potd7 = list u8 bit 7 09A85F96 09A85F97 09A85F98
+jp0 = list u8 bit 0 09A85F07 09A85F08 09A85F09
+jp1 = list u8 bit 1 09A85F07 09A85F08 09A85F09
+jp2 = list u8 bit 2 09A85F07 09A85F08
+jp3 = list u8 bit 3 09A85F07 09A85F08
+jp4 = list u8 bit 4 09A85F07 09A85F08 09A85FA5
+jp5 = list u8 bit 5 09A85F06 09A85F07 09A85F08
+jp6 = list u8 bit 6 09A85F06 09A85F07 09A85F08
+jp7 = list u8 bit 7 09A85F06 09A85F07 09A85F08
+sg0 = list u8 bit 0 09A85F9E 09A85F9F 09A85FA0 09A85FA1 09A85FA2 09A85FA3 09A85FA4 09A85F70
+sg1 = list u8 bit 1 09A85F9F 09A85FA0 09A85FA1 09A85FA2 09A85FA3
+sg2 = list u8 bit 2 09A85F9F 09A85FA0 09A85FA1 09A85FA2 09A85FA3
+sg3 = list u8 bit 3 09A85F9F 09A85FA0 09A85FA1 09A85FA2 09A85FA3
+sg4 = list u8 bit 4 09A85F9F 09A85FA0 09A85FA1 09A85FA2 09A85FA3
+sg5 = list u8 bit 5 09A85F9E 09A85F9F 09A85FA0 09A85FA1 09A85FA2 09A85FA3
+sg6 = list u8 bit 6 09A85F9E 09A85F9F 09A85FA0 09A85FA1 09A85FA2 09A85FA3
+sg7 = list u8 bit 7 09A85F9E 09A85F9F 09A85FA0 09A85FA1 09A85FA2 09A85FA3
+
+3 | Angela | 5 | u8 09A7FE9D 1..3
+5 | Elder Vampire | 5 | u8 09A85F75 bit 0 == 1
+6 | Spoils - Artolian Mountain Ruins | 10 | all amr0 and all amr1 and all amr2 and all amr3 and all amr4 and all amr5 and all amr6 and all amr7
+7 | The Mercenary | 5 | u8 09A7FDB1 1..3 and u8 09A85F37 bit 2 == 1
+9 | Insane Yeti | 5 | u8 09A85F75 bit 2 == 1
+10 | Spoils - Forest of Woe | 5 | all fow0 and all fow1 and all fow2 and all fow3 and all fow4 and all fow5 and all fow7
+11 | This Flower!? Asaka... | 5 | u8 09A80075 1..3 and u8 09A85F40 bit 2 == 1
+13 | Drow Shaman | 5 | u8 09A85F75 bit 1 == 1
+14 | Spoils - Solde Catacombs | 5 | all sc0 and all sc1 and all sc2 and all sc3 and all sc4 and all sc5 and all sc6 and all sc7
+15 | Farewell, My Beloved | 5 | u8 09A80161 1..3 and u8 09A85F3A bit 7 == 1
+19 | I Will Not Run Away | 5 | u8 09A7FF89 1..3
+21 | Dragon Zombie | 5 | u8 09A85F75 bit 5 == 1
+23 | The Ritual of Ascension | 5 | u8 09A80425 1..3 and u8 09A85F40 bit 1 == 1
+24 | My Inner Demon | 5 | u8 09A806E9 1..3
+26 | Lesser Dragon | 5 | u8 09A85F75 bit 3 == 1
+27 | Spoils - Dragoncastle Caverns | 10 | all dragc0 and all dragc1 and all dragc2 and all dragc3 and all dragc4 and all dragc5 and all dragc6 and all dragc7
+29 | Harpy | 5 | u8 09A85F75 bit 4 == 1
+30 | Spoils - Salerno Academy | 5 | all sa3 and all sa4 and all sa5 and all sa6 and all sa7
+32 | Celia... | 5 | u8 09A8024D 1..3 and u8 09A85F3B bit 0 == 1
+34 | Greater Demon | 10 | u8 09A85F75 bit 6 == 1
+35 | Spoils - Oddrock Caves | 5 | all oc0 and all oc1 and all oc2 and all oc3 and all oc4 and all oc5 and all oc6 and all oc7
+36 | Conspiracy and Betrayal | 5 | u8 09A80339 1..3 and u8 09A85F3B bit 1 == 1
+37 | Noble Vampire | 5 | u8 09A85F76 bit 0 == 1
+39 | Spoils - Gorhla Cult HQ | 10 | all gchq0 and all gchq1 and all gchq2 and all gchq3 and all gchq4 and all gchq5 and all gchq6 and all gchq7
+41 | Chimera | 5 | u8 09A85F75 bit 7 == 1
+42 | Spoils - Clockwork Mansion | 5 | all cm0 and all cm5 and all cm6 and all cm7
+44 | Forgive Me, My Friends | 5 | u8 09A805FD 1..3
+46 | Kraken | 5 | u8 09A85F76 bit 1 == 1
+47 | Spoils - Cave of Thackus | 5 | all cot0 and all cot2 and all cot3 and all cot6 and all cot7
+49 | The Legend of the Cerulean Lapis | 5 | u8 09A80511 1..3 and u8 09A85F40 bit 3 == 1
+52 | Hel Servant | 5 | u8 09A85F76 bit 2 == 1
+53 | Spoils - Dark Tower of Xervah | 10 | all dtx0 and all dtx1 and all dtx2 and all dtx3 and all dtx4 and all dtx5 and all dtx6 and all dtx7
+56 | Wise Sorcerer | 10 | u8 09A85F76 bit 3 == 1
+57 | Spoils - Black Dream Tower | 10 | all bdt0 and all bdt1 and all bdt2 and all bdt3 and all bdt4 and all bdt5 and all bdt6 and all bdt7
+58 | I Love You… My Dear | 5 | u8 09A80A99 1..3
+61 | Spoils - Tower of Lezard Valeth | 10 | all tlv0 and all tlv1 and all tlv2 and all tlv3 and all tlv4 and all tlv5 and all tlv6 and all tlv7
+62 | We Shall Meet Again, My Sweet | 10 | u8 09A85F3A bit 5 == 1
+64 | It Might Be Fun To Haunt That Little Freak… | 5 | u8 09A80B85 1..3 and u8 09A85F3B bit 2 == 1
+65 | Valkyrie!? You Look Just Like… | 5 | u8 09A81021 1..3
+66 | Why Was I Brought to This Place? | 5 | u8 09A85F2C bit 4 == 1
+68 | Spoils - Brahms Castle | 10 | all bc0 and all bc1 and all bc2 and all bc3 and all bc4 and all bc5 and all bc6 and all bc7
+70 | Leticia | 5 | u8 09A80D5D 1..3
+73 | Fire Elemental | 10 | u8 09A85F76 bit 5 == 1
+74 | Spoils - Citadel of Flame | 10 | all cof0 and all cof1 and all cof2 and all cof3 and all cof4 and all cof5 and all cof6 and all cof7
+76 | Raver Lord | 10 | u8 09A85F76 bit 4 == 1
+77 | Spoils - Arkdain Ruins | 10 | all ar0 and all ar1 and all ar2 and all ar3 and all ar4 and all ar5 and all ar6 and all ar7
+80 | The Song of Death | 5 | u8 09A80C71 1..3
+81 | Irreversible Sacrifice | 5 | u8 09A809AD 1..3
+83 | Wraith | 10 | u8 09A85F76 bit 7 == 1
+84 | Spoils - Sunken Shrine | 10 | all ss0 and all ss1 and all ss2 and all ss3 and all ss4 and all ss5 and all ss6 and all ss7
+85 | A Light in the Darkness | 5 | u8 09A808C1 1..3
+87 | There's Not a Head for a Crown | 10 | u8 09A85F38 bit 1 == 1
+89 | Dallas, Walther and Gyne | 10 | u8 09A85F76 bit 6 == 1
+90 | Spoils - Dipan Castle | 10 | all dipc0 and all dipc1 and all dipc2 and all dipc3 and all dipc4 and all dipc5 and all dipc6 and all dipc7
+93 | Lady Valkyrie, Extinguish My Pain | 5 | u8 09A807D5 1..3
+94 | The Honorable Samurai | 5 | u8 09A80E49 1..3
+99 | Cockatrice | 5 | u8 09A85F77 bit 0 == 1
+100 | Spoils - Forest of Spirits | 10 | all fos0 and all fos1 and all fos2 and all fos3 and all fos4 and all fos5 and all fos6 and all fos7
+102 | Akhetamen | 10 | u8 09A85F77 bit 1 == 1
+103 | Spoils - Tombs of Amenti | 25 | all toa0 and all toa1 and all toa2 and all toa3 and all toa4 and all toa5 and all toa6 and all toa7
+107 | Dark Lord | 10 | u8 09A85F77 bit 4 == 1
+108 | Spoils - Arianrod Labyrinth | 10 | all al1 and all al2 and all al3 and all al4 and all al5 and all al6
+110 | Genevieve | 10 | u8 09A85F77 bit 3 == 1
+111 | Spoils - Celestial Castle | 10 | all cc0 and all cc1 and all cc2 and all cc3 and all cc4 and all cc5 and all cc6 and all cc7
+113 | Gandar | 5 | u8 09A80F35 1..3 and u8 09A85F77 bit 2 == 1
+114 | Spoils - Palace of the Dragon | 10 | all potd0 and all potd1 and all potd2 and all potd3 and all potd4 and all potd5 and all potd6 and all potd7
+117 | Bloodbane | 25 | u8 09A85F78 bit 4 == 1
+118 | Fenrir | 10 | u8 09A85F78 bit 3 == 1
+122 | I'll Burn You | 25 | u8 09A85F78 bit 5 == 1
+123 | Spoils - Jotunheim Palace | 10 | all jp0 and all jp1 and all jp2 and all jp3 and all jp4 and all jp5 and all jp6 and all jp7
+126 | What Is the Meaning of This? | 1 | u8 09A85F46 bit 6 == 1
+130 | We Are Finally Together, My Sweet | 5 | u8 09A8110D 1..3
+132 | The Lord Vampire | 5 | u8 09A811F9 1..3
+135 | Gabriel Celeste | 10 | u8 09A85F77 bit 6 == 1
+140 | Iseria Queen | 25 | u8 09A85F77 bit 7 == 1
+141 | Spoils - Seraphic Gate | 25 | all sg0 and all sg1 and all sg2 and all sg3 and all sg4 and all sg5 and all sg6 and all sg7
+142 | Battle Maiden | 5 | level 10..99
+143 | Goddess of Fate | 10 | level 25..99
+144 | Goddess of Creation | 25 | level 50..99

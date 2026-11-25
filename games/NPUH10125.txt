@@ -1,0 +1,23 @@
+# Emblem achievements for Final Fantasy III, NPUH10125. Hand-written from RetroAchievements' code notes (set 3216).
+# Not here (notes do not show it): Shell Shocked, Tonight We Dine on Turtle Soup, Altar Cave's Treasure Trove, Ur's Treasure Trove, Kazus' Treasure Trove, Castle Sasune's Treasure Trove, Sealed Cave's Treasure Trove, No Wishes Required, The Wind Crystal, A Canoe For You!, Mythril Mines' Treasure Trove, Doctor's Orders, Canaan's Treasure Trove, Dragon's Peak Treasure Trove, The Doctor Needs a Doctor!, Tozus' Treasure Trove, Viking Cove's Treasure Trove, Nepto Temple's Treasure Trove, You Dirty Thieving Rat!, The Eye of the Dragon, Tokkul's Treasure Trove, Around The World in 80 Minutes, Ancients' Treasure Trove, Castle Argus' Treasure Trove, Gulgan Gulch's Treasure Trove, Tower of Owen's Treasure Trove, You're Hiss-tory!, A Furnace for the Fallen, Gysahl's Treasure Trove, Explosive Excavation, Subterranean Treasure Trove, Not a Black and White Fight, A Gutsco Manoeuvre, Molten Cave's Treasure Trove, Low Level Lizard Lasher, The Fire Crystal, Dwarves' Treasure Trove, Small Solution for a Small Problem, Castle Hein's Treasure Trove, Fury of the Fire Crystal, A Gusty Gift, A Full Heal Freebie!, The Perpetual Engine, To the Skies!, Shipwrecked Treasure Trove, Cave of Tides' Treasure Trove, Krak-down, The Water Crystal, Amur's Treasure Trove, Amur's Trash Trove, Goldor Manor's Treasure Trove, Wrath of the Water Crystal, The Key to Freedom, Duster's Treasure Trove, Replito's Treasure Trove, Saronia's Treasure Trove, Grounded Garuda, Castle Saronia's Treasure Trove, Speedy Ship, Underwater Team in a Submarine, Catacombs' Treasure Trove, Going Gung-ho on Gungnir, Horse Rider, Faster than Lightning, Sunken Treasure Trove, Temple of Time's Treasure Trove, The Old Witch, Ancient Ruins' Treasure Trove, Invincible to the End, Sara's Keepsake, The Blackest Knight, Guardian of the Katana, Falgabard's Treasure Trove, Metal Detector, Cave of Shadows' Treasure Trove, Brains Vs. Brawn, Quake and Bake, Classic Confrontation, The Earth Crystal, Lake Dohr's Treasure Trove, Tidal Wave Terror, Fish out of Water, Bahamut's Treasure Trove, How to Flare Your Dragon, Megaflare Mayhem, Doga's Treasure Trove, The Master Magician, Dream No More, Ancient's Treasure Trove, Eureka's Treasure Trove, Lunar Eclipsed, Guardian of the Masamune, Sword out of the Stone, Ragna-rocked, Six Heads, All Dead, The Weapon to End All Weapons, Mark of the Freelancer, Mark of the Onion Knight, Mark of the Warrior, Mark of the Monk, Mark of the White Mage, Mark of the Black Mage, Mark of the Red Mage, Mark of the Ranger, Mark of the Knight, Mark of the Thief, Mark of the Scholar, Mark of the Geomancer, Mark of the Dragoon, Mark of the Viking, Mark of the Dark Knight, Mark of the Evoker, Mark of the Bard, Mark of the Black Belt, Mark of the Devout, Mark of the Magus, Mark of the Summoner, Mark of the Sage, Mark of the Ninja, Crystal Tower's Treasure Trove, World of Darkness' Treasure Trove, Sit! Bad Boy!, Four Heads Are Better Than Two, The Mother of All Monsters, He Didn't See That Coming!, The Devourer of Light, Eyes Unclouded By Hate, Treasure Trove Titan, Bestiary Buster, Monster Masher, Creature Crusher, Enemy Eraser, Sent to the Scrapheap, Helmet of Latent Power, Armor of Latent Power, Gauntlets of Latent Power, Sword of Latent Power, Shield of Latent Power .
+# Hand-checked. The gate uses the first character's HP and strength. "Level 99 as a job" needs a second step the notes do not show.
+
+game NPUH10125 Final Fantasy III
+
+maxhp = u16 089F8510      # first character
+ready = maxhp 1..9999 and u8 089F8531 1..99
+
+5 | Two Is Company... | 1 | u8 08A4CCF0 set
+7 | Three's a Crowd... | 1 | u8 08A4CCF6 set
+9 | And Four's a Party! | 1 | u8 08A4CCFA set
+10 | Princess Protection Program | 2 | u8 08A4CCFE set
+15 | The Airship Operator | 1 | u8 08A4CD0E set
+20 | A Close Shave | 4 | u8 08A4CD26 set
+31 | Make Them Croak | 2 | u8 08A4CD56 set
+53 | The Sickly Priestess | 2 | u8 08A4CDB4 set
+59 | Brand New Kicks | 5 | u8 08A4CDDD set
+66 | The Prince of Saronia | 3 | u8 08A4CDF9 set
+70 | Old Doga, New Tricks | 2 | u8 08A4CE11 set
+78 | Loot the Lute | 5 | u8 08A4CE1A set
+133 | Mad Mortality Maniac | 5 | u8 08A4CE65 set
+146 | Big Hunk of Junk | 25 | u8 08A4CFEF set

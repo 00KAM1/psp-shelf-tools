@@ -1,0 +1,72 @@
+# Emblem achievements for Corpse Party: Sweet Sachiko's Hysteric Birthday Bash, ULJM06114. Hand-written from RetroAchievements' code notes (set 18368).
+# Not here (notes do not show it): Recollections.
+# Addresses are RA's; a fan-translated disc may differ, in which case nothing unlocks.
+
+game ULJM06114 Corpse Party: Sweet Sachiko's Hysteric Birthday Bash
+
+time  = u32 0899F33C      # play time in frames
+ready = time 60..0x10000000
+e1 = u8 0899F496 bit 6
+e2 = u8 0899F497 bit 5
+e3 = u8 0899F497 bit 4
+e4 = u8 0899F497 bit 3
+e5 = u8 0899F496 bit 5
+e6 = u8 0899F497 bit 2
+e7 = u8 0899F497 bit 1
+e8 = u8 0899F496 bit 2
+e9 = u8 0899F498 bit 3
+e10 = u8 0899F498 bit 2
+e11 = u8 0899F498 bit 1
+e12 = u8 0899F498 bit 0
+e13 = u8 0899F496 bit 3
+e14 = u8 0899F498 bit 6
+e15 = u8 0899F498 bit 5
+e16 = u8 0899F498 bit 4
+e17 = u8 0899F496 bit 4
+e18 = u8 0899F497 bit 0
+e19 = u8 0899F498 bit 7
+e20 = u8 0899F496 bit 1
+e21 = u8 0899F499 bit 7
+e22 = u8 0899F496 bit 0
+e23 = u8 0899F499 bit 6
+e24 = u8 0899F499 bit 5
+e25 = u8 0899F499 bit 4
+e26 = u8 0899F499 bit 3
+e27 = u8 0899F497 bit 7
+e28 = u8 0899F497 bit 6
+e29 = u8 0899F499 bit 2
+evp = u8 0899F4A4 bit 7
+evp1 = u8 0899F4A8
+evp2 = u8 0899F4A9
+evp4 = u8 0899F4AB
+
+1 | Shame Upon the Battlefield | 2 | e1 == 1
+2 | The Dawn of the Bread | 1 | e2 == 1
+3 | I Regret Nothing | 1 | e3 == 1
+4 | What Would Mayu Think? | 1 | e4 == 1
+5 | Stranger in the Spotlight | 2 | e5 == 1
+6 | Choose Your Fate | 1 | e6 == 1
+7 | Old Habits Die Hard | 1 | e7 == 1
+8 | We All Love You, Kibiki | 3 | e8 == 1
+9 | Verbal Abuse Forges Character | 1 | e9 == 1
+10 | A Bloody Desk | 1 | e10 == 1
+11 | The Darkening | 1 | e11 == 1
+12 | My New Daddy | 1 | e12 == 1
+13 | Obligatory Harem Episode | 4 | e13 == 1
+14 | Unexpected Election | 1 | e14 == 1
+15 | What Were You Expecting? | 1 | e15 == 1
+16 | Undecisions... | 1 | e16 == 1
+17 | The King and We | 4 | e17 == 1
+18 | Traditional Fundoshi Underwear | 1 | e18 == 1
+19 | The Ticklening | 1 | e19 == 1
+20 | The Ironic Chef | 4 | e20 == 1
+21 | Eat the Slop | 1 | e21 == 1
+22 | Penitent Normies Explode! | 5 | e22 == 1
+23 | Forever My Onii-Chan | 1 | e23 == 1
+24 | A Powerful Book | 1 | e24 == 1
+25 | Rear Ended | 1 | e25 == 1
+26 | Forces Beyond Comprehesion | 2 | e26 == 1
+27 | Farewel to You, This Day | 10 | e27 == 1
+28 | Samsara Down the River | 5 | e28 == 1
+29 | Rituals | 5 | e29 == 1
+31 | Voices From the Other Side | 10 | evp == 1 and evp1 == 0xFF and evp2 == 0xFF and evp4 >= 0xF8

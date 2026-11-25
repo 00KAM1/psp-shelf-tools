@@ -1,0 +1,71 @@
+# Emblem achievements for Dissidia 012: Duodecim Final Fantasy, ULES01505. Hand-written from RetroAchievements' code notes (set 3515).
+# Not here (notes do not show it): IMPORT WARNING!, Dissidia Duodecim Prologus Final Fantasy, The Confident One, Scenario 012: Path to Sanctuary, Scenario 012: Path to Sanctuary - 100%, Scenario 012: A New Threat, Scenario 012: A New Threat - 100%, Scenario 012: Stern Eyes, Scenario 012: Stern Eyes - 100%, Scenario 012: Clues, Scenario 012: Clues - 100%, Scenario 012: Where Memories Wait, Scenario 012: Where Memories Wait - 100%, Scenario 012: Decision, Scenario 012: Decision - 100%, Scenario 012: Indiscernible Truth, Scenario 012: Indiscernible Truth - 100%, Scenario 012: Ally, Scenario 012: Ally - 100%, Scenario 012: An Undocumented Battle, Scenario 012: An Undocumented Battle - 100%, Scenario 013: A Final Hope, Scenario 013: A Final Hope - 100%, Scenario 013: Beyond Doubt, Scenario 013: Beyond Doubt - 100%, Scenario 013: Wisdom or Courage?, Scenario 013: Wisdom or Courage? - 100%, Scenario 013: The Chosen Path, Scenario 013: The Chosen Path - 100%, Scenario 013: Guidance of the Moon, Scenario 013: Guidance of the Moon - 100%, Scenario 013: Entrusted Power, Scenario 013: Entrusted Power - 100%, Scenario 013: Seeds of Hope, Scenario 013: Seeds of Hope - 100%, Scenario 013: Resolve for Seclusion, Scenario 013: Resolve for Seclusion - 100%, Scenario 013: Trust, Scenario 013: Trust - 100%, Scenario 013: A Treasure Hunt, Scenario 013: A Treasure Hunt - 100%, Scenario 013: Champions of Her Will, Scenario 013: Champions of Her Will - 100%, Scenario 013: Conclusion of the Cycle, Scenario 013: Conclusion of the Cycle - 100%, An Untold Tale, Scenario 000: Confessions of the Creator, Scenario 000: Confessions of the Creator - Gateways, Historian, Chain Master, Legendary Gambler, Arcade Mode Enhanced, Arcade Mode: Standard - Lv 100 Hard, Arcade Mode: Time Attack - Iron Course, Arcade Mode: Time Attack - Mythril Course, Arcade Mode: Time Attack - Crystal Course, Labyrinth: Cloister of Beginnings, Labyrinth: Cloister of Encounters, Labyrinth: Cloister of Jobs, Labyrinth: Cloister of Adventure, Labyrinth: Cloister of Affection, Labyrinth: Cloister of Agony, Labyrinth: Cloister of Greed, Labyrinth: Cloister of Inquiry, Labyrinth: Pinhole Galleria, Labyrinth: Cloister of Mirages, Labyrinth: Cloister of Hidden Keys, Labyrinth: Cloister of Demise, Labyrinth: Cloister of Heroes, Labyrinth: Cloister of Rivals 1, Labyrinth: Cloister of Rivals 2, Labyrinth: Cloister of Rivals 3, Labyrinth: Galleria of Speed 1, Labyrinth: Galleria of Speed 2, Labyrinth: Galleria of Speed 3, Labyrinth: Follow the Scarmiglione, Labyrinth: I Can See Further, Labyrinth: Medalist, The Core Team, The Elvaan, The Weapons Collector, The Bestial Berseker, The God of Discord, Warrior of Light - Perfect EX Burst Finish, Warrior of Light - Barbarian's Sword, Garland - Perfect EX Burst Finish, Garland - Gigant Axe, Firion - Perfect EX Burst Finish, Firion - Wild Rose, The Emperor - Perfect EX Burst Finish, The Emperor - Mateus's Malice, Onion Knight - Perfect EX Burst Finish, Onion Knight - Onion Sword, Cloud of Darkness - Perfect EX Burst Finish, Cloud of Darkness - Everdark, Cecil Harvey - Perfect EX Burst Finish, Cecil Harvey - Lightbringer, Cecil Harvey - Cimmerian Edge, Golbez - Perfect EX Burst Finish, Golbez - Zeromus Shard, Bartz Klauser - Perfect EX Burst Finish, Bartz Klauser - Dorgann's Blade, Exdeath - Perfect EX Burst Finish, Exdeath - Enuo's Scourge, Terra Branford - Perfect EX Burst Finish, Terra Branford - Maduin's Horn, Kefka Palazzo - Perfect EX Burst Finish, Kefka Palazzo - Dancing Mad, Cloud Strife - Perfect EX Burst Finish, Cloud Strife - Fenrir, Sephiroth - Perfect EX Burst Finish, Sephiroth - One-Winged Angel, Squall Leonhart - Perfect EX Burst Finish, Squall Leonhart - Lionheart, Ultimecia - Perfect EX Burst Finish, Ultimecia - Shooting Star, Zidane Tribal - Perfect EX Burst Finish, Zidane Tribal - Ozma's Splinter, Kuja - Perfect EX Burst Finish, Kuja - Terra's Legacy, Tidus - Perfect EX Burst Finish, Tidus - World Champion, Jecht - Perfect EX Burst Finish, Jecht - Sin's Fang, Shantotto - Perfect EX Burst Finish, Shantotto - Claustrum, Gabranth - Perfect EX Burst Finish, Gabranth - Chaos Blade, Kain - Perfect EX Burst Finish, Kain - Highwind, Gilgamesh - Perfect EX Burst Finish, Gilgamesh - Yoshiyuki, Tifa Lockhart - Perfect EX Burst Finish, Tifa Lockhart - Seventh Heaven, Laguna Loire - Perfect EX Burst Finish, Laguna Loire - Ragnarok Pistol, Yuna - Perfect EX Burst Finish, Yuna - Spira's Hope, Prishe - Perfect EX Burst Finish, Prishe - Glanzfaust, Vaan - Perfect EX Burst Finish, Vaan - Zodiac Blade, Lightning - Perfect EX Burst Finish, Lightning - Zantetsuken, Lightning - Odin Blade, Feral Chaos - Perfect EX Burst Finish, Feral Chaos - Endless Oblivion, Too Many Slots, The Ultimate Fighter, Battlegen Collector, Odyssey, BGM Listener, Archivist, A Pile of Summonstones, Master of Disguise, The Great Ship Invincible, I Love Chocobos, World Fighter, Breaking the Limit, That Was Close..., A Really Quick Battle, David vs Goliath, Untouchable, Like Old Times.
+# Level 100 achievements only. Addresses are RA's; if the European disc differs nothing unlocks.
+
+game ULES01505 Dissidia 012: Duodecim Final Fantasy
+
+screen = u8 08B94378
+lv84 = u8 08BAFC91
+lv87 = u8 08BB0409
+lv90 = u8 08BB0B81
+lv93 = u8 08BB12F9
+lv96 = u8 08BB1A71
+lv99 = u8 08BB21E9
+lv102 = u8 08BB2961
+lv106 = u8 08BB30D9
+lv109 = u8 08BB3851
+lv112 = u8 08BB3FC9
+lv115 = u8 08BB4741
+lv118 = u8 08BB4EB9
+lv121 = u8 08BB5631
+lv124 = u8 08BB5DA9
+lv127 = u8 08BB6521
+lv130 = u8 08BB6C99
+lv133 = u8 08BB7411
+lv136 = u8 08BB7B89
+lv139 = u8 08BB8301
+lv142 = u8 08BB8A79
+lv145 = u8 08BB91F1
+lv148 = u8 08BB9969
+lv151 = u8 08BBA0E1
+lv154 = u8 08BBA859
+lv157 = u8 08BBAFD1
+lv160 = u8 08BBB749
+lv163 = u8 08BBBEC1
+lv166 = u8 08BBC639
+lv169 = u8 08BBCDB1
+lv172 = u8 08BBD529
+lv176 = u8 08BBDCA1
+ready = screen 1..0x7F and lv84 1..100
+
+84 | Warrior of Light - Level 100 | 10 | lv84 == 100
+87 | Garland - Level 100 | 10 | lv87 == 100
+90 | Firion - Level 100 | 10 | lv90 == 100
+93 | The Emperor - Level 100 | 10 | lv93 == 100
+96 | Onion Knight - Level 100 | 10 | lv96 == 100
+99 | Cloud of Darkness - Level 100 | 10 | lv99 == 100
+102 | Cecil Harvey - Level 100 | 10 | lv102 == 100
+106 | Golbez - Level 100 | 10 | lv106 == 100
+109 | Bartz Klauser - Level 100 | 10 | lv109 == 100
+112 | Exdeath - Level 100 | 10 | lv112 == 100
+115 | Terra Branford - Level 100 | 10 | lv115 == 100
+118 | Kefka Palazzo - Level 100 | 10 | lv118 == 100
+121 | Cloud Strife - Level 100 | 10 | lv121 == 100
+124 | Sephiroth - Level 100 | 10 | lv124 == 100
+127 | Squall Leonhart - Level 100 | 10 | lv127 == 100
+130 | Ultimecia - Level 100 | 10 | lv130 == 100
+133 | Zidane Tribal - Level 100 | 10 | lv133 == 100
+136 | Kuja - Level 100 | 10 | lv136 == 100
+139 | Tidus - Level 100 | 10 | lv139 == 100
+142 | Jecht - Level 100 | 10 | lv142 == 100
+145 | Shantotto - Level 100 | 10 | lv145 == 100
+148 | Gabranth - Level 100 | 10 | lv148 == 100
+151 | Kain - Level 100 | 10 | lv151 == 100
+154 | Gilgamesh - Level 100 | 10 | lv154 == 100
+157 | Tifa Lockhart - Level 100 | 10 | lv157 == 100
+160 | Laguna Loire - Level 100 | 10 | lv160 == 100
+163 | Yuna - Level 100 | 10 | lv163 == 100
+166 | Prishe - Level 100 | 10 | lv166 == 100
+169 | Vaan - Level 100 | 10 | lv169 == 100
+172 | Lightning - Level 100 | 10 | lv172 == 100
+176 | Feral Chaos - Level 100 | 10 | lv176 == 100

@@ -1,0 +1,269 @@
+# Emblem achievements for .hack//Link, ULJS00266. Hand-written from RetroAchievements' code notes (set 3470).
+# Not here (notes do not show it): Teamwork.
+
+game ULJS00266 .hack//Link
+
+level = u16 08ED0D70      # Tokio's level
+money = u32 08ED1E60
+ready = level 1..999 and money < 100000000
+c1 = u16 08ED2130
+c2 = u16 08ED2132
+c3 = u16 08ED2146
+c4 = u16 08ED2156
+c5 = u16 08ED216A
+c6 = u16 08ED216C
+c7 = u16 08ED2188
+c8 = u16 08ED218A
+c9 = u16 08ED218C
+c10 = u16 08ED218E
+c11 = u16 08ED2190
+c12 = u16 08ED2192
+c13 = u16 08ED2194
+c14 = u16 08ED2196
+c15 = u16 08ED2198
+c16 = u16 08ED2256
+c17 = u16 08ED2258
+c18 = u16 08ED225A
+c19 = u16 08ED2276
+c20 = u16 08ED2278
+c21 = u16 08ED227A
+c22 = u16 08ED2134
+c23 = u16 08ED2136
+c24 = u16 08ED2138
+c25 = u16 08ED213A
+c26 = u16 08ED213C
+c27 = u16 08ED213E
+c28 = u16 08ED2140
+c29 = u16 08ED2142
+c30 = u16 08ED2144
+c31 = u16 08ED2204
+c32 = u16 08ED2206
+c33 = u16 08ED21FC
+c34 = u16 08ED21FE
+c35 = u16 08ED2200
+c36 = u16 08ED2202
+c37 = u16 08ED220A
+c38 = u16 08ED220C
+c39 = u16 08ED220E
+c40 = u16 08ED2210
+c41 = u16 08ED2212
+c42 = u16 08ED2148
+c43 = u16 08ED214A
+c44 = u16 08ED214C
+c45 = u16 08ED214E
+c46 = u16 08ED2150
+c47 = u16 08ED2152
+c48 = u16 08ED2154
+c49 = u16 08ED2222
+c50 = u16 08ED2224
+c51 = u16 08ED221E
+c52 = u16 08ED2226
+c53 = u16 08ED2214
+c54 = u16 08ED2216
+c55 = u16 08ED2218
+c56 = u16 08ED221A
+c57 = u16 08ED221C
+c58 = u16 08ED222A
+c59 = u16 08ED222C
+c60 = u16 08ED222E
+c61 = u16 08ED2158
+c62 = u16 08ED215A
+c63 = u16 08ED215C
+c64 = u16 08ED215E
+c65 = u16 08ED2160
+c66 = u16 08ED2162
+c67 = u16 08ED2164
+c68 = u16 08ED2166
+c69 = u16 08ED2168
+c70 = u16 08ED2230
+c71 = u16 08ED2232
+c72 = u16 08ED2240
+c73 = u16 08ED2234
+c74 = u16 08ED21F8
+c75 = u16 08ED223E
+c76 = u16 08ED223A
+c77 = u16 08ED223C
+c78 = u16 08ED2236
+c79 = u16 08ED2238
+c80 = u16 08ED216E
+c81 = u16 08ED2170
+c82 = u16 08ED2172
+c83 = u16 08ED2174
+c84 = u16 08ED2176
+c85 = u16 08ED2178
+c86 = u16 08ED217A
+c87 = u16 08ED217C
+c88 = u16 08ED217E
+c89 = u16 08ED2180
+c90 = u16 08ED2182
+c91 = u16 08ED2184
+c92 = u16 08ED2186
+c93 = u16 08ED2242
+c94 = u16 08ED2244
+c95 = u16 08ED224C
+c96 = u16 08ED224A
+c97 = u16 08ED2246
+c98 = u16 08ED2248
+c99 = u16 08ED21FA
+c100 = u16 08ED2250
+c101 = u16 08ED2252
+c102 = u16 08ED2228
+c103 = u16 08ED2254
+c104 = u16 08ED225C
+c105 = u16 08ED227C
+c106 = u16 08ED227E
+c107 = u16 08ED2280
+c108 = u16 08ED225E
+c109 = u16 08ED2260
+c110 = u16 08ED2262
+c111 = u16 08ED2264
+c112 = u16 08ED2274
+c113 = u16 08ED2268
+c114 = u16 08ED226A
+c115 = u16 08ED226C
+c116 = u16 08ED226E
+c117 = u16 08ED2270
+c118 = u16 08ED2272
+c119 = u16 08ED2266
+c120 = u16 08ED2208
+chests = u16 08EE3C36
+finish = u16 08EE3C24
+slides = u16 08EE3C2E
+aranks = u16 08EE3C32
+sranks = u16 08EE3C34
+male = u16 08EE3C38
+female = u16 08EE3C3A
+saved = u16 08EE3C28
+pks = u16 08EE3C26
+
+1 | You Must Be the Hero! | 1 | c1 == 0x63
+2 | Sealed Away | 1 | c2 == 0x63
+3 | Knuckle Sandwich | 5 | c3 == 0x63
+4 | Welcome Intruder | 5 | c4 == 0x63
+5 | Evolution | 10 | c5 == 0x63
+6 | Cheat-Type | 25 | c6 == 0x63
+7 | Hidden Shadows | 5 | c7 == 0x63
+8 | Bad Habbits | 5 | c8 == 0x63
+9 | Broken Off | 5 | c9 == 0x63
+10 | Hidden Switch | 5 | c10 == 0x63
+11 | Discount Ticket | 1 | c11 == 0x63
+12 | No Ticket, No Boarding | 25 | c12 == 0x63
+13 | Digitized | 1 | c13 == 0x63
+14 | To Save You | 25 | c14 == 0x63
+15 | Memories | 25 | c15 == 0x63
+16 | Saving Butts | 5 | c16 == 0x63
+17 | Dead End | 5 | c17 == 0x63
+18 | The Fountain | 5 | c18 == 0x63
+19 | Stone Statue | 1 | c19 == 0x63
+20 | Twilight | 1 | c20 == 0x63
+21 | Rebirth | 1 | c21 == 0x63
+22 | Where's Tsukasa? | 5 | c22 == 0x63
+23 | Wimpy-Looking Boy | 5 | c23 == 0x63
+24 | No Memories | 5 | c24 == 0x63
+25 | Player Killer | 5 | c25 == 0x63
+26 | Punish You | 5 | c26 == 0x63
+27 | Trapped | 5 | c27 == 0x63
+28 | Tsukasa's Safe | 5 | c28 == 0x63
+29 | Mother's Minions | 5 | c29 == 0x63
+30 | Unforgiveable | 5 | c30 == 0x63
+31 | Disbanded | 10 | c31 == 0x63
+32 | Vigilante | 10 | c32 == 0x63
+33 | Final Blow | 5 | c33 == 0x63
+34 | Average Player | 5 | c34 == 0x63
+35 | A Failure | 5 | c35 == 0x63
+36 | Destroyed | 5 | c36 == 0x63
+37 | Illegal Acitvities | 5 | c37 == 0x63
+38 | Run Away! | 5 | c38 == 0x63
+39 | Scattered | 5 | c39 == 0x63
+40 | Cold as Ice | 5 | c40 == 0x63
+41 | Thank...You... | 5 | c41 == 0x63
+42 | Hero Kite | 5 | c42 == 0x63
+43 | Split up | 5 | c43 == 0x63
+44 | Restore | 5 | c44 == 0x63
+45 | Administrator | 5 | c45 == 0x63
+46 | Erased | 5 | c46 == 0x63
+47 | Distraction | 10 | c47 == 0x63
+48 | Rock Solid | 10 | c48 == 0x63
+49 | 100 Puns | 5 | c49 == 0x63
+50 | Harakiri | 5 | c50 == 0x63
+51 | Consciousness | 5 | c51 == 0x63
+52 | Activities | 5 | c52 == 0x63
+53 | The Kiss | 5 | c53 == 0x63
+54 | Treasure Hunt | 5 | c54 == 0x63
+55 | The Chase | 5 | c55 == 0x63
+56 | Cobalt Knights | 5 | c56 == 0x63
+57 | Management Department | 5 | c57 == 0x63
+58 | Ghost Cat | 5 | c58 == 0x63
+59 | Handsome Looks | 5 | c59 == 0x63
+60 | Troublesome Duo | 5 | c60 == 0x63
+61 | Twilight Brigade | 5 | c61 == 0x63
+62 | Opportunities | 5 | c62 == 0x63
+63 | Triangular Scratches | 1 | c63 == 0x63
+64 | Stone Monument | 5 | c64 == 0x63
+65 | The Bird | 10 | c65 == 0x63
+66 | Subordinate | 5 | c66 == 0x63
+67 | Homeland | 5 | c67 == 0x63
+68 | Determination | 10 | c68 == 0x63
+69 | Breakup | 1 | c69 == 0x63
+70 | Tanuki | 5 | c70 == 0x63
+71 | Familiar Faces | 5 | c71 == 0x63
+72 | Terror of Death | 5 | c72 == 0x63
+73 | Big Brother | 5 | c73 == 0x63
+74 | Flirt | 25 | c74 == 0x63
+75 | Informant | 5 | c75 == 0x63
+76 | Failed Operation | 5 | c76 == 0x63
+77 | Abort | 5 | c77 == 0x63
+78 | Dangerous | 5 | c78 == 0x63
+79 | Assistant | 5 | c79 == 0x63
+80 | Doubleware | 5 | c80 == 0x63
+81 | More Power | 1 | c81 == 0x63
+82 | Understanding | 5 | c82 == 0x63
+83 | Holo-Vision | 1 | c83 == 0x63
+84 | The Watcher | 5 | c84 == 0x63
+85 | Phenomenon | 5 | c85 == 0x63
+86 | Princess | 5 | c86 == 0x63
+87 | Pained | 1 | c87 == 0x63
+88 | Sucks | 5 | c88 == 0x63
+89 | Acorn Burger | 1 | c89 == 0x63
+90 | Convinction | 5 | c90 == 0x63
+91 | Relationships | 5 | c91 == 0x63
+92 | Regrettable | 1 | c92 == 0x63
+93 | Live Match | 5 | c93 == 0x63
+94 | Deep Despair | 5 | c94 == 0x63
+95 | Fifth Divison | 5 | c95 == 0x63
+96 | On the Pedestal | 5 | c96 == 0x63
+97 | Third Division | 5 | c97 == 0x63
+98 | Funny Story | 5 | c98 == 0x63
+99 | Stiff Shoulder | 10 | c99 == 0x63
+100 | Ultimate AI | 10 | c100 == 0x63
+101 | Battlefield | 5 | c101 == 0x63
+102 | Anti-Existence | 5 | c102 == 0x63
+103 | Data Anomaly | 5 | c103 == 0x63
+104 | Foggy Day | 5 | c104 == 0x63
+105 | Error | 0 | c105 == 0x63
+106 | Special Guest | 2 | c106 == 0x63
+107 | Trailer | 2 | c107 == 0x63
+108 | Solo Play | 10 | c108 == 0x63
+109 | Truly Unfortunate | 10 | c109 == 0x63
+110 | Introduction | 10 | c110 == 0x63
+111 | Adventure Time | 10 | c111 == 0x63
+112 | Silent Stare | 10 | c112 == 0x63
+113 | Worthy Opponent | 10 | c113 == 0x63
+114 | Mediator | 10 | c114 == 0x63
+115 | Sleipnir | 10 | c115 == 0x63
+116 | Softest Feathers | 10 | c116 == 0x63
+117 | Peace Maintained | 10 | c117 == 0x63
+118 | Consultation | 10 | c118 == 0x63
+119 | Honeysuckle Seed | 10 | c119 == 0x63
+120 | Unison | 1 | c120 == 0x63
+121 | Looter | 5 | chests 150..60000
+122 | Hoarder | 10 | chests 300..60000
+124 | Finish 'Em | 5 | finish 500..60000
+125 | Brutality | 10 | finish 1000..60000
+126 | No Swords | 10 | slides 100..60000
+127 | Expert Clearer | 10 | aranks 50..60000
+128 | Master Clearer | 25 | sranks 25..60000
+129 | Conversing with Dudes | 5 | male 80..60000
+130 | Conversing with Ladies | 5 | female 80..60000
+131 | Savior | 5 | saved 5..60000
+132 | PKKer | 5 | pks 60..60000
