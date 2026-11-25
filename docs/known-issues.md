@@ -1,6 +1,6 @@
 # Shelf Tools 1.1: known issues and limits
 
-Tried in Chrome on a computer and at phone size, with the sample Memory Stick. **It has also been tested on one real memory stick.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats, but a real stick may hold something the tests do not.
+Tried in Chrome on a computer and at phone size, with the sample Memory Stick. **It has also been tested on one real memory stick.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats.
 
 ## Disclosure
 
