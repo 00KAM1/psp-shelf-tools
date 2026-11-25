@@ -89,151 +89,183 @@
   }
 
   function topGames(s, maxMin) {
-    const list = s.games.filter((x) => x.minutes > 0 || x.earned.length).slice(0, 8);
+    const all = s.games.filter((x) => x.minutes > 0 || x.earned.length);
+    const list = all.slice(0, 6);
+    const rest = all.slice(6);
     return `<section class="card s7"><h2>Most played</h2>
       <div class="rows">${list.map((x) => `
         <div class="grow">${App.gameIcon(x.g)}
           <div><div class="gname">${esc(x.g.title)}${x.completed ? `<span class="tag green">Completed</span>` : ""}${x.g.fav ? `<span class="tag pink">Favourite</span>` : ""}</div>
           <div class="meter"><i style="width:${pct(x.minutes, maxMin)}%"></i></div>
-          <div class="note">${x.earned.length ? `${pl(x.earned.length, "achievement")}` : ""}${x.earned.length && x.journey.length ? " · " : ""}${x.journey.length ? pl(x.journey.length, "journey entry", "journey entries") : ""}${!x.earned.length && !x.journey.length ? (x.g.category ? esc(x.g.category) : esc(x.g.type || "")) : ""}</div></div>
+          <div class="note">${[x.earned.length ? pl(x.earned.length, "achievement") : "", x.journey.length ? pl(x.journey.length, "journey entry", "journey entries") : ""].filter(Boolean).join(" · ") || esc(x.g.category || x.g.type || "")}</div></div>
           <div class="num">${App.hm(x.minutes)}</div>
         </div>`).join("") || `<p class="empty">No game time in this period.</p>`}</div>
-      <p class="note" style="margin-top:12px">Time played comes from Checkpoint's count and Runtime's log, whichever saw more of it.</p>
+      ${rest.length ? `<p class="note" style="margin-top:12px">And ${pl(rest.length, "more game")}, ${App.hm(rest.reduce((t, x) => t + x.minutes, 0))} between them.</p>` : ""}
     </section>`;
   }
 
+  const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   function whenYouPlay(s) {
     const max = Math.max(1, ...s.hours);
     const topH = s.hours.indexOf(Math.max(...s.hours));
     const wmax = Math.max(1, ...s.weekdays);
-    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const topD = s.weekdays.indexOf(Math.max(...s.weekdays));
     const any = s.hours.some((x) => x);
+    const ss = s.sessions;
     return `<section class="card s5"><h2>When you play</h2>
-      ${any ? `<p class="muted">Your hour is <b style="color:var(--amber)">${String(topH).padStart(2, "0")}:00</b>, and your day is <b style="color:var(--ink)">${["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][topD]}</b>.</p>
-      <div class="hours" role="img" aria-label="Play by hour of day">${s.hours.map((v, i) => `<i class="${i === topH ? "peak" : ""}" style="height:${(v / max) * 100}%" title="${String(i).padStart(2, "0")}:00"></i>`).join("")}</div>
+      ${any ? `<p class="muted">Your hour is <b style="color:var(--amber)">${String(topH).padStart(2, "0")}:00</b>, and your day is <b style="color:var(--ink)">${DAYS[topD]}</b>.</p>
+      <div class="hours" role="img" aria-label="Play by hour of the day">${s.hours.map((v, i) => `<i class="${i === topH ? "peak" : ""}" style="height:${(v / max) * 100}%" title="${String(i).padStart(2, "0")}:00"></i>`).join("")}</div>
       <div class="axis"><span>00</span><span>06</span><span>12</span><span>18</span></div>
-      <div class="week">${s.weekdays.map((v, i) => `<div><i><b style="height:${(v / wmax) * 100}%;${i === topD ? "background:var(--amber)" : ""}"></b></i>${days[i]}</div>`).join("")}</div>
-      <p class="note" style="margin-top:10px">${s.hourSource === "sessions" ? "Minutes of play in each hour, from Runtime." : "When journey entries, unlocks and saves happened (Runtime gives the full picture)."}</p>`
+      <div class="week">${s.weekdays.map((v, i) => `<div><i><b style="height:${(v / wmax) * 100}%;${i === topD ? "background:var(--amber)" : ""}"></b></i>${DAYS[i].slice(0, 3)}</div>`).join("")}</div>
+      ${ss ? `<div class="recs three" style="margin-top:16px">
+        <div class="rec"><b>${ss.count}</b><span>sessions</span></div>
+        <div class="rec"><b>${App.hm(ss.average)}</b><span>average</span></div>
+        <div class="rec"><b>${App.hm(ss.longest)}</b><span>longest</span></div></div>` : ""}
+      <p class="note" style="margin-top:12px">${s.hourSource === "sessions" ? "Minutes of play in each hour and on each day, from Runtime." : "When journey entries, unlocks and saves happened. With Runtime installed this shows minutes of play."}</p>`
       : `<p class="empty">Nothing dated in this period.</p>`}
     </section>`;
   }
 
-  function level(v, max) { if (!v) return ""; const r = v / max; return r > 0.75 ? "l4" : r > 0.45 ? "l3" : r > 0.2 ? "l2" : "l1"; }
+  function level(v, max) { if (v < 1) return ""; const r = v / max; return r > 0.75 ? "l4" : r > 0.45 ? "l3" : r > 0.2 ? "l2" : "l1"; }
+  const dayTitle = (k, v) => `${k}: ${v >= 1 ? App.hm(v) : "no play"}`;
   function calendar(s, p) {
-    const vals = [...s.days.values()];
-    const max = Math.max(1, ...vals);
+    const max = Math.max(1, ...s.days.values());
     if (p.month) {
       const first = p.from, n = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
       const lead = (first.getDay() + 6) % 7;
-      let cells = ["M", "T", "W", "T", "F", "S", "S"].map((d) => `<b>${d}</b>`).join("");
+      let cells = DAYS.map((d) => `<b>${d[0]}</b>`).join("");
       for (let i = 0; i < lead; i++) cells += `<i class="out"></i>`;
       for (let d = 1; d <= n; d++) {
         const k = RecapStats.dayKey(new Date(first.getFullYear(), first.getMonth(), d));
         const v = s.days.get(k) || 0;
-        cells += `<i class="${level(v, max)}" title="${k}: ${App.hm(v)}">${d}</i>`;
+        cells += `<i class="${level(v, max)}" title="${dayTitle(k, v)}">${d}</i>`;
       }
-      return `<section class="card s12"><h2>Your days</h2><div class="calm" style="max-width:520px">${cells}</div>${legend()}</section>`;
+      // week by week: Monday to Sunday, the month's first and last weeks cut at its ends
+      const weeks = [];
+      for (let d = 1 - lead; d <= n; d += 7) {
+        const a = Math.max(1, d), b = Math.min(n, d + 6);
+        let mins = 0;
+        for (let x = a; x <= b; x++) mins += s.days.get(RecapStats.dayKey(new Date(first.getFullYear(), first.getMonth(), x))) || 0;
+        weeks.push({ label: a === b ? `${a}` : `${a} to ${b}`, mins });
+      }
+      const wmax = Math.max(1, ...weeks.map((w) => w.mins));
+      const mon = first.toLocaleString("en-GB", { month: "short" });
+      return `<section class="card s12"><h2>Your days</h2>
+        <div class="cols">
+          <div><div class="calm">${cells}</div>${legend()}
+            <p class="note" style="margin-top:6px">${pl(s.activeDays, "day")} with play.</p></div>
+          <div><h3>Week by week</h3><div class="rows">${weeks.map((w) => `<div><div class="lim" style="margin:0"><span>${w.label} ${mon}</span><span class="num">${App.hm(w.mins)}</span></div><div class="meter"><i style="width:${w.mins >= 1 ? pct(w.mins, wmax) : 0}%"></i></div></div>`).join("")}</div></div>
+        </div></section>`;
     }
-    // a year (or all time: the last twelve months with play), a column per week
+    // a year, or for all time the twelve months up to the last day with play: a column per week
     let end = p.to ? new Date(p.to.getTime() - 1) : null;
     if (!end) { const ks = [...s.days.keys()].sort(); end = ks.length ? new Date(ks[ks.length - 1] + "T12:00:00") : new Date(); }
-    let start = p.from || new Date(end.getFullYear(), end.getMonth() - 11, 1);
-    start = new Date(start.getFullYear(), start.getMonth(), start.getDate() - ((start.getDay() + 6) % 7));
-    let cells = "";
+    const from = p.from || new Date(end.getFullYear(), end.getMonth() - 11, 1);
+    const start = new Date(from.getFullYear(), from.getMonth(), from.getDate() - ((from.getDay() + 6) % 7));
+    let cells = "", shown = 0;
     for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
       const k = RecapStats.dayKey(d), v = s.days.get(k) || 0;
-      const out = p.from && d < p.from;
-      cells += `<i class="${out ? "out" : level(v, max)}" title="${k}: ${App.hm(v)}"></i>`;
+      const out = d < from;
+      if (!out && v >= 1) shown++;
+      cells += `<i class="${out ? "out" : level(v, max)}" title="${out ? "" : dayTitle(k, v)}"></i>`;
     }
     return `<section class="card s12"><h2>Your days</h2><div class="cal">${cells}</div>${legend()}
-      <p class="note" style="margin-top:6px">${s.activeDays} days with play${p.id === "all" ? " in the last twelve months shown" : ""}. Each square is a day, Monday at the top.</p></section>`;
+      <p class="note" style="margin-top:6px">${pl(shown, "day")} with play${p.id === "all" ? " in these twelve months" : ""}. Each square is a day, with Monday at the top.</p></section>`;
   }
   const legend = () => `<div class="legend">Less <i style="background:var(--track)"></i><i style="background:#5a4a1e"></i><i style="background:#8a6a10"></i><i style="background:#c08a00"></i><i style="background:var(--amber)"></i> More</div>`;
 
   function achievements(s) {
-    const latest = s.earned.slice(0, 6);
-    const games = s.games.filter((x) => x.progress && (x.earned.length || x.minutes)).sort((a, b) => b.progress.got / b.progress.total - a.progress.got / a.progress.total).slice(0, 6);
+    const latest = s.earned.slice(0, 5);
+    const games = s.games.filter((x) => x.progress && (x.earned.length || x.minutes)).sort((a, b) => b.progress.got / b.progress.total - a.progress.got / a.progress.total).slice(0, 7);
     const best = s.earned.reduce((b, e) => (!b || e.points > b.points ? e : b), null);
-    return `<section class="card s6"><h2>Achievements</h2>
-      ${s.earned.length ? `<div class="recs" style="margin-bottom:14px">
-        <div class="rec"><b style="color:var(--gold)">${s.earned.length}</b><span>earned with Emblem</span></div>
-        <div class="rec"><b style="color:var(--gold)">${s.points.toLocaleString("en-GB")}</b><span>points</span></div></div>
-        <h3>Latest</h3><ul class="list">${latest.map((e) => `<li><span>${esc(e.title)}</span><span class="num" style="color:var(--gold)">${e.points}</span><span class="sub">${esc(e.g.title)} · ${App.date(e.when)}</span></li>`).join("")}</ul>
-        ${best ? `<p class="note" style="margin-top:10px">Biggest: <b style="color:var(--ink)">${esc(best.title)}</b>, ${best.points} points, in ${esc(best.g.title)}.</p>` : ""}`
-      : `<p class="empty">No achievements earned in this period.</p>`}
-      ${games.length ? `<h3 style="margin-top:14px">Progress</h3><div class="rows">${games.map((x) => `<div><div class="lim" style="margin:0"><span class="gname">${esc(x.g.title)}</span><span class="num">${x.progress.got} / ${x.progress.total}</span></div><div class="meter gold"><i style="width:${pct(x.progress.got, x.progress.total)}%"></i></div></div>`).join("")}</div>` : ""}
+    return `<section class="card s7"><h2>Achievements</h2>
+      <div class="cols">
+        <div>${s.earned.length ? `<div class="recs" style="margin-bottom:14px">
+          <div class="rec"><b style="color:var(--gold)">${s.earned.length}</b><span>earned with Emblem</span></div>
+          <div class="rec"><b style="color:var(--gold)">${s.points.toLocaleString("en-GB")}</b><span>points</span></div></div>
+          <h3>Latest</h3><ul class="list">${latest.map((e) => `<li><span>${esc(e.title)}</span><span class="num" style="color:var(--gold)">${e.points}</span><span class="sub">${esc(e.g.title)} · ${App.date(e.when)}</span></li>`).join("")}</ul>`
+        : `<p class="empty">No achievements earned in this period.</p>`}</div>
+        <div>${games.length ? `<h3>Progress</h3><div class="rows">${games.map((x) => `<div><div class="lim" style="margin:0"><span class="gname">${esc(x.g.title)}</span><span class="num">${x.progress.got} / ${x.progress.total}</span></div><div class="meter gold"><i style="width:${pct(x.progress.got, x.progress.total)}%"></i></div></div>`).join("")}</div>` : `<p class="empty">No Emblem game files for the games played.</p>`}
+        ${best ? `<p class="note" style="margin-top:14px">Biggest: <b style="color:var(--ink)">${esc(best.title)}</b>, ${best.points} points, in ${esc(best.g.title)}.</p>` : ""}</div>
+      </div>
     </section>`;
   }
 
   function story(s) {
     const games = s.games.filter((x) => x.journey.length).slice(0, 4);
-    return `<section class="card s6"><h2>Your journey</h2>
+    return `<section class="card s5"><h2>Your journey</h2>
       ${games.length ? games.map((x) => {
         const j = x.journey, places = [];
         for (const e of j) if (places[places.length - 1] !== e.text) places.push(e.text);
-        const shown = places.length > 5 ? [places[0], places[1], "…", places[places.length - 2], places[places.length - 1]] : places;
-        return `<div style="margin-bottom:14px"><div class="gname">${esc(x.g.title)}</div>
-          <div class="path">${shown.map((t, i) => (t === "…" ? `<em>${places.length - 4} more</em>` : `<span>${esc(t)}</span>`) + (i < shown.length - 1 ? `<em>→</em>` : "")).join("")}</div>
+        const shown = places.length > 4 ? [places[0], "…", places[places.length - 2], places[places.length - 1]] : places;
+        return `<div class="trip"><div class="gname">${esc(x.g.title)}</div>
+          <div class="path">${shown.map((t, i) => (t === "…" ? `<em>${places.length - 3} more</em>` : `<span>${esc(t)}</span>`) + (i < shown.length - 1 ? `<em>→</em>` : "")).join("")}</div>
           <div class="note" style="margin-top:4px">${App.date(j[0].when)} to ${App.date(j[j.length - 1].when)} · ${pl(j.length, "entry", "entries")}</div></div>`;
       }).join("") : `<p class="empty">No journey entries in this period. Checkpoint writes one each time a game's save says somewhere new.</p>`}
     </section>`;
   }
 
   function finished(s) {
+    const started = s.started.filter((x) => !x.completed);
+    const names = started.slice(0, 4).map((x) => esc(x.g.title)).join(", ") + (started.length > 4 ? ` and ${started.length - 4} more` : "");
     return `<section class="card s4"><h2>Completed</h2>
-      ${s.completed.length ? `<ul class="list">${s.completed.map((x) => `<li><span class="gname">${esc(x.g.title)}</span><span class="when">${App.date(x.completed)}</span>${x.minutes ? `<span class="sub">${App.hm(Math.round(x.g.playedSecs / 60) || x.minutes)} in all</span>` : ""}</li>`).join("")}</ul>`
-      : `<p class="empty">Nothing marked completed in Shelf in this period.</p>`}
-      ${s.started.length ? `<h3 style="margin-top:14px">Started</h3><ul class="list">${s.started.slice(0, 6).map((x) => `<li><span class="gname">${esc(x.g.title)}</span><span class="when">${App.date(x.started)}</span></li>`).join("")}</ul>` : ""}
+      ${s.completed.length ? `<ul class="list">${s.completed.slice(0, 5).map((x) => `<li><span class="gname">${esc(x.g.title)}</span><span class="when">${App.date(x.completed)}</span>${x.g.playedSecs ? `<span class="sub">${App.hm(x.g.playedSecs / 60)} in all</span>` : ""}</li>`).join("")}</ul>`
+      : `<p class="empty">Nothing marked as completed in Shelf in this period.</p>`}
+      ${started.length ? `<p class="note" style="margin-top:12px">Started and still going: ${names}.</p>` : ""}
     </section>`;
   }
 
   function records(s) {
     const r = [];
-    if (s.streak) r.push(`<div class="rec"><b>${pl(s.streak.days, "day")}</b><span>longest run of days in a row, to ${App.date(s.streak.end)}</span></div>`);
-    if (s.busiest) r.push(`<div class="rec"><b>${App.hm(s.busiest.minutes)}</b><span>busiest day, ${App.date(s.busiest.day)}</span></div>`);
-    if (s.latest) r.push(`<div class="rec"><b>${String(s.latest.when.getHours()).padStart(2, "0")}:${String(s.latest.when.getMinutes()).padStart(2, "0")}</b><span>latest night, ${esc(s.latest.g.title)} on ${App.date(s.latest.when)}</span></div>`);
+    const hhmm = (d) => `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+    if (s.streak) r.push(`<div class="rec"><b>${pl(s.streak.days, "day")}</b><span>in a row, up to ${App.date(s.streak.end)}</span></div>`);
+    if (s.busiest && s.busiest.minutes) r.push(`<div class="rec"><b>${App.hm(s.busiest.minutes)}</b><span>busiest day, ${App.date(s.busiest.day)}</span></div>`);
+    if (s.latest) r.push(`<div class="rec"><b>${hhmm(s.latest.when)}</b><span>latest night, ${App.date(s.latest.when)}, ${esc(s.latest.g.title)}</span></div>`);
     if (s.power.longest) r.push(`<div class="rec"><b>${App.hm(s.power.longest.on)}</b><span>longest time switched on, ${App.date(s.power.longest.start)}</span></div>`);
     return `<section class="card s4"><h2>Records</h2>${r.length ? `<div class="recs">${r.join("")}</div>` : `<p class="empty">Not enough dated play for records.</p>`}</section>`;
   }
 
   function battery(s) {
     const pw = s.power;
-    if (!pw.count) return `<section class="card s4"><h2>Battery</h2><p class="empty">No power-ons recorded in this period. The Runtime plugin keeps them, for Shelf's PS-button menu.</p></section>`;
-    const full = pw.perHour ? 100 / pw.perHour * 60 : null;
+    if (!pw.count) return `<section class="card s4"><h2>Battery</h2><p class="empty">No power-ons recorded in this period. The Runtime plugin keeps them.</p></section>`;
+    const full = pw.perHour ? (100 / pw.perHour) * 60 : null;
     return `<section class="card s4"><h2>Battery</h2>
       <div class="recs">
         <div class="rec"><b>${pw.count}</b><span>times switched on</span></div>
         <div class="rec"><b>${App.hours(pw.on)} h</b><span>switched on</span></div>
         ${pw.asleep ? `<div class="rec"><b>${App.hours(pw.asleep)} h</b><span>asleep</span></div>` : ""}
-        ${full ? `<div class="rec"><b style="color:var(--green)">${App.hm(full)}</b><span>a full charge lasts, at ${pw.perHour.toFixed(0)}% an hour</span></div>` : ""}
+        ${full ? `<div class="rec"><b style="color:var(--green)">${App.hm(full)}</b><span>from a full charge, at ${pw.perHour.toFixed(0)}% an hour</span></div>` : ""}
       </div>
-      <p class="note" style="margin-top:10px">From Runtime's power-on log: time awake, sleep counted apart.</p>
     </section>`;
   }
 
+  const SLOT = ["Suspend", "State 1", "State 2", "State 3", "State 4", "State 5"];
   function safety(s) {
     const slots = s.slots.slice(0, 6);
-    const names = ["Suspend", "State 1", "State 2", "State 3", "State 4", "State 5"];
     return `<section class="card s12"><h2>Your safety net</h2>
-      <div class="recs" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:16px">
-        <div class="rec"><b style="color:var(--blue)">${s.versions}</b><span>save versions Checkpoint kept in this period</span></div>
+      <div class="recs three" style="margin-bottom:16px">
+        <div class="rec"><b style="color:var(--blue)">${s.versions}</b><span>save versions kept by Checkpoint from this period</span></div>
         <div class="rec"><b style="color:var(--blue)">${s.slots.length}</b><span>Sidequest slots on the Memory Stick now</span></div>
-        ${s.slotBytes ? `<div class="rec"><b style="color:var(--blue)">${App.mb(s.slotBytes)}</b><span>they take up</span></div>` : ""}
+        ${s.slotBytes ? `<div class="rec"><b style="color:var(--blue)">${App.mb(s.slotBytes)}</b><span>taken up by those slots</span></div>` : ""}
       </div>
-      ${slots.length ? `<div class="thumbs">${slots.map((x) => `<div class="thumb"><div class="badge" style="margin:0;color:inherit">${x.thm ? `<img data-thumb="${esc(x.thm)}" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=">` : `<div style="aspect-ratio:240/136;background:var(--card2);border-radius:4px"></div>`}<span>${names[x.k]}</span></div><div>${esc(x.g.title)} · ${App.date(x.when, true)}</div></div>`).join("")}</div>` : ""}
+      ${slots.length ? `<div class="thumbs">${slots.map((x) => `<div class="thumb"><div class="badge">${x.thm ? `<img data-thumb="${esc(x.thm)}" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=">` : `<div class="nopic"></div>`}<span>${SLOT[x.k]}</span></div><div>${esc(x.g.title)}</div><small>${App.date(x.when, true)}</small></div>`).join("")}</div>` : ""}
     </section>`;
   }
 
   function share() {
     return `<section class="card s12"><h2>Share it</h2>
-      <div class="sharebox"><div id="shareOut"><button class="btn main" id="makeShare">Make a picture</button></div>
-      <p class="muted">A 1080 × 1350 picture of this period: hours, your top games, achievements and records. Game icons come from your own Shelf cache.</p></div>
+      <div class="sharebox"><div id="shareOut"><div class="shareph">1080 × 1350</div></div>
+      <div><p class="muted">A picture of this period to post or keep: your hours, most played games, achievements and records. The game icons come from your own Shelf picture cache.</p>
+        <div class="toolbar" id="shareBtns" style="margin:14px 0 0"><button class="btn main" id="makeShare">Make the picture</button></div>
+        <p class="note" id="shareNote" hidden>On a phone, press and hold the picture to save it.</p></div></div>
     </section>`;
   }
 
   // ---- the picture ---------------------------------------------------------------------
   async function makeShare() {
+    try { await drawShare(); } catch (e) { console.error(e); App.toast("The picture could not be made"); }
+  }
+  async function drawShare() {
     const s = stats, p = s.period;
     const W = 1080, H = 1350;
     const c = document.createElement("canvas");
@@ -270,16 +302,18 @@
       x.fillStyle = i === 0 ? "#ffb000" : "#eaecf0"; x.font = `44px ${PIX}`; x.textAlign = "right"; x.fillText(App.hm(g.minutes), W - 56, y + 64); x.textAlign = "left";
     }
     const foot = [];
-    if (s.streak) foot.push(`${s.streak.days} days in a row`);
+    if (s.streak && s.streak.days > 1) foot.push(`${s.streak.days} days in a row`);
     const topH = s.hours.indexOf(Math.max(...s.hours));
     if (s.hours.some((v) => v)) foot.push(`your hour: ${String(topH).padStart(2, "0")}:00`);
     if (s.points) foot.push(`${s.points} points`);
     x.fillStyle = "#303846"; x.fillRect(56, H - 150, W - 112, 2);
     x.fillStyle = "#deb846"; x.font = `34px ${PIX}`; x.fillText(foot.join("  ·  "), 56, H - 92);
-    x.fillStyle = "#5e6878"; x.font = `24px ${BODY}`; x.fillText("PSP-3000 · Shelf, Sidequest, Checkpoint, Emblem, Runtime", 56, H - 48);
+    x.fillStyle = "#5e6878"; x.font = `24px ${BODY}`; x.fillText("Made with Shelf Tools · Shelf, Sidequest, Checkpoint, Emblem, Runtime", 56, H - 48);
     const url = c.toDataURL("image/png");
     const name = `shelf-recap-${p.id === "all" ? "so-far" : p.label.toLowerCase().replace(/\s+/g, "-")}.png`;
-    $("#shareOut").innerHTML = `<img src="${url}" alt="Your Recap picture"><div class="toolbar" style="margin-top:10px"><a class="btn main small" href="${url}" download="${esc(name)}">Download</a><button class="btn small" id="makeShare">Make again</button></div><p class="note">On a phone, press and hold the picture to save it.</p>`;
+    $("#shareOut").innerHTML = `<img src="${url}" alt="Your Recap picture">`;
+    $("#shareBtns").innerHTML = `<a class="btn main" href="${url}" download="${esc(name)}">Download</a><button class="btn" id="makeShare">Make it again</button>`;
+    $("#shareNote").hidden = false;
     $("#makeShare").addEventListener("click", makeShare);
   }
 }

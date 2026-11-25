@@ -5,8 +5,8 @@ that the tests read: tests/sample/ms0. Run from the repository root.
 Everything in it is made up: the dates, the hours, the journey lines, which
 achievements are earned, the battery. The game titles and IDs are real, and the
 Emblem game files are the ones in games/ (copied from psp-ark-plugins), so the
-achievement titles and points are real too. The pictures are drawn stand-ins,
-not game art.
+achievement titles and points are real too. The pictures are little scenes drawn
+by this script, not game art.
 
 With --art, the same stick is built with the icons and background pictures of your
 own games instead (folders holding each game's PARAM.SFO, ICON0.PNG and PIC1.PNG, as
@@ -14,7 +14,7 @@ taken from your ISOs), and Shelf's titles read the way Shelf reads them. That st
 is only for the pictures in docs/images (tests/render/doc_pictures.py): it goes to
 tests/docrun/ms0, which Git ignores, and is never packed into the page.
 
-    python3 tools/make_sample_stick.py                       # the sample (stand-ins)
+    python3 tools/make_sample_stick.py                       # the sample (its own drawn scenes)
     python3 tools/make_sample_stick.py --art ~/shelf-art     # the picture stick
 
 The files are written in exactly the formats the plugins and Shelf write
@@ -123,35 +123,132 @@ def art_picture(gid, w, h, which, crop=0):
         z = 0.72
         cw, ch = int(W * z), int(H * z)
         x = [0, W - cw, (W - cw) // 2][crop % 3]
-        y = [H - ch, 0, (H - ch) // 2][crop % 3]
+        y = H - ch          # the lower part: clear of anything written across the top of a background
         img = img.crop((x, y, x + cw, y + ch))
     return img.resize((w, h), Image.LANCZOS)
 
-def font(size):
-    for f in ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",):
-        if os.path.exists(f):
-            return ImageFont.truetype(f, size)
-    return ImageFont.load_default()
+# ---- the sample's own pictures ------------------------------------------------------------
+# Original little scenes, one look per game: a sky, a sun or moon, far hills, one landmark
+# and a title. They are drawn here and are nobody's artwork but this repository's: no
+# logo, character or cover of any game is copied.
+SCENES = {   # disc ID -> sky top, sky bottom, ground, landmark, light ("sun" / "moon"), stars
+    "ULUS10558": ((92, 26, 44), (232, 120, 60), (48, 20, 34), "castle", "sun", False),
+    "ULUS10540": ((60, 130, 220), (176, 214, 244), (52, 104, 84), "airship", "sun", False),
+    "ULUS10482": ((30, 20, 70), (112, 76, 168), (26, 22, 56), "hills", "moon", True),
+    "ULUS10512": ((8, 40, 56), (24, 120, 130), (8, 22, 30), "city", "moon", True),
+    "UCUS98700": ((150, 110, 50), (236, 204, 130), (86, 62, 30), "banners", "sun", False),
+    "ULUS10515": ((90, 160, 200), (206, 232, 214), (70, 120, 64), "windmill", "sun", False),
+    "ULUS10551": ((214, 110, 40), (250, 206, 120), (150, 84, 40), "ruins", "sun", False),
+    "ULUS10560": ((10, 16, 50), (40, 60, 130), (12, 16, 36), "tower", "moon", True),
+    "": ((14, 44, 38), (40, 110, 80), (10, 28, 24), "lantern", "moon", True),
+}
 
-def stand_in(w, h, colour, text, seed):
-    """A drawn stand-in picture: a gradient and a few shapes in the game's colour."""
+def scene(w, h, gid, title, seed):
+    """One picture. With a title it is an icon; without, a wider view for a slot or background."""
+    top, bottom, ground, landmark, light, stars = SCENES.get(gid, SCENES[""])
     r = random.Random(seed)
-    img = Image.new("RGB", (w, h))
+    S = 4                                          # drawn four times the size, then scaled down
+    W, H = w * S, h * S
+    img = Image.new("RGB", (W, H))
     d = ImageDraw.Draw(img)
-    c2 = tuple(max(0, v // 3) for v in colour)
-    for y in range(h):
-        t = y / max(1, h - 1)
-        d.line([(0, y), (w, y)], fill=tuple(int(colour[i] * (1 - t) + c2[i] * t) for i in range(3)))
-    for _ in range(5):
-        x, y, s = r.randrange(w), r.randrange(h), r.randrange(h // 4, h)
-        d.ellipse([x - s, y - s, x + s, y + s], outline=tuple(min(255, v + 60) for v in colour), width=2)
-    if text:
-        words = [x for x in text.replace(":", "").split() if x[0].isalnum()]
-        short = "".join(w[0] for w in words[:4]).upper()
-        f = font(h // 2)
-        tw = d.textlength(short, font=f)
-        d.text(((w - tw) / 2, h / 2 - h // 3), short, font=f, fill=(245, 245, 245))
-    return img
+    mix = lambda a, b, t: tuple(int(a[k] * (1 - t) + b[k] * t) for k in range(3))
+    lighter = lambda c, v: tuple(min(255, k + v) for k in c)
+    horizon = int(H * (0.52 if title else 0.68))        # an icon's title band takes the bottom
+    for y in range(H):
+        d.line([(0, y), (W, y)], fill=mix(top, bottom, min(1, y / horizon)))
+    if stars:
+        for _ in range(60):
+            x, y, z = r.randrange(W), r.randrange(int(horizon * 0.8)), r.choice([S // 2, S // 2, S])
+            d.rectangle([x, y, x + z, y + z], fill=lighter(bottom, 110))
+    lx = int(W * (0.72 if title else r.uniform(0.2, 0.8)))
+    ly, lr = int(H * (0.2 if title else 0.26)), int(H * (0.13 if title else 0.15))
+    glow = lighter(bottom, 40)
+    d.ellipse([lx - lr * 1.5, ly - lr * 1.5, lx + lr * 1.5, ly + lr * 1.5], fill=mix(glow, bottom, 0.5))
+    d.ellipse([lx - lr, ly - lr, lx + lr, ly + lr], fill=(255, 240, 200) if light == "sun" else (232, 236, 250))
+    if light == "moon":
+        d.ellipse([lx - lr * 0.5, ly - lr * 1.1, lx + lr * 1.3, ly + lr * 0.7], fill=mix(top, bottom, ly / horizon))
+    for layer, shade in ((0, 0.55), (1, 0.25)):    # two ranges of far hills
+        base = horizon - int(H * (0.16 - 0.08 * layer))
+        pts, x = [(0, H)], 0
+        while x <= W:
+            pts.append((x, base - r.randrange(int(H * 0.12))))
+            x += r.randrange(W // 9, W // 5)
+        pts += [(W, base), (W, H)]
+        d.polygon(pts, fill=mix(ground, bottom, shade))
+    d.rectangle([0, horizon, W, H], fill=ground)
+    dark = tuple(k // 2 for k in ground)
+    cx = int(W * (0.3 if title else r.uniform(0.3, 0.7)))
+    u = H // (50 if title else 40)                 # the landmark's unit: smaller on an icon, above its title
+    box = lambda x0, y0, x1, y1, c=dark: d.rectangle([cx + x0 * u, horizon - y1 * u, cx + x1 * u, horizon - y0 * u], fill=c)
+    lit = (255, 214, 120)
+    if landmark == "castle":
+        box(-9, 0, 9, 8); box(-11, 0, -7, 13); box(7, 0, 11, 13); box(-2, 0, 2, 17)
+        for x in (-11, -9, 7, 9, -2, 0): box(x, 13 if abs(x) > 3 else 17, x + 1.2, (13 if abs(x) > 3 else 17) + 1.5)
+        box(-0.6, 9, 0.6, 12, lit)
+    elif landmark == "airship":
+        y = int(H * 0.34)
+        d.ellipse([cx - 13 * u, y - 4 * u, cx + 13 * u, y + 4 * u], fill=lighter(ground, 60))
+        d.rectangle([cx - 5 * u, y + 4 * u, cx + 5 * u, y + 6.5 * u], fill=dark)
+        d.polygon([(cx + 12 * u, y), (cx + 17 * u, y - 4 * u), (cx + 17 * u, y + 4 * u)], fill=dark)
+        for k in range(3):
+            c = (255, 255, 255)
+            x, yy = r.randrange(W), r.randrange(int(H * 0.1), int(H * 0.5))
+            d.ellipse([x, yy, x + 14 * u, yy + 4 * u], fill=mix(c, bottom, 0.25))
+    elif landmark == "city":
+        for k in range(-14, 15, 3):
+            hh = r.randrange(5, 15)
+            box(k, 0, k + 2.6, hh)
+            for wy in range(1, hh - 1, 2):
+                if r.random() < 0.6: box(k + 0.5, wy, k + 1.1, wy + 0.8, lit)
+        box(-1.2, 0, 1.2, 19); box(-0.6, 15, 0.6, 16.2, lit)
+    elif landmark == "banners":
+        box(-10, 0, 10, 6); box(-12, 0, -8, 10); box(8, 0, 12, 10)
+        for x in (-10, 10):
+            d.line([(cx + x * u, horizon - 10 * u), (cx + x * u, horizon - 17 * u)], fill=dark, width=S)
+            d.polygon([(cx + x * u, horizon - 17 * u), (cx + (x + 4) * u, horizon - 16 * u), (cx + x * u, horizon - 14 * u)], fill=(170, 40, 40))
+    elif landmark == "windmill":
+        d.polygon([(cx - 3 * u, horizon), (cx + 3 * u, horizon), (cx + 1.6 * u, horizon - 12 * u), (cx - 1.6 * u, horizon - 12 * u)], fill=dark)
+        for a, b in ((-8, -8), (8, -8), (-8, 8), (8, 8)):
+            d.line([(cx, horizon - 12 * u), (cx + a * u, horizon - 12 * u + b * u)], fill=dark, width=S * 2)
+        box(8, 0, 16, 5); d.polygon([(cx + 7 * u, horizon - 5 * u), (cx + 17 * u, horizon - 5 * u), (cx + 12 * u, horizon - 9 * u)], fill=(150, 60, 50))
+    elif landmark == "ruins":
+        for x, hh in ((-10, 12), (-5, 8), (2, 14), (8, 6)):
+            box(x, 0, x + 2, hh); box(x - 0.5, hh, x + 2.5, hh + 1)
+        box(-10, 12, -3, 13.4)
+    elif landmark == "tower":
+        d.polygon([(cx - 4 * u, horizon), (cx + 4 * u, horizon), (cx + 2 * u, horizon - 20 * u), (cx - 2 * u, horizon - 20 * u)], fill=dark)
+        d.polygon([(cx - 3 * u, horizon - 20 * u), (cx + 3 * u, horizon - 20 * u), (cx, horizon - 25 * u)], fill=dark)
+        for wy in (5, 10, 15): box(-0.6, wy, 0.6, wy + 1.4, lit)
+    elif landmark == "lantern":
+        for x in (-12, -4, 6, 13):
+            hh = r.randrange(12, 20)
+            d.polygon([(cx + (x - 4) * u, horizon), (cx + (x + 4) * u, horizon), (cx + x * u, horizon - hh * u)], fill=dark)
+        d.ellipse([cx - 3 * u, horizon - 9 * u, cx + 3 * u, horizon - 3 * u], fill=mix(lit, ground, 0.5))
+        d.ellipse([cx - 1.4 * u, horizon - 7.4 * u, cx + 1.4 * u, horizon - 4.6 * u], fill=lit)
+    else:                                          # hills: a path over the nearest one
+        d.ellipse([cx - 22 * u, horizon - 7 * u, cx + 22 * u, horizon + 10 * u], fill=dark)
+        d.polygon([(cx - 1 * u, horizon - 6.6 * u), (cx + 1 * u, horizon - 6.6 * u), (cx + 5 * u, H), (cx - 5 * u, H)], fill=mix(dark, bottom, 0.3))
+    if title:
+        # the title in a band along the bottom, on one or two lines
+        f = ImageFont.truetype(FONT, int(H * 0.15)) if FONT else ImageFont.load_default()
+        words = title.split()
+        lines_ = [title]
+        if d.textlength(title, font=f) > W * 0.92 and len(words) > 1:
+            # two lines, split where they come out most even
+            k = min(range(1, len(words)), key=lambda n: max(d.textlength(" ".join(words[:n]), font=f), d.textlength(" ".join(words[n:]), font=f)))
+            lines_ = [" ".join(words[:k]), " ".join(words[k:])]
+        while max(d.textlength(l, font=f) for l in lines_) > W * 0.94 and f.size > 12:
+            f = ImageFont.truetype(FONT, f.size - 2)
+        lh = int(f.size * 1.18)
+        band = lh * len(lines_) + int(H * 0.07)
+        shade = Image.new("RGB", (W, band), tuple(k // 3 for k in ground))
+        img.paste(Image.blend(img.crop((0, H - band, W, H)), shade, 0.72), (0, H - band))
+        d = ImageDraw.Draw(img)
+        for k, l in enumerate(lines_):
+            d.text(((W - d.textlength(l, font=f)) / 2, H - band + int(H * 0.03) + k * lh), l, font=f, fill=(246, 244, 236))
+    return img.resize((w, h), Image.LANCZOS)
+
+FONT = next((f for f in ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", "/data/data/com.termux/files/usr/share/fonts/TTF/DejaVuSans-Bold.ttf") if os.path.exists(f)), None)
 
 def rgb565(img):  # Shelf's and Sidequest's pixel order: red in the low bits
     out = bytearray()
@@ -174,9 +271,9 @@ for p, title, ft, gid, typ, col in lib:
     blob += p.encode().ljust(192, b"\0") + title.encode().ljust(96, b"\0") + ft.encode().ljust(96, b"\0")
     blob += gid.encode().ljust(16, b"\0") + bytes([typ, 1, 1, 1])
     blob += struct.pack("<IIII", 600 * 1024 * 1024, 0, minutes(datetime(2026, 1, 3, 12, 0)), key)
-    icon = art_picture(gid, 144, 80, "icon") or stand_in(144, 80, col, title, key)
+    icon = art_picture(gid, 144, 80, "icon") or scene(144, 80, gid, title, key)
     small = icon.resize((72, 40), Image.BOX)
-    back = art_picture(gid, 240, 136, "pic") or stand_in(240, 136, col, "", key + 1)
+    back = art_picture(gid, 240, 136, "pic") or scene(240, 136, gid, "", key + 1)
     write(f"SHELF/CACHE/{key:08X}.IMG", struct.pack("<II", 0x31434853, 3) + rgb565(icon) + rgb565(small) + rgb565(back))
 write("SHELF/CACHE/LIBRARY.BIN", blob)
 
@@ -303,7 +400,7 @@ for gid, slots in {"ULUS10558": [0, 1, 2], "ULUS10512": [0, 1], "ULUS10515": [1]
         name = "SUSPEND" if k == 0 else f"STATE{k}"
         write(f"SIDEQUEST/{gid}/{name}.SQS", sqs(gid, info[gid][1], boot, s1 - timedelta(minutes=1)))
         SIZES[f"SIDEQUEST/{gid}/{name}.SQS"] = rnd.randint(9, 24) * 1024 * 1024
-        pic = art_picture(gid, 240, 136, "pic", crop=k + 1) or stand_in(240, 136, info[gid][4], "", zlib.crc32(f"{gid}{k}".encode()) & 0xFFFF)
+        pic = art_picture(gid, 240, 136, "pic", crop=k + 1) or scene(240, 136, gid, "", zlib.crc32(f"{gid}{k}".encode()) & 0xFFFF)
         write(f"SIDEQUEST/{gid}/{name}.THM", b"SQT1" + struct.pack("<HH", 240, 136) + rgb565(pic))
 write("SIDEQUEST/config.txt", "# Sidequest settings\r\nresume_prompt = 1\r\n")
 
@@ -347,8 +444,16 @@ for start, end, gid in sessions:
     ended.append(line)
 write("RUNTIME/battery.log", "".join(l + "\r\n" for l in ended), mtime=datetime(2026, 11, 24, 23, 0))
 write("RUNTIME/battery_use.log", "".join(l + "\r\n" for l in use), mtime=datetime(2026, 11, 24, 23, 0))
-last = sessions[-1][1]
-write("RUNTIME/uptime.txt", f"{minutes(last) - 40} {pct + 8} {minutes(last)} {pct} 2 0 {pct}\r\n")
+# the power-on in progress: an evening of Ys, not yet in battery.log (Runtime writes that when it ends)
+now0, now1 = datetime(2026, 11, 24, 20, 10), datetime(2026, 11, 24, 21, 45)
+ys_iso = next(p for p, t, ft, g, typ, col in lib if g == "ULUS10558").rsplit("/", 1)[1]
+use.append(f"{ga_date(now0)} | 100%          | power on XMB")
+use.append(f"{ga_date(now0 + timedelta(minutes=1))} | 100%          | start launcher")
+use.append(f"{ga_date(now0 + timedelta(minutes=3))} | 100%          | start {ys_iso}")
+for q, m in ((95, 18), (90, 34), (85, 50), (80, 66), (75, 83)):
+    use.append(f"{ga_date(now0 + timedelta(minutes=m))} | {q:3d}%")
+write("RUNTIME/battery_use.log", "".join(l + "\r\n" for l in use))
+write("RUNTIME/uptime.txt", f"{minutes(now0)} 100 {minutes(now1)} 72 2 0 75\r\n")
 
 with open(os.path.join(os.path.dirname(ROOT), "sizes.txt"), "w") as f:  # the sizes real save states would have
     for k, v in sorted(SIZES.items()):

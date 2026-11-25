@@ -18,11 +18,13 @@ One HTML page, `index.html`, with its scripts and data inside it. GitHub Pages s
 | `engine/` | `em.c` and `em.h` (Emblem's, unchanged), `emglue.c` (what the plugin's `main.c` gives the engine: memory reads, error lines) |
 | `games/` | Emblem's released game files, offered under Open |
 | `tools/` | `build.py`, `make_sample_stick.py`, `sync_from_plugins.sh` |
-| `tests/` | PC tests (`run_tests.sh`), the browser check, the sample stick |
+| `tests/` | PC tests (`run_tests.sh`), the browser check, the sample Memory Stick |
 
-## Reading the stick
+## Reading the Memory Stick
 
 A picked folder gives the browser a list of every file in it with its path. The page keeps only the paths under the five plugin folders and finds the stick's root as the folder above them, so the drive itself, a folder holding a copy, or the five folders dropped on their own all work.
+
+Dropped folders are walked with the browser's entries API. A drop's entries can only be taken while the drop is being handled, so they are all taken first and the folders read afterwards.
 
 A zip is read through its central directory. An entry is inflated with the browser's own `DecompressionStream`, and only as far as needed: 404 bytes of a 20 MB save state.
 
@@ -39,8 +41,11 @@ A zip is read through its central directory. An entry is inflated with the brows
 | Emblem | `EMBLEM/games/<id>.txt` | Run through the engine: which achievements count, their points |
 | Emblem | `EMBLEM/earned/<id>.txt` | `n \| date \| title \| N pts`. A number listed twice keeps its first date; numbers the game file does not count are left out, as the viewer does |
 | Runtime | `RUNTIME/battery.log` | One line per power-on: start, end, time awake, time asleep, battery |
+| Runtime | `RUNTIME/uptime.txt` | The power-on in progress, which is not in `battery.log` until it ends: start, last look, battery and minutes asleep |
 | Runtime | `RUNTIME/battery_use.log` | Battery at every program start (`start <ISO file name>` or the EBOOT's folder), on waking and every 5% |
 | Shelf | `SHELF/battery.log` | Used only when Runtime's is missing: Shelf's own power-on lines |
+
+Every file is read inside a guard: one that cannot be read is skipped, noted, and named in the Load window, and the rest still loads.
 
 A game is known by its disc ID. Shelf's library ties the ID to a path, which is how Sidequest's slots (by path) and Runtime's starts (by file name) find their game. A program Runtime saw that Shelf's library does not hold (an older ISO, a PS1 game) becomes a game of its own, named from its file.
 
@@ -75,9 +80,9 @@ Drawn on a canvas, 1080 × 1350, from the same numbers, and turned into a PNG in
 
 The text is the only copy. The Achievements and Names tabs read its lines (`game`, `N | title | points | rule`, `when`, `show`, `name = ...`) and an edit in a row rewrites that one line. Every change is checked 0.2 s later.
 
-## The sample stick
+## The sample Memory Stick
 
-`tools/make_sample_stick.py` writes a year of made-up play for eight real game titles into `tests/sample/ms0`, in the exact formats above, with drawn stand-in pictures and the real Emblem game files. Save states are their 4 KB header only; `tests/sample/sizes.txt` gives the sizes real ones would have. `tools/build.py` packs it into the page as gzip'd JSON (icons cut to the part the page reads).
+`tools/make_sample_stick.py` writes a year of made-up play for eight real game titles into `tests/sample/ms0`, in the exact formats above, with pictures drawn by the script and the real Emblem game files. Save states are their 4 KB header only; `tests/sample/sizes.txt` gives the sizes real ones would have. `tools/build.py` packs it into the page as gzip'd JSON (icons cut to the part the page reads).
 
 ## Tests
 
@@ -85,7 +90,7 @@ The text is the only copy. The Achievements and Names tabs read its lines (`game
 
 1. With `../psp-ark-plugins` beside this repository: `engine/em.c`, `em.h` and `games/` are identical to the plugins repo's.
 2. The page's engine answers like `em.c` built with gcc, on every game file.
-3. `tests/test_stick.js`: the sample stick read as a folder and as a zip (made in the test, inside a folder, deflated), every reader checked against the files themselves, the year-less dates (including a year boundary), and Recap's numbers (the months add up to all time).
+3. `tests/test_stick.js`: the sample Memory Stick read as a folder, as a zip (made in the test, inside a folder, deflated) and as dropped folders, every reader checked against the files themselves, the year-less dates (including a year boundary), the power-on in progress, a damaged file being skipped, and Recap's numbers (the months add up to all time).
 4. The page is built.
 
 `tests/browser_check.py` (optional) loads the zip through the file picker in headless Chrome, edits a rule until it breaks and back, adds an achievement, uses a code note, downloads the file and makes the share picture.

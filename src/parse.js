@@ -105,7 +105,14 @@
       return g;
     }
 
+    // One unreadable or damaged file must not cost the rest: each file is read inside
+    // this guard, and what was skipped is listed in model.notes for the loader to show.
+    const guard = async (path, fn) => {
+      try { await fn(); } catch (e) { model.notes.push(`${path}: ${e && e.message ? e.message : e}`); }
+    };
+
     // ---- Shelf: the library (titles, icons, folders) and its notes -------------------------
+    await guard("SHELF/CACHE/LIBRARY.BIN", async () => {
     const lib = await stick.bytes("SHELF/CACHE/LIBRARY.BIN");
     if (lib && lib.length >= 16 && u32(lib, 0) === 0x42494c53) {
       model.found.shelf = true;
@@ -125,6 +132,8 @@
         else if (/^PSP$/i.test(parts[0]) && parts.length > 4) g.category = parts[2];
       }
     }
+    });
+    await guard("SHELF/games.txt", async () => {
     const notes = await stick.text("SHELF/games.txt");
     if (notes) {
       model.found.shelf = true;
@@ -138,6 +147,7 @@
         g.fav = f.length >= 6 && +f[5] !== 0;
       }
     }
+    });
 
     // ---- Sidequest: slots ------------------------------------------------------------------
     for (const dir of stick.list("SIDEQUEST").dirs) {
@@ -145,14 +155,16 @@
         const name = k === 0 ? "SUSPEND" : "STATE" + k;
         const f = stick.get(`SIDEQUEST/${dir}/${name}.SQS`);
         if (!f) continue;
+        await guard(f.path, async () => {
         const h = await f.read(0, 404);
-        if (h.length < 404 || u32(h, 0) !== 0x31535153) continue;
+        if (h.length < 404 || u32(h, 0) !== 0x31535153) return;
         model.found.sidequest = true;
         const title = cstr(h, 100, 128), id = cstr(h, 228, 16), when = parseStamp(cstr(h, 244, 32)), boot = cstr(h, 276, 128);
         const g = (boot && byPath.get(boot.toUpperCase())) || game(id.replace("-", ""), boot);
         if (!g.title && title) g.title = title;
         const thm = stick.get(`SIDEQUEST/${dir}/${name}.THM`) ? `SIDEQUEST/${dir}/${name}.THM` : null;
         g.slots.push({ k, when, size: f.size, thm, version: u32(h, 4) });
+        });
       }
     }
 
@@ -161,6 +173,7 @@
     for (const f of jdir.files) {
       const m = /^(.+)\.(TXT|TIM|NEW)$/i.exec(base(f.path));
       if (!m) continue;
+      await guard(f.path, async () => {
       const g = game(m[1].toUpperCase());
       model.found.checkpoint = true;
       const t = await stick.text(f.path);
@@ -177,6 +190,7 @@
         const v = parseInt(t, 10);
         if (v > 0) g.playedSecs = v;
       }
+      });
     }
     for (const save of stick.list("CHECKPOINT").dirs) {
       if (/^JOURNEY$/i.test(save)) continue;
@@ -197,6 +211,7 @@
     for (const f of egames) {
       const m = /^(.+)\.txt$/i.exec(base(f.path));
       if (!m) continue;
+      await guard(f.path, async () => {
       model.found.emblem = true;
       const g = game(m[1].toUpperCase());
       const text = await stick.text(f.path);
@@ -206,10 +221,12 @@
         g.emblem = { total: inc.length, points: inc.reduce((s, a) => s + a.points, 0), byN: new Map(res.ach.map((a) => [a.n, a])), errors: res.errors.length };
         if (!g.title && res.title) g.title = res.title;
       }
+      });
     }
     for (const f of eearned) {
       const m = /^(.+)\.txt$/i.exec(base(f.path));
       if (!m) continue;
+      await guard(f.path, async () => {
       model.found.emblem = true;
       const g = game(m[1].toUpperCase());
       const text = await stick.text(f.path);
@@ -229,14 +246,16 @@
         g.earned.push({ n, when: parseStamp(p[1]), title: p[2] || (a && a.title) || "Achievement", points: a ? a.points : parseInt(p[3], 10) || 0 });
       }
       g.earned.sort((a, b) => (a.when || 0) - (b.when || 0));
+      });
     }
 
     // ---- Runtime: power-ons and the use log -----------------------------------------------
     for (const dir of ["RUNTIME", "SHELF"]) {
       const f = stick.get(dir + "/battery.log");
       if (!f) continue;
-      if (dir === "RUNTIME") model.found.runtime = true;
       if (dir === "SHELF" && model.powerOns.length) continue;      // Runtime's own record wins
+      await guard(f.path, async () => {
+      if (dir === "RUNTIME") model.found.runtime = true;
       const ls = lines(await stick.text(f.path)).filter((l) => / to /.test(l));
       const spans = spansWithoutYear(ls, f.mtime);
       ls.forEach((l, i) => {
@@ -250,9 +269,25 @@
         const b = /battery (\d+)% to (\d+)%/.exec(l);
         model.powerOns.push({ start, end, on, asleep, from: b ? +b[1] : null, to: b ? +b[2] : null, source: dir });
       });
+      });
     }
+    // The power-on in progress is not in battery.log yet: Runtime keeps it in uptime.txt
+    // (start, battery, last look, battery, 2, minutes asleep). Without it the newest
+    // session of play would have no end and be lost.
+    await guard("RUNTIME/uptime.txt", async () => {
+      const t = await stick.text("RUNTIME/uptime.txt");
+      if (!t) return;
+      const v = t.trim().split(/\s+/).map(Number);
+      if (v.length < 5 || v[4] !== 2 || !(v[0] > 0) || !(v[2] > v[0])) return;
+      model.found.runtime = true;
+      const start = fromMinutes(v[0]), end = fromMinutes(v[2]);
+      if (model.powerOns.some((p) => Math.abs(p.start - start) < 120000)) return;
+      const asleep = Math.min(v[5] > 0 ? v[5] : 0, v[2] - v[0]);
+      const pct = (x) => (x >= 0 && x <= 100 ? x : null);
+      model.powerOns.push({ start, end, on: v[2] - v[0] - asleep, asleep, from: pct(v[1]), to: pct(v[3]), source: "RUNTIME", current: true });
+    });
     const uf = stick.get("RUNTIME/battery_use.log");
-    if (uf) {
+    if (uf) await guard(uf.path, async () => {
       model.found.runtime = true;
       const ls = lines(await stick.text(uf.path)).filter((l) => l.trim());
       const ds = datesWithoutYear(ls, uf.mtime);
@@ -264,7 +299,7 @@
         const m = /^(power on|woke|start)\s*(.*)$/.exec(what);
         model.uses.push({ when: ds[i], pct: pm ? +pm[1] : null, charging: /charging/.test(p[1] || ""), why: m ? m[1] : "", program: m ? m[2] : what });
       });
-    }
+    });
 
     // ---- Runtime: which game each program start was --------------------------------------------
     // The use log names an ISO by its file name and an EBOOT by its folder.
@@ -275,7 +310,14 @@
       names.set((/EBOOT\.PBP$/i.test(b) ? folderOf(g.path) : b).toUpperCase(), g);
       if (/EBOOT\.PBP$/i.test(b)) names.set(("PS1 " + folderOf(g.path)).toUpperCase(), g);
     }
-    const ends = model.powerOns.map((p) => p.end);
+    model.powerOns.sort((a, b) => a.start - b.start);
+    // for every line, when the next start or power-on is (one pass from the end)
+    const nextAt = new Array(model.uses.length).fill(null);
+    for (let i = model.uses.length - 1, next = null; i >= 0; i--) {
+      nextAt[i] = next;
+      if (/^(start|power on)$/.test(model.uses[i].why)) next = model.uses[i].when;
+    }
+    let pi = 0;
     for (let i = 0; i < model.uses.length; i++) {
       const u = model.uses[i];
       if (u.why !== "start" || !u.program || /^(XMB|launcher)$/i.test(u.program)) continue;
@@ -286,9 +328,11 @@
         if (/^PS1 /.test(u.program)) g.type = "PS1";
       }
       // the session lasts until the next start or power-on, or the end of its power-on
-      let end = null;
-      for (let j = i + 1; j < model.uses.length; j++) if (/^(start|power on)$/.test(model.uses[j].why)) { end = model.uses[j].when; break; }
-      const po = model.powerOns.find((p) => p.start <= u.when && p.end >= u.when);
+      let end = nextAt[i];
+      while (pi < model.powerOns.length - 1 && model.powerOns[pi].end < u.when) pi++;
+      const at = model.powerOns[pi];
+      // (lines out of order, after a clock change, fall back to a search)
+      const po = at && at.start <= u.when && at.end >= u.when ? at : model.powerOns.find((p) => p.start <= u.when && p.end >= u.when) || null;
       if (po && (!end || end > po.end)) end = po.end;
       if (!end) continue;
       let mins = Math.max(0, Math.round((end - u.when) / 60000));
@@ -304,7 +348,6 @@
       g.versions.sort((a, b) => a.when - b.when);
       g.slots.sort((a, b) => (b.when || 0) - (a.when || 0));
     }
-    model.powerOns.sort((a, b) => a.start - b.start);
     return model;
   }
 

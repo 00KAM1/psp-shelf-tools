@@ -34,7 +34,8 @@ async def main():
         pg.on("pageerror", lambda e: errors.append(str(e)))
         await pg.goto("file://" + os.path.join(ROOT, "index.html"))
         await pg.wait_for_selector(".big")
-        check("246" in await pg.inner_text(".big") or True, "Recap drew")
+        big = await pg.inner_text(".big")
+        check("hours played" in big and big.strip()[0].isdigit(), "Recap drew: " + " ".join(big.split()))
 
         # load a zip through the dialog
         await pg.click("#openStick")
@@ -71,6 +72,13 @@ async def main():
         txt = await pg.input_value("#mkText")
         check("| New achievement | 5 | none" in txt, "achievement added to the text")
         check("Ready" in await pg.inner_text("#checks .verdict"), "a 'none' line is fine")
+        # the page's own warnings: a title Emblem would cut, a game ID with a dash
+        await pg.fill("#mkText", txt.replace("| New achievement |", "| " + "A very long title " * 4 + "|").replace("game ULUS10551", "game ULUS-10551"))
+        await pg.wait_for_timeout(500)
+        v = await pg.inner_text("#checks .verdict")
+        warns = await pg.locator("#checksDyn .elist.warn li").count()
+        check("2 things" in v and warns == 2, f"warnings shown: {v} ({warns})")
+        await pg.fill("#mkText", txt); await pg.wait_for_timeout(500)
         # code notes
         await pg.click("#checksHelp details:nth-of-type(2) summary")
         await pg.fill("#raAddr", "0xbb9b30")

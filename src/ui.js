@@ -118,7 +118,10 @@
       const n = [...m.games.values()].length;
       msg.textContent = `Read ${stick.count} files: ${n} game${n === 1 ? "" : "s"}.`;
       App.toast("Your Memory Stick is loaded");
-      setTimeout(() => dlg.close && dlg.close(), 900);
+      if (m.notes.length) {         // stay open: something was left out, and the reader should see what
+        msg.className = "small err";
+        msg.textContent += ` ${m.notes.length} file${m.notes.length === 1 ? " was" : "s were"} skipped because ${m.notes.length === 1 ? "it" : "they"} could not be read: ${m.notes.slice(0, 4).join("; ")}${m.notes.length > 4 ? "; and more" : ""}.`;
+      } else setTimeout(() => dlg.close && dlg.close(), 900);
     } catch (e) {
       msg.className = "small err";
       msg.textContent = "That could not be read: " + (e && e.message ? e.message : e);
@@ -131,7 +134,7 @@
     take(Promise.resolve(StickIO.fromFileList(files)), top ? top : "Your Memory Stick");
   });
   $("#pickZip").addEventListener("change", (e) => { const f = e.target.files[0]; if (f) take(StickIO.fromZip(f), f.name); });
-  $("#useSample").addEventListener("click", async () => { await loadSample(); $("#ldMsg").textContent = "The sample is back."; });
+  $("#useSample").addEventListener("click", async () => { await loadSample(); $("#ldMsg").className = "small"; $("#ldMsg").textContent = "The sample is back."; });
   const drop = $("#drop");
   for (const el of [drop, document.body]) {
     el.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
@@ -141,10 +144,11 @@
     e.preventDefault(); drop.classList.remove("over");
     if (!e.dataTransfer || !e.dataTransfer.items || !e.dataTransfer.items.length) return;
     if (!dlg.open && dlg.showModal) dlg.showModal();
-    const items = [...e.dataTransfer.items];
     const files = [...e.dataTransfer.files];
-    if (items[0].webkitGetAsEntry) take(StickIO.fromDrop(items, "Dropped files"));
-    else if (files.length === 1 && /\.zip$/i.test(files[0].name)) take(StickIO.fromZip(files[0]), files[0].name);
+    const entries = StickIO.dropEntries([...e.dataTransfer.items]);     // now: they are gone once this handler returns
+    if (files.length === 1 && /\.zip$/i.test(files[0].name)) take(StickIO.fromZip(files[0]), files[0].name);
+    else if (entries.length) take(StickIO.fromDrop(entries), entries.length === 1 ? entries[0].name : "Dropped folders");
+    else $("#ldMsg").textContent = "This browser cannot read dropped folders. Use Pick a folder or Pick a zip.";
   });
 
   // the sample stick is packed into the page as gzip'd JSON (tools/build.py)
@@ -165,6 +169,7 @@
     App.engine = EmblemEngine.load(emblemAsm);
     $("#ver").textContent = window.TOOLS_VERSION || "";
     route();
+    if (typeof DecompressionStream === "undefined") throw new Error("this browser is too old for Shelf Tools. It needs Chrome or Edge 80, Firefox 113 or Safari 16.4, or newer");
     await loadSample();
   };
 }

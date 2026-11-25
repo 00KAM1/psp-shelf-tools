@@ -83,8 +83,7 @@
       const versions = g.versions.filter((v) => inP(v.when, p));
       const first = firstActivity(g);
       out.games.push({
-        g, minutes, cp, rt, earned, journey, versions,
-        points: earned.reduce((s, e) => s + e.points, 0),
+        g, minutes, earned, journey, versions,
         progress: g.emblem && g.emblem.total ? { got: earnedBy.length, total: g.emblem.total } : null,
         completed: inP(g.finished, p) ? g.finished : null,
         started: inP(first, p) ? first : null,
@@ -100,7 +99,13 @@
           const cut = next < b ? next : b;
           const k = dayKey(a);
           perDay.set(k, (perDay.get(k) || { rt: 0, cp: 0 })); perDay.get(k).rt += (cut - a) / 60000;
-          for (let t = a.getTime(); t < cut.getTime(); t += 60000) { const d = new Date(t); out.hours[d.getHours()]++; }
+          // minutes in each hour of the day, an hour at a time
+          for (let t = a; t < cut;) {
+            const hourEnd = new Date(t.getFullYear(), t.getMonth(), t.getDate(), t.getHours() + 1);
+            const stop = hourEnd < cut ? hourEnd : cut;
+            out.hours[t.getHours()] += (stop - t) / 60000;
+            t = stop;
+          }
           out.weekdays[(a.getDay() + 6) % 7] += (cut - a) / 60000;
           a = cut;
         }
@@ -132,13 +137,13 @@
     out.minutes = out.games.reduce((s, x) => s + x.minutes, 0);
 
     // achievements
-    out.earned = out.games.flatMap((x) => x.earned.map((e) => ({ ...e, g: x.g }))).sort((a, b) => b.when - a.when);
+    out.earned = out.games.flatMap((x) => x.earned.map((e) => ({ ...e, g: x.g }))).sort((a, b) => (b.when || 0) - (a.when || 0));
     out.points = out.earned.reduce((s, e) => s + e.points, 0);
-    out.earnedByGame = out.games.filter((x) => x.earned.length).sort((a, b) => b.earned.length - a.earned.length);
 
     // days
     const keys = [...out.days.keys()].filter((k) => out.days.get(k) >= 1).sort();
     out.activeDays = keys.length;
+    out.hours = out.hours.map(Math.round);
     let best = 0, run = 0, prevDay = null, bestEnd = null;
     for (const k of keys) {
       const d = new Date(k + "T12:00:00");
@@ -159,6 +164,9 @@
       if (score >= 22 && (!late || score > late.score)) late = { score, when: e, g };
     }
     out.latest = late;
+    // sessions of play that began in the period (Runtime)
+    const ss = games.flatMap((g) => g.sessions.filter((x) => inP(x.start, p)));
+    out.sessions = ss.length ? { count: ss.length, average: Math.round(ss.reduce((t, x) => t + x.mins, 0) / ss.length), longest: Math.max(...ss.map((x) => x.mins)) } : null;
 
     // battery and time on (Runtime, or Shelf's own count)
     const pos = model.powerOns.filter((x) => inP(x.start, p));
@@ -170,7 +178,6 @@
     out.power = {
       count: pos.length, on: pos.reduce((s, x) => s + x.on, 0), asleep: pos.reduce((s, x) => s + x.asleep, 0),
       perHour: dropHours >= 1 ? drop / dropHours : null, longest,
-      charges: model.uses.filter((u) => inP(u.when, p) && u.charging).length,
     };
 
     // saves

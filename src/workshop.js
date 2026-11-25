@@ -95,6 +95,7 @@ ready = level 1..99           # when the game is really being played
     setLine(i, rebuild(x));
   }
   $("#mkId").addEventListener("input", (e) => editGame("id", e.target.value));
+  $("#mkId").addEventListener("blur", syncFields);          // show the ID as the file now has it (no dash, capitals)
   $("#mkTitle").addEventListener("input", (e) => editGame("title", e.target.value));
 
   // ---- the Achievements and Names tabs -------------------------------------------------------
@@ -213,19 +214,35 @@ ready = level 1..99           # when the game is really being played
   // ---- checks ----------------------------------------------------------------------------
   function check() {
     const E = App.engine;
-    result = E.check(text);
+    // run() reads the file itself each time; the plain read comes last, so the
+    // engine is left holding it for the panel
     mem = { zero: E.run(text, { fill: 0 }, 3), ff: E.run(text, { fill: 0xff }, 3) };
     if (dump) dump.res = E.run(text, { dump: dump.bytes, base: dump.base }, 3);
-    result = E.check(text);              // run() used the engine; read the file once more for the panel
+    result = E.check(text);
+    result.warnings = warnings(result);
     drawChecks();
     marks();
+  }
+
+  // Things Emblem accepts without a word that are probably not meant. The page's own
+  // checks, shown apart from the engine's errors.
+  function warnings(r) {
+    const w = [];
+    const xs = lines().map(classify);
+    if (r.game && !/^[A-Z]{4}\d{5}$/.test(r.game)) w.push({ msg: `The game ID "${r.game}" is not four letters and five digits. Emblem looks for the ID without a dash, as its log gives it.`, line: xs.findIndex((x) => x.kind === "game") + 1 });
+    xs.forEach((x, i) => {
+      if (x.kind !== "ach") return;
+      if (!x.title) w.push({ msg: `Achievement ${x.n} has no title.`, line: i + 1 });
+      else if (new TextEncoder().encode(x.title).length > 47) w.push({ msg: `The title of achievement ${x.n} is over 47 characters. Emblem cuts it there.`, line: i + 1 });
+    });
+    if (xs.filter((x) => x.kind === "game").length > 1) w.push({ msg: "There is more than one game line. Emblem uses the last.", line: 0 });
+    return w;
   }
 
   function drawChecks() {
     const r = result;
     const counted = r.ach.filter((a) => a.included), listed = lines().map(classify).filter((x) => x.kind === "ach" && x.rule === "none").length;
     const pts = counted.reduce((s, a) => s + a.points, 0);
-    const ids = new Set(r.ach.map((a) => a.n));
     const lim = { ...r.limits, bytes: r.bytes };
     const memBad = [mem.zero, mem.ff].some((m) => m.fired.length);
     const readyWeak = r.hasReady && (mem.zero.readyHeld || mem.ff.readyHeld);
@@ -233,7 +250,9 @@ ready = level 1..99           # when the game is really being played
     if (r.errors.length) { verdict = `${r.errors.length} line${r.errors.length === 1 ? "" : "s"} Emblem would skip`; cls = "bad"; }
     else if (r.bytes > 32768) { verdict = "Too big for Emblem (32 KB)"; cls = "bad"; }
     else if (!r.game) { verdict = "No game line yet"; cls = "bad"; }
+    else if (!counted.length) { verdict = "No achievements with a rule yet"; cls = "warn"; }
     else if (!r.hasReady || memBad) { verdict = !r.hasReady ? "No ready rule" : "Unlocks from empty memory"; cls = "warn"; }
+    else if (r.warnings.length) { verdict = `Ready, with ${r.warnings.length} thing${r.warnings.length === 1 ? "" : "s"} to look at`; cls = "warn"; }
     else { verdict = "Ready for the PSP"; cls = "ok"; }
     const title = (n) => { const a = r.ach.find((x) => x.n === n); return a ? `${n} ${a.title}` : String(n); };
     const memLine = (label, m) => `<div class="kv"><span>${label}</span><b class="${m.fired.length ? "err" : ""}">${m.fired.length ? m.fired.length + " unlock" + (m.fired.length === 1 ? "" : "s") : m.readyHeld ? "ready holds" : "nothing"}</b></div>
@@ -243,12 +262,12 @@ ready = level 1..99           # when the game is really being played
     $("#checksDyn").innerHTML = `
       <div class="verdict ${cls}">${esc(verdict)}</div>
       ${r.errors.length ? `<ul class="elist">${r.errors.map((e) => `<li data-go="${e.line}"><b>${e.line}</b>${esc(e.msg)}<code>${esc(e.text)}</code></li>`).join("")}</ul>` : ""}
+      ${r.warnings.length ? `<ul class="elist warn">${r.warnings.map((e) => `<li ${e.line ? `data-go="${e.line}"` : ""}>${e.line ? `<b>${e.line}</b>` : ""}${esc(e.msg)}</li>`).join("")}</ul>` : ""}
       <div class="kv" style="margin-bottom:12px">
         <span>Game</span><b>${esc(r.game || "–")}</b>
         <span>Achievements counted</span><b>${counted.length}</b>
         ${listed ? `<span>Listed, cannot unlock</span><b>${listed}</b>` : ""}
         <span>Points</span><b>${pts}</b>
-        ${ids.size !== r.ach.length ? `<span class="err">Numbers used twice</span><b class="err">${r.ach.length - ids.size}</b>` : ""}
       </div>
       <h3>Emblem's limits</h3>
       ${LIMITS.map(([k, label, max]) => `<div class="lim"><span>${label}</span><span class="num">${(lim[k] || 0).toLocaleString("en-GB")} / ${max.toLocaleString("en-GB")}</span><div class="meter ${lim[k] > max ? "red" : lim[k] > max * 0.8 ? "gold" : "green"}"><i style="width:${Math.min(100, ((lim[k] || 0) / max) * 100)}%"></i></div></div>`).join("")}

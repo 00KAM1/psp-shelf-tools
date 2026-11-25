@@ -90,32 +90,39 @@
     return fromEntries(list, label);
   }
 
-  // Dropped items: folders are walked with the entries API.
-  async function fromDrop(items, label) {
+  // Dropped items. The browser only hands out a drop's entries while the drop event
+  // is being handled, so dropEntries() must be called there, before anything is awaited;
+  // fromDrop() then walks the folders at its own pace.
+  function dropEntries(items) {
+    const out = [];
+    for (const it of items) {
+      const e = it.webkitGetAsEntry ? it.webkitGetAsEntry() : null;
+      if (e) out.push(e);
+    }
+    return out;
+  }
+  const entryFile = (entry) => new Promise((ok, no) => entry.file(ok, no));
+  async function fromDrop(entries, label) {
     const list = [];
     const walk = async (entry, prefix) => {
       if (entry.isFile) {
-        const file = await new Promise((ok, no) => entry.file(ok, no));
+        const file = await entryFile(entry);
         list.push({ path: prefix + file.name, size: file.size, mtime: file.lastModified ? new Date(file.lastModified) : null, read: fileRead(file) });
       } else if (entry.isDirectory) {
-        // Skip what is never needed and can be huge
-        // (at the stick's top, which is the drop's top or one folder down when the drive itself is dropped)
+        // Skip what is never needed and can be huge (at the stick's top: the drop's
+        // top, or one folder down when the drive itself was dropped)
         if (/^(ISO|PSP|MUSIC|VIDEO|PICTURE|SEPLUGINS)$/i.test(entry.name) && prefix.split("/").length <= 2) return;
         const reader = entry.createReader();
-        for (;;) {
+        for (;;) {      // readEntries gives a folder in batches; an empty one ends it
           const batch = await new Promise((ok, no) => reader.readEntries(ok, no));
           if (!batch.length) break;
           for (const e of batch) await walk(e, prefix + entry.name + "/");
         }
       }
     };
-    const zips = [];
-    for (const it of items) {
-      const e = it.webkitGetAsEntry ? it.webkitGetAsEntry() : null;
-      if (e && e.isFile && /\.zip$/i.test(e.name)) zips.push(await new Promise((ok, no) => e.file(ok, no)));
-      else if (e) await walk(e, "");
-    }
-    if (zips.length && !list.length) return fromZip(zips[0]);
+    const zip = entries.length === 1 && entries[0].isFile && /\.zip$/i.test(entries[0].name);
+    if (zip) return fromZip(await entryFile(entries[0]));
+    for (const e of entries) await walk(e, "");
     // A drop of the folders themselves (SIDEQUEST, CHECKPOINT...) has them at the top.
     return fromEntries(list.map((f) => Object.assign(f, { path: "stick/" + f.path })), label);
   }
@@ -222,7 +229,7 @@
     return fromEntries(list, label);
   }
 
-  const api = { Stick, fromEntries, fromFileList, fromDrop, fromZip, fromPacked, rootOf };
+  const api = { Stick, fromEntries, fromFileList, dropEntries, fromDrop, fromZip, fromPacked, rootOf };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.StickIO = api;
 })(typeof window !== "undefined" ? window : globalThis);

@@ -81,9 +81,14 @@ function makeZip(dir, prefix) {
 
   // Runtime: dates without a year
   const bl = fs.readFileSync(path.join(ROOT, "RUNTIME/battery.log"), "utf8").split("\n").filter((l) => / to /.test(l));
-  eq(m.powerOns.length, bl.length, "power-ons");
+  eq(m.powerOns.length, bl.length + 1, "power-ons: the log's, and the one in progress from uptime.txt");
+  const cur = m.powerOns[m.powerOns.length - 1];
+  ok(cur.current && cur.on === 95 && cur.from === 100 && cur.to === 72, "the power-on in progress");
+  const lastYs = ys.sessions[ys.sessions.length - 1];
+  ok(lastYs.start.getDate() === 24 && lastYs.mins === 92, "the newest session ends with the power-on in progress");
+  eq(m.notes.length, 0, "nothing skipped on a good stick");
   ok(m.powerOns.every((p) => p.start.getFullYear() === 2026 && p.end >= p.start), "power-on years worked out");
-  ok(m.powerOns.every((p) => p.start.toDateString().slice(0, 3) === bl[m.powerOns.indexOf(p)].slice(0, 3)), "weekdays agree");
+  ok(bl.every((l, i) => m.powerOns[i].start.toDateString().slice(0, 3) === l.slice(0, 3)), "weekdays agree");
   ok(m.uses.length > 100 && m.uses.every((u) => u.when.getFullYear() === 2026), "use log years");
   ok(ys.sessions.length > 5, "Ys sessions from the use log");
   const dy = P.datesWithoutYear(["Wed Dec 31 23:50", "Thu Jan 1 00:10"], new Date(2026, 0, 2));
@@ -117,6 +122,28 @@ function makeZip(dir, prefix) {
   eq(zm.games.get("ULUS10558").earned.length, ys.earned.length, "zip: same earned");
   const zh = await zs.bytes("SIDEQUEST/ULUS10558/SUSPEND.SQS", 0, 404);
   eq(zh.length, 404, "zip: partial read of a deflated file");
+
+  // one damaged file is skipped and named; the rest still loads
+  const broken = T.fromDir(ROOT, T.sampleSizes());
+  broken.get("CHECKPOINT/JOURNEY/ULUS10558.TXT").read = async () => { throw new Error("read failed"); };
+  const bm = await P.build(broken, eng);
+  ok(bm.notes.length === 1 && bm.notes[0].includes("ULUS10558.TXT") && bm.notes[0].includes("read failed"), "a damaged file is noted");
+  ok(bm.games.get("ULUS10558").journey.length === 0 && bm.games.get("ULUS10558").earned.length === ys.earned.length && bm.games.get("ULUS10540").journey.length > 0, "and only that file is lost");
+
+  // dropped folders: entries can only be taken while the drop is handled
+  const entry = (full) => {
+    const st = fs.statSync(full), name = path.basename(full);
+    if (st.isDirectory()) return { isFile: false, isDirectory: true, name, createReader() { let done = false; return { readEntries(okk) { okk(done ? [] : (done = true, fs.readdirSync(full).map((n) => entry(path.join(full, n))))); } }; } };
+    return { isFile: true, isDirectory: false, name, file(okk) { okk(new File([fs.readFileSync(full)], name, { lastModified: st.mtimeMs })); } };
+  };
+  let handling = true;
+  const items = fs.readdirSync(ROOT).map((n) => ({ webkitGetAsEntry: () => (handling ? entry(path.join(ROOT, n)) : null) }));
+  const entries = S.dropEntries(items);
+  handling = false;                                  // the event is over before any file is read
+  const ds = await S.fromDrop(entries, "five folders");
+  eq(ds.count, stick.count, "five folders dropped together: all files");
+  const whole = await S.fromDrop(S.dropEntries([{ webkitGetAsEntry: () => entry(ROOT) }]), "the drive");
+  eq(whole.count, stick.count, "the drive itself dropped: all files");
 
   // root finding
   eq(S.rootOf(["E:/SIDEQUEST/x/y", "E:/ISO/a.iso"]), "E:", "root above the plugin folders");
