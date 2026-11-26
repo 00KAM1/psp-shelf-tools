@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3
+
+Nothing to install: the site updates itself. If you keep a copy for offline use, replace its `index.html`.
+
+- **The page says how to load a PS Vita.** "Load your Memory Stick" now explains that on a PS Vita (ARK-5 inside Adrenaline 8) the Memory Stick is the `pspemu` folder on the card, and that this folder is the one to pick. The message shown when no plugin folder is found says the same. Nothing in the reading changed: a Vita's `pspemu` folder already worked.
+- The documentation has a section on using Shelf Tools with a PS Vita, and "Tested on" now includes one PS Vita `pspemu` folder.
+
 ## 1.2
 
 Nothing to install: the site updates itself. If you keep a copy for offline use, replace its `index.html`.

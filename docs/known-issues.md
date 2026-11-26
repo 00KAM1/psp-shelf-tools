@@ -1,4 +1,4 @@
-# Shelf Tools 1.2: known issues and limits
+# Shelf Tools 1.3: known issues and limits
 
 Tried in Chrome on a computer and at phone size, with the sample Memory Stick. **It has also been tested on one real Memory Stick and on one PS Vita `pspemu` folder (Adrenaline 8 with ARK-5), battery figures included.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats.
 

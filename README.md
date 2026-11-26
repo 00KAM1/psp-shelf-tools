@@ -11,7 +11,7 @@ It is one page that runs in your browser. Nothing is installed on the PSP, and n
 
 | | |
 |---|---|
-| Version | 1.2 |
+| Version | 1.3 |
 | Reads | Sidequest 1.0+, Checkpoint 1.0+, Emblem 1.0+, Runtime 1.0, Shelf 1.0+, and their PS Vita builds ("1.0 Vita") |
 | Tested on | Chrome, with the sample Memory Stick, one real Memory Stick and one PS Vita `pspemu` folder (Adrenaline 8, ARK-5) |
 

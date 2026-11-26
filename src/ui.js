@@ -110,7 +110,7 @@
       const stick = await promise;
       if (!stick.count) {
         msg.className = "small err";
-        msg.textContent = "No SIDEQUEST, CHECKPOINT, EMBLEM, RUNTIME or SHELF folder was found in that. Pick the Memory Stick itself, or the folder that holds those.";
+        msg.textContent = "No SIDEQUEST, CHECKPOINT, EMBLEM, RUNTIME or SHELF folder was found in that. Pick the Memory Stick itself, or the folder that holds those. On a PS Vita that is the pspemu folder.";
         return;
       }
       if (label) stick.label = label;
