@@ -1,6 +1,6 @@
 # PSP Shelf Tools
 
-**Shelf Tools** is a web page for the PSP plugins in [psp-ark-plugins](https://github.com/00KAM1/psp-ark-plugins) and the [Shelf launcher](https://github.com/00KAM1/psp-shelf-launcher). It has two tools:
+**Shelf Tools** is a web page for the PSP plugins in [psp-ark-plugins](https://github.com/00KAM1/psp-ark-plugins) and the [Shelf launcher](https://github.com/00KAM1/psp-shelf-launcher). It works the same with their PS Vita builds, [psvita-ark-plugins](https://github.com/00KAM1/psvita-ark-plugins) and [psvita-shelf-launcher](https://github.com/00KAM1/psvita-shelf-launcher); see [On a PS Vita](#on-a-ps-vita-adrenaline-8). It has two tools:
 
 - **Recap**: your PSP play for a year, a month or all time, made from what Sidequest, Checkpoint, Emblem, Runtime and Shelf have kept on the Memory Stick.
 - **Emblem Workshop**: write and check Emblem's achievement files, with the plugin's own rule engine doing the checking.
@@ -12,8 +12,8 @@ It is one page that runs in your browser. Nothing is installed on the PSP, and n
 | | |
 |---|---|
 | Version | 1.2 |
-| Reads | Sidequest 1.0+, Checkpoint 1.0+, Emblem 1.0+, Runtime 1.0, Shelf 1.0+ |
-| Tested on | Chrome, with the sample Memory Stick and one real Memory Stick |
+| Reads | Sidequest 1.0+, Checkpoint 1.0+, Emblem 1.0+, Runtime 1.0, Shelf 1.0+, and their PS Vita builds ("1.0 Vita") |
+| Tested on | Chrome, with the sample Memory Stick, one real Memory Stick and one PS Vita `pspemu` folder (Adrenaline 8, ARK-5) |
 
 > **Disclosure.** Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my testing with files from my PSP-3000. I’m not a web developer, and nothing has been tested beyond my own setup. Please read the [known issues](docs/known-issues.md) before relying on it.
 
@@ -86,6 +86,20 @@ Only the five plugin folders are read: `SIDEQUEST`, `CHECKPOINT`, `EMBLEM`, `RUN
 **On a phone**, a folder often cannot be picked. Zip the five folders on a computer and pick the zip. Leaving `SIDEQUEST` out makes the zip much smaller and only costs the slot pictures.
 
 The page opens on a **sample Memory Stick**: a made-up year of play for real game titles, with pictures drawn for the sample. Recap says so while it is showing.
+
+## On a PS Vita (Adrenaline 8)
+
+The plugins and Shelf have PS Vita builds, made for ARK-5 inside [Adrenaline 8](https://github.com/isage/Adrenaline). They are built differently from the PSP ones and have their own repositories: [psvita-ark-plugins](https://github.com/00KAM1/psvita-ark-plugins) and [psvita-shelf-launcher](https://github.com/00KAM1/psvita-shelf-launcher). Shelf Tools is the same page for both and reads a Vita's files the same way; the only difference is where they are.
+
+On a Vita the PSP's Memory Stick is a folder: `ux0:pspemu`, or wherever **Memory Stick Location** in Adrenaline's menu points. `SHELF`, `CHECKPOINT`, `EMBLEM`, `SIDEQUEST`, `RUNTIME`, `ISO`, `PSP` and `seplugins` are inside it.
+
+1. Reach the card from your computer in one of these ways:
+   - Shelf's own **USB connection**. It gives the computer the card chosen as **USB device** in Adrenaline's menu (hold the PS button > Settings), which must be the card that holds your `pspemu` folder: Memory Card for a Sony card, sd2vita for an SD2Vita, and so on.
+   - VitaShell's USB mode.
+   - FTP with VitaShell, copying the `pspemu` folder (or the five plugin folders in it) to the computer.
+2. On the page, choose **Load your Memory Stick** and pick the `pspemu` folder, not the card's root.
+
+**If the computer asks to format the card, do not format it.** The wrong **USB device** is chosen: eject the card, change the setting in Adrenaline's menu, and connect again.
 
 ## Using it without GitHub
 

@@ -1,6 +1,6 @@
 # Shelf Tools 1.2: known issues and limits
 
-Tried in Chrome on a computer and at phone size, with the sample Memory Stick. **It has also been tested on one real Memory Stick.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats.
+Tried in Chrome on a computer and at phone size, with the sample Memory Stick. **It has also been tested on one real Memory Stick and on one PS Vita `pspemu` folder (Adrenaline 8 with ARK-5), battery figures included.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats.
 
 ## Disclosure
 
@@ -34,6 +34,7 @@ Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my 
 
 - **Dropped folders** need a browser that hands dropped folders to a page, as current Chrome, Edge, Firefox and Safari do. The reading is covered by the PC tests; a real drop in each browser is not. If a drop does nothing, use Pick a folder or Pick a zip.
 
+- **PS Vita:** the Memory Stick is the `pspemu` folder (`ux0:pspemu`, or the **Memory Stick Location** set in Adrenaline's menu). Pick that folder, not the card's root. If the computer asks to format the card when you connect, the wrong **USB device** is chosen in Adrenaline's menu; do not format. Only Adrenaline 8 with ARK-5 has been tried, as that is what the Vita builds are made for. See [On a PS Vita](../README.md#on-a-ps-vita-adrenaline-8).
 - **Phones** often cannot pick a folder; use a zip. iPhone and iPad: Files app, select the five folders, Compress.
 - **Zips:** stored and deflated entries, zip64 included. Other compression methods are refused with a message.
 - **The fonts** load from Google Fonts. Offline, the page uses your system's fonts.

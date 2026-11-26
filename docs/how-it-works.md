@@ -22,7 +22,7 @@ One HTML page, `index.html`, with its scripts and data inside it. GitHub Pages s
 
 ## Reading the Memory Stick
 
-A picked folder gives the browser a list of every file in it with its path. The page keeps only the paths under the five plugin folders and finds the stick's root as the folder above them, so the drive itself, a folder holding a copy, or the five folders dropped on their own all work.
+A picked folder gives the browser a list of every file in it with its path. The page keeps only the paths under the five plugin folders and finds the stick's root as the folder above them, so the drive itself, a folder holding a copy, or the five folders dropped on their own all work. On a PS Vita the same folders sit inside `pspemu`, which is picked in place of a drive; nothing in the reading differs.
 
 Dropped folders are walked with the browser's entries API. A drop's entries can only be taken while the drop is being handled, so they are all taken first and the folders read afterwards.
 
