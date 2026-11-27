@@ -1,6 +1,6 @@
 # Shelf Tools 1.4: known issues and limits
 
-Tried in Chrome on a computer and at phone size, with the sample Memory Stick. **It has also been tested on one real Memory Stick and on one PS Vita `pspemu` folder (Adrenaline 8 with ARK-5), battery figures included.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats. **Sync, new in 1.4, has not yet been run on a real Memory Stick or PS Vita**; see [Sync](#sync).
+Recap and the Emblem Workshop have been tried in Chrome, Chromium and Firefox on a computer, and in Chrome at phone size, with the sample Memory Stick. **It has also been tested on one real Memory Stick and on one PS Vita `pspemu` folder (Adrenaline 8 with ARK-5), battery figures included.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats. **Sync, new in 1.4, has been run in Chrome and Chromium and works there; it does not run in Firefox**; see [Sync](#sync).
 
 ## Disclosure
 
@@ -33,7 +33,7 @@ Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my 
 
 ## Sync
 
-- **Not yet run on a real Memory Stick or PS Vita.** The PC tests take a PSP, a PS Vita and a vault, as real folders, through first syncs, play on each device, a save changed on both, a removed save and syncs cut short. The browser check runs the same code through Chrome's own folder writing. A USB drive on a real computer is the step still to come. **Before your first sync, copy `PSP/SAVEDATA` from each device to your computer**, somewhere other than the vault.
+- **Run in Chrome and Chromium only.** I have run Sync in both and it works. The PC tests take a PSP, a PS Vita and a vault, as real folders, through first syncs, play on each device, a save changed on both, a removed save and syncs cut short, and the browser check runs the same code through Chrome's own folder writing. Not tried: Brave, Edge, Chrome on a phone, and a sync cut short on a real device. Sync is new and writes to your saves: **before your first sync, copy `PSP/SAVEDATA` from each device to your computer**, somewhere other than the vault.
 - **Chromium browsers only**: Chrome, Edge and the like, on a computer. Brave keeps folder writing switched off until **File System Access API** is turned on under `brave://flags`. Firefox and Safari cannot write to a folder from a page. Chrome on Android can, but Sync has not been tried on a phone, and Android does not swap a written file in as one step the way a computer does. The sample works everywhere.
 - **The browser may refuse a folder.** Chrome will not open some folders, such as your home folder itself or system folders. Keep the vault in a folder of its own inside Documents. If it will not open the Memory Stick's drive, Sync cannot be used on it.
 - **Sidequest's states and suspends are not synced.** A state only loads on the device that made it. After a newer save arrives for a game, a state or suspend of that game on the device still loads the older moment, and saving from there overwrites the newer save. The plan warns about each one.

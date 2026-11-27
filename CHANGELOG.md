@@ -6,6 +6,7 @@ Nothing to install: the site updates itself. If you keep a copy for offline use,
 
 - **Sync, a third tool.** It keeps game saves, Emblem's achievements and game files, Checkpoint's journey and time played, and Shelf's favourites and completed marks level between your PSPs and PS Vitas. Each device is synced with a vault, a folder on your computer; the page shows what would move before anything is written. A save changed on two devices is yours to choose, nothing is deleted, and a save that is replaced is kept in the vault. Sidequest's states are left alone.
 - Sync needs Chrome, Edge or another Chromium browser on a computer (in Brave, with File System Access API switched on under `brave://flags`). **It has not yet been run on a real Memory Stick or PS Vita**: copy `PSP/SAVEDATA` from each device to your computer before your first sync. **Try it on the sample** shows how it works without touching anything.
+- Since the release (2026-11-27, documentation only): Sync has been run in Chrome and Chromium and works there, and Recap and the Emblem Workshop have been tried in Firefox as well. The "Tested on" lines say so.
 - Recap and the Emblem Workshop are unchanged.
 
 ## 1.3

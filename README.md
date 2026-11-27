@@ -15,8 +15,8 @@ It is one page that runs in your browser. Nothing is installed on the PSP and no
 | Version | 1.4 |
 | Reads | Sidequest 1.0+, Checkpoint 1.0+, Emblem 1.0+, Runtime 1.0, Shelf 1.0+, and their PS Vita builds ("1.0 Vita") |
 | Syncs | Game saves, Emblem's achievements and game files, Checkpoint's journey and time played, Shelf's favourites and completed marks |
-| Tested on | Chrome, with the sample Memory Stick, one real Memory Stick and one PS Vita `pspemu` folder (Adrenaline 8, ARK-5) |
-| Sync tested on | Folders on a PC and Chrome's own folder writing, in the tests. **Not yet on a real Memory Stick or PS Vita**; see [the first time](#the-first-time) |
+| Tested on | Recap and the Emblem Workshop in Chrome, Chromium and Firefox. Read with the sample Memory Stick, one real Memory Stick and one PS Vita `pspemu` folder (Adrenaline 8, ARK-5) |
+| Sync tested on | Chrome and Chromium, where I have run it and it works. Firefox cannot run Sync. The tests cover folders on a PC and Chrome's own folder writing; see [the first time](#the-first-time) |
 
 > **Disclosure.** Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my testing with files from my PSP-3000. I’m not a web developer, and nothing has been tested beyond my own setup. Please read the [known issues](docs/known-issues.md) before relying on it.
 
@@ -114,7 +114,7 @@ Play a game on the PSP, carry on with the same save on a PS Vita, and have both 
 
 ### The first time
 
-Sync has been tested on folders on a PC and through Chrome's own folder writing, but **not yet on a real Memory Stick or PS Vita**. Until it has:
+I have run Sync in Chrome and Chromium, and it works there. Its tests cover folders on a PC and Chrome's own folder writing. It is new and it writes to your saves, so the first time:
 
 - **Copy `PSP/SAVEDATA` from each device to your computer first**, somewhere other than the vault.
 - Or try it on a copy: copy the Memory Stick's folders to your computer and pick that copy as the Memory Stick.
