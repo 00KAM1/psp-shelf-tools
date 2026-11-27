@@ -81,16 +81,17 @@
     },
   });
 
-  // ---- tabs and the address bar (#recap, #emblem-workshop) ----------------------------------
+  // ---- tabs and the address bar (#recap, #emblem-workshop, #sync) ---------------------------
+  const HASH = { recap: "#recap", workshop: "#emblem-workshop", sync: "#sync" };
   function show(view) {
     for (const t of document.querySelectorAll(".top .tab")) t.setAttribute("aria-selected", String(t.dataset.view === view));
-    $("#view-recap").hidden = view !== "recap";
-    $("#view-workshop").hidden = view !== "workshop";
-    const want = view === "workshop" ? "#emblem-workshop" : "#recap";
-    if (location.hash !== want) try { history.replaceState(null, "", want); } catch (e) { /* the frame may refuse */ }
+    for (const v of Object.keys(HASH)) $("#view-" + v).hidden = view !== v;
+    $(".stickbtn").style.visibility = view === "sync" ? "hidden" : "";       // Sync picks its own two folders
+    if (location.hash !== HASH[view]) try { history.replaceState(null, "", HASH[view]); } catch (e) { /* the frame may refuse */ }
+    if (view === "sync" && App.onSync) App.onSync();
   }
   for (const t of document.querySelectorAll(".top .tab")) t.addEventListener("click", () => show(t.dataset.view));
-  const route = () => show(/emblem-(workshop|sets)/.test(location.hash) ? "workshop" : "recap");   // emblem-sets: its first name
+  const route = () => show(/emblem-(workshop|sets)/.test(location.hash) ? "workshop" : /^#sync/.test(location.hash) ? "sync" : "recap");   // emblem-sets: its first name
   window.addEventListener("hashchange", route);
   App.show = show;
 
@@ -153,16 +154,18 @@
 
   // the sample stick is packed into the page as gzip'd JSON (tools/build.py)
   let sampleData = null;
-  async function loadSample() {
+  async function sampleFiles() {
     if (!sampleData) {
       const bin = atob(window.SAMPLE_STICK_GZ), b = new Uint8Array(bin.length);
       for (let i = 0; i < bin.length; i++) b[i] = bin.charCodeAt(i);
       const json = await new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
       sampleData = JSON.parse(json);
     }
-    return App.setStick(StickIO.fromPacked(sampleData, "Sample stick"), true);
+    return sampleData;
   }
+  const loadSample = async () => App.setStick(StickIO.fromPacked(await sampleFiles(), "Sample stick"), true);
   App.loadSample = loadSample;
+  App.sampleFiles = sampleFiles;
 
   // ---- start ---------------------------------------------------------------------------
   App.start = async function () {

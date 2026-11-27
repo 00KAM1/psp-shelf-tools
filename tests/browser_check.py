@@ -3,8 +3,11 @@
    python3 tests/browser_check.py [path to chrome]
 Loads a zip of the sample stick through the file picker, edits a rule in the Workshop
 and checks that the checks follow, pastes code notes and uses one, makes the share picture.
+Then Sync: the sample, and a real run through the browser's own folder writing, with the two
+folder pickers answered by folders in the browser's private storage (the page is served from
+a local address for that, as a page opened from disk has no such storage).
 Screenshots go to tests/out/."""
-import asyncio, io, os, sys, zipfile
+import asyncio, functools, http.server, io, os, sys, threading, zipfile
 from playwright.async_api import async_playwright
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -104,7 +107,101 @@ async def main():
         await pg.wait_for_selector("#shareOut img", timeout=10000)
         check(True, "share picture made")
         await pg.screenshot(path=os.path.join(OUT, "recap.png"), full_page=True)
+        # ---- Sync: the sample --------------------------------------------------------------
+        await pg.click("#tab-sync")
+        await pg.click("#syTry")
+        await pg.wait_for_selector(".sy-game", timeout=20000)
+        t = await pg.inner_text("#syOut")
+        check("for you to choose" in t and "To this device" in t and "To the vault" in t and "Both ways" in t, "sample plan shows every direction")
+        check("Take the vault's" in t and "from PS Vita" in t, "the choice names both copies")
+        check("Sidequest suspend" in t, "a suspend older than the arriving save is pointed out")
+        n0 = await pg.inner_text("#sySync")
+        await pg.select_option("#syOut select", "skip")
+        check(await pg.inner_text("#sySync") != n0, "leaving a choice for later takes it out of the count: " + n0 + " -> " + await pg.inner_text("#sySync"))
+        await pg.select_option("#syOut select", "vault")
+        await pg.wait_for_timeout(600)
+        await pg.screenshot(path=os.path.join(OUT, "sync-plan.png"), full_page=True)
+        await pg.click("#sySync")
+        await pg.wait_for_selector(".sy-level", timeout=20000)
+        t = await pg.inner_text("#syOut")
+        check("PSP-3000 is synced" in t and "Everything is level" in t, "sample synced and level")
+        await pg.screenshot(path=os.path.join(OUT, "sync-done.png"), full_page=True)
         check(not errors, "no script errors " + "; ".join(errors))
+
+        # ---- Sync: real folder writing ------------------------------------------------------
+        handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=ROOT)
+        handler.log_message = lambda *a: None
+        srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        pg2 = await b.new_page(viewport={"width": 1280, "height": 900})
+        errors2 = []
+        pg2.on("pageerror", lambda e: errors2.append(str(e)))
+        await pg2.add_init_script("window.showDirectoryPicker = async (o) => window.__pick(o);")
+        await pg2.goto(f"http://127.0.0.1:{srv.server_address[1]}/index.html#sync")
+        await pg2.wait_for_selector("#syTry")
+        await pg2.evaluate("""async () => {
+          const root = await navigator.storage.getDirectory();
+          for await (const [n] of root.entries()) await root.removeEntry(n, { recursive: true });
+          const stick = await root.getDirectoryHandle("PSP_STICK", { create: true }), vault = await root.getDirectoryHandle("Shelf Vault", { create: true });
+          const dirOf = async (dir, parts) => { for (const p of parts) dir = await dir.getDirectoryHandle(p, { create: true }); return dir; };
+          const put = async (dir, path, data) => { const parts = path.split("/"), d = await dirOf(dir, parts.slice(0, -1)); const w = await (await d.getFileHandle(parts.at(-1), { create: true })).createWritable(); await w.write(data); await w.close(); };
+          const get = async (dir, path) => { try { const parts = path.split("/"), d = await dirOf(dir, parts.slice(0, -1)); return await (await (await d.getFileHandle(parts.at(-1))).getFile()).text(); } catch (e) { return null; } };
+          const ls = async (dir, path) => { try { const d = await dirOf(dir, path.split("/").filter(Boolean)); const out = []; for await (const [n] of d.entries()) out.push(n); return out.sort(); } catch (e) { return null; } };
+          for (const [p, [, , b64]] of Object.entries(await App.sampleFiles())) {
+            if (/^(SIDEQUEST|CHECKPOINT\/[^/]+\/\d)/.test(p) || /\.(IMG|PIN)$/.test(p)) continue;
+            const bin = atob(b64), b = new Uint8Array(bin.length);
+            for (let i = 0; i < bin.length; i++) b[i] = bin.charCodeAt(i);
+            await put(stick, p, b);
+          }
+          await put(stick, "PSP/SAVEDATA/ULUS10558SAVE00/PARAM.SFO", SyncCore.sfoWrite({ TITLE: "Ys: The Oath in Felghana", SAVEDATA_TITLE: "Valestein Castle" }));
+          await put(stick, "PSP/SAVEDATA/ULUS10558SAVE00/DATA.BIN", "one");
+          await put(stick, "PSP/SAVEDATA/ARK_01234/SETTINGS.TXT", "ark");
+          window.T = { stick, vault, put, get, ls };
+          window.__pick = async (o) => (o.id === "shelf-stick" ? stick : vault);
+        }""")
+        await pg2.click("#syStick")
+        await pg2.wait_for_function("document.querySelector('#syStickName').textContent === 'PSP_STICK'")
+        check(await pg2.is_disabled("#sySync"), "nothing to sync with one folder picked")
+        await pg2.click("#syVault")
+        await pg2.wait_for_selector(".sy-game", timeout=20000)
+        t = await pg2.inner_text("#syOut")
+        check("Valestein Castle" in t and "Only on this device so far" in t, "a real folder compared: the save is found")
+        check(await pg2.input_value("#syDev") == "PSP", "a name is offered for the device")
+        await pg2.fill("#syDev", "PSP-3000")
+        await pg2.click("#sySync")
+        await pg2.wait_for_selector(".sy-level", timeout=30000)
+        r = await pg2.evaluate("""async () => ({ save: await T.get(T.vault, "PSP/SAVEDATA/ULUS10558SAVE00/DATA.BIN"), ark: await T.ls(T.vault, "PSP/SAVEDATA"),
+          ix: JSON.parse(await T.get(T.vault, "SYNC/VAULT.JSON")), st: JSON.parse(await T.get(T.stick, "SYNC/STATE.JSON")), top: await T.ls(T.vault, ""),
+          tim: await T.get(T.vault, "CHECKPOINT/JOURNEY/ULUS10558.TIM"), log: await T.get(T.vault, "SYNC/log.txt") })""")
+        check(r["save"] == "one" and r["ark"] == ["ULUS10558SAVE00"], f"the save was written to the vault, ARK's folder was not ({r['ark']})")
+        check(r["st"]["vault"] == r["ix"]["id"] and list(r["ix"]["devices"].values())[0]["name"] == "PSP-3000", "device and vault know each other")
+        check(r["top"] == ["CHECKPOINT", "EMBLEM", "PSP", "SYNC"] and r["tim"].strip() == "165600", f"the vault's folders ({r['top']})")
+        check("PSP-3000: 1 save to the vault" in r["log"], "the log line: " + r["log"].strip())
+        check("PSP-3000" in await pg2.inner_text("#syDevices"), "the device is listed with the vault")
+        # play: the save changes on the device
+        await pg2.evaluate("""() => T.put(T.stick, "PSP/SAVEDATA/ULUS10558SAVE00/DATA.BIN", "two")""")
+        await pg2.click("#syCompare")
+        await pg2.wait_for_selector(".sy-game", timeout=20000)
+        check("Changed on this device" in await pg2.inner_text("#syOut"), "a changed save is seen")
+        await pg2.click("#sySync")
+        await pg2.wait_for_selector(".sy-level", timeout=30000)
+        r = await pg2.evaluate("""async () => ({ save: await T.get(T.vault, "PSP/SAVEDATA/ULUS10558SAVE00/DATA.BIN"), hist: await T.ls(T.vault, "SYNC/history/ULUS10558SAVE00") })""")
+        check(r["save"] == "two" and len(r["hist"] or []) == 1, f"the vault has the new save and keeps the old ({r['hist']})")
+        # another device brought a newer one to the vault
+        await pg2.evaluate("""() => T.put(T.vault, "PSP/SAVEDATA/ULUS10558SAVE00/DATA.BIN", "three")""")
+        await pg2.click("#syCompare")
+        await pg2.wait_for_selector(".sy-game", timeout=20000)
+        check("Newer in the vault" in await pg2.inner_text("#syOut"), "a save newer in the vault is seen")
+        await pg2.click("#sySync")
+        await pg2.wait_for_selector(".sy-level", timeout=30000)
+        r = await pg2.evaluate("""async () => ({ save: await T.get(T.stick, "PSP/SAVEDATA/ULUS10558SAVE00/DATA.BIN"), files: await T.ls(T.stick, "PSP/SAVEDATA/ULUS10558SAVE00"), hist: await T.ls(T.vault, "SYNC/history/ULUS10558SAVE00") })""")
+        check(r["save"] == "three" and r["files"] == ["DATA.BIN", "PARAM.SFO"] and len(r["hist"]) == 2, f"written to the device, nothing left behind ({r['files']}, {len(r['hist'])} kept)")
+        # the two folders are kept for the next visit (only that they are stored is checked: this
+        # headless Chrome stops when a folder of its private storage is read back from the database)
+        keys = await pg2.evaluate("""() => new Promise((ok) => { const r = indexedDB.open("shelf-tools", 1); r.onsuccess = () => { const q = r.result.transaction("handles").objectStore("handles").getAllKeys(); q.onsuccess = () => ok(q.result.sort()); }; })""")
+        check(keys == ["stick", "vault"], f"both folders are remembered ({keys})")
+        check(not errors2, "no script errors in Sync " + "; ".join(errors2))
+        srv.shutdown()
         await b.close()
     print("browser check:", "all passed" if not fails else f"{len(fails)} failed")
     sys.exit(1 if fails else 0)

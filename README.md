@@ -1,19 +1,22 @@
 # PSP Shelf Tools
 
-**Shelf Tools** is a web page for the PSP plugins in [psp-ark-plugins](https://github.com/00KAM1/psp-ark-plugins) and the [Shelf launcher](https://github.com/00KAM1/psp-shelf-launcher). It works the same with their PS Vita builds, [psvita-ark-plugins](https://github.com/00KAM1/psvita-ark-plugins) and [psvita-shelf-launcher](https://github.com/00KAM1/psvita-shelf-launcher); see [On a PS Vita](#on-a-ps-vita-adrenaline-8). It has two tools:
+**Shelf Tools** is a web page for the PSP plugins in [psp-ark-plugins](https://github.com/00KAM1/psp-ark-plugins) and the [Shelf launcher](https://github.com/00KAM1/psp-shelf-launcher). It works the same with their PS Vita builds, [psvita-ark-plugins](https://github.com/00KAM1/psvita-ark-plugins) and [psvita-shelf-launcher](https://github.com/00KAM1/psvita-shelf-launcher); see [On a PS Vita](#on-a-ps-vita-adrenaline-8). It has three tools:
 
 - **Recap**: your PSP play for a year, a month or all time, made from what Sidequest, Checkpoint, Emblem, Runtime and Shelf have kept on the Memory Stick.
 - **Emblem Workshop**: write and check Emblem's achievement files, with the plugin's own rule engine doing the checking.
+- **Sync**: keep your saves, achievements, journey and time played level between your PSPs and PS Vitas, through a folder on your computer.
 
 **Open it: [00kam1.github.io/psp-shelf-tools](https://00kam1.github.io/psp-shelf-tools/)**
 
-It is one page that runs in your browser. Nothing is installed on the PSP, and nothing on your Memory Stick is uploaded or changed.
+It is one page that runs in your browser. Nothing is installed on the PSP and nothing is uploaded. Recap and the Workshop only read. Sync is the one tool that writes to a Memory Stick, and only when you press **Sync now**.
 
 | | |
 |---|---|
-| Version | 1.3 |
+| Version | 1.4 |
 | Reads | Sidequest 1.0+, Checkpoint 1.0+, Emblem 1.0+, Runtime 1.0, Shelf 1.0+, and their PS Vita builds ("1.0 Vita") |
+| Syncs | Game saves, Emblem's achievements and game files, Checkpoint's journey and time played, Shelf's favourites and completed marks |
 | Tested on | Chrome, with the sample Memory Stick, one real Memory Stick and one PS Vita `pspemu` folder (Adrenaline 8, ARK-5) |
+| Sync tested on | Folders on a PC and Chrome's own folder writing, in the tests. **Not yet on a real Memory Stick or PS Vita**; see [the first time](#the-first-time) |
 
 > **Disclosure.** Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my testing with files from my PSP-3000. I’m not a web developer, and nothing has been tested beyond my own setup. Please read the [known issues](docs/known-issues.md) before relying on it.
 
@@ -72,7 +75,54 @@ Each plugin adds something, and none is required. With only Checkpoint you get h
   <img src="docs/images/workshop-text.png" alt="The same file as plain text" width="49%">
 </p>
 
-*The pictures on this page are screenshots of the page itself, all taken at 1280 × 800, with the made-up sample year of play over the icons and pictures of my own games.*
+## Sync
+
+Play a game on the PSP, carry on with the same save on a PS Vita, and have both show the same hours, achievements and journey. Each device is synced with a **vault**, a folder on your computer that holds the newest of everything. The devices never need to meet: what one adds to the vault reaches the others the next time each of them is synced.
+
+<p align="center">
+  <img src="docs/images/sync.png" alt="Sync: the Memory Stick and the vault picked, and what would move each way" width="100%">
+</p>
+
+1. Put the PSP in USB mode and choose **Pick the Memory Stick**. On a PS Vita, pick the `pspemu` folder on the card.
+2. Choose **Pick the vault folder**. The first time, make an empty folder for it, such as `Documents/Shelf Vault`. Use the same folder every time, for every device.
+3. The page compares the two and lists what would move, game by game. Untick anything you want left alone.
+4. Press **Sync now**. When it says everything is level, eject the Memory Stick as usual.
+
+| Synced | How two sides become one |
+|---|---|
+| **Game saves** (`PSP/SAVEDATA`) | The side that changed since the last sync wins. If both changed, you choose, with each save's own description and date in front of you |
+| **Achievements** (Emblem) | Joined. One earned on both keeps its first date |
+| **Journey and time played** (Checkpoint) | Journey lines are joined in date order. Play on each device since its last sync is added up, so the total is the same everywhere |
+| **Favourites, completed, hidden, last started** (Shelf) | By disc ID, so a game is found whatever its file is called on each device |
+| **Emblem's game files** | As saves, so a file from the Workshop reaches every device |
+| **Runtime's logs** | Copied to the vault only, kept apart for each device. They describe one device's battery |
+
+<p align="center">
+  <img src="docs/images/sync-saves.png" alt="The plan for three games: a save to choose, a save for the vault, a save for this device with a warning about a Sidequest suspend" width="49%">
+  <img src="docs/images/sync-level.png" alt="After Sync now: what was moved, and everything level" width="49%">
+</p>
+
+**What it will not do**
+
+- **Sidequest's states and suspends are left alone.** A state only loads on the device that made it. If a save is about to arrive for a game that has a suspend or state on this device, the page says so: loading that state carries on from before the save.
+- **No save is ever deleted.** A save removed from a device stays in the vault, and is not put back on that device unless you tick it.
+- **A save that is replaced is kept.** The vault's `SYNC/history` holds the last 5 copies of each save that Sync replaced, on either side.
+- **Only game saves are taken**: folders in `PSP/SAVEDATA` whose name starts with a disc ID. ARK's own folder, and anything over 32 MB (installed game data), are never touched.
+- **Other devices' plugin files are not forced on a device**: one without Emblem, Checkpoint or Shelf gets saves only.
+
+**It needs Chrome, Edge or another Chromium browser on a computer.** Brave has folder writing switched off until you turn on **File System Access API** under `brave://flags`. Firefox and Safari cannot write to a folder from a web page; Sync says so there, and **Try it on the sample** still shows how it works. Chrome on Android can open folders too, but Sync has not been tried on a phone. The browser asks before it lets the page read and change each folder, and asks again on your next visit.
+
+### The first time
+
+Sync has been tested on folders on a PC and through Chrome's own folder writing, but **not yet on a real Memory Stick or PS Vita**. Until it has:
+
+- **Copy `PSP/SAVEDATA` from each device to your computer first**, somewhere other than the vault.
+- Or try it on a copy: copy the Memory Stick's folders to your computer and pick that copy as the Memory Stick.
+- Read the plan before pressing Sync now. On a first sync every save goes to the vault, and nothing on the device is replaced without being listed.
+
+The details, including what happens when a sync is cut short, are in [how it works](docs/how-it-works.md#sync) and the [known issues](docs/known-issues.md#sync).
+
+*The pictures on this page are screenshots of the page itself, all taken at 1280 × 800, with the made-up sample year of play over the icons and pictures of my own games. Sync's pictures show the sample's own drawn icons.*
 
 ## Loading your Memory Stick
 
@@ -115,12 +165,12 @@ The page is built from `src/` into `index.html` by `tools/build.py`. Commit `ind
 
 | Script | Does |
 |---|---|
-| `tests/run_tests.sh [../psp-ark-plugins]` | All PC tests: the copies of Emblem's files match the plugins repo, the page's engine matches `em.c` built with gcc, the Memory Stick reader (a folder, a zip and dropped folders) and Recap's numbers. Then it builds the page |
-| `tests/browser_check.py` | Optional: clicks through the built page in headless Chrome (Playwright) |
+| `tests/run_tests.sh [../psp-ark-plugins]` | All PC tests: the copies of Emblem's files match the plugins repo, the page's engine matches `em.c` built with gcc, the Memory Stick reader (a folder, a zip and dropped folders), Recap's numbers, and Sync run on real folders (a PSP, a PS Vita and a vault through first syncs, play on each, a save changed on both, and syncs cut short). Then it builds the page |
+| `tests/browser_check.py` | Optional: clicks through the built page in headless Chrome (Playwright), and runs Sync through the browser's own folder writing |
 | `tools/sync_from_plugins.sh ../psp-ark-plugins` | After Emblem changes: copies `em.c`, `em.h` and the game files, rebuilds the engine and the page |
 | `engine/build.sh` | `em.c` to `src/emblem-engine.js`: clang to WebAssembly, then binaryen's wasm2js to plain JavaScript |
 | `tools/make_sample_stick.py` | The sample Memory Stick in `tests/sample/ms0` |
-| `tests/render/doc_pictures.py` | The pictures in `docs/images`, all at 1280 × 800. With `tools/make_sample_stick.py --art <folder>` run first, they show your own games' icons and pictures (the folder holds one sub-folder per game with its `PARAM.SFO`, `ICON0.PNG` and `PIC1.PNG`, taken from your ISOs). That stick and its page stay in `tests/docrun/`, which Git ignores |
+| `tests/render/doc_pictures.py [--only recap\|workshop\|sync]` | The pictures in `docs/images`, all at 1280 × 800. With `tools/make_sample_stick.py --art <folder>` run first, they show your own games' icons and pictures (the folder holds one sub-folder per game with its `PARAM.SFO`, `ICON0.PNG` and `PIC1.PNG`, taken from your ISOs). That stick and its page stay in `tests/docrun/`, which Git ignores |
 
 Needs: python3 with Pillow, node 18 or later, gcc; for the engine, clang with the wasm32 target.
 

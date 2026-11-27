@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shelf Tools</title>
-<meta name="description" content="Recap and the Emblem Workshop for the PSP: your play from what Sidequest, Checkpoint, Emblem, Runtime and Shelf keep on the Memory Stick, and a maker for Emblem's achievement files.">
+<meta name="description" content="Recap, the Emblem Workshop and Sync for the PSP: your play from what Sidequest, Checkpoint, Emblem, Runtime and Shelf keep on the Memory Stick, a maker for Emblem's achievement files, and saves kept level between your PSPs and PS Vitas.">
 <meta name="theme-color" content="#161a22">
 <meta property="og:title" content="Shelf Tools">
-<meta property="og:description" content="Recap and the Emblem Workshop for the PSP plugins and the Shelf launcher. Everything is read in your browser.">
+<meta property="og:description" content="Recap, the Emblem Workshop and Sync for the PSP plugins and the Shelf launcher. Everything stays in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://00kam1.github.io/psp-shelf-tools/docs/images/recap.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%230e1116'/%3E%3Crect x='3' y='3' width='3' height='8' fill='%23ffb000'/%3E%3Crect x='7' y='5' width='3' height='6' fill='%236e96eb'/%3E%3Crect x='11' y='4' width='2' height='7' fill='%235ac46e'/%3E%3Crect x='2' y='11' width='12' height='2' fill='%2397a1b0'/%3E%3C/svg%3E">
@@ -50,7 +50,7 @@ a{color:var(--blue)}
 .btn[disabled]{opacity:.45;cursor:default}
 .band{padding:clamp(20px,3.5vw,48px) max(4vw,14px)}
 .wrap{max-width:1240px;margin:0 auto}
-.view[hidden]{display:none}
+[hidden]{display:none!important}
 h1,h2,h3{font-family:var(--pix);font-weight:400;margin:0;line-height:1.1;text-wrap:balance}
 h1{font-size:clamp(30px,5vw,50px)}
 h2{font-size:24px;margin-bottom:14px}
@@ -215,6 +215,38 @@ summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
 .notes table{width:100%;border-collapse:collapse;font-size:13px}
 .notes td{border-top:1px solid var(--line);padding:6px 4px;vertical-align:top}
 .notes td:first-child{font-family:var(--mono);white-space:nowrap}
+/* ---- Sync ---- */
+.sy-n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--amber);color:#14161a;font-size:18px;margin-right:8px;vertical-align:2px}
+.sy-pick{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.sy-name{font-family:var(--pix);font-size:17px;color:var(--green);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sy-name.none{color:var(--dim)}
+.sy-dev{margin-top:14px;max-width:340px}
+.sy-go{margin:18px 0 6px}
+.sy-meter{margin:0 0 14px}
+.sy-warn{border-color:#6b5a1c;color:var(--gold);margin-top:14px}
+.sy-bad{border-color:#6b2a2a}
+.sy-sum{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+.sy-sum span{font-family:var(--pix);font-size:16px;padding:5px 12px;border-radius:6px;background:var(--card);border:1px solid var(--line);color:var(--grey)}
+.sy-sum b{font-weight:400;color:var(--ink);margin-right:5px}
+.sy-game{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:10px;overflow:hidden}
+.sy-head{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;align-items:center;padding:10px 14px;background:var(--card2)}
+.sy-head img,.sy-head .ph{width:72px;aspect-ratio:144/80;border-radius:3px;object-fit:cover;image-rendering:pixelated;font-size:14px}
+.sy-head code{font-family:var(--mono);font-size:12px;color:var(--dim);margin-left:8px}
+.sy-row{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:4px 10px;align-items:start;padding:10px 14px;border-top:1px solid var(--line)}
+.sy-row input[type=checkbox]{width:20px;height:20px;margin:3px 0 0;accent-color:var(--amber)}
+.sy-row .what{font-weight:500}
+.sy-row .what code{font-family:var(--mono);font-size:12px;color:var(--dim);font-weight:400;margin-left:6px}
+.sy-row .why{grid-column:2/-1;font-size:14px;color:var(--grey)}
+.sy-row .care{grid-column:2/-1;font-size:14px;color:var(--gold)}
+.sy-row .fail{grid-column:2/-1;font-size:14px;color:var(--red)}
+.sy-row select{grid-column:2/-1;max-width:100%;min-height:40px;margin-top:4px}
+.sy-row.off .what,.sy-row.off .why{opacity:.55}
+.tag.amber{color:var(--amber)}.tag.grey{color:var(--grey)}.tag.red{color:var(--red)}
+.sy-dl{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:4px 14px;font-size:14px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.sy-dl b{font-family:var(--pix);font-weight:400}
+.sy-dl span{color:var(--grey);white-space:nowrap}
+.sy-notes{font-size:13px;color:var(--grey);margin:12px 0 0;padding-left:18px}
+.sy-level{font-family:var(--pix);font-size:22px;color:var(--green)}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--card2);border:1px solid var(--amber);color:var(--ink);padding:10px 18px;border-radius:8px;font-family:var(--pix);z-index:50;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
 .foot{border-top:1px solid var(--line);background:var(--bar);color:var(--grey);font-size:13px;padding:14px max(4vw,14px)}
@@ -229,6 +261,7 @@ summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
   <nav class="tabs" role="tablist">
     <button class="tab" role="tab" id="tab-recap" aria-selected="true" data-view="recap">Recap</button>
     <button class="tab" role="tab" id="tab-workshop" aria-selected="false" data-view="workshop">Emblem Workshop</button>
+    <button class="tab" role="tab" id="tab-sync" aria-selected="false" data-view="sync">Sync</button>
   </nav>
   <div class="stickbtn">
     <span class="stickname" id="stickname">Sample stick</span>
@@ -282,11 +315,54 @@ summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
     </div>
   </div>
 </section>
+
+<!-- ================= SYNC ================= -->
+<section class="view" id="view-sync" aria-labelledby="tab-sync" hidden>
+  <div class="band">
+    <div class="wrap">
+      <div class="toolbar">
+        <h1 style="font-size:clamp(26px,4vw,36px);margin-right:auto">Sync</h1>
+        <button class="btn small" id="syTry">Try it on the sample</button>
+      </div>
+      <p class="muted" style="max-width:76ch">Keeps your saves, achievements, journey and time played level between your PSPs and PS Vitas. Each one is synced with a <b>vault</b>, a folder on this computer, and the vault passes on what the others added. Nothing is uploaded, and nothing is written until you press Sync now.</p>
+      <div class="card sy-warn" id="syNeed" hidden></div>
+      <div class="grid" style="margin-top:16px">
+        <div class="card s6">
+          <h2><span class="sy-n">1</span> Memory Stick</h2>
+          <p class="small muted" id="syStickHelp">Put the PSP in USB mode (Shelf's PS-button menu, <b>USB connection</b>) and pick its drive. On a PS Vita, pick the <code>pspemu</code> folder on the card.</p>
+          <div class="sy-pick">
+            <button class="btn" id="syStick">Pick the Memory Stick</button>
+            <button class="btn" id="syStickAgain" hidden></button>
+            <span class="sy-name" id="syStickName"></span>
+          </div>
+          <label class="f sy-dev" id="syDevBox" hidden>This device's name, as the vault will show it<input class="inp" id="syDev" maxlength="24" autocomplete="off" spellcheck="false"></label>
+        </div>
+        <div class="card s6">
+          <h2><span class="sy-n">2</span> Vault</h2>
+          <p class="small muted">A folder of its own on this computer, the same one every time. For the first sync, make an empty folder, such as <code>Documents/Shelf Vault</code>, and pick it.</p>
+          <div class="sy-pick">
+            <button class="btn" id="syVault">Pick the vault folder</button>
+            <button class="btn" id="syVaultAgain" hidden></button>
+            <span class="sy-name" id="syVaultName"></span>
+          </div>
+          <div id="syDevices"></div>
+        </div>
+      </div>
+      <div class="toolbar sy-go">
+        <button class="btn" id="syCompare" disabled>Compare</button>
+        <button class="btn main" id="sySync" disabled>Sync now</button>
+        <span class="small" id="syMsg" role="status"></span>
+      </div>
+      <div class="meter sy-meter" id="syMeter" hidden><i style="width:0"></i></div>
+      <div id="syOut" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <span>Everything is read in your browser. Nothing on your Memory Stick is uploaded or changed.</span>
+    <span>Everything is read in your browser and nothing is uploaded. Only Sync writes to a Memory Stick, and only when you press Sync now.</span>
     <span>For <a href="https://github.com/00KAM1/psp-shelf-launcher">Shelf</a> and <a href="https://github.com/00KAM1/psp-ark-plugins">psp-ark-plugins</a> · Shelf Tools <span id="ver"></span></span>
   </div>
 </footer>

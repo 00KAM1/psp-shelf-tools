@@ -16,10 +16,10 @@ tests/render/doc_pictures.py). Never commit such a copy as index.html.
 """
 import argparse, base64, gzip, json, os, re
 
-VERSION = "1.3"
+VERSION = "1.4"
 # the sample stick's files are dated as if it was last used then (Runtime's year-less dates count back from it)
 SAMPLE_DATE = 1795561200000   # 2026-11-24 23:00 UTC
-SCRIPTS = ["emblem-engine.js", "engine.js", "stick.js", "parse.js", "stats.js", "ui.js", "recap.js", "workshop.js"]
+SCRIPTS = ["emblem-engine.js", "engine.js", "stick.js", "parse.js", "stats.js", "syncdir.js", "sync.js", "ui.js", "recap.js", "workshop.js", "syncui.js"]
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--sample", default="tests/sample/ms0", help="the stick the page opens on")

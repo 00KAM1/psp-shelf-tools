@@ -29,7 +29,10 @@ echo "== 3. The sample stick, as a folder and as a zip"
 [ -d tests/sample/ms0 ] || python3 tools/make_sample_stick.py
 node tests/test_stick.js
 
-echo "== 4. The page"
+echo "== 4. Sync, on real folders"
+node tests/test_sync.js
+
+echo "== 5. The page"
 python3 tools/build.py
 if grep -q "</script" src/*.js; then echo "a script contains </script"; exit 1; fi
 echo "all passed"
