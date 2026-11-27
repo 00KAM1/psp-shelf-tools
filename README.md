@@ -16,7 +16,7 @@ It is one page that runs in your browser. Nothing is installed on the PSP and no
 | Reads | Sidequest 1.0+, Checkpoint 1.0+, Emblem 1.0+, Runtime 1.0, Shelf 1.0+, and their PS Vita builds ("1.0 Vita") |
 | Syncs | Game saves, Emblem's achievements and game files, Checkpoint's journey and time played, Shelf's favourites and completed marks |
 | Tested on | Recap and the Emblem Workshop in Chrome, Chromium and Firefox. Read with the sample Memory Stick, one real Memory Stick and one PS Vita `pspemu` folder (Adrenaline 8, ARK-5) |
-| Sync tested on | Chrome and Chromium, where I have run it and it works. Firefox cannot run Sync. The tests cover folders on a PC and Chrome's own folder writing; see [the first time](#the-first-time) |
+| Sync tested on | Chrome and Chromium, with one real PSP Memory Stick and one real PS Vita `pspemu` folder, both over USB and with the card taken out and put in the computer: it works. Firefox cannot run Sync. The tests also cover folders on a PC; see [the first time](#the-first-time) |
 
 > **Disclosure.** Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my testing with files from my PSP-3000. I’m not a web developer, and nothing has been tested beyond my own setup. Please read the [known issues](docs/known-issues.md) before relying on it.
 
@@ -114,7 +114,7 @@ Play a game on the PSP, carry on with the same save on a PS Vita, and have both 
 
 ### The first time
 
-I have run Sync in Chrome and Chromium, and it works there. Its tests cover folders on a PC and Chrome's own folder writing. It is new and it writes to your saves, so the first time:
+I have run Sync in Chrome and Chromium on a real PSP Memory Stick and on a real PS Vita `pspemu` folder, both over USB and with the card taken out and put in the computer, and it works. Its tests cover folders on a PC and Chrome's own folder writing. It is new, it writes to your saves, and one PSP and one PS Vita are all it has been tried on, so the first time:
 
 - **Copy `PSP/SAVEDATA` from each device to your computer first**, somewhere other than the vault.
 - Or try it on a copy: copy the Memory Stick's folders to your computer and pick that copy as the Memory Stick.
