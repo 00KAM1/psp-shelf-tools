@@ -52,7 +52,7 @@ Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my 
 
 ## Checkup
 
-- **Not yet run on a real Memory Stick.** New in 1.5. The tests run it on the sample and on made-up setups with one fault each, and read the real `.prx` and `.PBP` files of every release so far, 26 of them, checking each against the list. A real Memory Stick is the step still to come.
+- **Run on one real Memory Stick.** New in 1.5. I have run Checkup on a real Memory Stick in Chrome, Chromium and Firefox, and it works. The tests run it on the sample and on made-up setups with one fault each, and read the real `.prx` and `.PBP` files of every release so far, 26 of them, checking each against the list. One setup is a small sample: if the report says something that is not true of yours, that is worth a bug report, with **Copy the report**.
 - **It needs the drive itself.** The plugin files are in `SEPLUGINS`, ARK's in `PSP/SAVEDATA/ARK_01234` and Shelf in `PSP/GAME/SHELF`. A zip or a drop of the five data folders alone has none of them, and Checkup then says nothing installed was found.
 - **It knows the releases the page was built with.** The list is `data/official.json`. Until it is updated after a new release, that release's files are reported as "not a file from a release this page knows", and no update is offered for it. The release of 2026-11-24 that was withdrawn is not in the list either.
 - **"Not a file from a release" does not mean broken.** It means the file's fingerprint is in no release: a build of your own, a copy damaged on the way, or a newer release. The version written inside is still read and shown.
@@ -67,7 +67,7 @@ Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my 
 
 ## Library
 
-- **Not yet run on a real Memory Stick.** New in 1.5. The tests run it on the sample, whose games are real disc images a few KB long. How long a Memory Stick with a hundred games takes to list over USB has not been measured; the design keeps it to the folder listing plus about 2 KB a game.
+- **Run on one real Memory Stick.** New in 1.5. I have run the Library on a real Memory Stick in Chrome, Chromium and Firefox, and it works. The tests run it on the sample, whose games are real disc images a few KB long. How long a Memory Stick with a hundred games takes to list over USB has not been timed; the design keeps it to the folder listing plus about 2 KB a game.
 - **It only shows.** Shelf's favourite, completed and hidden marks are shown as they are in `SHELF/games.txt`; set them in Shelf.
 - **"Cut short" compares sizes only.** A file of the right size with damaged contents is not found. A plain ISO that was trimmed on purpose with a tool that does not correct its header would be reported; I know of none in use for PSP.
 - **DAX images are listed, not read**: no title from inside, no check.
@@ -78,7 +78,7 @@ Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my 
 
 ## Backlog
 
-- **Not yet run on a real Memory Stick.** New in 1.5.
+- **Run on one real Memory Stick.** New in 1.5. I have run the Backlog on a real Memory Stick in Chrome, Chromium and Firefox, and it works.
 - **It only shows.** No queue, no game lengths, nothing to mark: Shelf would not read them. "Pick one for me" highlights one of the best three suggestions and stores nothing.
 - **Series are found by words in the title or file name**, from `data/series.json` (22 series). A fan translation with an unusual name may not be placed, and a game may be placed wrongly; please report either with the file name.
 - **The order of a series is my pick**: release order where the story follows it. For Trails it is Sky, SC, the 3rd, Zero, Azure.

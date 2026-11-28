@@ -19,8 +19,8 @@ It is one page that runs in your browser. Nothing is installed on the PSP and no
 | Reads | Sidequest 1.0+, Checkpoint 1.0+, Emblem 1.0+, Runtime 1.0, Shelf 1.0+, and their PS Vita builds ("1.0 Vita") |
 | Syncs | Game saves, Emblem's achievements and game files, Checkpoint's journey and time played, Shelf's favourites and completed marks |
 | Tested on | Recap and the Emblem Workshop in Chrome, Chromium and Firefox. Read with the sample Memory Stick, one real Memory Stick and one PS Vita `pspemu` folder (Adrenaline 8, ARK-5) |
-| Checkup tested on | The sample Memory Stick and made-up setups, in the tests, and the real files of every release so far (26 files) read and matched. **Not yet on a real Memory Stick** |
-| Library and Backlog tested on | The sample Memory Stick, in the tests and in headless Chrome. **Not yet on a real Memory Stick**, and how fast a large one lists has not been measured |
+| Checkup tested on | One real Memory Stick, in Chrome, Chromium and Firefox: it works. The tests also cover the sample, made-up setups, and the real files of every release so far (26 files) read and matched |
+| Library and Backlog tested on | One real Memory Stick, in Chrome, Chromium and Firefox: they work. The tests also cover the sample Memory Stick. How long a large collection takes to list has not been timed |
 | Sync tested on | Chrome and Chromium, with one real PSP Memory Stick and one real PS Vita `pspemu` folder, both over USB and with the card taken out and put in the computer: it works. Firefox cannot run Sync. The tests also cover folders on a PC; see [the first time](#the-first-time) |
 
 > **Disclosure.** Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my testing with files from my PSP-3000. I’m not a web developer, and nothing has been tested beyond my own setup. Please read the [known issues](docs/known-issues.md) before relying on it.

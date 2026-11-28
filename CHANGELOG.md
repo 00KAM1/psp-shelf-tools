@@ -13,6 +13,7 @@ Three new tools, all of which only read, and a new order for the tabs: Recap, Sy
 - Loading a Memory Stick now also lists the games in `ISO` and `PSP/GAME`, and reads the installed plugins and their list in `SEPLUGINS`, Scanline's log, ARK's files in `PSP/SAVEDATA/ARK_01234` and Shelf's program. Pick the drive itself: a zip of the five data folders does not hold the plugins, and the Library then shows only what Shelf has scanned, without sizes.
 - The row of tabs scrolls sideways on a phone.
 - **The Library, the Backlog and Checkup have not yet been run on a real Memory Stick.** They have been run on the sample; for Checkup, also on made-up setups, and the real files of every release so far were read and matched.
+- Since the release (2026-11-28, documentation only): the Library, the Backlog and Checkup have been run on a real Memory Stick in Chrome, Chromium and Firefox, and work. The "Tested on" lines say so.
 - Recap, the Emblem Workshop and Sync are unchanged.
 
 ## 1.4
