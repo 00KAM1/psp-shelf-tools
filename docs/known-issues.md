@@ -1,4 +1,4 @@
-# Shelf Tools 1.4: known issues and limits
+# Shelf Tools 1.5: known issues and limits
 
 Recap and the Emblem Workshop have been tried in Chrome, Chromium and Firefox on a computer, and in Chrome at phone size, with the sample Memory Stick. **It has also been tested on one real Memory Stick and on one PS Vita `pspemu` folder (Adrenaline 8 with ARK-5), battery figures included.** The formats it reads are taken from the plugins' and Shelf's source, and the tests build files in exactly those formats. **Sync, new in 1.4, has been run in Chrome and Chromium on one real PSP Memory Stick and one real PS Vita `pspemu` folder, both over USB and with the card taken out and put in the computer, and works; it does not run in Firefox**; see [Sync](#sync).
 
@@ -7,7 +7,7 @@ Recap and the Emblem Workshop have been tried in Chrome, Chromium and Firefox on
 Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my testing with files from my PSP-3000. I’m not a web developer, and nothing has been tested beyond my own setup.
 
 - No one else has reviewed the code.
-- Recap and the Emblem Workshop only read. A file they cannot read is skipped, and the Load window says which.
+- Recap, the Emblem Workshop, Checkup, the Library and the Backlog only read. A file they cannot read is skipped, and the Load window says which.
 - Sync writes to the Memory Stick and to the vault folder, and only when you press Sync now. It removes no save from either: a save it replaces is copied to the vault's history first.
 - Nothing leaves the browser: there is no server behind the page, and GitHub only serves the page itself.
 
@@ -50,12 +50,47 @@ Shelf Tools was written by Claude, Anthropic’s AI model, from my ideas and my 
 - **One page at a time.** Syncing the same vault from two browser windows at once is not guarded against.
 - **The two folders are remembered** in the browser's storage for this page. Clearing the site's data forgets them, nothing more.
 
+## Checkup
+
+- **Not yet run on a real Memory Stick.** New in 1.5. The tests run it on the sample and on made-up setups with one fault each, and read the real `.prx` and `.PBP` files of every release so far, 26 of them, checking each against the list. A real Memory Stick is the step still to come.
+- **It needs the drive itself.** The plugin files are in `SEPLUGINS`, ARK's in `PSP/SAVEDATA/ARK_01234` and Shelf in `PSP/GAME/SHELF`. A zip or a drop of the five data folders alone has none of them, and Checkup then says nothing installed was found.
+- **It knows the releases the page was built with.** The list is `data/official.json`. Until it is updated after a new release, that release's files are reported as "not a file from a release this page knows", and no update is offered for it. The release of 2026-11-24 that was withdrawn is not in the list either.
+- **"Not a file from a release" does not mean broken.** It means the file's fingerprint is in no release: a build of your own, a copy damaged on the way, or a newer release. The version written inside is still read and shown.
+- **Fingerprints need a secure page.** On GitHub Pages they work, and in Chrome when the page is opened from disk. Where the browser does not offer them, only the version text is read, and Checkup says so.
+- **A plugin is found by its file name**: `sidequest.prx`, `checkpoint.prx`, `emblem.prx`, `scanline.prx`, `runtime.prx`, in `SEPLUGINS` or wherever `PLUGINS.TXT` points on the Memory Stick. A renamed file is listed among "other plugins". Shelf is looked for in `PSP/GAME/SHELF` only.
+- **`PLUGINS.TXT` is read in both places ARK reads it**: `SEPLUGINS/PLUGINS.TXT` and `PSP/SAVEDATA/ARK_01234/PLUGINS.TXT`. Lines for storage other than the Memory Stick (a PSP Go's `ef0:`) cannot be followed, as only the Memory Stick is loaded.
+- **States "saved before what is installed now was built"** are shown in red, as they can break a setup that works. The check compares each state's date, from the PSP's clock, with the newest build date among the installed files, and allows a day for the two clocks to differ. It can only say a state is older than the build, not when you installed it, so states made between the build and your update are not flagged. A wrong PSP clock gives a wrong answer.
+- **"Last ran as"** comes from the line each plugin writes at the top of a run in its log. A log that was deleted, or a folder left out of what was loaded, shows as "no log".
+- **Extra memory** is read from ARK's `SETTINGS.TXT`: the line for everything, and lines for single games. Settings ARK holds elsewhere are not seen.
+- **The sample's plugin files are stand-ins**, a few hundred bytes with the version text in them. On the sample only, Checkup takes them for release files, so that the sample shows what a real setup looks like.
+- **Other custom firmware is not known to it.** It reads ARK-5's files as these plugins use them.
+
+## Library
+
+- **Not yet run on a real Memory Stick.** New in 1.5. The tests run it on the sample, whose games are real disc images a few KB long. How long a Memory Stick with a hundred games takes to list over USB has not been measured; the design keeps it to the folder listing plus about 2 KB a game.
+- **It only shows.** Shelf's favourite, completed and hidden marks are shown as they are in `SHELF/games.txt`; set them in Shelf.
+- **"Cut short" compares sizes only.** A file of the right size with damaged contents is not found. A plain ISO that was trimmed on purpose with a tool that does not correct its header would be reported; I know of none in use for PSP.
+- **DAX images are listed, not read**: no title from inside, no check.
+- **CSO 2 with LZ4 blocks** is read by rule from its format; the sample has no such file and none was tried.
+- **A PS1 game's icon and title** come from its `EBOOT.PBP` header. Multi-disc PS1 games are one entry.
+- **With a zip or a drop of the five data folders** there are no game files: the list is what Shelf has scanned, with no sizes and no checks.
+- **It does not mark, move, delete, rename or convert anything.**
+
+## Backlog
+
+- **Not yet run on a real Memory Stick.** New in 1.5.
+- **It only shows.** No queue, no game lengths, nothing to mark: Shelf would not read them. "Pick one for me" highlights one of the best three suggestions and stores nothing.
+- **Series are found by words in the title or file name**, from `data/series.json` (22 series). A fan translation with an unusual name may not be placed, and a game may be placed wrongly; please report either with the file name.
+- **The order of a series is my pick**: release order where the story follows it. For Trails it is Sky, SC, the 3rd, Zero, Azure.
+- **"Playing" means played in the last 30 days**, by the dates Checkpoint and Runtime wrote from the PSP's clock.
+- **Hours a week needs Runtime**; without its sessions the line is left out.
+
 ## Loading
 
 - **Dropped folders** need a browser that hands dropped folders to a page, as current Chrome, Edge, Firefox and Safari do. The reading is covered by the PC tests; a real drop in each browser is not. If a drop does nothing, use Pick a folder or Pick a zip.
 
 - **PS Vita:** the Memory Stick is the `pspemu` folder (`ux0:pspemu`, or the **Memory Stick Location** set in Adrenaline's menu). Pick that folder, not the card's root. If the computer asks to format the card when you connect, the wrong **USB device** is chosen in Adrenaline's menu; do not format. Only Adrenaline 8 with ARK-5 has been tried, as that is what the Vita builds are made for. See [On a PS Vita](../README.md#on-a-ps-vita-adrenaline-8).
-- **Phones** often cannot pick a folder; use a zip. iPhone and iPad: Files app, select the five folders, Compress.
+- **Phones** often cannot pick a folder; use a zip. iPhone and iPad: Files app, select the five folders, Compress. Checkup needs more than those five; see [Checkup](#checkup).
 - **Zips:** stored and deflated entries, zip64 included. Other compression methods are refused with a message.
 - **The fonts** load from Google Fonts. Offline, the page uses your system's fonts.
 

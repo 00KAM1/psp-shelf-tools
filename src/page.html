@@ -247,12 +247,92 @@ summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
 .sy-dl span{color:var(--grey);white-space:nowrap}
 .sy-notes{font-size:13px;color:var(--grey);margin:12px 0 0;padding-left:18px}
 .sy-level{font-family:var(--pix);font-size:22px;color:var(--green)}
+/* ---- Checkup ---- */
+.ck-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px;border-left:4px solid var(--green)}
+.ck-head.ck-is-warn{border-left-color:var(--gold)}.ck-head.ck-is-bad{border-left-color:var(--red)}
+.ck-verdict{font-family:var(--pix);font-size:26px;line-height:1.1}
+.ck-is-ok .ck-verdict{color:var(--green)}.ck-is-warn .ck-verdict{color:var(--gold)}.ck-is-bad .ck-verdict{color:var(--red)}
+.ck-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
+@media (max-width:760px){.ck-grid{grid-template-columns:minmax(0,1fr)}}
+.ck-card{border-top:3px solid var(--line)}
+.ck-card.ck-is-ok{border-top-color:#2c6b47}.ck-card.ck-is-warn{border-top-color:#6b5a1c}.ck-card.ck-is-bad{border-top-color:#6b2a2a}
+.ck-top{display:flex;gap:8px;align-items:baseline;justify-content:space-between}
+.ck-top h2{margin:0}
+.ck-ver{color:var(--amber)}
+.ck-facts{font-size:13px;color:var(--grey);margin:6px 0 0;display:flex;flex-wrap:wrap;gap:2px 16px}
+.ck-notes{list-style:none;margin:10px 0 0;padding:0}
+.ck-notes li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:14.5px}
+.ck-mark{font-family:var(--pix);font-size:15px;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:1px solid currentColor}
+.ck-bad .ck-mark{color:var(--red)}.ck-warn .ck-mark{color:var(--gold)}.ck-info .ck-mark{color:var(--blue)}
+.ck-fix{color:var(--grey);margin-top:3px}
+.ck-code{display:flex;gap:8px;align-items:center;margin-top:6px}
+.ck-code code{font-family:var(--mono);font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 9px;overflow-x:auto;white-space:nowrap;min-width:0}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--card2);border:1px solid var(--amber);color:var(--ink);padding:10px 18px;border-radius:8px;font-family:var(--pix);z-index:50;opacity:0;transition:opacity .2s;pointer-events:none}
 .toast.on{opacity:1}
 .foot{border-top:1px solid var(--line);background:var(--bar);color:var(--grey);font-size:13px;padding:14px max(4vw,14px)}
 .foot .wrap{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
 @media(prefers-reduced-motion:no-preference){.book{animation:rise .5s ease-out both}.book:nth-child(2){animation-delay:.06s}.book:nth-child(3){animation-delay:.12s}.book:nth-child(4){animation-delay:.18s}.book:nth-child(5){animation-delay:.24s}@keyframes rise{from{transform:translateY(24px);opacity:0}}}
 @media(max-width:600px){.stickname{display:none}.brand{font-size:17px}.tab{font-size:16px;padding:8px 6px}.recs{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.stat b{font-size:24px}}
+
+/* ---- Library and Backlog ---- */
+.lb-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:12px}
+@media (max-width:760px){.lb-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.lb-tile{padding:14px 16px}
+.lb-big{font-family:var(--pix);font-size:34px;line-height:1;color:var(--amber)}
+.lb-lab{margin-top:4px}
+.lb-sub,.bl-sub{color:var(--grey);font-size:13px;margin-top:2px;overflow-wrap:anywhere}
+.lb-notes{margin-bottom:12px}.lb-notes code{overflow-wrap:anywhere}
+.lb-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0}
+.lb-bar .inp{width:auto;min-width:0}.lb-bar #lbFind{flex:1 1 180px}
+.lb-list,.bl-list{padding:0}
+.lb-list{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+.lb-row{display:grid;grid-template-columns:72px minmax(0,1fr) 78px 70px 110px 196px;gap:12px;align-items:center;padding:9px 12px;border-top:1px solid var(--line)}
+.lb-row:first-child,.bl-row:first-child{border-top:0}
+.lb-row.gone{opacity:.6}
+.lb-row img,.lb-row .ph,.bl-row img,.bl-row .ph,.bl-card img,.bl-card .ph{width:72px;aspect-ratio:144/80;border-radius:3px;object-fit:cover;image-rendering:pixelated;background:var(--card2);font-size:14px;flex:none}
+.lb-name .tag,.bl-body .tag{margin-left:6px;vertical-align:middle}
+.lb-c{font-size:14px;white-space:nowrap}.lb-size{text-align:right}
+.lb-marks{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
+@media (max-width:760px){
+  .lb-row{grid-template-columns:56px minmax(0,1fr) auto;gap:6px 10px}
+  .lb-row img,.lb-row .ph{width:56px;grid-row:span 2;align-self:start}
+  .lb-name{grid-column:2/4}
+  .lb-fmt,.lb-size,.lb-play{grid-row:2;font-size:13px;color:var(--grey)}
+  .lb-fmt{grid-column:2}.lb-row .lb-size{display:none}.lb-play{grid-column:2;display:none}
+  .lb-marks{grid-row:3;grid-column:2/4;justify-content:flex-start}.lb-marks:empty{display:none}
+  .lb-fmt{grid-column:2/4!important}
+
+}
+.bl-h{margin:20px 0 8px}
+.bl-headrow{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-top:20px}.bl-headrow .bl-h{margin:0 0 8px}
+.bl-pace{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.bl-pace .inp,.bl-fit .inp{width:76px;margin:0 6px}
+.bl-card{display:flex;gap:12px;align-items:flex-start}
+.bl-body{min-width:0;flex:1}
+.bl-line{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px}
+.bl-len{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--grey);white-space:nowrap}
+.bl-len .inp{width:58px;padding:4px 6px;text-align:right}
+.bl-bar{height:6px;border-radius:3px;background:var(--card2);margin-top:8px;overflow:hidden}.bl-bar i{display:block;height:100%;background:var(--amber)}
+.bl-row{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.bl-row.picked{box-shadow:inset 3px 0 0 var(--amber);padding-left:10px}
+.bl-n{font-family:var(--pix);font-size:20px;color:var(--amber);width:22px;text-align:center;flex:none}
+.bl-right{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-end;flex:none}
+.bl-btns{display:inline-flex;gap:4px}
+.bl-series ol{list-style:none;margin:10px 0 0;padding:0}
+.bl-series li{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:6px 0;border-top:1px solid var(--line);font-size:14.5px}
+.bl-series li.off>span:first-child{color:var(--grey)}
+.bl-series li.next>span:first-child{font-weight:700}
+.bl-fit{margin-top:20px}.bl-fitout{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.bl-chip{border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:14px}.bl-chip b{color:var(--amber)}
+.bl-fold{margin-top:12px}.bl-fold summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none}.bl-fold summary::-webkit-details-marker{display:none}
+.bl-fold summary::before{content:"+";font-family:var(--pix);font-size:20px;color:var(--amber);width:14px}.bl-fold[open] summary::before{content:"-"}
+.bl-fold summary h2{margin:0}.bl-fold[open] summary{margin-bottom:6px}
+.bl-foot{margin-top:16px;line-height:2.2}
+@media (max-width:760px){.bl-row{flex-wrap:wrap}.bl-row .bl-body{flex:1 1 60%}.bl-right{flex:1 1 100%;justify-content:space-between;padding-left:84px}.bl-row img,.bl-row .ph,.bl-card img,.bl-card .ph{width:60px}}
+.tabs{overflow-x:auto;scrollbar-width:none;min-width:0}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;flex:none}
+@media (max-width:760px){.lb-row .gname,.bl-row .gname,.bl-card .gname{white-space:normal}.lb-fmt span{display:inline!important}}
+.lb-fmt span{display:none}
+.bl-series li .tag{flex:none}
 </style>
 </head>
 <body>
@@ -260,8 +340,11 @@ summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
   <div class="brand">SHELF TOOLS</div>
   <nav class="tabs" role="tablist">
     <button class="tab" role="tab" id="tab-recap" aria-selected="true" data-view="recap">Recap</button>
-    <button class="tab" role="tab" id="tab-workshop" aria-selected="false" data-view="workshop">Emblem Workshop</button>
     <button class="tab" role="tab" id="tab-sync" aria-selected="false" data-view="sync">Sync</button>
+    <button class="tab" role="tab" id="tab-library" aria-selected="false" data-view="library">Library</button>
+    <button class="tab" role="tab" id="tab-backlog" aria-selected="false" data-view="backlog">Backlog</button>
+    <button class="tab" role="tab" id="tab-checkup" aria-selected="false" data-view="checkup">Checkup</button>
+    <button class="tab" role="tab" id="tab-workshop" aria-selected="false" data-view="workshop">Emblem Workshop</button>
   </nav>
   <div class="stickbtn">
     <span class="stickname" id="stickname">Sample stick</span>
@@ -358,6 +441,47 @@ summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
     </div>
   </div>
 </section>
+
+<!-- ================= CHECKUP ================= -->
+<section class="view" id="view-checkup" aria-labelledby="tab-checkup" hidden>
+  <div class="band">
+    <div class="wrap">
+      <div class="toolbar">
+        <h1 style="font-size:clamp(26px,4vw,36px);margin-right:auto">Checkup <span class="tag gold" id="ckSample" hidden>Sample</span></h1>
+        <button class="btn small" id="ckLoad">Check your Memory Stick</button>
+      </div>
+      <p class="muted" style="max-width:76ch">Looks over what is installed: which version of each plugin and of Shelf is on the Memory Stick, whether each file is the one from its release, and whether ARK's <code>PLUGINS.TXT</code> and settings fit them. It only reads, and nothing is uploaded.</p>
+      <div id="ckOut" aria-live="polite" style="margin-top:16px"></div>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-library" aria-labelledby="tab-library" hidden>
+  <div class="band">
+    <div class="wrap">
+      <div class="toolbar">
+        <h1 style="font-size:clamp(26px,4vw,36px);margin-right:auto">Library <span class="tag gold" id="lbSample" hidden>Sample</span></h1>
+        <button class="btn small" id="lbLoad">Load your Memory Stick</button>
+      </div>
+      <p class="muted" style="max-width:76ch">Every game on the Memory Stick: its size, format and folder, how much you played it, and Shelf's marks. It also points out a file that was cut short in copying, a game that is there twice, and what Shelf has not scanned yet. It only shows: nothing on the Memory Stick is changed.</p>
+      <div id="lbOut" aria-live="polite" style="margin-top:16px"></div>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-backlog" aria-labelledby="tab-backlog" hidden>
+  <div class="band">
+    <div class="wrap">
+      <div class="toolbar">
+        <h1 style="font-size:clamp(26px,4vw,36px);margin-right:auto">Backlog <span class="tag gold" id="blSample" hidden>Sample</span></h1>
+        <button class="btn small" id="blLoad">Load your Memory Stick</button>
+      </div>
+      <p class="muted" style="max-width:76ch">What you are playing, what to play next and why, and each series in its order, from the games on the Memory Stick and the time on each. It only shows: nothing is changed and nothing is kept.</p>
+      <div id="blOut" style="margin-top:16px"></div>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="foot">
@@ -374,7 +498,7 @@ summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
     <p class="muted small">Shelf Tools reads what Sidequest, Checkpoint, Emblem, Runtime and Shelf keep in their folders. Files are read here in your browser and stay on your computer or phone.</p>
     <ol class="steps small">
       <li>On the PSP, open Shelf's PS-button menu and choose <b>USB connection</b> (or use the XMB's USB mode).</li>
-      <li>Pick the Memory Stick's drive below. Only the five plugin folders are read; ISOs and saves are skipped.</li>
+      <li>Pick the Memory Stick's drive below. Only the plugins' folders, the installed plugin files and ARK's settings are read; ISOs and saves are skipped.</li>
     </ol>
     <p class="muted small"><b>On a PS Vita (Adrenaline 8):</b> the Memory Stick is the <code>pspemu</code> folder on your card, usually <code>ux0:pspemu</code>. Pick that folder, not the card itself. If the computer asks to format the card, do not: the wrong <b>USB device</b> is chosen in Adrenaline's menu.</p>
     <div class="drop" id="drop">Drop the Memory Stick, its plugin folders, or a zip of them here</div>
@@ -383,7 +507,7 @@ summary{cursor:pointer;font-family:var(--pix);font-size:16px;min-height:32px}
       <label class="btn">Pick a zip<input type="file" id="pickZip" accept=".zip,application/zip" class="hide"></label>
       <button class="btn" id="useSample">Use the sample</button>
     </div>
-    <p class="note">If the browser will not open the drive itself, select the five plugin folders in your file manager and drag them onto this box together.</p>
+    <p class="note">If the browser will not open the drive itself, select the five plugin folders in your file manager and drag them onto this box together. For Checkup, drag <code>SEPLUGINS</code> and <code>PSP</code> along with them.</p>
     <p class="note">On a phone, a folder cannot always be picked: zip <code>SIDEQUEST</code>, <code>CHECKPOINT</code>, <code>EMBLEM</code>, <code>RUNTIME</code> and <code>SHELF</code> on a computer and pick the zip. Save-state files are large; leaving <code>SIDEQUEST</code> out only drops the slot pictures.</p>
     <ul class="found" id="found"></ul>
     <p class="small" id="ldMsg" style="margin-top:10px"></p>

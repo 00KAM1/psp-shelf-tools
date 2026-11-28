@@ -16,10 +16,10 @@ tests/render/doc_pictures.py). Never commit such a copy as index.html.
 """
 import argparse, base64, gzip, json, os, re
 
-VERSION = "1.4"
+VERSION = "1.5"
 # the sample stick's files are dated as if it was last used then (Runtime's year-less dates count back from it)
 SAMPLE_DATE = 1795561200000   # 2026-11-24 23:00 UTC
-SCRIPTS = ["emblem-engine.js", "engine.js", "stick.js", "parse.js", "stats.js", "syncdir.js", "sync.js", "ui.js", "recap.js", "workshop.js", "syncui.js"]
+SCRIPTS = ["emblem-engine.js", "engine.js", "stick.js", "parse.js", "stats.js", "syncdir.js", "sync.js", "checkup.js", "iso.js", "library.js", "backlog.js", "ui.js", "recap.js", "workshop.js", "syncui.js", "checkupui.js", "libraryui.js", "backlogui.js"]
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--sample", default="tests/sample/ms0", help="the stick the page opens on")
@@ -32,7 +32,7 @@ def sample_stick():
     sz = os.path.join(os.path.dirname(root), "sizes.txt")
     if os.path.exists(sz):
         for line in open(sz):
-            p, _, v = line.strip().partition(" ")
+            p, _, v = line.strip().rpartition(" ")   # the size is after the last space: a path may have spaces
             if p:
                 sizes[p] = int(v)
     out = {}
@@ -64,6 +64,11 @@ for s in SCRIPTS:
 data = "window.TOOLS_VERSION = " + json.dumps(VERSION) + ";\n"
 packed = gzip.compress(json.dumps(sample_stick(), separators=(",", ":")).encode(), 9, mtime=0)
 data += "window.SAMPLE_STICK_GZ = " + json.dumps(base64.b64encode(packed).decode()) + ";\n"
+# the files of every release, for Checkup; and the sample stick's stand-ins for them
+data += "window.OFFICIAL_FILES = " + json.dumps(json.load(open("data/official.json")), separators=(",", ":")) + ";\n"
+data += "window.OFFICIAL_SAMPLE = " + json.dumps(json.load(open("tests/sample/official.json")), separators=(",", ":")) + ";\n"
+# the series the Backlog knows, in order
+data += "window.SERIES = " + json.dumps(json.load(open("data/series.json", encoding="utf-8")), ensure_ascii=False, separators=(",", ":")) + ";\n"
 data += "window.EMBLEM_RELEASE = " + json.dumps(release(), ensure_ascii=False, separators=(",", ":")) + ";\n"
 parts.append(f"<script>\n/* ---- data: the sample stick and Emblem's released game files ---- */\n{safe(data)}</script>")
 parts.append("<script>\n{ App.start().then(() => App.startMaker()).catch((e) => { document.getElementById('recapBody').innerHTML = '<div class=\"band\"><div class=\"wrap card err\">The page could not start: ' + App.esc(e && e.message || e) + '</div></div>'; console.error(e); }); }\n</script>")

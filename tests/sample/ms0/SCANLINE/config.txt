@@ -1,0 +1,2 @@
+# Scanline
+hotkeys = 1

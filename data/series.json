@@ -1,0 +1,106 @@
+{
+ "about": "Series in which the order of play matters, or is worth knowing, for the Backlog. A game belongs to an entry when one of its 'match' patterns is found in its title or file name (lower case, punctuation taken out); when several entries of a series match, the last one wins, so 'Trails in the Sky SC' is SC and not the first game. 'not' keeps a look-alike out. 'strict' marks a series whose games should be played in order: a later one is held back until the one before is done. Add your own.",
+ "series": [
+  { "name": "Trails (Kiseki)", "strict": true, "note": "One long story. Play them in this order.", "not": ["ys vs"],
+    "entries": [
+     { "title": "Trails in the Sky", "match": ["trails in the sky", "sora no kiseki", "空の軌跡"] },
+     { "title": "Trails in the Sky SC", "match": ["trails in the sky sc", "sora no kiseki sc", "空の軌跡 sc"] },
+     { "title": "Trails in the Sky the 3rd", "match": ["trails in the sky (the )?3rd", "trails in the sky (the )?third", "sora no kiseki (the )?3rd", "空の軌跡 the 3rd"] },
+     { "title": "Zero no Kiseki (Trails from Zero)", "match": ["zero no kiseki", "trails from zero", "零の軌跡"] },
+     { "title": "Ao no Kiseki (Trails to Azure)", "match": ["ao no kiseki", "trails to azure", "碧の軌跡"] } ] },
+  { "name": "Ys", "note": "Each stands alone. This is the order of Adol's adventures.", "not": ["ys vs"],
+    "entries": [
+     { "title": "Ys I & II Chronicles", "match": ["ys i ii", "ys 1 2", "ys i and ii", "ys chronicles"] },
+     { "title": "Ys: The Oath in Felghana", "match": ["oath in felghana", "felghana"] },
+     { "title": "Ys: The Ark of Napishtim", "match": ["ark of napishtim", "napishtim"] },
+     { "title": "Ys Seven", "match": ["ys seven", "ys 7", "ys vii"] } ] },
+  { "name": "Persona 2", "strict": true, "note": "Two halves of one story.",
+    "entries": [
+     { "title": "Persona 2: Innocent Sin", "match": ["innocent sin"] },
+     { "title": "Persona 2: Eternal Punishment", "match": ["eternal punishment"] } ] },
+  { "name": "Corpse Party", "note": "Release order.",
+    "entries": [
+     { "title": "Corpse Party", "match": ["corpse party"] },
+     { "title": "Corpse Party: Book of Shadows", "match": ["book of shadows"] },
+     { "title": "Corpse Party: Sweet Sachiko's Hysteric Birthday Bash", "match": ["sachiko", "hysteric birthday"] } ] },
+  { "name": "Danganronpa", "strict": true, "note": "The second follows the first.",
+    "entries": [
+     { "title": "Danganronpa", "match": ["danganronpa", "dangan ronpa"] },
+     { "title": "Super Danganronpa 2", "match": ["danganronpa 2", "dangan ronpa 2"] } ] },
+  { "name": "Fate/Extra", "strict": true, "note": "CCC builds on Extra.",
+    "entries": [
+     { "title": "Fate/Extra", "match": ["fate extra"] },
+     { "title": "Fate/Extra CCC", "match": ["fate extra ccc"] } ] },
+  { "name": "7th Dragon 2020", "strict": true, "note": "The second follows the first.",
+    "entries": [
+     { "title": "7th Dragon 2020", "match": ["7th dragon 2020"] },
+     { "title": "7th Dragon 2020-II", "match": ["7th dragon 2020 ii", "7th dragon 2020 2"] } ] },
+  { "name": "God Eater", "strict": true, "note": "The second follows the first.",
+    "entries": [
+     { "title": "God Eater Burst", "match": ["god eater"] },
+     { "title": "God Eater 2", "match": ["god eater 2"] } ] },
+  { "name": "Star Ocean", "note": "Loosely linked. The second stands alone.",
+    "entries": [
+     { "title": "Star Ocean: First Departure", "match": ["star ocean first departure"] },
+     { "title": "Star Ocean: Second Evolution", "match": ["star ocean second evolution"] } ] },
+  { "name": "Valkyria Chronicles", "note": "Separate stories. Release order.",
+    "entries": [
+     { "title": "Valkyria Chronicles 2", "match": ["valkyria chronicles 2", "valkyria chronicles ii", "senjou no valkyria 2"] },
+     { "title": "Valkyria Chronicles 3", "match": ["valkyria chronicles 3", "valkyria chronicles iii", "senjou no valkyria 3"] } ] },
+  { "name": "Disgaea", "note": "Separate stories. Release order.",
+    "entries": [
+     { "title": "Disgaea: Afternoon of Darkness", "match": ["afternoon of darkness"] },
+     { "title": "Disgaea 2: Dark Hero Days", "match": ["disgaea 2", "dark hero days"] } ] },
+  { "name": "Yggdra Union", "note": "Release order. Blaze Union tells what came before Yggdra Union.",
+    "entries": [
+     { "title": "Yggdra Union", "match": ["yggdra union"] },
+     { "title": "Blaze Union", "match": ["blaze union"] },
+     { "title": "Gloria Union", "match": ["gloria union"] } ] },
+  { "name": "Shining", "note": "Loosely linked. Release order.",
+    "entries": [
+     { "title": "Shining Hearts", "match": ["shining hearts"] },
+     { "title": "Shining Blade", "match": ["shining blade"] },
+     { "title": "Shining Ark", "match": ["shining ark"] } ] },
+  { "name": "Phantasy Star Portable", "strict": true, "note": "Each follows the one before.",
+    "entries": [
+     { "title": "Phantasy Star Portable", "match": ["phantasy star portable"] },
+     { "title": "Phantasy Star Portable 2", "match": ["phantasy star portable 2"] },
+     { "title": "Phantasy Star Portable 2 Infinity", "match": ["phantasy star portable 2 infinity"] } ] },
+  { "name": "Dissidia Final Fantasy", "note": "012 retells and extends the first, and can be played alone.",
+    "entries": [
+     { "title": "Dissidia Final Fantasy", "match": ["dissidia"] },
+     { "title": "Dissidia 012 Final Fantasy", "match": ["dissidia 012", "duodecim"] } ] },
+  { "name": "Way of the Samurai (Samurai Dou)", "note": "Separate stories. Release order.",
+    "entries": [
+     { "title": "Samurai Dou Portable", "match": ["samurai dou", "way of the samurai"] },
+     { "title": "Samurai Dou 2 Portable", "match": ["samurai dou 2", "way of the samurai 2"] } ] },
+  { "name": "Evangelion: Girlfriend of Steel", "note": "Release order.",
+    "entries": [
+     { "title": "Koutetsu no Girlfriend Tokubetsu-hen", "match": ["koutetsu no girlfriend", "girlfriend of steel"] },
+     { "title": "Koutetsu no Girlfriend 2nd", "match": ["koutetsu no girlfriend 2nd", "girlfriend of steel 2"] } ] },
+  { "name": "Macross Frontier", "note": "Each is a larger game than the last.",
+    "entries": [
+     { "title": "Macross Ace Frontier", "match": ["macross ace frontier"] },
+     { "title": "Macross Ultimate Frontier", "match": ["macross ultimate frontier"] },
+     { "title": "Macross Triangle Frontier", "match": ["macross triangle frontier"] } ] },
+  { "name": "Metal Gear Solid", "strict": true, "note": "Peace Walker follows Portable Ops.",
+    "entries": [
+     { "title": "Metal Gear Solid: Portable Ops", "match": ["portable ops"] },
+     { "title": "Metal Gear Solid: Peace Walker", "match": ["peace walker"] } ] },
+  { "name": "God of War", "note": "Release order.",
+    "entries": [
+     { "title": "God of War: Chains of Olympus", "match": ["chains of olympus"] },
+     { "title": "God of War: Ghost of Sparta", "match": ["ghost of sparta"] } ] },
+  { "name": "Monster Hunter", "note": "No story to follow. Each is a larger game than the last.",
+    "entries": [
+     { "title": "Monster Hunter Freedom", "match": ["monster hunter freedom"] },
+     { "title": "Monster Hunter Freedom 2", "match": ["monster hunter freedom 2"] },
+     { "title": "Monster Hunter Freedom Unite", "match": ["monster hunter freedom unite"] },
+     { "title": "Monster Hunter Portable 3rd", "match": ["monster hunter portable 3rd"] } ] },
+  { "name": "Patapon", "strict": true, "note": "Each follows the one before.",
+    "entries": [
+     { "title": "Patapon", "match": ["patapon"] },
+     { "title": "Patapon 2", "match": ["patapon 2"] },
+     { "title": "Patapon 3", "match": ["patapon 3"] } ] }
+ ]
+}

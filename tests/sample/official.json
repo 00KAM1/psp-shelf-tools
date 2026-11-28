@@ -1,0 +1,64 @@
+{
+ "files": [
+  {
+   "name": "sidequest",
+   "platform": "psp",
+   "version": "1.3",
+   "built": "Nov 24 2026 13:28:58",
+   "sha256": "6e512d8818226edf5c33e79dbffe89ffd92e9e4dd0c2219830dda91e14ebfd27",
+   "size": 192,
+   "release": "2026-11-25",
+   "sample": true
+  },
+  {
+   "name": "checkpoint",
+   "platform": "psp",
+   "version": "1.2",
+   "built": "Nov 24 2026 13:29:00",
+   "sha256": "a84c1ef82a0ab7ad21953e822444c8058862ca029848456db68ed15d1d6a737b",
+   "size": 208,
+   "release": "2026-11-25",
+   "sample": true
+  },
+  {
+   "name": "emblem",
+   "platform": "psp",
+   "version": "1.0",
+   "built": "Nov 22 2026 03:34:23",
+   "sha256": "a852d406aa33c3368659d4bc38b1759449ab1b242f9e6d399f28aa32136b29d4",
+   "size": 192,
+   "release": "2026-11-23",
+   "sample": true
+  },
+  {
+   "name": "scanline",
+   "platform": "psp",
+   "version": "1.2",
+   "built": "Nov 24 2026 13:29:05",
+   "sha256": "abca8ce80605d20df14f89fffc526df7d17a0d91af5d14c09ce55a9603c0d688",
+   "size": 192,
+   "release": "2026-11-25",
+   "sample": true
+  },
+  {
+   "name": "runtime",
+   "platform": "psp",
+   "version": "1.0",
+   "built": "Nov 24 2026 08:13:05",
+   "sha256": "d269156b88d1d4b0e6bbfb67dbef6d94da9bccfb95a42d086368ede5eede8e55",
+   "size": 192,
+   "release": "2026-11-25",
+   "sample": true
+  },
+  {
+   "name": "shelf",
+   "platform": "psp",
+   "version": "1.2",
+   "built": "Nov 26 2026 09:00:17",
+   "sha256": "9bafbd7b9d977965eb98c583cdb51214e5fd51f7f9fb24d8dca29971566b5f28",
+   "size": 160,
+   "release": "2026-11-26",
+   "sample": true
+  }
+ ]
+}

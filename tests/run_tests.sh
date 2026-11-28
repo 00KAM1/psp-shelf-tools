@@ -32,7 +32,14 @@ node tests/test_stick.js
 echo "== 4. Sync, on real folders"
 node tests/test_sync.js
 
-echo "== 5. The page"
+echo "== 5. Checkup, on made-up setups"
+node tests/test_checkup.js
+
+echo "== 6. The Library and the Backlog, on the sample's games"
+[ -f "tests/sample/ms0/ISO/JRPG/Trails in the Sky SC.zso" ] || python3 tools/make_sample_library.py
+node tests/test_library.js
+
+echo "== 7. The page"
 python3 tools/build.py
 if grep -q "</script" src/*.js; then echo "a script contains </script"; exit 1; fi
 echo "all passed"

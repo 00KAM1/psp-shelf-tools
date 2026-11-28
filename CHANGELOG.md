@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.5
+
+Nothing to install: the site updates itself. If you keep a copy for offline use, replace its `index.html`.
+
+Three new tools, all of which only read, and a new order for the tabs: Recap, Sync, Library, Backlog, Checkup, Emblem Workshop.
+
+- **Library.** Every game on the Memory Stick with its icon, disc ID, format, size, time played and last play; search, filters and sorting; and what is worth a look: a file cut short in copying, a game that is there twice, games Shelf has not scanned, files that are gone. Shelf's favourite, completed and hidden marks are shown. It only shows: nothing on the Memory Stick is changed.
+- **Backlog.** What you are playing, suggestions for what to play next with their reasons, 22 series in the order to play them, and lists of what you started and left, never started and completed. It only shows: nothing to set, nothing changed, nothing kept.
+- The Library's list is quick by design: a game Shelf has scanned is not opened at all, a game it has not is read in a few small pieces (ISO, CSO and ZSO), and the check for files cut short reads about 2 KB of each game after the list is shown.
+- **Checkup.** It reads what is installed on the Memory Stick and says what does not fit together: the version and build of each plugin and of Shelf, the release each file is from, whether a newer release is out (asking you to delete any Sidequest states before you update), what is missing from or wrong in ARK's `PLUGINS.TXT` (with the line to use), PSP and PS Vita builds mixed up, Extra memory on with Sidequest, Shelf's launcher copy out of step, and Sidequest states that are refused or older than what is installed. **Copy the report** gives it as text for a bug report. It only reads.
+- Loading a Memory Stick now also lists the games in `ISO` and `PSP/GAME`, and reads the installed plugins and their list in `SEPLUGINS`, Scanline's log, ARK's files in `PSP/SAVEDATA/ARK_01234` and Shelf's program. Pick the drive itself: a zip of the five data folders does not hold the plugins, and the Library then shows only what Shelf has scanned, without sizes.
+- The row of tabs scrolls sideways on a phone.
+- **The Library, the Backlog and Checkup have not yet been run on a real Memory Stick.** They have been run on the sample; for Checkup, also on made-up setups, and the real files of every release so far were read and matched.
+- Recap, the Emblem Workshop and Sync are unchanged.
+
 ## 1.4
 
 Nothing to install: the site updates itself. If you keep a copy for offline use, replace its `index.html`.

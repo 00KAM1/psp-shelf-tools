@@ -12,8 +12,13 @@
 
   // Folders the plugins and Shelf write. The stick's root is the folder above them.
   const KNOWN = ["SIDEQUEST", "CHECKPOINT", "EMBLEM", "RUNTIME", "SHELF"];
-  // What is worth keeping from a picked folder; the rest (ISOs, saves, music) is ignored.
-  const WANTED = /^(SIDEQUEST|CHECKPOINT|EMBLEM|RUNTIME|SHELF)\//i;
+  // Where the plugins themselves, ARK's settings and Shelf are installed. Checkup reads
+  // these; a Memory Stick on which nothing has run yet has only them.
+  const SETUP = ["SEPLUGINS", "SCANLINE"];
+  // What is worth keeping from a picked folder; the rest (saves, music, a game's own
+  // files) is ignored. The games themselves are kept for the Library: an ISO is known by
+  // its place and size, and is only ever read a few small pieces at a time.
+  const WANTED = /^(SIDEQUEST|CHECKPOINT|EMBLEM|RUNTIME|SHELF|SCANLINE|SEPLUGINS)\/|^PSP\/SAVEDATA\/ARK_01234\/[^/]+$|^PSP\/GAME\/(.+\/)?EBOOT\.PBP$|^ISO\/.+\.(iso|cso|zso|dax)$/i;
 
   class Stick {
     constructor(files, label) {
@@ -54,7 +59,7 @@
     for (const p of paths) {
       const parts = p.split("/");
       for (let i = 0; i < parts.length - 1; i++) {
-        if (KNOWN.includes(parts[i].toUpperCase())) {
+        if (KNOWN.includes(parts[i].toUpperCase()) || SETUP.includes(parts[i].toUpperCase())) {
           const pre = parts.slice(0, i).join("/");
           if (best === null || pre.length < best.length) best = pre;
           break;
@@ -104,21 +109,40 @@
   const entryFile = (entry) => new Promise((ok, no) => entry.file(ok, no));
   async function fromDrop(entries, label) {
     const list = [];
-    const walk = async (entry, prefix) => {
-      if (entry.isFile) {
-        const file = await entryFile(entry);
-        list.push({ path: prefix + file.name, size: file.size, mtime: file.lastModified ? new Date(file.lastModified) : null, read: fileRead(file) });
-      } else if (entry.isDirectory) {
-        // Skip what is never needed and can be huge (at the stick's top: the drop's
-        // top, or one folder down when the drive itself was dropped)
-        if (/^(ISO|PSP|MUSIC|VIDEO|PICTURE|SEPLUGINS)$/i.test(entry.name) && prefix.split("/").length <= 2) return;
-        const reader = entry.createReader();
-        for (;;) {      // readEntries gives a folder in batches; an empty one ends it
-          const batch = await new Promise((ok, no) => reader.readEntries(ok, no));
-          if (!batch.length) break;
-          for (const e of batch) await walk(e, prefix + entry.name + "/");
-        }
+    const entriesOf = async (dir) => {
+      const all = [], reader = dir.createReader();
+      for (;;) {      // readEntries gives a folder in batches; an empty one ends it
+        const batch = await new Promise((ok, no) => reader.readEntries(ok, no));
+        if (!batch.length) break;
+        all.push(...batch);
       }
+      return all;
+    };
+    const take = async (entry, prefix) => {
+      const file = await entryFile(entry);
+      list.push({ path: prefix + file.name, size: file.size, mtime: file.lastModified ? new Date(file.lastModified) : null, read: fileRead(file) });
+    };
+    // PSP/GAME: a folder with an EBOOT.PBP is a game and only that file is taken; a folder
+    // without one is a category (PSX, PORTS ...) and is looked into, as Shelf does. A
+    // game's other files, which can be thousands, are never listed.
+    const games = async (dir, prefix, depth) => {
+      const all = await entriesOf(dir), eboot = all.find((e) => e.isFile && /^EBOOT\.PBP$/i.test(e.name));
+      if (eboot) return take(eboot, prefix + dir.name + "/");
+      if (depth < 4) for (const e of all) if (e.isDirectory) await games(e, prefix + dir.name + "/", depth + 1);
+    };
+    const walk = async (entry, prefix, inPsp) => {
+      if (entry.isFile) { if (!inPsp) await take(entry, prefix); return; }
+      if (!entry.isDirectory) return;
+      // Skip what is never needed and can be huge (at the stick's top: the drop's
+      // top, or one folder down when the drive itself was dropped)
+      const top = prefix.split("/").length <= 2, name = entry.name.toUpperCase();
+      if (inPsp === "PSP") {
+        if (name === "GAME") return games(entry, prefix, 0);
+        if (name !== "SAVEDATA") return;
+      } else if (inPsp === "SAVEDATA") { if (name !== "ARK_01234") return; }
+      else if (top && /^(MUSIC|VIDEO|PICTURE)$/.test(name)) return;
+      const next = inPsp === "PSP" ? "SAVEDATA" : inPsp === "SAVEDATA" ? null : top && name === "PSP" ? "PSP" : null;
+      for (const e of await entriesOf(entry)) await walk(e, prefix + entry.name + "/", next);
     };
     const zip = entries.length === 1 && entries[0].isFile && /\.zip$/i.test(entries[0].name);
     if (zip) return fromZip(await entryFile(entries[0]));

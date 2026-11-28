@@ -7,7 +7,7 @@ With tests/docrun/ms0 there (tools/make_sample_stick.py --art <your art>), the p
 show your own games' icons and pictures: a copy of the page is built from that stick
 into tests/docrun/index.html, which Git ignores, and photographed. Without it, they
 show the sample's own drawn scenes. The play itself is the sample's made-up year either way.
-   python3 tests/render/doc_pictures.py [path to chrome] [--only recap|workshop|sync]
+   python3 tests/render/doc_pictures.py [path to chrome] [--only recap|workshop|sync|checkup|library]
 With --only, just that tool's pictures are retaken and the others are left as they are."""
 import asyncio, os, subprocess, sys
 from playwright.async_api import async_playwright
@@ -72,6 +72,29 @@ async def main():
             await shot("sync-saves.png", ".sy-game")
             await pg.click("#sySync"); await pg.wait_for_selector(".sy-level", timeout=20000); await pg.wait_for_timeout(2800)
             await shot("sync-level.png")
+        if ONLY in (None, "checkup"):
+            # Checkup on the sample's setup, which has faults put in it (tools/make_sample_setup.py);
+            # always the repository's own sample, as a doc stick has no plugins installed on it
+            await pg.goto("file://" + os.path.join(ROOT, "index.html") + "#checkup")
+            await pg.wait_for_selector(".ck-card", timeout=20000); await pg.wait_for_timeout(600)
+            await shot("checkup.png")
+            await shot("checkup-more.png", ".ck-card:nth-child(3)")
+            await pg.evaluate("App.setStick(StickIO.fromEntries([{ path: 'stick/CHECKPOINT/JOURNEY/ULUS10558.TIM', size: 3, mtime: new Date(), read: async () => new Uint8Array([54, 48, 10]) }], 'five-folders.zip'), false)")
+            await pg.wait_for_selector("#ckOut h2"); await pg.wait_for_timeout(300)
+            await shot("checkup-none.png")
+        if ONLY in (None, "library"):
+            # the Library and the Backlog on the repository's sample, which has faults put in its games
+            # (tools/make_sample_library.py)
+            await pg.goto("about:blank")      # a full load: the Checkup pictures leave a five-folder stick in this page
+            await pg.goto("file://" + os.path.join(ROOT, "index.html") + "#library")
+            await pg.wait_for_selector(".lb-row", timeout=20000)
+            await pg.wait_for_function("document.querySelector('#lbOut').innerText.includes('is cut short')", timeout=20000); await pg.wait_for_timeout(800)
+            await shot("library.png")
+            await shot("library-list.png", ".lb-bar")
+            await pg.goto("file://" + os.path.join(ROOT, "index.html") + "#backlog")
+            await pg.wait_for_selector(".bl-row", timeout=20000); await pg.wait_for_timeout(800)
+            await shot("backlog.png")
+            await shot("backlog-series.png", ".bl-series")
         await b.close()
     print("pictures in docs/images:", ", ".join(sorted(os.listdir(IMG))))
 asyncio.run(main())

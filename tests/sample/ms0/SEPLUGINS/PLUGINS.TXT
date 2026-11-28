@@ -1,0 +1,6 @@
+game, ms0:/SEPLUGINS/sidequest.prx, on
+game, ms0:/SEPLUGINS/checkpoint.prx, on
+game, ms0:/SEPLUGINS/scanline.prx, off
+game, ms0:/SEPLUGINS/emblem.prx, on
+game, ms0:/SEPLUGINS/runtime.prx, on
+game, ms0:/SEPLUGINS/pocketclock.prx, on

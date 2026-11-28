@@ -17,7 +17,7 @@ function fromDir(dir, sizes) {
 }
 function sampleSizes() {
   const out = {};
-  for (const l of fs.readFileSync(path.join(__dirname, "sample/sizes.txt"), "utf8").split("\n")) { const [p, v] = l.split(" "); if (p) out[p] = +v; }
+  for (const l of fs.readFileSync(path.join(__dirname, "sample/sizes.txt"), "utf8").split("\n")) { const i = l.lastIndexOf(" "); if (i > 0) out[l.slice(0, i)] = +l.slice(i + 1); }
   return out;
 }
 function engine() {

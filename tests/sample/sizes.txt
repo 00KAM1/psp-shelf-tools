@@ -1,3 +1,15 @@
+ISO/JRPG/Final Fantasy IV Complete.iso 1470103552
+ISO/JRPG/Lunar - Silver Star Harmony (USA) (En,Ja) (v1.01).iso 738197504
+ISO/JRPG/Persona 3 Portable (Undub).iso 1717567488
+ISO/JRPG/Trails in the Sky SC.zso 979369984
+ISO/JRPG/Trails in the Sky.iso 640679936
+ISO/JRPG/Ys - The Oath in Felghana (Undub).iso 505413632
+ISO/JRPG/Ys Seven (USA).iso 1181745152
+ISO/JRPG/Ys Seven.iso 1181745152
+ISO/Strategy/Jeanne d'Arc.cso 542113792
+ISO/Strategy/Tactics Ogre - Let Us Cling Together.iso 337641472
+ISO/Strategy/Valkyria Chronicles 2.iso 1561329664
+PSP/GAME/Homebrew/LanternHollow/EBOOT.PBP 3145728
 SIDEQUEST/ULUS10512/STATE1.SQS 14680064
 SIDEQUEST/ULUS10512/SUSPEND.SQS 20971520
 SIDEQUEST/ULUS10515/STATE1.SQS 12582912

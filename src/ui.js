@@ -81,17 +81,21 @@
     },
   });
 
-  // ---- tabs and the address bar (#recap, #emblem-workshop, #sync) ---------------------------
-  const HASH = { recap: "#recap", workshop: "#emblem-workshop", sync: "#sync" };
+  // ---- tabs and the address bar (#recap, #emblem-workshop, #sync, #checkup, #library, #backlog) ---------------------------
+  const HASH = { recap: "#recap", workshop: "#emblem-workshop", sync: "#sync", checkup: "#checkup", library: "#library", backlog: "#backlog" };
   function show(view) {
     for (const t of document.querySelectorAll(".top .tab")) t.setAttribute("aria-selected", String(t.dataset.view === view));
     for (const v of Object.keys(HASH)) $("#view-" + v).hidden = view !== v;
     $(".stickbtn").style.visibility = view === "sync" ? "hidden" : "";       // Sync picks its own two folders
     if (location.hash !== HASH[view]) try { history.replaceState(null, "", HASH[view]); } catch (e) { /* the frame may refuse */ }
+    { const tab = $("#tab-" + view); if (tab && tab.scrollIntoView) tab.scrollIntoView({ block: "nearest", inline: "nearest" }); }   // the row of tabs scrolls on a phone
     if (view === "sync" && App.onSync) App.onSync();
+    if (view === "checkup" && App.onCheckup) App.onCheckup();
+    if (view === "library" && App.onLibrary) App.onLibrary();
+    if (view === "backlog" && App.onBacklog) App.onBacklog();
   }
   for (const t of document.querySelectorAll(".top .tab")) t.addEventListener("click", () => show(t.dataset.view));
-  const route = () => show(/emblem-(workshop|sets)/.test(location.hash) ? "workshop" : /^#sync/.test(location.hash) ? "sync" : "recap");   // emblem-sets: its first name
+  const route = () => show(/emblem-(workshop|sets)/.test(location.hash) ? "workshop" : /^#sync/.test(location.hash) ? "sync" : /^#checkup/.test(location.hash) ? "checkup" : /^#library/.test(location.hash) ? "library" : /^#backlog/.test(location.hash) ? "backlog" : "recap");   // emblem-sets: its first name
   window.addEventListener("hashchange", route);
   App.show = show;
 

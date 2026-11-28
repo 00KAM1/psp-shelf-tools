@@ -3,7 +3,7 @@
    python3 tests/browser_check.py [path to chrome]
 Loads a zip of the sample stick through the file picker, edits a rule in the Workshop
 and checks that the checks follow, pastes code notes and uses one, makes the share picture.
-Then Sync: the sample, and a real run through the browser's own folder writing, with the two
+Then Checkup on the loaded zip and on the sample. Then Sync: the sample, and a real run through the browser's own folder writing, with the two
 folder pickers answered by folders in the browser's private storage (the page is served from
 a local address for that, as a page opened from disk has no such storage).
 Screenshots go to tests/out/."""
@@ -107,6 +107,44 @@ async def main():
         await pg.wait_for_selector("#shareOut img", timeout=10000)
         check(True, "share picture made")
         await pg.screenshot(path=os.path.join(OUT, "recap.png"), full_page=True)
+        # ---- Checkup: the loaded zip (the sample's files, not the sample itself), then the sample ----
+        await pg.click("#tab-checkup")
+        await pg.wait_for_selector(".ck-card", timeout=20000)
+        t = await pg.inner_text("#ckOut")
+        check("need fixing" in t and "Will not work" in t and "Extra memory is on" in t, "Checkup reads a loaded Memory Stick: " + t.split("\n")[0])
+        check("not a file from a release" in t, "files that are in no release are said to be so")
+        check(await pg.is_hidden("#ckSample"), "a loaded Memory Stick is not marked as the sample")
+        await pg.click("#openStick"); await pg.click("#useSample")
+        await pg.wait_for_function("!document.querySelector('#ckSample').hidden", timeout=15000)
+        if await pg.is_visible("#ldClose"): await pg.click("#ldClose")
+        await pg.wait_for_function("document.querySelector('#ckOut').innerText.includes('From release 2026-11-25')", timeout=15000)
+        t = await pg.inner_text("#ckOut")
+        check("2 things need fixing" in t and "Delete these" in t and "Emblem 1.2 is out" in t and "always, ms0:/SEPLUGINS/runtime.prx, on" in t, "the sample's faults are found")
+        check("Switched off" in t and "not a file from a release" not in t, "on the sample its stand-ins count as release files")
+        rep = await pg.evaluate("App.checkup().text")
+        check(rep.startswith("Shelf Tools Checkup 1.") and "[!!] Extra memory is on" in rep, "the report as text")
+        await pg.screenshot(path=os.path.join(OUT, "checkup.png"), full_page=True)
+        # ---- Library and Backlog: the sample (loaded just above) ---------------------------
+        await pg.click("#tab-library")
+        await pg.wait_for_selector(".lb-row", timeout=20000)
+        await pg.wait_for_function("document.querySelector('#lbOut').innerText.includes('is cut short')", timeout=20000)
+        t = await pg.inner_text("#lbOut")
+        check("12 of 12" in t and "is on the Memory Stick twice" in t and "Shelf has not scanned 3 games" in t, "the Library lists the sample's games and what is wrong with them")
+        check("it should be 1.1 GB and is 322 MB" in t, "the file cut short is found, after the list is up")
+        check(await pg.evaluate("document.querySelectorAll('#lbList img').length") >= 11, "icons: Shelf's, and those read from a game Shelf has not scanned")
+        await pg.fill("#lbFind", "trails"); await pg.wait_for_timeout(200)
+        check("2 of 12" in await pg.inner_text("#lbCount"), "the search box narrows the list")
+        await pg.fill("#lbFind", "")
+        check(await pg.evaluate("document.querySelectorAll('#lbList button, #lbList input').length") == 0 and "Completed" in await pg.inner_text("#lbList"), "the Library only shows: Shelf's marks are tags, nothing to press")
+        await pg.screenshot(path=os.path.join(OUT, "library.png"), full_page=True)
+        await pg.click("#tab-backlog")
+        await pg.wait_for_selector(".bl-row", timeout=20000)
+        t = await pg.inner_text("#blOut")
+        check("Next in Trails (Kiseki)" in t and "One story" in t and "Not here" in t, "the Backlog puts the series in order")
+        check(await pg.evaluate("document.querySelectorAll('#blOut input, #blOut select').length") == 0, "the Backlog only shows: nothing to type or set")
+        await pg.click("#blPick"); await pg.wait_for_timeout(300)
+        check(await pg.evaluate("!!document.querySelector('.bl-row.picked')"), "Pick one for me marks a game")
+        await pg.screenshot(path=os.path.join(OUT, "backlog.png"), full_page=True)
         # ---- Sync: the sample --------------------------------------------------------------
         await pg.click("#tab-sync")
         await pg.click("#syTry")

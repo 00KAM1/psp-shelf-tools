@@ -1,0 +1,6 @@
+always, usbcharge, on
+always, highmem, on
+always, mscache, on
+always, skiplogos, on
+always, launcher, on
+ULUS10512, highmem, off
